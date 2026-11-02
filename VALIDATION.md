@@ -11,3 +11,9 @@ Validated on 2026-11-01 (America/Los_Angeles), using the selected public snapsho
 - Private communication reports, original repository history, server receipts, raw task/episode payloads, credentials and model weights were not exported. Known infrastructure paths, tracking accounts and device identifiers were generalized; source and public file hashes identify transformed files.
 
 This validates the publication and the selected CPU contracts. It does not certify every historical result, reproduce GPU training, or establish compatibility with an arbitrary current OpenEvo release. No scientific workload was launched.
+
+## Additional provenance privacy check — 2026-11-02
+
+The four public experiment JSON snapshots that still contained private meeting-source locators were sanitized in place. Their original SHA-256 values remain in the publication manifest, the four public SHA-256 values were recalculated, and all four are marked transformed=true. This is publication-only provenance redaction, not a change to the frozen private science source or launch authority.
+
+Run: python3 scripts/validate_public_snapshot_privacy.py. The checker validates every listed file digest plus the four private-source negatives. Git history before this fix is intentionally not rewritten, and should not be treated as anonymous.

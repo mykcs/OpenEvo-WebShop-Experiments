@@ -103,14 +103,14 @@
     {
       "path": "configs/experiment/advisor-questions/q06-work-package.v1.json",
       "source_sha256": "5e20ae7952ef4f906c2680ab53e7d711d0761b415ff9773492c937ddd6b8e032",
-      "published_sha256": "5e20ae7952ef4f906c2680ab53e7d711d0761b415ff9773492c937ddd6b8e032",
-      "transformed": false
+      "published_sha256": "8dd2ea62f687dc627fa43a7ad26db1b60bdc0c77a293e5108d7a62ecd9017139",
+      "transformed": true
     },
     {
       "path": "configs/experiment/advisor-questions/q08-work-package-202610012252.json",
       "source_sha256": "880fb952ec29acdeef05d03a71bf34775cd69d4ae3eea6b1d246a53e0e762a6d",
-      "published_sha256": "880fb952ec29acdeef05d03a71bf34775cd69d4ae3eea6b1d246a53e0e762a6d",
-      "transformed": false
+      "published_sha256": "664f8b00b984b8bdd02eae7a56f195d2399217d3971c14561b1dff078caf5d03",
+      "transformed": true
     },
     {
       "path": "configs/experiment/amendments/openevo-ceiling-1.0-3b-stage1-split-authority-revocation-v1.json",
@@ -517,7 +517,7 @@
     {
       "path": "configs/experiment/current-campaign.json",
       "source_sha256": "fce6a91875a8322fa382729d410e83a83a605609fcf82df9ecfff337bd02c2f2",
-      "published_sha256": "725fb3a583b4f244d39e7142b2f6e5f95c30704e41917658a9d0dfc1536d289c",
+      "published_sha256": "042c25d49a58b1b1d6b763461ec19950b820f0c17f12f143d94bfa970633f011",
       "transformed": true
     },
     {
@@ -619,8 +619,8 @@
     {
       "path": "configs/experiment/designs/post-advisor-unanswered-202609282338.json",
       "source_sha256": "65cebfddc2962488c95cc218820bedba704b65f611e927edaefa94f68524acd4",
-      "published_sha256": "65cebfddc2962488c95cc218820bedba704b65f611e927edaefa94f68524acd4",
-      "transformed": false
+      "published_sha256": "4a9235b4fb907cdda47d1c339655dc4d69de9662e9dd9f4dc84ef282dc4a08f1",
+      "transformed": true
     },
     {
       "path": "configs/experiment/designs/q03-seed-stage2-zero-formal-preflight-202610041457.json",
