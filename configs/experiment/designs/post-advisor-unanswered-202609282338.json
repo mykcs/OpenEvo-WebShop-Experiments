@@ -4,14 +4,14 @@
   "revision": "202609282338",
   "status": "PREREGISTERED_OWNER_AUTHORIZED_PENDING_ZERO_FORMAL_PREFLIGHT",
   "scientific_source": {
-    "advisor_raw": "docs/evidence/advisor/liaochang/2026-09-22-meeting-transcript.raw.md",
+    "advisor_raw": "PRIVATE_MEETING_SOURCE_NOT_DISTRIBUTED",
     "reconciliation_pr": 608,
     "post_advisor_completed_pr": 597,
     "q17_plateau_pr": 588
   },
   "user_authorization": {
     "recorded_date": "2026-09-28",
-    "scope": "Execute all still-unanswered experiments derived from the 2026-09-22 liaochang meeting after the plan is written; all eight established RTX 5090 GPUs may be used.",
+    "scope": "Execute all still-unanswered experiments derived from the 2026-09-22 private research discussion after the plan is written; all eight established RTX 5090 GPUs may be used.",
     "final_panel_unlock": false
   },
   "global_boundaries": {

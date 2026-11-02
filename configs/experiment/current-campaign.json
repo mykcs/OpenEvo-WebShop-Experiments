@@ -58,7 +58,7 @@
     "through_round": 159
   },
   "next_gate": "Read-only E1 beta/direction and matched-baseline result analysis under the frozen contract; E2/E3 require their own exact authority.",
-  "objective": "Answer the remaining concrete experimental questions from the 2026-09-22 liaochang meeting without rerunning already-answered arms.",
+  "objective": "Answer the remaining concrete experimental questions from the 2026-09-22 private research discussion without rerunning already-answered arms.",
   "phase": "POST-ADVISOR-E1-EXECUTION-SEALED",
   "plan": "docs/science/webshop/program/POST_ADVISOR_UNANSWERED_EXPERIMENTS_202609282338.md",
   "predecessor_current_campaign": {
