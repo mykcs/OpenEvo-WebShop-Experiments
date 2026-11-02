@@ -1,0 +1,23 @@
+{
+  "freeze_id": "202609030400",
+  "schema": "openevo.authority-snapshot-index.202609042155",
+  "snapshots": {
+    "48d885cb13f39f4b42cc361d6f4c333bae8ed0d8f891978b2755b932ccad519d": {
+      "source_commit": "1ebcd9e67bba01869c27003f303d1d155128dfa3",
+      "source_path": "configs/experiment/stage1/202609030400/prestage2_shared.json"
+    },
+    "87de73669b61b5952cfc36e712dad9b4e7722b83652307b3465f8599b91cf5a5": {
+      "source_commit": "8667c4c6a57eba9e8df0249fe6724994336bfad4",
+      "source_path": "configs/experiment/stage1/202609030400/minimax_handoff.json"
+    },
+    "a5bda531c0eabe307f9c16af219d7ebc5fb53bb8649425c857383f43440c88f1": {
+      "source_commit": "2f00b012762f736ce7b2ccfce7a985a60c4f5d17",
+      "source_path": "configs/experiment/stage1/202609030400/prestage2_shared.json"
+    },
+    "b8d10e17369b6a33ecc64dd5f9af79019e806886ad368e7c73b19ffcc1d950c0": {
+      "source_commit": "3c6391af20d01c06d3b370ead110d225b4b10df0",
+      "source_path": "configs/experiment/stage1/202609030400/prestage2_shared.json"
+    }
+  },
+  "status": "HISTORICAL_GIT_AUTHORITY_SNAPSHOTS"
+}

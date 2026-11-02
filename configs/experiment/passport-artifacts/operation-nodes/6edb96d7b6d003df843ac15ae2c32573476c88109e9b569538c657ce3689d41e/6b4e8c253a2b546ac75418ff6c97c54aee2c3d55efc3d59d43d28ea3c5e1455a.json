@@ -1,0 +1,105 @@
+{
+  "completed_at": "2026-09-28T14:12:43.136949Z",
+  "created_at": "2026-09-28T14:12:43.136949Z",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/experiment_artifact_dag.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "312ebfb54ba136ed0ccb94c0f2b25debe0eff71a0d4afd9fa6f50f431f5d7964"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_PRIVATE_CAPACITY_EXCEPTION_20260928.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "b1e54d96a7bbde0e50a7395ae9afd21e07bfa01a8e50a7b0f8e33f57e3fa3560"
+    },
+    "contract_identities": [],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "d07063fff774725c9465c94d2ad67cc3f2d20b97f912a46beb7680407e398318",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_NONWEIGHT_PRIVATE_RECOVERY_BINDING.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "d07063fff774725c9465c94d2ad67cc3f2d20b97f912a46beb7680407e398318"
+          }
+        ],
+        "logical_role": "gated-delta-live-provider-gap",
+        "size_bytes": 2160
+      }
+    ],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "owner-approved-private-capacity-placement",
+      "scientific_execution_or_replay": "not_authorized"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "6edb96d7b6d003df843ac15ae2c32573476c88109e9b569538c657ce3689d41e",
+  "operation_schema_version": "20260926",
+  "operation_type": "gated-delta-weight.owner-authorized-private-capacity-exception",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [],
+      "digest": "b1e54d96a7bbde0e50a7395ae9afd21e07bfa01a8e50a7b0f8e33f57e3fa3560",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_PRIVATE_CAPACITY_EXCEPTION_20260928.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "b1e54d96a7bbde0e50a7395ae9afd21e07bfa01a8e50a7b0f8e33f57e3fa3560"
+        }
+      ],
+      "logical_role": "gated-delta-weight-capacity-exception-decision",
+      "size_bytes": 3106
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "gated-delta-weight-capacity-exception-20260928",
+    "created_at": "2026-09-28T14:12:43.136949Z",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_PRIVATE_CAPACITY_EXCEPTION_20260928.json",
+      "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_NONWEIGHT_PRIVATE_RECOVERY_BINDING.json"
+    ],
+    "experiment_id": null,
+    "external_views": [],
+    "passport_sha256": null,
+    "producer_scope": "ENGINEERING_GLOBAL"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "ALLOWLISTED_ENGINEERING_ONLY",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Records owner-approved PRIVATE overflow scope only; no upload, recovery verification, scientific replay, or deletion authority."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "PURE_ENGINEERING",
+  "status": "PASS",
+  "supersedes": []
+}

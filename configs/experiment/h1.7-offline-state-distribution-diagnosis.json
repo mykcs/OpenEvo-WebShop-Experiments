@@ -1,0 +1,32 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.7-offline-state-distribution-diagnosis-v1",
+  "phase": "H1.7",
+  "status": "complete-retrospective-descriptive-diagnosis",
+  "scientific_question": "What trajectory differences separate seen-task compact-v2 positives from held-out valid zero-reward episodes?",
+  "design": {
+    "mode": "offline-only",
+    "inputs": [
+      "/workspace/workspace/runs/phase-h1.5-compact-recovery-action-calibration-v1-20260814",
+      "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814"
+    ],
+    "comparison": ["H1.5 seen-task qualified positives", "H1.6 held-out valid zero-reward episodes"],
+    "metrics": ["steps", "generation words", "search/click depth", "buy-now signal", "product clicks", "next-page count", "repeated transitions"],
+    "valid_definition": "no runtime error, complete trace, no parser failure, all actions valid",
+    "qualified_positive_definition": "valid and task_score > 0"
+  },
+  "result": {
+    "run_root": "/workspace/workspace/runs/phase-h1.7-offline-state-distribution-diagnosis-v1-20260814",
+    "artifact": "/workspace/workspace/runs/phase-h1.7-offline-state-distribution-diagnosis-v1-20260814/evidence/h1.7-state-distribution-diagnosis-v1.json",
+    "artifact_sha256": "e3e44f82cd424a2289ccf5598f950cda85223d478c29aca8d1cecf9ff2557d16",
+    "script": "scripts/openevo_webshop/h1_7_state_distribution_diagnosis.py",
+    "script_sha256": "5efa22357d127d6f08678269b1687c8668ba5409301fed9730cd12ba11b71b2f",
+    "seen_qualified_positive_n": 12,
+    "heldout_valid_zero_n": 88,
+    "seen_positive": {"mean_steps": 3.0, "mean_generation_words": 62.666667, "mean_buy_signal_count": 1.0, "mean_product_click_count": 2.0, "mean_next_count": 0.0},
+    "heldout_valid_zero": {"mean_steps": 15.0, "mean_generation_words": 219.0, "mean_buy_signal_count": 0.0, "mean_product_click_count": 1.272727, "mean_next_count": 11.045455}
+  },
+  "interpretation": "Held-out compact-v2 episodes are mostly parser-valid but over-navigate and never reach buy-now; this is consistent with a state-distribution/action-selection bottleneck, not causal proof.",
+  "claim_boundary": "Descriptive offline diagnosis only; no benchmark claim, no causal claim, no D0 opening, no SEED comparison, and no scientific value assigned to GPU occupancy.",
+  "next": "Keep D0 closed. If a new GPU experiment becomes scientifically justified, pre-register eight independent UUID-bound cells and use all eight authorized GPUs."
+}

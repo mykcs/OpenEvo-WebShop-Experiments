@@ -1,0 +1,120 @@
+{
+  "schema": "seed3090.webshop-h1.20-action-admissibility-preregistration.v1",
+  "status": "pre-registered",
+  "experiment": "H1.20-action-admissibility-diagnostic-v1",
+  "question": "Does hiding a retrieved recovery action when it is not admissible in the current state recover the usability lost by raw text memory?",
+  "hypothesis": "Raw text memory often carries a recorded action that is absent from the current Allowed actions list. Replacing only that action field with a state-only notice should improve valid completion and qualified-positive rate relative to raw text memory.",
+  "independent_variable": "memory_action_policy",
+  "arms": [
+    {
+      "id": "base",
+      "carrier": "none",
+      "memory_action_policy": "raw"
+    },
+    {
+      "id": "text-memory-raw",
+      "carrier": "text-memory",
+      "memory_action_policy": "raw"
+    },
+    {
+      "id": "text-memory-admissible-only",
+      "carrier": "text-memory",
+      "memory_action_policy": "admissible-only"
+    }
+  ],
+  "controls": [
+    "Same frozen H1.14 train-only recovery corpus, top-1 token-set retrieval, model, prompt, parser, environment, task panel, rollout seeds, temperature, and step/token caps.",
+    "Only the retrieved action field changes: if exact action is absent from current Allowed actions, admissible-only injects state only; it never substitutes another action."
+  ],
+  "exclusion": "Do not interpret parser-invalid attempts as scientific failures; report them separately. Do not claim Q3, general WebShop efficacy, transfer, retention, or SEED from this diagnostic alone.",
+  "source": {
+    "experiment_git_sha": "82e30613b5d4637c04f16eed322c51b8553ac7b0",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "memory_records_sha256": "408fc3b09ff3b1f8403b049356692ff2e96b0de39d751f008ed0a7fda361d437",
+    "memory_record_count": 128,
+    "task_manifest_sha256": "021bedd6e02b3602f0796ec43249e99c61a9f78724b1ae3653bc8fff12b4de93",
+    "task_manifest_file_sha256": "3197eaab7cc95a2ac02a84c45669f1e3f4b8b856d819efe49f1726c54c3d01a1"
+  },
+  "task_panel": {
+    "selected_goal_indices": [
+      1270,
+      1584,
+      2251,
+      2408,
+      3178,
+      3939,
+      5238,
+      6261
+    ],
+    "partitions": {
+      "P1": [
+        1270,
+        1584
+      ],
+      "P2": [
+        2251,
+        2408
+      ],
+      "P3": [
+        3178,
+        3939
+      ],
+      "P4": [
+        5238,
+        6261
+      ]
+    },
+    "rollout_seeds": [
+      2026082900,
+      2026082901,
+      2026082902,
+      2026082903
+    ],
+    "attempts": 96,
+    "task_overlap_with_h1_15_h1_19": false
+  },
+  "execution": {
+    "waves": [
+      {
+        "wave": 1,
+        "cells": [
+          "base-P1",
+          "base-P2",
+          "base-P3",
+          "base-P4",
+          "text-memory-raw-P1",
+          "text-memory-raw-P2",
+          "text-memory-raw-P3",
+          "text-memory-raw-P4"
+        ],
+        "gpu_count": 8
+      },
+      {
+        "wave": 2,
+        "cells": [
+          "text-memory-admissible-only-P1",
+          "text-memory-admissible-only-P2",
+          "text-memory-admissible-only-P3",
+          "text-memory-admissible-only-P4"
+        ],
+        "gpu_count": 4
+      }
+    ],
+    "planned_gpu_uuids": [
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ],
+    "wandb_mode": "online",
+    "wandb_project": "openevo-webshop-experiments",
+    "wandb_group": "H1.20-action-admissibility-diagnostic-v1",
+    "offline_fallback": "Only if online initialization or upload fails; record exact error, keep local spool, and do not silently relabel mode."
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "schema": "openevo.advisor-report-reviewed-aggregate.v1",
+  "reviewed_on": "2026-10-28",
+  "scope": "Read-only sanitized projection of existing analyses, not new GPU work or a full scientific seal. Raw paths/tasks excluded; original hashes retained.",
+  "q04": {
+    "raw_analysis_sha256": "9fa905dd9465903dcbea26cef2b2629d09c927c9bae6c4c97f772013bd7ced68",
+    "status": "PASS_RAW_PAIRED_ANALYSIS_NOT_FULL_SCIENTIFIC_SEAL",
+    "fresh_evaluation_attempts": 384,
+    "distinct_fresh_tasks": 64,
+    "streams": {
+      "1": {
+        "candidate_ranks": [
+          32,
+          64
+        ],
+        "claim_boundary": "late compression effects versus exact rank128 reference; no from-start capacity claim",
+        "comparisons": [
+          {
+            "classification": "INCONCLUSIVE",
+            "exact_success_ci95": [
+              -0.28125,
+              -0.015625
+            ],
+            "mean_exact_success_delta": -0.140625,
+            "mean_task_score_delta": 0.005579229797979803,
+            "rank": 32,
+            "task_score_ci95": [
+              -0.053536568954049416,
+              0.08052095663667917
+            ]
+          },
+          {
+            "classification": "INCONCLUSIVE",
+            "exact_success_ci95": [
+              -0.09375,
+              0.125
+            ],
+            "mean_exact_success_delta": 0.015625,
+            "mean_task_score_delta": 0.032926361832611835,
+            "rank": 64,
+            "task_score_ci95": [
+              -0.06161770819241522,
+              0.13880905877976163
+            ]
+          },
+          {
+            "classification": "SUFFICIENT",
+            "exact_success_ci95": [
+              0,
+              0
+            ],
+            "mean_exact_success_delta": 0,
+            "mean_task_score_delta": 0,
+            "rank": 128,
+            "task_score_ci95": [
+              0,
+              0
+            ]
+          }
+        ],
+        "draws": 50000,
+        "episode_count": 64,
+        "family_alpha": 0.05,
+        "family_size": 8,
+        "method": "paired_task_cluster_bootstrap_bonferroni_percentile",
+        "quantile_method": "linear_interpolation_type_7",
+        "seed": 20261003,
+        "task_count": 64
+      },
+      "2": {
+        "candidate_ranks": [
+          32,
+          64
+        ],
+        "claim_boundary": "late compression effects versus exact rank128 reference; no from-start capacity claim",
+        "comparisons": [
+          {
+            "classification": "INCONCLUSIVE",
+            "exact_success_ci95": [
+              -0.234375,
+              0
+            ],
+            "mean_exact_success_delta": -0.109375,
+            "mean_task_score_delta": -0.009537337662337666,
+            "rank": 32,
+            "task_score_ci95": [
+              -0.09211198198502886,
+              0.07797861426767652
+            ]
+          },
+          {
+            "classification": "INCONCLUSIVE",
+            "exact_success_ci95": [
+              -0.140625,
+              0.09375
+            ],
+            "mean_exact_success_delta": -0.015625,
+            "mean_task_score_delta": -0.02647794913419913,
+            "rank": 64,
+            "task_score_ci95": [
+              -0.09960864574878246,
+              0.03908955627705628
+            ]
+          },
+          {
+            "classification": "SUFFICIENT",
+            "exact_success_ci95": [
+              0,
+              0
+            ],
+            "mean_exact_success_delta": 0,
+            "mean_task_score_delta": 0,
+            "rank": 128,
+            "task_score_ci95": [
+              0,
+              0
+            ]
+          }
+        ],
+        "draws": 50000,
+        "episode_count": 64,
+        "family_alpha": 0.05,
+        "family_size": 8,
+        "method": "paired_task_cluster_bootstrap_bonferroni_percentile",
+        "quantile_method": "linear_interpolation_type_7",
+        "seed": 20261004,
+        "task_count": 64
+      }
+    },
+    "both_streams_sufficient": {
+      "32": false,
+      "64": false
+    },
+    "limits": [
+      "This covers the predeclared fresh-panel Phase B paired noninferiority family only. Full scientific seal still requires development/time drift and resource/failure accounting."
+    ],
+    "final_panel_access": 0,
+    "analysis_code": {
+      "repository": "mykcs/openevo-experiment",
+      "commit": "31e66933e883704ec5ea236487d0c38a62e1f779",
+      "path": "scripts/analysis/advisor_q04_capacity_analysis.py",
+      "sha256": "dd190f856a1b6381cf3df31061bfe06d68e95cc5c5bb4bd18625ddc9b34f8d79"
+    },
+    "raw_source_hashes": {
+      "q04_b_s1_rank128_r159_fresh_confirm": {
+        "activation": "427d2b2ac576c40868458843b49138e1952920c05795ca4451fd09a9c294a71d",
+        "raw_rows": "dc56df9e685192d09665be3fb907203490cab46d7492bbb1f119b6c3d0d76ca7",
+        "summary": "f5c979023f200f62b38f334e5da668ae85f8d4b36e4687f2c1534ec0ce64b678"
+      },
+      "q04_b_s1_rank32_r159_fresh_confirm": {
+        "activation": "27f0d53e7db78095564c76178a1f4cc361787c6e8eb753a4b5b4b88fe7825bc4",
+        "raw_rows": "0f32467c5fa5a497fd740c815ccfe9bebc6f979d6cbc63a912022f86628efdf1",
+        "summary": "907ac4e57d4a6f8121d481909a48a6843bb43f2361fcbd3d6b1c25f5aff16ff3"
+      },
+      "q04_b_s1_rank64_r159_fresh_confirm": {
+        "activation": "477c64effa99ca93ad0c79631c7f8476940346a8bdcc60fbb619717c43f0d10e",
+        "raw_rows": "e7bc25550aac54a46597a5b0af66a798e13545d2dad744000d4f3eed4c853b5b",
+        "summary": "11d341536ab3446da31283b97e942da8c9a99db8a73d0a8e37cbbb6e739d5587"
+      },
+      "q04_b_s2_rank128_r159_fresh_confirm": {
+        "activation": "13a1bf893133ceea625e05e4cfbb7dc7fe7496872e17d4edbcd360a562406446",
+        "raw_rows": "10b330322c7413d2e5b63a7e27b3afb962580f2c86dc039ee50f4415188bf70f",
+        "summary": "4611ad22f3a1277d7c540f1584899c1165df248ad0f5e62e88fc21cc91646bf7"
+      },
+      "q04_b_s2_rank32_r159_fresh_confirm": {
+        "activation": "23ee7b863ecce64b0e20dd9777420046eb068d3efb288ac7d0410ef87cc1a30a",
+        "raw_rows": "8867d4c13326c8fad567c00e3ac953bb13a79eec6efd4554af4cd9ed5a299fde",
+        "summary": "be80ed58ded821126c3bcf4f6cea6960921a391cd4946ddc4611ba88c04fc9a1"
+      },
+      "q04_b_s2_rank64_r159_fresh_confirm": {
+        "activation": "fe8452ce49588c99f0e3938147217f477f2a9de56a9faa0204f15f67e821bf8e",
+        "raw_rows": "4c9dd7cfe240668a350a98f4480354ea941b6e8b30a9e00bf9fbfc7d6fa6e2b2",
+        "summary": "b3987eb00f0d0daac5e9f3a66bd08b8fcf7eb72b0bf8ccd9a50059830fb323fa"
+      }
+    }
+  },
+  "q06": {
+    "sha256": "5a7d8f687a639b0b76174ac884ca9cb178154f4b3879414ce8c61a2a938fd9d1",
+    "analysis": {
+      "schema": "openevo.q06.prospective-confirmation-analysis.v1",
+      "status": "COMPLETE_CONDITIONAL_ANALYSIS",
+      "claim": "Conditional common-eligible-task prediction on two new data streams sharing R119 ancestry; not independent initializations or causal evidence.",
+      "family_decision": "NOT_CONFIRMED",
+      "bootstrap_resamples": 50000,
+      "protocol_family_size": 3,
+      "duplicate_estimates": "task and lineage use the same full-fit models and same future panel; correlated joint-shift evidence only"
+    },
+    "completion": {
+      "analysis_sha256": "5a7d8f687a639b0b76174ac884ca9cb178154f4b3879414ce8c61a2a938fd9d1",
+      "analysis_status": "COMPLETE_CONDITIONAL_ANALYSIS",
+      "claim": "Conditional common-eligible-task prediction on two new data streams sharing R119 ancestry; not independent initializations or causal evidence.",
+      "collection_returncodes": [
+        0,
+        0
+      ],
+      "contract_sha256": "8376bfa153550c5c112c0e00f6f6bb4ee0107adbe0ca6caede6f2e541ed8fa62",
+      "status": "PASS"
+    }
+  },
+  "q02": {
+    "raw_analysis_sha256": "c7d6135a335f4146a38d9712d699525c8ce3af871f622d6d4bf1a141151c9029",
+    "status": "ANALYSIS_ONLY",
+    "analysis_only": true,
+    "authority_verified": false,
+    "scientific_outcome_sealed": false,
+    "analysis_scope": "epoch-3 primary comparison only; does not certify base/epoch1/epoch2 coverage, secondary families, B/C, or Q02 closure",
+    "authority_gaps": [
+      "native launch/router/output authority is not fully independently replayed by this consumer",
+      "opsd/20261001: historical FormalStart is not replayed or treated as current launch authority",
+      "sft/20261001: historical FormalStart is not replayed or treated as current launch authority"
+    ],
+    "training_seed_scope": "three fixed initialization seeds; does not test data-stream robustness; seed-sensitive inference is limited to three seeds"
+  }
+}

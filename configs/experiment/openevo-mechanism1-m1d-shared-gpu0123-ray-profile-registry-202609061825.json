@@ -1,0 +1,23 @@
+{
+  "base_pool_state_is_not_rewritten": true,
+  "compatible_base_config_sha256": [
+    "e85c39a592b904e3253818e2a37bdfc2e021efb2cbefbbdeb11b45098b9ba34b"
+  ],
+  "profiles": {
+    "mechanism1_seed_stage1_3b": {
+      "arm": "mechanism1-seed-stage1-3b",
+      "max_gpus": 1,
+      "min_gpus": 1,
+      "slot_class": "secondary_spare",
+      "target_gpus": 1,
+      "vram_request_mib": 9000
+    }
+  },
+  "registry_id": "openevo-mechanism1-m1d-shared-gpu0123-ray-profiles-202609061825",
+  "schema": "openevo.ray-workload-profile-registry.202609052200",
+  "slot_class_contract": {
+    "no_base_profile_shadowing": true,
+    "secondary_spare": "uses one currently free arm_q17_slot in the shared GPU0-3 Ray pool only as a physical resource lane; scientific arm identity remains mechanism1-seed-stage1-3b"
+  },
+  "status": "M1D_STAGE1_RESOURCE_REBIND_ONLY"
+}

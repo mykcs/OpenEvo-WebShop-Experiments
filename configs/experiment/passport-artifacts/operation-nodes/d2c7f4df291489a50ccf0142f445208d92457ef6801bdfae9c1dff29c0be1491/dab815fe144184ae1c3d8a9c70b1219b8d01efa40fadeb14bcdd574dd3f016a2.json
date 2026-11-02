@@ -1,0 +1,148 @@
+{
+  "completed_at": "2026-09-21T00:57:50+08:00",
+  "created_at": "2026-09-21T00:57:50+08:00",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/completed_1p7b_artifact_dag_backfill.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "e54045347c6db875826ce7d3b15d9aefea595d447595ee83410def8cc0ae63db"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/BACKFILL_CONFIG_202609210057.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "812e0070c08db449b1c8d7af24f9c7a57e901e2336f75df1528c9cb360d2d784"
+    },
+    "contract_identities": [],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "ac609a24ff14248ae4487ec87242ceba59af6537273c2fee95299d0fbb987e13",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/RUN_PASSPORT_135_REMOTE_VERIFY.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "ac609a24ff14248ae4487ec87242ceba59af6537273c2fee95299d0fbb987e13"
+          }
+        ],
+        "logical_role": "run-passport-source-0",
+        "size_bytes": 2455
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "af748f2e39949101dd74c20c7a88c89309d69abd3bbefeb2a142d4256bc77e6b",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/BOUNDED_CURRENT_MAIN_RECONCILIATION.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "af748f2e39949101dd74c20c7a88c89309d69abd3bbefeb2a142d4256bc77e6b"
+          }
+        ],
+        "logical_role": "run-passport-source-1",
+        "size_bytes": 2994
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "6d9a2a0100cdcce2bdb44277bbc6e001e8e60d72e5da1154a3cd0bfdd5548c12",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "configs/experiment/experiment-registry-202609210057.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "6d9a2a0100cdcce2bdb44277bbc6e001e8e60d72e5da1154a3cd0bfdd5548c12"
+          }
+        ],
+        "logical_role": "run-passport-source-2",
+        "size_bytes": 2996
+      }
+    ],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "deterministic-backfill",
+      "randomness": "none"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "d2c7f4df291489a50ccf0142f445208d92457ef6801bdfae9c1dff29c0be1491",
+  "operation_schema_version": "202609210057",
+  "operation_type": "completed-1p7b.backfill.run-passport-control-plane",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [
+        "6d9a2a0100cdcce2bdb44277bbc6e001e8e60d72e5da1154a3cd0bfdd5548c12",
+        "ac609a24ff14248ae4487ec87242ceba59af6537273c2fee95299d0fbb987e13",
+        "af748f2e39949101dd74c20c7a88c89309d69abd3bbefeb2a142d4256bc77e6b"
+      ],
+      "digest": "1811e37f2b5c4e93a2f01aadbb64d147d26548b26554fb285f56234b62459e1f",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/RUN_PASSPORT_135_DAG_BINDING.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "1811e37f2b5c4e93a2f01aadbb64d147d26548b26554fb285f56234b62459e1f"
+        }
+      ],
+      "logical_role": "backfill-binding",
+      "size_bytes": 1516
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "completed-1p7b.backfill.run-passport-control-plane-202609210057",
+    "created_at": "2026-09-21T00:57:50+08:00",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "configs/experiment/experiment-registry-202609210057.json",
+      "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/BOUNDED_CURRENT_MAIN_RECONCILIATION.json",
+      "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/RUN_PASSPORT_135_REMOTE_VERIFY.json"
+    ],
+    "experiment_id": null,
+    "external_views": [],
+    "passport_sha256": null,
+    "producer_scope": "ENGINEERING_GLOBAL"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "ALLOWLISTED_ENGINEERING_ONLY",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Verified historical engineering evidence may be surfaced as REUSE_CANDIDATE only; consumer/scientific authority remains external to the DAG."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "PURE_ENGINEERING",
+  "status": "PASS",
+  "supersedes": []
+}

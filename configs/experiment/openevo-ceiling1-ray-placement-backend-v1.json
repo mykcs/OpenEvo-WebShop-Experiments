@@ -1,0 +1,117 @@
+{
+  "design_philosophy": [
+    "Science controllers emit workload intents; the scheduler never changes task identity, seeds, sampling, harness, carrier state, reward, update cadence, or final-panel access.",
+    "Co-residency is resource-feasibility, not phase-name policy. If two cross-arm workloads fit the declared VRAM budget and live headroom, they may share a GPU.",
+    "No starvation: both runnable arms remain schedulable whenever aggregate resources permit.",
+    "No mid-workload reshard or preemption. Placement is immutable after a formal workload starts.",
+    "Fail closed on live GPU identity, memory headroom, Ray reservation identity, Docker launch, or provenance drift."
+  ],
+  "global_unallocated_headroom_mib": 4096,
+  "gpu_project_budget_mib": 28000,
+  "gpu_total_mib": 32151,
+  "managed_gpus": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "measured_basis": {
+    "qwen3_1p7b_probe_observed_used_mib_approx": 4356,
+    "qwen3_1p7b_sd_formal_peak_bytes": 6126312448,
+    "threeb_sd_formal_peak_bytes": 9052152832,
+    "tier1_rollout_pair_aggregate_clean_throughput_eps": 0.2017771898234569,
+    "tier1_rollout_pair_peak_used_mib_max": 11657
+  },
+  "process_slots_per_gpu": 2,
+  "profiles": {
+    "stage2_agent_system_3b": {
+      "arm": "3b",
+      "max_gpus": 1,
+      "min_gpus": 1,
+      "target_gpus": 1,
+      "vram_request_mib": 9000
+    },
+    "stage2_agent_system_qwen3-1p7b": {
+      "arm": "qwen3-1p7b",
+      "max_gpus": 1,
+      "min_gpus": 1,
+      "target_gpus": 1,
+      "vram_request_mib": 7000
+    },
+    "stage2_rollout_3b": {
+      "arm": "3b",
+      "max_gpus": 4,
+      "min_gpus": 1,
+      "target_gpus": 4,
+      "vram_request_mib": 9000
+    },
+    "stage2_rollout_qwen3-1p7b": {
+      "arm": "qwen3-1p7b",
+      "max_gpus": 4,
+      "min_gpus": 1,
+      "target_gpus": 4,
+      "vram_request_mib": 7000
+    },
+    "stage2_sd_lora_3b": {
+      "arm": "3b",
+      "max_gpus": 1,
+      "min_gpus": 1,
+      "target_gpus": 1,
+      "vram_request_mib": 11000
+    },
+    "stage2_sd_lora_qwen3-1p7b": {
+      "arm": "qwen3-1p7b",
+      "max_gpus": 1,
+      "min_gpus": 1,
+      "target_gpus": 1,
+      "vram_request_mib": 8000
+    },
+    "stage2_skill_bundle_3b": {
+      "arm": "3b",
+      "max_gpus": 1,
+      "min_gpus": 1,
+      "target_gpus": 1,
+      "vram_request_mib": 9000
+    },
+    "stage2_skill_bundle_qwen3-1p7b": {
+      "arm": "qwen3-1p7b",
+      "max_gpus": 1,
+      "min_gpus": 1,
+      "target_gpus": 1,
+      "vram_request_mib": 7000
+    },
+    "stage2_text_memory_3b": {
+      "arm": "3b",
+      "max_gpus": 1,
+      "min_gpus": 1,
+      "target_gpus": 1,
+      "vram_request_mib": 9000
+    },
+    "stage2_text_memory_qwen3-1p7b": {
+      "arm": "qwen3-1p7b",
+      "max_gpus": 1,
+      "min_gpus": 1,
+      "target_gpus": 1,
+      "vram_request_mib": 7000
+    }
+  },
+  "ray_namespace": "openevo-ceiling1-ray-v1",
+  "ray_runtime_path": "/workspace/control/ray-shadow-runtime-2.57.0",
+  "ray_tmp_dir": "/dev/shm/rp1",
+  "ray_version": "2.57.0",
+  "replacement_scope": "placement-and-reservation-backend-only",
+  "reservation_ttl_seconds": 180,
+  "rollout_strategy": "STRICT_SPREAD",
+  "same_arm_slots_per_gpu": 1,
+  "schema": "openevo.ceiling1-ray-placement-backend.v1",
+  "scientific_invariants": {
+    "docker_science_launcher_unchanged": true,
+    "external_teacher_calls_delta": 0,
+    "final_panel_access_delta": 0,
+    "formal_rollout_replay": 0,
+    "mid_workload_reshard": false,
+    "preemption": false
+  },
+  "single_gpu_strategy": "PACK",
+  "status": "ENGINEERING_READY_PENDING_FORMAL_MIGRATION"
+}

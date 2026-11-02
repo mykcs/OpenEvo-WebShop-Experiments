@@ -1,0 +1,105 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.14-student-state-recovery-v1",
+  "phase": "H1.14",
+  "status": "resource-preparation-complete-no-evaluation-panel",
+  "scientific_question": "Does matched supervision on student-visited failure/recovery states improve fresh-task closed-loop success more than matched successful-demonstration supervision?",
+  "hypothesis": "H1.11 and H1.13 fit successful targets without selective transfer because autonomous failures visit states absent from the successful-state distribution. Training on recovery actions from student-visited deviations should improve closed-loop recovery if source-state distribution is the bottleneck.",
+  "independent_variable": "training source-state distribution only: successful demonstration states versus student-visited failure/recovery states",
+  "arms": ["BASE", "SUCCESS-STATE-CONTROL", "STUDENT-RECOVERY"],
+  "training_panel": {
+    "task_ids": [3420, 6624, 5216, 2655, 5457, 3768, 4513, 1657],
+    "task_role": "train-only engineering-qualification rollouts; disjoint from the held-out evaluation tasks below and from H1.10 positive/negative source tasks",
+    "rollout_seeds": [2026082300, 2026082301, 2026082302, 2026082303],
+    "student_policy": "frozen Qwen2.5-3B-Instruct base under seed3090.webshop-compact-action-prompt.v2",
+    "student_trace_rule": "retain parser-valid states before a repeated-next, repeated-action, or backtrack action; cap at four candidates per episode; no fallback state enters labels",
+    "teacher_generation": {"temperature": 0.0, "max_new_tokens": 256, "seed_base": 2026082500},
+    "teacher_boundary": "teacher/oracle may label train-only student states and generate train-only successful demonstrations; never assists evaluation"
+  },
+  "evaluation_panel": {
+    "task_ids": {"A": [509, 714, 2709, 4111], "B": [4170, 4849, 5678, 6602]},
+    "task_role": "held-out evaluation only; no outcome or trace may flow back into training labels",
+    "evaluation_seeds": [2026082400, 2026082401, 2026082402, 2026082403],
+    "attempts_per_cell": 16
+  },
+  "arms_contract": {
+    "BASE": "frozen base model with no new adapter",
+    "SUCCESS-STATE-CONTROL": "successful-demonstration action targets from matched teacher states",
+    "STUDENT-RECOVERY": "teacher/oracle action targets from matched student-visited failure, deviation, or non-progress states"
+  },
+  "teacher_provenance": {
+    "role": "training-data oracle only",
+    "identity": "Qwen/Qwen2.5-14B-Instruct local snapshot at /workspace/workspace/models/qwen2.5-14b-instruct",
+    "model_revision": "local-payload-c8088f27057871992a2bf885fce0f5b3f5db56e1549cd60de9add5f434a89c9f",
+    "artifact_evidence": "/workspace/workspace/runs/phase-h1.14-student-state-recovery-v1-20260815/evidence/h1.14-teacher-artifact.json",
+    "artifact_evidence_sha256": "30c28c9c52afe441dac0bd683d374713c3f0b7e2110d9cb8bb2477b297011152",
+    "allowed": ["label train-only student states", "provide recovery action labels", "provide matched successful train-only demonstrations"],
+    "forbidden": ["evaluation assistance", "held-out outcome feedback", "post-test prompt changes", "counting teacher-assisted success as Qwen/OpenEvo success"]
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "tokenizer_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_steps": 15,
+    "max_new_tokens": 512,
+    "training_budget": "rank 4 q_proj/v_proj; one epoch; four optimizer steps; bfloat16; equal record/token budget after preregistered normalization",
+    "evaluation": "frozen Qwen2.5 artifact alone; no teacher, memory, prompt rescue, or action post-processing"
+  },
+  "primary_metrics": ["qualified-positive rate", "final task_score", "STUDENT-RECOVERY minus SUCCESS-STATE paired reward", "valid rate"],
+  "diagnostic_metrics": ["recovery from identified bad states", "Next/backtrack/repeated-navigation counts", "buy-now transition rate", "episode length", "teacher-forced recovery-state likelihood", "parser/runtime failure rate"],
+  "contamination_check": {
+    "required": ["training task IDs disjoint from evaluation task IDs", "evaluation seeds disjoint from acquisition seeds", "teacher sees train-only states", "all artifacts carry task/seed provenance"],
+    "fail_closed": "any identity, task, seed, or teacher-boundary mismatch invalidates the affected cell and does not enter the scientific denominator"
+  },
+  "resource_budget": {
+    "cell_design": "3 arms x 2 held-out partitions = 6 cells; 16 evaluation attempts/cell; one independent UUID-bound cell per authorized GPU",
+    "expected_gpu_hours": "bounded to the existing four-step training plus 96 evaluation attempts; record actual usage",
+    "current_gate": "do not launch until GPUs are genuinely idle and authorized; current GPUs 1-7 are not genuinely idle",
+    "run_root": "/workspace/workspace/runs/phase-h1.14-student-state-recovery-v1-20260815"
+  },
+  "stop_rule": "one bounded panel only; do not sweep rank/LR/epoch or reword recovery prompts after a negative result",
+  "branch_rule": {
+    "positive": "STUDENT-RECOVERY selectively beats BASE and SUCCESS-STATE across preregistered partitions/task identities: run independent new-task/new-seed confirmation; Q3 remains closed until confirmation",
+    "task_specific": "retain heterogeneity evidence; no Q3 opening or generalization claim",
+    "negative": "stop parametric micro-variants and run the matched BASE vs TEXT-MEMORY vs PARAMETRIC carrier diagnostic",
+    "invalid": "repair only the failed runtime/provenance contract without changing the frozen scientific question"
+  },
+  "upstream_audit": {
+    "stable_sha_checked": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "relevant_open_work_checked": ["OpenEvo#296", "OpenEvo#297 SD-LoRA-RR", "OpenEvo#238", "OpenEvo#298 textual memory", "OpenEvo#293 AgentSquare"],
+    "decision": "do not upgrade the pinned runtime for H1.14; use upstream increment/provenance/carrier-isolation principles only"
+  },
+  "prior_diagnostic": {
+    "artifact": "/workspace/workspace/runs/phase-h1.13-action-only-supervision-projection-v1-20260815/evidence/h1.13-first-divergence-v1.json",
+    "sha256": "d33fbb06888bf01571b8458dcb9352e1b8a61fb9e04ee2487fdf0b6d124860f9",
+    "interpretation": "28/32 BASE/SUCCESS pairs diverged early; this motivates student-state recovery but is not H1.14 evidence"
+  },
+  "resource_preparation_result": {
+    "run_root": "/workspace/workspace/runs/phase-h1.14-student-state-recovery-v1-20260815",
+    "task_preflight_sha256": "1ad67fd4e4e8a5882a095bbbfd0a9602b1078d996a822345d8161d2bb58c8d32",
+    "teacher_artifact_evidence_sha256": "30c28c9c52afe441dac0bd683d374713c3f0b7e2110d9cb8bb2477b297011152",
+    "recovery_label_evidence_sha256": "aeac2673aaa06ed8bb136831e12d9dc0f7864b6f477cda377d04ea026be80b39",
+    "episodes": 32,
+    "candidate_labels": 128,
+    "valid_labels": 128,
+    "teacher_parser_failures": 0,
+    "evaluation_panel_launched": false,
+    "next": "Use the frozen recovery corpus only under the separately registered H1.15 carrier diagnostic."
+  },
+  "train_oracle_reachability_audit": {
+    "evidence_path": "/workspace/workspace/runs/phase-h1.14-student-state-recovery-v1-20260815/evidence/h1.14-train-oracle-reachability.json",
+    "evidence_sha256": "0e180dc53f5406766171e04b24a48479596516bbc89f89da569ed2808de9f439",
+    "method": "exact goal query, deterministic target-ASIN click, exact goal-option clicks, buy-now when available; no model inference",
+    "tasks": 8,
+    "target_found": 6,
+    "qualified_oracle_success": 6,
+    "query_unreachable": [4513, 1657],
+    "scientific_role": "feasibility evidence only; not an H1.14 closed-loop result or denominator change"
+  },
+  "claim_boundary": "Student-state recovery diagnosis only; no Q3 opening, benchmark/generalization claim, H2, D0, retention/transfer claim, or SEED comparison before independent confirmation."
+}

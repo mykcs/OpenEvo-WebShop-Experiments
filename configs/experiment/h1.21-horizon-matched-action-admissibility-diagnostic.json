@@ -1,0 +1,137 @@
+{
+  "schema": "seed3090.webshop-h1.21-horizon-matched-action-admissibility-preregistration.v1",
+  "status": "pre-registered",
+  "experiment": "H1.21-horizon-matched-action-admissibility-diagnostic-v1",
+  "campaign_id": "20260815-1648-h121-horizon-action",
+  "scientific_question": "When the evaluation horizon is sufficient to reach purchase, does hiding a retrieved action that is not admissible in the current state improve closed-loop WebShop behavior?",
+  "rationale": "H1.20 changed navigation but all three arms produced zero buy actions under 15 steps. H1.21 matches the earlier 30-step carrier budget while preserving the same action-admissibility intervention.",
+  "hypothesis": "At a 30-step horizon, TEXT-MEMORY-ADMISSIBLE-ONLY will selectively improve qualified-positive rate and/or paired task score over TEXT-MEMORY-RAW, while BASE remains the no-experience control.",
+  "independent_variable": "memory_action_policy",
+  "arms": [
+    {
+      "id": "base",
+      "carrier": "none",
+      "memory_action_policy": "raw"
+    },
+    {
+      "id": "text-memory-raw",
+      "carrier": "text-memory",
+      "memory_action_policy": "raw"
+    },
+    {
+      "id": "text-memory-admissible-only",
+      "carrier": "text-memory",
+      "memory_action_policy": "admissible-only"
+    }
+  ],
+  "controls": [
+    "Only memory_action_policy changes between raw and admissible-only; admissible-only hides the recorded action only when its exact string is absent from the current Allowed actions list.",
+    "Model, tokenizer, prompt/action contracts, retrieval corpus, retrieval rule, optimizer state (none), temperature, max_new_tokens, environment seed, task panel, rollout seeds, GPU binding policy, and W&B online mode are frozen.",
+    "No teacher or oracle is used during evaluation; no evaluation result can enter the memory corpus."
+  ],
+  "metrics": {
+    "primary": "paired fresh-task qualified-positive rate and final task score: RAW versus ADMISSIBLE-ONLY",
+    "diagnostics": [
+      "buy transition rate",
+      "valid action rate",
+      "retrieval action admissibility and hidden-action count",
+      "search/next/back navigation counts",
+      "episode length",
+      "parser/runtime failures outside the scientific denominator"
+    ]
+  },
+  "task_panel": {
+    "selected_goal_indices": [
+      1990,
+      2927,
+      3071,
+      3409,
+      3822,
+      6174,
+      6411,
+      6558
+    ],
+    "partitions": {
+      "P1": [
+        1990,
+        2927
+      ],
+      "P2": [
+        3071,
+        3409
+      ],
+      "P3": [
+        3822,
+        6174
+      ],
+      "P4": [
+        6411,
+        6558
+      ]
+    },
+    "rollout_seeds": [
+      2026083100,
+      2026083101,
+      2026083102,
+      2026083103
+    ],
+    "attempts": 96,
+    "max_steps": 30,
+    "task_overlap_with_h1_15_h1_20": false
+  },
+  "source": {
+    "experiment_git_sha": "5ed2dff62abef04634ea9dddd2c8ac05ae768691",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "model": "/workspace/workspace/models/qwen2.5-3b-instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "memory_records_sha256": "408fc3b09ff3b1f8403b049356692ff2e96b0de39d751f008ed0a7fda361d437",
+    "task_manifest_canonical_sha256": "9f0b6ae582bdb5808b6f386ecb1f30bf96de36731cd0f4952983011bb07efdce",
+    "task_manifest_file_sha256": "66c455b3545db44470d0c13df55824428dda3818e57788526826b37d0b2a5f74",
+    "runtime_fingerprint": "154c64d5c73e39ccd8b87fc90ac6967d237d233cd6a62a66d25753e9d2075f8f",
+    "image_digest": "sha256:7a4cdaa8678181a55303acbee899dd2be2c0d94cd04266523bce31a2f4e6d5a4"
+  },
+  "execution": {
+    "waves": [
+      {
+        "wave": 1,
+        "cells": [
+          "base-P1",
+          "base-P2",
+          "base-P3",
+          "base-P4",
+          "raw-P1",
+          "raw-P2",
+          "raw-P3",
+          "raw-P4"
+        ],
+        "gpu_count": 8
+      },
+      {
+        "wave": 2,
+        "cells": [
+          "filtered-P1",
+          "filtered-P2",
+          "filtered-P3",
+          "filtered-P4"
+        ],
+        "gpu_count": 4
+      }
+    ],
+    "planned_gpu_uuids": [
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ],
+    "wandb_mode": "online",
+    "wandb_project": "openevo-webshop-experiments",
+    "wandb_group": "20260815-1648-h121-horizon-action"
+  },
+  "stop_rule": "If all arms have zero buy transitions or RAW versus FILTERED has zero paired gain, reconcile and stop this line; do not sweep horizon, rank, LR, epoch, or prompt.",
+  "positive_branch_rule": "Only a selective filtered advantage across multiple partitions/tasks permits a fresh-task confirmation; it does not open Q3 by itself.",
+  "negative_branch_rule": "Release GPUs, classify the bottleneck as broader base-agent/interface/task-family usability, and do not start another carrier micro-variant."
+}

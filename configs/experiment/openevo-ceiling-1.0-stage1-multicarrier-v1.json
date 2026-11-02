@@ -1,0 +1,60 @@
+{
+  "schema": "openevo.ceiling1-stage1-multicarrier.v1",
+  "status": "design-frozen-engineering-qualified-formal-carriers-pending",
+  "question": "Given the same 1440 on-policy experiences and comparable external-teacher budget, how high can OpenEVO improve by using all runtime-effective legal carrier channels?",
+  "teacher_evidence_pool": {
+    "provider": "MiniMax-M3",
+    "analysis_family": "seed_episode_reflection",
+    "records_per_arm": 1440,
+    "external_teacher_calls_after_pool": 0,
+    "immutable": true
+  },
+  "consumers": {
+    "opsd": {
+      "carrier": "parametric",
+      "coverage": "1440 analyses -> every authentic action-step",
+      "depends_on": ["teacher_evidence_pool"],
+      "formal_status": "running"
+    },
+    "text_memory": {
+      "carrier": "declarative knowledge",
+      "coverage": "1440/1440 transitive lineage",
+      "depends_on": ["teacher_evidence_pool", "opsd_effective_qwen"],
+      "reflection_unit_records": 20,
+      "hierarchical": true,
+      "max_new_tokens_per_local_call": 2048,
+      "silent_truncation": false
+    },
+    "skill_bundle": {
+      "carrier": "procedural skill",
+      "coverage": "1440/1440 transitive lineage",
+      "depends_on": ["teacher_evidence_pool", "opsd_effective_qwen"],
+      "reflection_unit_records": 20,
+      "hierarchical": true,
+      "artifact": "SKILL.md",
+      "runtime_bridge": "webshop_qwen_skill_bridge_v1",
+      "literal_upstream_harness_skill_loader": false
+    },
+    "agent_system": {
+      "carrier": "global behavior policy",
+      "coverage": "180 deterministic task groups x 8 = 1440/1440 transitive lineage",
+      "depends_on": ["teacher_evidence_pool", "opsd_effective_qwen", "text_memory", "skill_bundle"],
+      "task_groups": 180,
+      "rollouts_per_group": 8,
+      "max_chars": 12000,
+      "runtime_bridge": "system_message"
+    }
+  },
+  "stage1_state": ["opsd_effective_qwen", "text_memory", "skill_bundle", "agent_system"],
+  "stage1_seal_requires": [
+    "teacher_evidence_pool_1440_pass",
+    "opsd_pass",
+    "text_memory_1440_pass",
+    "skill_bundle_1440_pass",
+    "agent_system_180_groups_1440_pass",
+    "runtime_readback_all_carriers_pass"
+  ],
+  "stage2_forbidden_before_stage1_seal": true,
+  "native_default_20_policy": "20 is one reflection unit, never the total corpus; repeat units hierarchically until exact 1440/1440 coverage",
+  "provenance_language": "MiniMax analysis remains SEED-style; downstream absorption is OpenEVO multi-carrier"
+}

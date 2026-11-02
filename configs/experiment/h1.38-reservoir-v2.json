@@ -1,0 +1,59 @@
+{
+  "schema": "openevo.experiment-h1.38-endogenous-reservoir.v2",
+  "campaign_id": "20260818-2345-h138-endogenous-reservoir-v2",
+  "phase": "H1.38-reservoir",
+  "status": "preregistered-not-authorized",
+  "formal_task_consumption_allowed": false,
+  "scientific_question": "Within a finite pure-endogenous Qwen2.5-7B WebShop budget, what qualified-success supply, task-identity diversity, and independent multi-rollout multiplicity exist for a later causal experiment?",
+  "upstream_audit": {
+    "audited_at_utc": "2026-08-18T14:40:00Z",
+    "stable_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "issue_296": {"state": "open", "updated_at": "2026-08-14T17:35:26Z"},
+    "pr_297": {"state": "open", "draft": true, "head_sha": "07ac370a579571e41a338376267fca871eb92f37", "paired_repeated_final_adapter_completed": false},
+    "design_implication": "Keep the existing WebShop runtime pinned; treat task diversity, adaptation method, and endogenous-success supply as competing hypotheses rather than assuming diversity is causal."
+  },
+  "frozen_contract": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "model_local_dir": "/workspace/models/qwen2.5-7b-instruct",
+    "model_content_pin": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+    "upstream_open_evo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "python_runtime_fingerprint": "e3cb53bced07b519157ceca2698935bf0be45a58d08465c87c618ef62c31ee18",
+    "environment_seed": 2026,
+    "temperature": 0.4,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v3-action-command",
+    "evaluator": "WebShop task_score/won",
+    "adapter": "none",
+    "teacher": "disabled",
+    "memory_or_retrieval": "disabled"
+  },
+  "task_universe": {
+    "minimum_goal_index": 500,
+    "selection_seed": 2026081804,
+    "prior_remote_manifest_identity_count": 317,
+    "aborted_preprotocol_ledger": "configs/experiment/h1.38-reservoir-v1-aborted-preprotocol-ledger.json",
+    "combined_exclusion_identity_count": 381,
+    "combined_exclusion_ids_sha256": "3371a49f4a0a53bddac33fd77f8e5b49265a4add0686e6aa648f476d073e3829"
+  },
+  "budget": {
+    "task_count": 64,
+    "rollout_seeds": [2026090400, 2026090401, 2026090402, 2026090403],
+    "maximum_logical_attempts": 256,
+    "gpu_hours_cap": 3.5,
+    "parallelism": "use only live-idle authorized UUIDs; recheck before each wave",
+    "extension_allowed": false
+  },
+  "qualification": "identity_ok and description hash match and trace_complete and no parser_or_fallback_failure and error == null and final_task_score > 0",
+  "early_stop_sufficiency": {
+    "enabled": true,
+    "evaluate_only_after_complete_wave": true,
+    "minimum_qualified_success_episodes": 32,
+    "minimum_qualified_success_task_identities": 16,
+    "minimum_multi_rollout_ready_task_identities": 8,
+    "action": "seal the reservoir; do not replace unrun tasks or start training/evaluation"
+  },
+  "hard_boundaries": ["train-only task identities", "no held-out evaluation access", "no adapter training or reload", "no teacher/oracle/SEED", "no memory/retrieval", "no adaptive task replacement", "no copied trajectory counts as an independent rollout"],
+  "selector_rules": {"C-D": "feasible pooled diversity contrast requires >=16 qualified identities and >=32 records", "C-M": "upstream-informed method control requires >=8 multi-rollout-ready identities", "C-BOTH": "if both pass, select one by deterministic information-gain rule before a new preregistration", "C-S": "otherwise seal endogenous feasibility-negative; teacher route becomes eligible only under a new preregistration"}
+}

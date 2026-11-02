@@ -1,0 +1,115 @@
+{
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/carrier-scope-manifest-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "combination_threshold": {
+      "const": 2
+    },
+    "construction_policy_id": {
+      "const": "webshop-task-local-scope-v1"
+    },
+    "forbidden_literals": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "manifest_identity_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "round_index": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schedule_file_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "openevo.carrier-scope-manifest.v1"
+    },
+    "source_task_count": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "source_task_digest_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "source_tasks": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "instruction_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "source_session_index": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "source_session_index",
+          "instruction_sha256"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "typed_value_atoms": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "enum": [
+              "product_id",
+              "attribute",
+              "price"
+            ]
+          },
+          "label": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_instruction_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "value": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "label",
+          "value",
+          "source_instruction_sha256"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema",
+    "round_index",
+    "construction_policy_id",
+    "schedule_file_sha256",
+    "source_task_count",
+    "source_task_digest_sha256",
+    "source_tasks",
+    "forbidden_literals",
+    "typed_value_atoms",
+    "combination_threshold",
+    "manifest_identity_sha256"
+  ],
+  "title": "OpenEvo Carrier Scope Manifest v1",
+  "type": "object"
+}

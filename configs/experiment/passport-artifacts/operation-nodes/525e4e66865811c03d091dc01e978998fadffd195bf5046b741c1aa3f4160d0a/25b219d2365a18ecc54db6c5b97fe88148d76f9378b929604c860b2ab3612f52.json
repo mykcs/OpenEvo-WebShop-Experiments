@@ -1,0 +1,152 @@
+{
+  "completed_at": "2026-09-14T21:12:02+08:00",
+  "created_at": "2026-09-14T21:04:12+08:00",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "scripts/analysis/sd_lora_stable_inplace_accum_202609142053.py",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "e4e2754e1f804924fe83f10b32f82b9c1c61a3cb",
+      "sha256": "16422c3bd832befc10b97cb8c5da1dbb99e23ae8d95e7cc14fae2147ba3dc77e"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "docs/science/webshop/ACCELERATED_GDR_FOUR_GPU_PLAN_202609142053.md",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "e4e2754e1f804924fe83f10b32f82b9c1c61a3cb",
+      "sha256": "34e3517e886336779825025c31bb7c1815919316e953533ce3447c8897c6050e"
+    },
+    "contract_identities": [
+      {
+        "identity": {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/passport-accelerated-gdr-shadow-20260914/SEALED_STABLE_FREEZE_202609142055.json",
+          "reason": "Exact-byte snapshot of sealed Stable freeze; original Git evidence remains scientific authority.",
+          "repository": null,
+          "revision": null,
+          "sha256": "f326e5c20d9903efb2b40ea9589e8258d23822de91504390a1c21a9831fd81fd"
+        },
+        "name": "sealed-stable-freeze"
+      }
+    ],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "sealed-stable-freeze",
+        "derived_from_digests": [],
+        "digest": "f326e5c20d9903efb2b40ea9589e8258d23822de91504390a1c21a9831fd81fd",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/passport-accelerated-gdr-shadow-20260914/SEALED_STABLE_FREEZE_202609142055.json",
+            "reason": "Exact-byte snapshot of sealed Stable freeze; original Git evidence remains scientific authority.",
+            "repository": null,
+            "revision": null,
+            "sha256": "f326e5c20d9903efb2b40ea9589e8258d23822de91504390a1c21a9831fd81fd"
+          }
+        ],
+        "logical_role": "sealed-stable-reference",
+        "size_bytes": 1643
+      }
+    ],
+    "runtime_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/passport-accelerated-gdr-shadow-20260914/RUNTIME_IDENTITY_202609142055.json",
+      "reason": "Timestamp-native shadow identity snapshot; source runtime asset remains authority.",
+      "repository": null,
+      "revision": null,
+      "sha256": "c654a2c7147a24a9c1739b630f772d0918d2bb35f2069d9bf7e38c6aa5e00351"
+    },
+    "runtime_identity_policy": "BOUND",
+    "stochastic_identity": {
+      "candidate": "stable-fp32-reducer-c16-inplace-accum",
+      "mode": "deterministic-fixed-seeds",
+      "out_features": [
+        1024,
+        2048
+      ],
+      "repeats": 9,
+      "seed_formula": "20260914 + out_features"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "525e4e66865811c03d091dc01e978998fadffd195bf5046b741c1aa3f4160d0a",
+  "operation_schema_version": "202609142055",
+  "operation_type": "accelerated-gdr.shadow.acceleration_successor_qualification",
+  "outputs": [
+    {
+      "artifact_type": "qualification-result",
+      "derived_from_digests": [
+        "f326e5c20d9903efb2b40ea9589e8258d23822de91504390a1c21a9831fd81fd"
+      ],
+      "digest": "7938578a62841c129b4706a9292232355c7ba2d9a8352a9c3a9ba0e776963377",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "git_file",
+          "path": "docs/evidence/accelerated-gdr-four-gpu-20260914/stable-inplace-accum-result.json",
+          "reason": null,
+          "repository": "mykcs/openevo-experiment",
+          "revision": "853fb05f1cf6496d03949abe28788aefff36acaa",
+          "sha256": "7938578a62841c129b4706a9292232355c7ba2d9a8352a9c3a9ba0e776963377"
+        }
+      ],
+      "logical_role": "candidate-a-stop-result",
+      "size_bytes": 5390
+    },
+    {
+      "artifact_type": "execution-receipt",
+      "derived_from_digests": [
+        "7938578a62841c129b4706a9292232355c7ba2d9a8352a9c3a9ba0e776963377"
+      ],
+      "digest": "571ba8b3749c0176f755307d7fe4beac7e258b1f808fc32ffafcf0d60d15d8da",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "git_file",
+          "path": "docs/evidence/accelerated-gdr-four-gpu-20260914/stable-inplace-accum-execution-receipt.json",
+          "reason": null,
+          "repository": "mykcs/openevo-experiment",
+          "revision": "853fb05f1cf6496d03949abe28788aefff36acaa",
+          "sha256": "571ba8b3749c0176f755307d7fe4beac7e258b1f808fc32ffafcf0d60d15d8da"
+        }
+      ],
+      "logical_role": "candidate-a-execution-receipt",
+      "size_bytes": 883
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "c-candidate-a-stable-inplace-accum-20260914",
+    "created_at": "2026-09-14T21:04:12+08:00",
+    "execution_sha": "e4e2754e1f804924fe83f10b32f82b9c1c61a3cb",
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [],
+    "experiment_id": null,
+    "external_views": [],
+    "passport_sha256": null,
+    "producer_scope": "ENGINEERING_GLOBAL"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "REVIEW_REQUIRED_DETERMINISM",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Qualification execution completed. Output disposition is STOP_CANDIDATE; reuse can avoid recomputing this exact qualification evidence but cannot promote the candidate."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609142055",
+  "side_effect_class": "DETERMINISTIC_COMPUTATION",
+  "status": "PASS",
+  "supersedes": []
+}

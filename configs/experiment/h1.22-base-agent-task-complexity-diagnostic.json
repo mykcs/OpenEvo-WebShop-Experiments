@@ -1,0 +1,120 @@
+{
+  "standard_core": "v1",
+  "campaign_id": "20260815-1015-h122-task-complexity",
+  "status": "preregistered",
+  "title": "H1.22 base-agent task-complexity diagnostic",
+  "scientific_question": "在同一 fashion WebShop 任务族、同一冻结 Qwen2.5-3B 与同一交互接口下，任务约束复杂度是否解释 H1.21 的全零闭环结果？",
+  "hypothesis": "若复杂任务约束超出 base-agent 在当前接口下的可用范围，则 simple complexity=3 的任务应比 complex complexity=10 有更高的 qualified-positive rate、buy-action rate 或 task score；若两组都接近零，则支持更广泛的 base-agent/interface bottleneck。",
+  "claim_boundary": "This is a frozen-base capability diagnostic, not a Q3 learning experiment. It cannot establish OpenEvo efficacy, training transfer, H2, D0, retention, forward transfer, or SEED comparison.",
+  "benchmark": "webshop",
+  "phase": "H1.22",
+  "split": "held-out-h1.22-base-agent-task-complexity",
+  "independent_variable": "task_complexity_group",
+  "arms": [
+    "BASE-30"
+  ],
+  "complexity_definition": "attribute_count + option_count + price_constraint; category=fashion; simple=3; complex=10",
+  "frozen_variables": [
+    "model",
+    "model_revision",
+    "prompt_contract",
+    "action_contract",
+    "environment_seed",
+    "max_steps",
+    "max_new_tokens",
+    "temperature",
+    "experience_carrier",
+    "retrieval",
+    "training",
+    "teacher_assistance",
+    "task category"
+  ],
+  "planned_matrix": {
+    "simple_goal_indices": [
+      529,
+      622,
+      1098,
+      3924
+    ],
+    "complex_goal_indices": [
+      2081,
+      4949,
+      5674,
+      6756
+    ],
+    "partitions": {
+      "P1": [
+        529,
+        2081
+      ],
+      "P2": [
+        622,
+        4949
+      ],
+      "P3": [
+        1098,
+        5674
+      ],
+      "P4": [
+        3924,
+        6756
+      ]
+    },
+    "rollout_seeds": [
+      2026083300,
+      2026083301,
+      2026083302,
+      2026083303
+    ],
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "temperature": 0,
+    "attempts": 32
+  },
+  "metrics": {
+    "primary": [
+      "qualified_positive_rate_by_complexity_group",
+      "mean_task_score_by_complexity_group"
+    ],
+    "diagnostic": [
+      "buy_action_rate",
+      "valid_action_rate",
+      "parser_or_fallback_invalid",
+      "episode_steps",
+      "search_next_backtrack_repetition_counts",
+      "first_buy_step"
+    ]
+  },
+  "contamination_check": {
+    "training": false,
+    "teacher_assistance": false,
+    "evaluation_outcomes_used_for_labels": false,
+    "held_out_tasks_disjoint_from_completed_panels": true,
+    "excluded_goal_count": 68
+  },
+  "provenance": {
+    "experience_source": "none; frozen base-agent diagnostic",
+    "experiment_git_sha": "4e820c8501ccbd7494e410a0f3f8e17b49d517f8",
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "official_open_evo_stable": "796e6248a61112a61c880885844d3b0420c0b6ae"
+  },
+  "budget": {
+    "gpu_cells": 8,
+    "gpu_policy": "one task per cell; all eight verified idle RTX 5090 UUIDs required",
+    "gpu_hours_cap": 2,
+    "no_retry_after_valid_completion": true
+  },
+  "stop_rule": "Do not sweep prompts, horizons, ranks, LR, epochs, carriers, or model sizes after this group. Stop and reconcile after the preregistered 32 attempts; parser/runtime failures remain separate from the scientific denominator.",
+  "positive_branch": "A simple-group selective advantage is descriptive capability evidence only; do not open Q3. A later learning question would require a new preregistration.",
+  "negative_branch": "If both groups are near zero or the contrast is absent, record base-agent/interface/task-family usability bottleneck and release GPUs; do not invent another adapter variant.",
+  "tracking": {
+    "entity": "example-entity",
+    "project": "openevo-webshop-experiments",
+    "group": "20260815-1015-h122-task-complexity",
+    "default_mode": "online",
+    "offline_fallback": "only after online initialization/upload failure with exact error and spool hash"
+  },
+  "manifest_path": "docs/evidence/remote-runs/2026-08-15/h1.22/evidence/h1.22-task-manifest.json",
+  "manifest_sha256": "0df1c77c20eaf6cac31481103bc4477bd3af339f46c93e7159e201725a882a4d"
+}

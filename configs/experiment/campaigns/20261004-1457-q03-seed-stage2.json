@@ -1,0 +1,81 @@
+{
+  "schema": "openevo.current-campaign.v1",
+  "campaign_id": "20261004-1457-q03-seed-stage2",
+  "experiment_id": "202610041457-q03-seed-stage2",
+  "title": "Q03 full SEED-style Stage2 from the frozen Stage1 checkpoint",
+  "question_id": "Q03_SEED_STAGE2",
+  "owner_pr": 630,
+  "status": "owner-authorized-plan-frozen-formal-locked",
+  "phase": "Q03_ZERO_FORMAL_GPU_QUALIFICATION",
+  "protocol_status": "zero-formal-qualification-only",
+  "design": "configs/experiment/designs/q03-seed-stage2-zero-formal-preflight-202610041457.json",
+  "design_sha256": "3a0b2685c114c190f5963062bef357b450151105ea8c15f7a42096fd377f37b2",
+  "work_package": "configs/experiment/advisor-questions/q03-work-package-202610041457.json",
+  "work_package_sha256": "79e44b582e9d5f1c1968200c1de0d97c5016df6c562e115db46c8ac440bf01f2",
+  "authority_amendment": "configs/experiment/amendments/q03-seed-stage2-authority-supersession-202610041457.json",
+  "authority_amendment_sha256": "5c43388e7f28558140f10f5618004a58756f25b59bf2c8d248ed8078c28f71b9",
+  "activation": "configs/experiment/activations/q03-seed-stage2-zero-formal-preflight-202610041457.json",
+  "activation_sha256": "feed55029fcb89ded9a7c3d16b325ba3effa3f3851b920d250dc8d25bbd62b84",
+  "final_test_status": "locked",
+  "final_panel_access_allowed": false,
+  "final_panel_access": 0,
+  "final_unlock_allowed": false,
+  "formal_task_consumption_allowed": false,
+  "task_bearing_train_dev_allowed": false,
+  "gpu_allocation_allowed": true,
+  "gpu_scope": "Zero-formal Q03 engineering qualification only; no rollout, optimizer update, task-bearing call, or evaluation is allowed until a separate formal release passes all Q03 gates.",
+  "authorized_gpu_uuids": [
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000"
+  ],
+  "resource_authorization": "User authorized Q03 control-plane activation and GPU execution on the established eight-device pool; capacity-qualified co-residency is allowed; no other task may be disturbed.",
+  "resource_policy": {
+    "selection": "Refresh GPU UUID, ownership, VRAM use, qualified Q03 peak and transient headroom immediately before each allocation.",
+    "co_residency_allowed": true,
+    "co_residency_condition": "Combined observed/qualified VRAM plus transient headroom must fit; owner and workload identity must be resolved.",
+    "preemption_allowed": false,
+    "reset_or_kill_allowed": false
+  },
+  "qualification_budget": {
+    "formal_task_consumption": 0,
+    "task_bearing_calls": 0,
+    "optimizer_updates": 0,
+    "external_teacher_calls": 0,
+    "final_panel_access": 0,
+    "preserve_all_attempts": true,
+    "outcome_based_retry": false
+  },
+  "next_gate": "Complete the candidate-bound zero-formal GPU preflight and remaining Q03 native RNG/teacher/resume, FSDP export, canonical evaluator, runtime and persistence qualifications; then issue a separate exact formal activation without changing the frozen two-stream contract.",
+  "hard_boundaries": [
+    "The frozen #597 Stage1 receipt and checkpoint remain the only Stage2 starting point; do not rerun Stage1.",
+    "Formal work remains locked until all Q03 qualifications and exact formal activation pass.",
+    "No final-panel access or unlock.",
+    "Preserve failed engineering and scientific attempts; no reward-based retry, replacement, seed, task, or checkpoint changes.",
+    "Do not kill, reset, restart, or preempt another workload.",
+    "Preserve the sealed E1 campaign and its analysis evidence as predecessor history."
+  ],
+  "predecessor_current_campaign": {
+    "campaign_id": "20260928-2338-post-advisor-unanswered",
+    "sha256": "fce6a91875a8322fa382729d410e83a83a605609fcf82df9ecfff337bd02c2f2",
+    "phase": "POST-ADVISOR-E1-EXECUTION-SEALED",
+    "status": "execution-sealed",
+    "remaining_e1_rollout_budget": 0,
+    "formal_task_consumption_allowed": false,
+    "gpu_allocation_allowed": false,
+    "final_panel_access": 0,
+    "reconciliation_sha256": "11abe12cab607d40bf05a54cd243bd1bcd1eeacd37d8475016aeac8120a364a8"
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "project": "openevo-webshop-experiments",
+    "group": "20261004-1457-q03-seed-stage2",
+    "default_mode": "online"
+  },
+  "current_campaign_role": "Explicit Q03 candidate router for zero-formal preflight only; repository-wide current-campaign remains the sealed E1 predecessor until Q03 receives a distinct exact release."
+}

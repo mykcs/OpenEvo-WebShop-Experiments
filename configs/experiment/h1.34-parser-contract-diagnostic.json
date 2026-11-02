@@ -1,0 +1,51 @@
+{
+  "schema": "openevo.webshop-h1.34-parser-contract-diagnostic.v1",
+  "experiment": "H1.34-parser-contract-diagnostic",
+  "phase": "H1.34",
+  "status": "preregistered-not-authorized",
+  "formal_task_consumption_allowed": false,
+  "scientific_question": "Does a narrowly bounded repair for a single missing closing action tag reduce parser-induced fallback and improve closed-loop WebShop outcomes under the exact H1.30 task/seed/model contract?",
+  "hypothesis": "The 16 observed malformed completions that contained a closed think tag and a single legal action but omitted only </action> are a runtime-format bottleneck; accepting only that case should reduce invalid attempts without changing the model, prompt, tasks, seeds, or evaluator.",
+  "baseline": {
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "source": "H1.30 task-identity diagnostic run 20260817",
+    "manifest_sha256": "8a55f08190e83010b7764a8137901935dc2e635513910fcdceae86502176036b",
+    "manifest_file_sha256": "95342b1404c4a74fbf90ce8050a956ec27691822b67baff48be814d1e821c793"
+  },
+  "treatment": {
+    "action_contract": "seed3090.webshop-action-parser.v2-missing-close",
+    "repair_rule": "Only append </action> when the completion has a closed <think>, exactly one opening <action>, no closing action tag, and the suffix is one legal search/click/select/buy[...] action with no nested tag. All other malformed output remains on the existing one-retry/fallback path."
+  },
+  "model": {
+    "id": "Qwen/Qwen2.5-3B-Instruct",
+    "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1"
+  },
+  "rollout_contract": {
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "rollout_seeds": [2026091200, 2026091201, 2026091202, 2026091203],
+    "task_count": 16,
+    "attempt_count": 64,
+    "training_only": true,
+    "evaluation_task_consumption": 0
+  },
+  "controls": {
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "evaluator": "WebShop task_score/won",
+    "environment_seed": 2026081401,
+    "teacher": "disabled",
+    "adapter": "none",
+    "open_evo_training": "disabled"
+  },
+  "primary_metrics": [
+    "parser/fallback failure rate",
+    "repair-used count",
+    "valid attempt rate",
+    "qualified positive count",
+    "mean task score",
+    "navigation-next loop count"
+  ],
+  "decision_rule": "Compare the v2 treatment with the preserved v1 run descriptively; do not change the formal H1.30 capability threshold or promote this diagnostic to a method comparison.",
+  "claim_boundary": "A parser-contract/runtime diagnostic only. It cannot establish model capability, OpenEvo efficacy, teacher benefit, or OpenEvo-versus-SEED superiority."
+}

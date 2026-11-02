@@ -1,0 +1,22 @@
+{
+  "schema": "openevo.experiment-h1.40-g2-r2-path-contract.v1",
+  "campaign_id": "20260820-0140r2-h140-g2-multigeneration",
+  "host_root": "/workspace",
+  "container_root": "/workspace",
+  "paths": {
+    "experiment": {"host_path": "/workspace/runs/h140-r2-repo-20260820", "container_path": "/workspace/src/openevo-experiment", "expected_type": "dir", "access": "ro"},
+    "openevo": {"host_path": "/workspace/runs/h140-r2-upstream-openevo-796e6248", "container_path": "/workspace/src/openevo-core", "expected_type": "dir", "access": "ro"},
+    "model": {"host_path": "/workspace/models/qwen2.5-7b-instruct", "container_path": "/workspace/models/qwen2.5-7b-instruct", "expected_type": "dir", "access": "ro"},
+    "dataset": {"host_path": "/workspace/datasets/webshop-1000", "container_path": "/workspace/data/webshop-1000", "expected_type": "dir", "access": "ro"},
+    "cache": {"host_path": "/workspace/cache", "container_path": "/workspace/cache", "expected_type": "dir", "access": "rw", "writable": true},
+    "run_root": {"host_path": "/workspace/runs/phase-h140-g2-r2-20260820", "container_path": "/workspace/runs/phase-h140-g2-r2-20260820", "expected_type": "dir", "access": "rw", "writable": true},
+    "adapter": {"host_path": "/workspace/runs/phase-h1.38b-method-control-v1-20260820-correction-02/artifacts/sd-lora/workers/sd-lora-b2e7e1aae2fd0f37a79073e9148da390/adapter", "container_path": "/workspace/runs/phase-h1.38b-method-control-v1-20260820-correction-02/artifacts/sd-lora/workers/sd-lora-b2e7e1aae2fd0f37a79073e9148da390/adapter", "expected_type": "dir", "access": "ro"},
+    "resource_receipt": {"host_path": "/workspace/runs/phase-h140-g2-r2-20260820/qualification/resource-receipt.json", "container_path": "/workspace/runs/phase-h140-g2-r2-20260820/qualification/resource-receipt.json", "expected_type": "file", "access": "rw", "writable": true, "must_exist": false}
+  },
+  "requirements": {
+    "exact_host_container_mapping": true,
+    "container_visible_read_write_probe_required": true,
+    "cpu_no_gpu_probe_before_allocation": true,
+    "docker_wrapper_outside_container": true
+  }
+}

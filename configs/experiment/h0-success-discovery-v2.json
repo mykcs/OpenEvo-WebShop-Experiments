@@ -1,0 +1,77 @@
+{
+  "schema": "openevo.experiment-h0.1-success-discovery.v2",
+  "experiment": "H0.1-qwen-success-discovery-v2",
+  "campaign_id": "20260817-0000-h0.1-qwen-success-discovery-v2",
+  "status": "preregistered-not-authorized",
+  "formal_task_consumption_allowed": false,
+  "scientific_result": false,
+  "scientific_question": "Under one frozen WebShop contract, how often does native Qwen2.5-3B produce a qualified positive trajectory?",
+  "hypothesis": "A larger disjoint train-only panel will reveal whether the two positives seen in H1.30 are isolated or repeatable across task identities and generation seeds.",
+  "model": {
+    "id": "Qwen/Qwen2.5-3B-Instruct",
+    "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "teacher": "disabled"
+  },
+  "contract": {
+    "environment_seed": 2026,
+    "temperature": 0.4,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "evaluator": "WebShop task_score/won",
+    "parser_retry": {
+      "enabled": true,
+      "seed_offset": 900000,
+      "max_retries_per_step": 1
+    }
+  },
+  "budget": {
+    "tasks": 16,
+    "rollout_seeds": [
+      2026081700,
+      2026081701,
+      2026081702,
+      2026081703,
+      2026081704,
+      2026081705,
+      2026081706,
+      2026081707
+    ],
+    "attempts": 128,
+    "gpus": 8,
+    "waves": 2,
+    "extension_allowed": false
+  },
+  "selection": {
+    "selection_seed": 2026081701,
+    "min_goal_index": 500,
+    "disjoint_from": [
+      "H0 historical evidence",
+      "H1.29 pure self-evolution",
+      "H1.31 teacher bootstrap",
+      "H1.32 frozen-adapter transfer",
+      "H1.30 replacement train/evaluation panels"
+    ],
+    "manifest_builder": "scripts/openevo_webshop/build_h0_success_discovery_manifest.py"
+  },
+  "primary_metrics": [
+    "qualified_positive_count",
+    "qualified_positive_task_count",
+    "qualified_positive_rate",
+    "nonzero_reward_count",
+    "failure_mode_distribution"
+  ],
+  "decision_rules": {
+    "qualified_positive": "identity_ok and complete_trace and no parser_or_fallback_failure and final_task_score > 0",
+    "teacher_trigger": "zero qualified positives after all 128 attempts makes teacher bootstrap eligible, but does not launch it",
+    "pure_followup": "any qualified positive is retained for a separately preregistered pure self-evolution condition",
+    "claim_boundary": "This cell measures native success discovery only; it cannot establish OpenEvo or SEED superiority."
+  },
+  "tracking": {
+    "wandb_project": "openevo-webshop-experiments",
+    "mode": "online-by-default-with-explicit-offline-fallback",
+    "local_manifest_is_source_of_truth": true,
+    "raw_traces": "server-only evidence root with hashes"
+  }
+}

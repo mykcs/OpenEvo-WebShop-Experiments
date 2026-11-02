@@ -1,0 +1,46 @@
+{
+  "campaign_id": "20260916-0255-bounded-effective-state-gdr",
+  "freeze_id": "202609160255",
+  "integration_semantics": "immutable historical execution authority only; not current launch authority",
+  "schema": "openevo.authority-snapshot-index.202609182157",
+  "snapshots": {
+    "0ac0fe24e5cf5d2c17f5232fd462a7985283d6d5c13e9d1bc7819c8ef3e3d3b1": {
+      "snapshot_path": "configs/experiment/campaigns/202609160255/authority-snapshots/0ac0fe24e5cf5d2c17f5232fd462a7985283d6d5c13e9d1bc7819c8ef3e3d3b1.json",
+      "source_commit": "f2d20e0f9e895c4764ea0c3dffb25bb9683366d0",
+      "source_path": "configs/experiment/releases/bounded-effective-state-off-final-eval-release-20260918.json"
+    },
+    "29b83e36877d885b4299942564cd56a1f04f1d7e59d7ad26483b14d242f49b05": {
+      "snapshot_path": "configs/experiment/campaigns/202609160255/authority-snapshots/29b83e36877d885b4299942564cd56a1f04f1d7e59d7ad26483b14d242f49b05.json",
+      "source_commit": "f2d20e0f9e895c4764ea0c3dffb25bb9683366d0",
+      "source_path": "configs/experiment/activations/bounded-effective-state-off-final-panel-authority-20260918.json"
+    },
+    "4fb4db415d06e7241d0b3e3164e2b6961dada53773d0e08e4a79750d72d907b0": {
+      "snapshot_path": "configs/experiment/campaigns/202609160255/authority-snapshots/4fb4db415d06e7241d0b3e3164e2b6961dada53773d0e08e4a79750d72d907b0.json",
+      "source_commit": "f2d20e0f9e895c4764ea0c3dffb25bb9683366d0",
+      "source_path": "configs/experiment/activations/bounded-effective-state-on-final-panel-authority-20260918.json"
+    },
+    "7a27cf7714ac7a26403c38487bb4f95685a293adc90453d7957802c72e641e3d": {
+      "snapshot_path": "configs/experiment/campaigns/202609160255/authority-snapshots/7a27cf7714ac7a26403c38487bb4f95685a293adc90453d7957802c72e641e3d.json",
+      "source_commit": "f2d20e0f9e895c4764ea0c3dffb25bb9683366d0",
+      "source_path": "configs/experiment/designs/bounded-effective-state-on-final-eval-20260918.json"
+    },
+    "7ece81eaa305c3a898744a8b96960aaefc6c58f1cb5bf575249d965c26c64f2c": {
+      "snapshot_path": "configs/experiment/campaigns/202609160255/authority-snapshots/7ece81eaa305c3a898744a8b96960aaefc6c58f1cb5bf575249d965c26c64f2c.json",
+      "source_commit": "f2d20e0f9e895c4764ea0c3dffb25bb9683366d0",
+      "source_path": "configs/experiment/releases/bounded-effective-state-on-final-eval-release-20260918.json"
+    },
+    "a1e9a2f55fb32b25f4c7c41081357f61cdb1e4414d7195df307a74f1ad87d3fb": {
+      "snapshot_path": "configs/experiment/campaigns/202609160255/authority-snapshots/a1e9a2f55fb32b25f4c7c41081357f61cdb1e4414d7195df307a74f1ad87d3fb.json",
+      "source_commit": "f2d20e0f9e895c4764ea0c3dffb25bb9683366d0",
+      "source_path": "configs/experiment/designs/bounded-effective-state-off-final-eval-20260918.json"
+    },
+    "da7a6c6ab5bf986788c8025b8884aa18d08fb0c7ed97733eac3f4716f4252630": {
+      "snapshot_path": "configs/experiment/campaigns/202609160255/authority-snapshots/da7a6c6ab5bf986788c8025b8884aa18d08fb0c7ed97733eac3f4716f4252630.json",
+      "source_commit": "f2d20e0f9e895c4764ea0c3dffb25bb9683366d0",
+      "source_path": "configs/experiment/amendments/bounded-effective-state-on-final-panel-locator-resolution-20260918.json"
+    }
+  },
+  "source_branch": "ops/bounded-off-final-closeout-20260918",
+  "source_commit": "f2d20e0f9e895c4764ea0c3dffb25bb9683366d0",
+  "status": "HISTORICAL_GIT_AUTHORITY_SNAPSHOTS"
+}

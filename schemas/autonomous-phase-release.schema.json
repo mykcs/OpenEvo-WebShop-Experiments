@@ -1,0 +1,489 @@
+{
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/autonomous-phase-release.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "release_mode": {
+            "not": {
+              "const": "adoption"
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "execution_source"
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "activation_authority": {
+      "type": "boolean"
+    },
+    "arm": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "asset_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "consumes": {
+          "items": {
+            "additionalProperties": true,
+            "properties": {
+              "canonical_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "provider": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "provider_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "role": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "canonical_id",
+              "role"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "produces": {
+          "items": {
+            "additionalProperties": true,
+            "properties": {
+              "canonical_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "provider": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "provider_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "role": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "canonical_id",
+              "role"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "publication": {
+          "items": {
+            "additionalProperties": true,
+            "properties": {
+              "canonical_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "provider": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "provider_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "role": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "canonical_id",
+              "role"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "recovery": {
+          "items": {
+            "additionalProperties": true,
+            "properties": {
+              "canonical_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "provider": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "provider_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "role": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "canonical_id",
+              "role"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "registry_policy": {
+          "const": "observation-first-canonical-if-proven"
+        },
+        "telemetry": {
+          "items": {
+            "additionalProperties": true,
+            "properties": {
+              "canonical_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "provider": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "provider_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "role": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "canonical_id",
+              "role"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "registry_policy",
+        "consumes",
+        "produces",
+        "recovery",
+        "telemetry",
+        "publication"
+      ],
+      "type": "object"
+    },
+    "budget_contract": {
+      "properties": {
+        "external_teacher_requests_max": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "final_panel_tasks_max": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "formal_task_rollouts_max": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "local_reflector_requests_max": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "optimizer_steps_max": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "formal_task_rollouts_max",
+        "external_teacher_requests_max",
+        "optimizer_steps_max",
+        "local_reflector_requests_max",
+        "final_panel_tasks_max"
+      ],
+      "type": "object"
+    },
+    "closeout_action": {
+      "type": "object"
+    },
+    "completion": {
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "required_equal": {
+          "minProperties": 1,
+          "type": "object"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "required_equal"
+      ],
+      "type": "object"
+    },
+    "execution_source": {
+      "properties": {
+        "checkout": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "execution_sha": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "checkout",
+        "execution_sha"
+      ],
+      "type": "object"
+    },
+    "external_executor": {
+      "additionalProperties": true,
+      "properties": {
+        "missing_reason": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "missing_state": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "read_only_adoption": {
+          "const": true
+        },
+        "required_equal": {
+          "minProperties": 1,
+          "type": "object"
+        },
+        "state_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "status_map": {
+          "minProperties": 1,
+          "type": "object"
+        }
+      },
+      "required": [
+        "read_only_adoption",
+        "state_path",
+        "required_equal",
+        "status_map",
+        "missing_state",
+        "missing_reason"
+      ],
+      "type": "object"
+    },
+    "historical_execution_provenance": {
+      "type": "object"
+    },
+    "inputs": {
+      "type": "array"
+    },
+    "phase": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "progress": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "properties": {
+            "expected_rows": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "identity_key": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "const": "jsonl"
+            },
+            "path": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "required_true_key": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "path",
+            "expected_rows",
+            "identity_key",
+            "required_true_key"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": true,
+          "properties": {
+            "expected_files": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "identity_regex": {
+              "type": "string"
+            },
+            "kind": {
+              "const": "glob_files"
+            },
+            "path_glob": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "path_glob",
+            "expected_files"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "release_mode": {
+      "default": "execution",
+      "enum": [
+        "execution",
+        "adoption"
+      ]
+    },
+    "resource_gate": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "resume_action": {
+      "type": "object"
+    },
+    "retry": {
+      "properties": {
+        "exact_resume": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "exact_resume"
+      ],
+      "type": "object"
+    },
+    "run_action": {
+      "type": "object"
+    },
+    "runtime": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "additionalProperties": true,
+          "properties": {
+            "container_name": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "container_names": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "schema": {
+      "const": "openevo.autonomous-phase-release.v1"
+    },
+    "scientific_authority": {
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "required_equal": {
+          "minProperties": 1,
+          "type": "object"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "required_equal"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "arm",
+    "phase",
+    "activation_authority",
+    "scientific_authority",
+    "budget_contract",
+    "completion",
+    "retry"
+  ],
+  "title": "OpenEVO Autonomous Phase Release",
+  "type": "object"
+}

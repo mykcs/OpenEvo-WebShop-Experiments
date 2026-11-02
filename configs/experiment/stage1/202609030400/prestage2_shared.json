@@ -1,0 +1,99 @@
+{
+  "allowed_model_specific_fields": [
+    "model_id",
+    "revision",
+    "model_path",
+    "context_window",
+    "chat_template_enable_thinking"
+  ],
+  "arms": {
+    "qwen25-3b": {
+      "chat_template_enable_thinking": null,
+      "context_window": 32768,
+      "model_id": "Qwen/Qwen2.5-3B-Instruct",
+      "model_path": "/workspace/models/qwen2.5-3b-instruct",
+      "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1"
+    },
+    "qwen3-1p7b": {
+      "chat_template_enable_thinking": false,
+      "context_window": 40960,
+      "model_id": "Qwen/Qwen3-1.7B",
+      "model_path": "/workspace/models/qwen3-1.7b",
+      "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+    }
+  },
+  "common": {
+    "agent_system": {
+      "max_output_tokens": 2048,
+      "max_split_depth": 5,
+      "outcome_based_split": false,
+      "rollouts_per_group": 8,
+      "same_algorithm_both_arms": true,
+      "single_leaf_repair_max_output_tokens": 1024,
+      "split": "deterministic frozen-order midpoint bisection",
+      "split_triggers": [
+        "input_overflow",
+        "output_token_cap"
+      ],
+      "task_groups": 180,
+      "unit_node_cap": 20
+    },
+    "carrier_generation": {
+      "do_sample": false,
+      "external_teacher_calls_after_minimax": 0
+    },
+    "jsonl_record_semantics": "one JSON object per physical LF-delimited file record; Unicode U+2028/U+2029 inside JSON strings are content, not record delimiters",
+    "opsd_recipe": "configs/experiment/openevo-ceiling-1.0-opsd-formal-v1.json",
+    "opsd_recipe_sha256": "eb0d909f05ee12ae87af61561117787d1ba909327d4d1640e6987305d02f1d74",
+    "runtime_readback_required": true,
+    "shared_task_id_families": [
+      "ceiling1-(3b|7b|qwen3-1p7b)-taskNNN",
+      "shared030400-(qwen25-3b|qwen3-1p7b)-taskNNN"
+    ],
+    "skill_bundle": {
+      "capacity_authority": "configs/experiment/amendments/openevo-ceiling-1.0-stage1-skill-capacity-recovery-20260903-v1.json",
+      "capacity_split_authorized_for_formal_result": true,
+      "max_inputs": 20,
+      "max_output_tokens": 2048,
+      "max_split_depth": 5,
+      "outcome_based_split": false,
+      "same_algorithm_both_arms": true,
+      "single_node_repair_max_output_tokens": 1024,
+      "split": "deterministic frozen-order midpoint bisection",
+      "split_triggers": [
+        "input_overflow",
+        "output_token_cap"
+      ],
+      "qwen3_1p7b_existing_zero_split_result": "path-equivalent and does not require rerun solely because the bounded fallback was added later"
+    },
+    "text_memory": {
+      "max_inputs": 20,
+      "max_output_tokens": 2048,
+      "max_split_depth": 1,
+      "protocol": "A2",
+      "recursive_split_allowed": false,
+      "repair": "one exact-same-input same-order compression repair before split eligibility",
+      "split": "fixed first10 + last10, consolidate children, then parent merge",
+      "split_outcome_blind": true,
+      "split_trigger": "only if full-20 primary and exact-same-20 repair both saturate"
+    }
+  },
+  "freeze_id": "202609030400",
+  "method_evidence": {
+    "stage1_capacity_recovery_authority": "configs/experiment/amendments/openevo-ceiling-1.0-stage1-capacity-recovery-v1.json",
+    "skill_capacity_recovery_authority": "configs/experiment/amendments/openevo-ceiling-1.0-stage1-skill-capacity-recovery-20260903-v1.json",
+    "text_memory_a11_vs_a2": {
+      "a11_4096": "3B and 1.7B both BLOCKED extended_repair_failed",
+      "a2_1p7b": "1440/1440 PASS with bounded fixed 10+10 recovery",
+      "comparison_root": "/workspace/runs/20260902-text-memory-a11-three-arm-compare"
+    }
+  },
+  "regression_evidence": {
+    "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/SHARED_PRESTAGE2_CODE_REGRESSION.json",
+    "sha256": "da15c3dd5f4e9f581220e6b93aa6beedc22f614e7c13a4335e6b087049880111",
+    "status": "PASS"
+  },
+  "schema": "openevo.shared-prestage2.v2",
+  "stage2_auto_launch": false,
+  "status": "FROZEN_METHOD"
+}

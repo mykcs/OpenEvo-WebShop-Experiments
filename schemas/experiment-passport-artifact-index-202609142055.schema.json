@@ -1,0 +1,30 @@
+{
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/experiment-passport-artifact-index-202609142055.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "entries": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "node_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+          "operation_digest": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+          "operation_type": {"minLength": 1, "type": "string"},
+          "path": {"minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$", "type": "string"},
+          "side_effect_class": {"enum": ["PURE_ENGINEERING", "DETERMINISTIC_COMPUTATION", "STOCHASTIC_SCIENTIFIC_RESULT", "FORMAL_ROLLOUT", "MODEL_UPDATE", "FINAL_EVALUATION"]},
+          "status": {"enum": ["PLANNED", "RUNNING", "PASS", "FAIL", "INVALID", "STALE", "SUPERSEDED"]}
+        },
+        "required": ["operation_digest", "path", "node_sha256", "operation_type", "side_effect_class", "status"],
+        "type": "object"
+      },
+      "minItems": 0,
+      "type": "array"
+    },
+    "generated_at": {"format": "date-time", "type": "string"},
+    "role": {"const": "lookup-acceleration-only; Passport/receipts remain execution and provenance authority"},
+    "schema": {"const": "openevo.experiment-passport-artifact-index.202609142055"}
+  },
+  "required": ["schema", "role", "generated_at", "entries"],
+  "title": "OpenEVO Experiment Passport content-addressed lookup index",
+  "type": "object"
+}

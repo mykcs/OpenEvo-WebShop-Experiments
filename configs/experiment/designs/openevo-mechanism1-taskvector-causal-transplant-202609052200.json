@@ -1,0 +1,70 @@
+{
+  "benchmark": "WebShop",
+  "budget": {
+    "closed_loop_cells_max": 9,
+    "max_closed_loop_episodes": 576,
+    "tasks_per_cell": 64
+  },
+  "controls": [
+    "signed intervention",
+    "dose response",
+    "three norm-matched random controls"
+  ],
+  "engineering_platform_authority": "docs/experiment-tracking/OPEN_EVO_CEILING_1.0_END_TO_END_MASTER_PLAN.md §2.3",
+  "experiment_id": "M1-A-TV-CAUSAL-TRANSPLANT",
+  "external_teacher_calls": 0,
+  "final_panel_access": 0,
+  "forbidden": [
+    "using final-panel tasks",
+    "cross-model vector injection",
+    "selecting anchor/checkpoint by score",
+    "calling theta50+tau a fresh-task transfer result"
+  ],
+  "interventions": [
+    "theta_50pct baseline",
+    "theta_50pct + 0.5 * tau_late",
+    "theta_50pct + 1.0 * tau_late",
+    "theta_50pct - 1.0 * tau_late",
+    "three deterministic Gram-norm-matched random directions with seeds 2026090501, 2026090502, 2026090503",
+    "natural theta_75pct and theta_100pct references"
+  ],
+  "model": {
+    "id": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+  },
+  "primary_endpoints": [
+    "paired mean WebShop task_score*100",
+    "paired exact success count"
+  ],
+  "probe_panel": {
+    "fresh_task_generalization_claim": false,
+    "paired_generation_seed_schedule": "frozen before execution",
+    "selection": "first 64 unique shared-Stage2 training task IDs by first appearance that do not occur in the 75%-100% source-vector window and are not final-panel tasks",
+    "size": 64
+  },
+  "program_id": "openevo-mechanism-1.0-202609052200",
+  "question": "Is a late OpenEvo parameter direction portable across time, direction-specific, and behaviorally causal rather than merely a large weight change?",
+  "ray_workload": "mechanism1_taskvector_eval_q17",
+  "result_dependent_stopping": false,
+  "schema": "openevo.mechanism1-taskvector-causal-transplant.202609052200",
+  "scientific_role": "primary causal intervention",
+  "secondary_endpoints": [
+    "target-token NLL",
+    "first-action margin/top1",
+    "hidden-state drift"
+  ],
+  "source_selection": {
+    "anchor_rule": "for each threshold choose the latest accepted parameter state at or before the threshold; never choose by reward",
+    "anchors_by_accepted_rollout_fraction": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "lineage": "Ceiling-1.0 qwen3-1p7b current Stage2 accepted-state lineage",
+    "source_vector": "theta_100pct - theta_75pct",
+    "terminal_seal_required": true,
+    "transplant_target": "theta_50pct"
+  },
+  "status": "PREREGISTERED_WAITING_Q17_TERMINAL_SOURCE_BINDING"
+}

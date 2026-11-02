@@ -1,0 +1,180 @@
+{
+  "completed_at": "2026-10-20T19:35:44.669635+00:00",
+  "created_at": "2026-10-20T19:35:44.669635+00:00",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/completed_1p7b_artifact_dag_backfill.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "e54045347c6db875826ce7d3b15d9aefea595d447595ee83410def8cc0ae63db"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/checkpoint-placement-20261020/bounded/BACKFILL_CONFIG.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "b41ca95a9f191b41f00d08cdfa901bdbe238fdfd6ce84dc089dfdcafebc7be76"
+    },
+    "contract_identities": [
+      {
+        "identity": {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/experiment-passports/202609160255-bounded-effective-state-gdr/FROZEN_PASSPORT_ORIGINAL.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "fe604447923ce134baf9c707b7d2073bed49555a5488b1c45062e68b9099a330"
+        },
+        "name": "experiment-passport"
+      }
+    ],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "389833d2dec32aad9e5e71830ac705813823ed6efcfeea9d6f51ce3304a8bce6",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/checkpoint-placement-20261020/bounded/BOUNDED_LOCAL_MODEL_RECONCILIATION_20261020.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "389833d2dec32aad9e5e71830ac705813823ed6efcfeea9d6f51ce3304a8bce6"
+          }
+        ],
+        "logical_role": "placement-source-0",
+        "size_bytes": 287347
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "b28b5dfa615fe9027e00f87c71ed4632e21db37310f7b66be534dcd8e1ff123e",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/checkpoint-placement-20261020/bounded/BOUNDED_STAGING_HARDLINK_MAPPING_20261020.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "b28b5dfa615fe9027e00f87c71ed4632e21db37310f7b66be534dcd8e1ff123e"
+          }
+        ],
+        "logical_role": "placement-source-1",
+        "size_bytes": 358383
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "dd1c1caf44667dac476c1a889e79f38387cd4afdc66c52a4e500e31ed8824b72",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/checkpoint-placement-20261020/bounded/BOUNDED_COMPLETE_HARDLINK_MAPPING_20261020.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "dd1c1caf44667dac476c1a889e79f38387cd4afdc66c52a4e500e31ed8824b72"
+          }
+        ],
+        "logical_role": "placement-source-2",
+        "size_bytes": 381681
+      }
+    ],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "deterministic-backfill",
+      "randomness": "none"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "366d8f0599051b56b396ec29a1e22bf505c0d2396287b80f18d1ad1d73d87e53",
+  "operation_schema_version": "202610201935",
+  "operation_type": "completed-1p7b.observe.bounded-current-local-placement",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [
+        "389833d2dec32aad9e5e71830ac705813823ed6efcfeea9d6f51ce3304a8bce6",
+        "b28b5dfa615fe9027e00f87c71ed4632e21db37310f7b66be534dcd8e1ff123e",
+        "dd1c1caf44667dac476c1a889e79f38387cd4afdc66c52a4e500e31ed8824b72"
+      ],
+      "digest": "9eee022b2adc542a859b95d7b2f99c60bd92f3c1028f1088257f17c4977cdcb2",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/checkpoint-placement-20261020/bounded/CURRENT_PLACEMENT_BINDING.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "9eee022b2adc542a859b95d7b2f99c60bd92f3c1028f1088257f17c4977cdcb2"
+        }
+      ],
+      "logical_role": "backfill-binding",
+      "size_bytes": 2591
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "completed-1p7b.observe.bounded-current-local-placement-202610201935",
+    "created_at": "2026-10-20T19:35:44.669635+00:00",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/checkpoint-placement-20261020/bounded/BOUNDED_COMPLETE_HARDLINK_MAPPING_20261020.json",
+      "docs/evidence/checkpoint-placement-20261020/bounded/BOUNDED_LOCAL_MODEL_RECONCILIATION_20261020.json",
+      "docs/evidence/checkpoint-placement-20261020/bounded/BOUNDED_STAGING_HARDLINK_MAPPING_20261020.json"
+    ],
+    "experiment_id": "202609160255-bounded-effective-state-gdr",
+    "external_views": [
+      {
+        "evidence_path": "docs/evidence/checkpoint-placement-20261020/bounded/BOUNDED_LOCAL_MODEL_RECONCILIATION_20261020.json",
+        "kind": "hf",
+        "path": null,
+        "reason": "immutable HF revision bound by exact repository evidence; network view is not automatic reuse authority",
+        "repository": "openevo-recovery/openevo-bounded-effective-state-gdr-1p7b-states",
+        "revision": "75d66482136c14dd83723babb0f77289d4bdcb69",
+        "sha256": "389833d2dec32aad9e5e71830ac705813823ed6efcfeea9d6f51ce3304a8bce6"
+      },
+      {
+        "evidence_path": "docs/evidence/checkpoint-placement-20261020/bounded/BOUNDED_LOCAL_MODEL_RECONCILIATION_20261020.json",
+        "kind": "hf",
+        "path": null,
+        "reason": "immutable HF revision bound by exact repository evidence; network view is not automatic reuse authority",
+        "repository": "openevo-recovery/openevo-bounded-effective-state-gdr-1p7b-states",
+        "revision": "37e21602cfe37f4cc11bac34fecc23df09ca0c11",
+        "sha256": "389833d2dec32aad9e5e71830ac705813823ed6efcfeea9d6f51ce3304a8bce6"
+      }
+    ],
+    "passport_sha256": "5d9adea0312ea93f4a12fa561fae5fa5fa8bd8f0f5cbff7d86c7db51371b5e42",
+    "producer_scope": "EXPERIMENT"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "ALLOWLISTED_ENGINEERING_ONLY",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Verified historical engineering evidence may be surfaced as REUSE_CANDIDATE only; consumer/scientific authority remains external to the DAG."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "PURE_ENGINEERING",
+  "status": "PASS",
+  "supersedes": []
+}

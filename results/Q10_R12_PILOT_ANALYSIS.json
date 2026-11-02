@@ -1,0 +1,51 @@
+{
+  "automatic_followup_evaluations": 0,
+  "claim_boundary": "One prospectively fixed stream1/R011 development pilot, not fresh confirmation, not 3-seed stability, not full Q10 or R160; no score-driven reselection/additional episodes.",
+  "contract_sha256": "9d59371ff6859f59f7927d5db93eb7d647e089b3c64e3b36ca2c02686d4322b9",
+  "contrasts": {
+    "recipe_minus_reference": {
+      "mean_difference": -0.11325222086940837,
+      "paired_task_bootstrap95": [
+        -0.2087495420161436,
+        -0.01860054929879148
+      ]
+    },
+    "recipe_minus_start": {
+      "mean_difference": 0.07233552038239538,
+      "paired_task_bootstrap95": [
+        -0.017444154153138533,
+        0.1599907839556277
+      ]
+    }
+  },
+  "created_at": "2026-10-27T11:19:25.099719+00:00",
+  "endpoints": {
+    "recipe-r12": {
+      "exact_success_count": 2,
+      "mean_task_score": 0.3389666756854256,
+      "model_incomplete_trace_count": 0,
+      "physical_episodes": 64,
+      "state_id": "5ba2d5511a9886ec6af70a09552499d955491455fe4b5fdd428020004e54367d"
+    },
+    "reference-r12": {
+      "exact_success_count": 7,
+      "mean_task_score": 0.45221889655483405,
+      "model_incomplete_trace_count": 0,
+      "physical_episodes": 64,
+      "state_id": "c1e0d9cafacce9f8b3f8fd1add96e305ddf5eb166adad165a1f17ef668250c9c"
+    },
+    "start": {
+      "exact_success_count": 1,
+      "mean_task_score": 0.26663115530303033,
+      "model_incomplete_trace_count": 0,
+      "physical_episodes": 64,
+      "state_id": "6b348b990f9729e59a71ab4b3e15fba358f0809eb0ddee9e76ff7f806c960b0e"
+    }
+  },
+  "new_evaluation_episodes": 192,
+  "new_training_rollouts": 0,
+  "original_full_q10": "OWNER_PAUSED_UNFINISHED",
+  "status": "PILOT_ANALYSIS_COMPLETE",
+  "uncertainty": "Exploratory unadjusted95% paired task bootstrap;64 task pairs,one seed; does not estimate between-training-seed uncertainty.",
+  "verdict": "INCONCLUSIVE_OR_NO_CLEAR_EARLY_ADVANTAGE"
+}

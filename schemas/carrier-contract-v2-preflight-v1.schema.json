@@ -1,0 +1,107 @@
+{
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/carrier-contract-v2-preflight-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arm_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "carrier_contract_identity_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "execution_git_sha": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "final_panel_access_count": {
+      "const": 0
+    },
+    "formal_task_consumption_allowed": {
+      "const": false
+    },
+    "health_policy_id": {
+      "const": "carrier-health-failure-policy-v1"
+    },
+    "health_policy_identity_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "health_schema_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "implementation_manifest_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "initial_carrier_contract_status": {
+      "const": "PASS"
+    },
+    "initial_carrier_sha256": {
+      "additionalProperties": false,
+      "properties": {
+        "agent_system": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "skill_bundle": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "text_memory": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text_memory",
+        "skill_bundle",
+        "agent_system"
+      ],
+      "type": "object"
+    },
+    "preflight_identity_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "reward_access_count": {
+      "const": 0
+    },
+    "schema": {
+      "const": "openevo.carrier-contract-v2-preflight.v1"
+    },
+    "scope_package_identity_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "scope_policy_id": {
+      "const": "webshop-task-local-scope-v1"
+    },
+    "status": {
+      "const": "PASS"
+    }
+  },
+  "required": [
+    "schema",
+    "status",
+    "formal_task_consumption_allowed",
+    "arm_id",
+    "execution_git_sha",
+    "carrier_contract_identity_sha256",
+    "implementation_manifest_sha256",
+    "scope_policy_id",
+    "scope_package_identity_sha256",
+    "health_policy_id",
+    "health_policy_identity_sha256",
+    "health_schema_sha256",
+    "initial_carrier_contract_status",
+    "initial_carrier_sha256",
+    "final_panel_access_count",
+    "reward_access_count",
+    "preflight_identity_sha256"
+  ],
+  "title": "Carrier Contract v2 pre-Round0 preflight",
+  "type": "object"
+}

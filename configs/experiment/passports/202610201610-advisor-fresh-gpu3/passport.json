@@ -1,0 +1,374 @@
+{
+  "artifact_policy": {
+    "assets": [],
+    "default_disclosure_state": "PRIVATE",
+    "default_recovery_state": "SERVER_ONLY",
+    "large_asset_provider": "Existing durable server storage; no external publication.",
+    "state_model_policy": "docs/operations/publication/RESEARCH_ASSET_RECOVERY_AND_DISCLOSURE_POLICY.zh-CN.md",
+    "wandb_is_sole_backup": false
+  },
+  "authority_paths": [
+    "configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+    "configs/experiment/preregistrations/advisor-fresh-checkpoints-20261020.json",
+    "scripts/openevo_webshop/advisor_fresh_checkpoint_host_20261020.py",
+    "scripts/analysis/advisor_fresh_checkpoint_validation_20261020.py",
+    "scripts/runtime/advisor_fresh_runtime_python_20261020.sh",
+    "configs/runtime/advisor-fresh-runtime-fingerprint-202610201610.json",
+    "configs/experiment/profiles/advisor-fresh-202610201610-gpu3.json",
+    "configs/experiment/activations/advisor-fresh-202610201610-gpu3-release.json",
+    "configs/experiment/activations/advisor-fresh-202610201610-gpu3-current-campaign.json",
+    "configs/experiment/path-contracts/advisor-fresh-202610201610-gpu3.json",
+    "configs/experiment/passports/202610201610-advisor-fresh-gpu3/passport.json",
+    "docs/evidence/advisor-fresh-canonical-20261020/capacity-coresidency-successor-20261020.json"
+  ],
+  "budget_contract": {
+    "accounting_rule": "Exactly2 fixed checkpoints \u00d764 fresh tasks; no outcome retry.",
+    "external_teacher_call_limit": 0,
+    "final_panel_access_limit": 0,
+    "horizon": 15,
+    "optimizer_step_limit": 0,
+    "rollout_limit": 128,
+    "rollouts_per_round": 0,
+    "round_limit": 0,
+    "source": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/preregistrations/advisor-fresh-checkpoints-20261020.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "8ef8f995ad8d4e7cd37e8e73bf6209f3cc4b4831abcf1145346d38089b4c2599"
+    }
+  },
+  "campaign_id": "20261020-1610-advisor-fresh-gpu3",
+  "created_at": "2026-10-20T16:10:35.116852+00:00",
+  "experiment_id": "202610201610-advisor-fresh-gpu3",
+  "initial_execution_identity": {
+    "activation": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "7bdf7b8d43a924e538d57d3ecf667a25dd496e41496aea2aad1e3e646b5fe964"
+    },
+    "dependency_lock": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/assets/runtimes/h144-scientific-runtime-v1.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "f57f0d3255ebf5cdcc6d97dd4ac7fec6fd25e7e628aadc81ae24569c77f6d492"
+    },
+    "experiment_repository": "mykcs/openevo-experiment",
+    "frozen_science_sha": "01a77d9cb8897db4428325a64ca50d1cd5bcb583",
+    "initial_experiment_sha": "01a77d9cb8897db4428325a64ca50d1cd5bcb583",
+    "initial_ray_sha": "59478929d884ca794cce2cb49cc6cc16103d6abe",
+    "initial_run_root": "/workspace/runs/advisor-fresh-202610201610-gpu3",
+    "launcher": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/advisor_fresh_checkpoint_host_20261020.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "d4d1a3549a27a856652a20ec2b2782e607f6d707369aa9a45d6d6538d5dd6cfc"
+    },
+    "python_version": "3.11.16",
+    "release": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/activations/advisor-fresh-202610201610-gpu3-release.json",
+      "reason": "Release embeds this Passport digest; exact release hash belongs to Formal Start.",
+      "repository": null,
+      "revision": null,
+      "sha256": null
+    },
+    "runtime_asset_lock": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/runtime/advisor-fresh-runtime-fingerprint-202610201610.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "b39a3da3deb6b7625359ab7ff1d6f631a68bc50057c28f33ec640fb5b91fc7b4"
+    },
+    "runtime_digest_kind": "IMAGE_ID",
+    "runtime_fingerprint": "22783b920feb97596d4ba47f1123040d5e8e8f1f618e4d70834b5b6e7b437db4",
+    "runtime_image_digest": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+    "upstream_openevo_sha": "59478929d884ca794cce2cb49cc6cc16103d6abe",
+    "upstream_repository": "mykcs/OpenEvo"
+  },
+  "parent_experiment_id": null,
+  "passport_payload_sha256": "ec6f380ce099eb385bb2eec6aa167fcd8eba23111bd181c20249abb5abe0a3b1",
+  "provenance": {
+    "evidence_paths": [
+      "configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+      "configs/experiment/preregistrations/advisor-fresh-checkpoints-20261020.json",
+      "scripts/openevo_webshop/advisor_fresh_checkpoint_host_20261020.py",
+      "scripts/analysis/advisor_fresh_checkpoint_validation_20261020.py",
+      "scripts/runtime/advisor_fresh_runtime_python_20261020.sh",
+      "configs/runtime/advisor-fresh-runtime-fingerprint-202610201610.json",
+      "configs/experiment/profiles/advisor-fresh-202610201610-gpu3.json",
+      "configs/experiment/activations/advisor-fresh-202610201610-gpu3-release.json",
+      "configs/experiment/activations/advisor-fresh-202610201610-gpu3-current-campaign.json",
+      "configs/experiment/path-contracts/advisor-fresh-202610201610-gpu3.json",
+      "configs/experiment/passports/202610201610-advisor-fresh-gpu3/passport.json",
+      "docs/evidence/advisor-fresh-canonical-20261020/capacity-coresidency-successor-20261020.json"
+    ],
+    "parent_lineage_note": "Prospective evaluation of pre-existing frozen checkpoint identities; no training continuation.",
+    "revision_naming_note": "Explicit12-digit creation stamp; every lane has a unique writer/output.",
+    "status": "NEW_DECLARATION",
+    "unknown_fields": []
+  },
+  "resume_policy": {
+    "automatic_gpu_start": false,
+    "policy": "MANUAL_REVIEW_ONLY",
+    "reason": "No automatic replay of any cell START; preserve partial consumption.",
+    "requires_receipt_chain": true
+  },
+  "schema": "openevo.experiment-passport.202609111800",
+  "scientific_identity": {
+    "acceptance_policy": {
+      "candidate_rule": "No outcome-based retry or selection",
+      "credit_assignment": "Report all frozen checkpoint64-task results and paired uncertainty",
+      "name": "FROZEN_FRESH_PAIRED_REPORT",
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/advisor-fresh-checkpoints-20261020.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "8ef8f995ad8d4e7cd37e8e73bf6209f3cc4b4831abcf1145346d38089b4c2599"
+      }
+    },
+    "action_contract": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/analysis/advisor_fresh_checkpoint_validation_20261020.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "7fa4e0d9a48e9f99b61ad3742828a2ebee223ca7b7c1fbb509774a9bec1a2c3e"
+    },
+    "benchmark": "WebShop",
+    "claim_boundary": "Fixed-checkpoint fresh generalization only; no causal training claims or Q03 intervention.",
+    "evaluator_contract": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/analysis/advisor_fresh_checkpoint_validation_20261020.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "7fa4e0d9a48e9f99b61ad3742828a2ebee223ca7b7c1fbb509774a9bec1a2c3e"
+    },
+    "external_teacher": {
+      "future_call_budget": 0,
+      "prior_analyses": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/advisor-fresh-checkpoints-20261020.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "8ef8f995ad8d4e7cd37e8e73bf6209f3cc4b4831abcf1145346d38089b4c2599"
+      },
+      "role": "none"
+    },
+    "final_panel_policy": {
+      "future_access_limit": 0,
+      "policy": "LOCKED_ZERO_ACCESS",
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/advisor-fresh-checkpoints-20261020.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "8ef8f995ad8d4e7cd37e8e73bf6209f3cc4b4831abcf1145346d38089b4c2599"
+      }
+    },
+    "harness": {
+      "profile": "advisor-fresh-202610201610-gpu3",
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "scripts/analysis/advisor_fresh_checkpoint_validation_20261020.py",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "7fa4e0d9a48e9f99b61ad3742828a2ebee223ca7b7c1fbb509774a9bec1a2c3e"
+      },
+      "thinking": false
+    },
+    "human_intervention_policy": "No repeated cell START; failed or partial cells need explicit reconciliation.",
+    "hypothesis": "Report paired checkpoint differences on the same fresh panel without training or selection.",
+    "model": {
+      "asset": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "7bdf7b8d43a924e538d57d3ecf667a25dd496e41496aea2aad1e3e646b5fe964"
+      },
+      "dtype": "bfloat16",
+      "model_id": "Qwen/Qwen3-1.7B",
+      "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "tokenizer_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+    },
+    "optimizer": {
+      "batch_size": null,
+      "epochs": null,
+      "extra_settings": {
+        "optimizer_updates": 0
+      },
+      "gradient_accumulation_steps": null,
+      "learning_rate": null,
+      "name": null
+    },
+    "parser_contract": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/analysis/advisor_fresh_checkpoint_validation_20261020.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "7fa4e0d9a48e9f99b61ad3742828a2ebee223ca7b7c1fbb509774a9bec1a2c3e"
+    },
+    "prompt_contract": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "7bdf7b8d43a924e538d57d3ecf667a25dd496e41496aea2aad1e3e646b5fe964"
+    },
+    "protocol_fingerprint": "67bb9ad571b1b5ea737d75d4df909787d03237d347eadac4400295f87f439005",
+    "research_question": "Do the prospectively selected fixed checkpoints generalize on64 unseen tasks?",
+    "sampling": {
+      "do_sample": true,
+      "extra_settings": {
+        "max_steps": 15,
+        "repetition_penalty": 1.0
+      },
+      "max_new_tokens": 512,
+      "temperature": 1.0,
+      "top_k": 0,
+      "top_p": 1.0
+    },
+    "sd_lora": {
+      "alpha": null,
+      "effective_rank_cap": null,
+      "extra_settings": {
+        "checkpoints": {
+          "bounded160": {
+            "adapter_path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/round-159/sd-lora/bounded-state",
+            "availability_at_freeze": "LOCAL_PREVIOUSLY_VERIFIED_RECHECKED_BEFORE_INFERENCE",
+            "files": {
+              "adapter_config.json": "cbd30da3262c20cd0df9542d7577d14568db14e7d9cbb69291c0182da96d4ee8",
+              "adapter_model.safetensors": "1bc2f7f62c1bde68cd4fd34e86c25af7f9663153a9ded631759dda52c87a21a5"
+            }
+          },
+          "reverse156": {
+            "adapter_path": "/workspace/runs/post-advisor-unanswered-20260928/prepare/e4-reverse-v2-parent/reverse-adapters/reverse-direction-r156",
+            "availability_at_freeze": "LOCAL_PREVIOUSLY_VERIFIED_RECHECKED_BEFORE_INFERENCE",
+            "files": {
+              "adapter_config.json": "a8c00d1bf91be772497b54f1de9db8956b014d8f8211794c7e8d0efe366eca84",
+              "adapter_model.safetensors": "4bea970991cdddd1b667d303919a58e43dce59257d9820896f1b754878189fb7"
+            }
+          }
+        },
+        "updates": 0
+      },
+      "rank": null,
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "7bdf7b8d43a924e538d57d3ecf667a25dd496e41496aea2aad1e3e646b5fe964"
+      },
+      "target_modules": null
+    },
+    "seed_policy": {
+      "rng_contract": "Exact manifest task paired_generation_seed, unchanged per-step evaluator rule.",
+      "schedule": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "7bdf7b8d43a924e538d57d3ecf667a25dd496e41496aea2aad1e3e646b5fe964"
+      },
+      "schedule_id": "17096c475950a96fa58ce54b47c349bad82806b92b4021fd1062c0fd263aa626",
+      "seed_base": null
+    },
+    "split": "Fresh64 disjoint from forbidden training/evaluation/final panels",
+    "stop_rule": {
+      "max_rollouts": 128,
+      "max_rounds": 0,
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/advisor-fresh-checkpoints-20261020.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "8ef8f995ad8d4e7cd37e8e73bf6209f3cc4b4831abcf1145346d38089b4c2599"
+      }
+    },
+    "task_manifest": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "7bdf7b8d43a924e538d57d3ecf667a25dd496e41496aea2aad1e3e646b5fe964"
+    },
+    "training_data_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "7bdf7b8d43a924e538d57d3ecf667a25dd496e41496aea2aad1e3e646b5fe964"
+    },
+    "treatment": "Evaluate only the frozen lane checkpoint IDs: bounded160, reverse156",
+    "what_changed": [
+      "Prospective outcome-blind64-task panel; immutable existing checkpoints only."
+    ],
+    "what_must_stay_fixed": [
+      "Frozen panel, checkpoints, carrier contents, evaluator, task seeds and sampling."
+    ]
+  },
+  "status": "FROZEN",
+  "tracking_policy": {
+    "approved_artifact_roles": [
+      "passport",
+      "run-manifest",
+      "startup-receipt",
+      "closeout-receipt",
+      "evaluation-summary"
+    ],
+    "entity": null,
+    "mode_order": [
+      "online",
+      "offline",
+      "disabled"
+    ],
+    "project": null,
+    "role": "MIRROR_ONLY",
+    "scientific_authority": false
+  }
+}

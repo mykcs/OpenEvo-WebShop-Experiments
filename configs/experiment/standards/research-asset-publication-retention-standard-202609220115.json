@@ -1,0 +1,51 @@
+{
+  "schema": "openevo.research-asset-publication-retention-standard.202609220115",
+  "status": "SUPERSEDED_BY_202610231400",
+  "created_at_sgt": "2026-09-22T01:15:38+08:00",
+  "superseded_by": "configs/experiment/standards/research-asset-publication-retention-standard-202610231400.json",
+  "human_entry": "docs/operations/publication/README.md",
+  "normative_authority": "docs/operations/publication/RESEARCH_ASSET_RECOVERY_AND_DISCLOSURE_POLICY.zh-CN.md",
+  "archive_publication_standard": "docs/operations/publication/ARTIFACT_ARCHIVE_AND_PUBLICATION_STANDARD.md",
+  "execution_playbook": "docs/operations/publication/SERVER_ARTIFACT_PUBLICATION_PLAYBOOK.zh-CN.md",
+  "core_rules": [
+    "Recovery, publication intent, disclosure state, provider visibility, and heavy-byte retention are independent decisions.",
+    "PRIVATE never implies KEEP_EXACT.",
+    "Quota pressure never authorizes publication, deletion, paid capacity, or scientific changes.",
+    "Mixed heavy repositories use DECOMPOSE_REQUIRED and must be classified at payload level before visibility or deletion changes."
+  ],
+  "publication_intent": {
+    "PUBLIC_RELEASE": "Approved reader/reproducer-facing release asset; normally disclosure_state=PUBLIC.",
+    "TEMPORARILY_PRIVATE": "Not public now because research/method/release scope is not ready; future bounded release is plausible.",
+    "INTERNAL_PRIVATE": "Internal research, recovery, diagnostic, raw-evidence, or control-plane material; no routine public-release intent.",
+    "NEVER_PUBLIC": "Credentials, non-redistributable data, third-party confidential material, or other permanently excluded payload."
+  },
+  "retention_intent": {
+    "KEEP_EXACT": "Historical bytes/serialization/checkpoint identity itself is evidence and must remain exact.",
+    "KEEP_RECONSTRUCTIBLE": "Pinned inputs and reconstruction path are sufficient; exact historical heavy bytes are not required.",
+    "POINTER_ONLY": "Approved canonical bytes exist elsewhere; retain immutable pointer/hash/join only.",
+    "RETIREMENT_CANDIDATE": "Compatibility/duplicate/superseded copy that may be deleted only after reference, liveness, recovery, retention, and owner gates.",
+    "DECOMPOSE_REQUIRED": "Container mixes multiple roles; classify payloads individually before publication or deletion. After decomposition the repo may remain DECOMPOSE_REQUIRED, but current governance must retain a COMPLETE payload-level ledger/evidence pointer."
+  },
+  "disclosure_mapping": {
+    "PUBLIC_RELEASE": [
+      "PUBLIC"
+    ],
+    "TEMPORARILY_PRIVATE": [
+      "PRIVATE",
+      "EMBARGOED"
+    ],
+    "INTERNAL_PRIVATE": [
+      "PRIVATE"
+    ],
+    "NEVER_PUBLIC": [
+      "NEVER_PUBLIC"
+    ]
+  },
+  "default_namespace": "openevo-recovery",
+  "provider_visibility_is_authority": false,
+  "hf_public_mirror": {
+    "repo_id": "openevo-recovery/openevo-standards",
+    "repo_type": "dataset",
+    "role": "DISCOVERABILITY_ONLY_NOT_NORMATIVE_AUTHORITY"
+  }
+}

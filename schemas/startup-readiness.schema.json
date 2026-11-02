@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "openevo.startup-readiness.v1",
+  "title": "OpenEvo startup readiness receipt",
+  "description": "Machine-readable result of the canonical fresh-Agent startup check via `scripts/oe doctor`.",
+  "type": "object",
+  "required": [
+    "schema",
+    "observed_at_epoch",
+    "canonical_checkout",
+    "campaign",
+    "runtime_qualification",
+    "live_gate",
+    "run_campaign_dry_run",
+    "next_action",
+    "next_command",
+    "errors"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "openevo.startup-readiness.v1"
+    },
+    "observed_at_epoch": {
+      "type": "number"
+    },
+    "canonical_checkout": {
+      "type": "object",
+      "required": [
+        "current_path",
+        "hostname",
+        "is_canonical_control",
+        "is_canonical_runtime",
+        "is_non_canonical",
+        "registry_path",
+        "next_action"
+      ],
+      "properties": {
+        "current_path": { "type": "string" },
+        "hostname": { "type": "string" },
+        "canonical_control_checkout": { "type": ["string", "null"] },
+        "canonical_runtime_checkout": { "type": ["string", "null"] },
+        "is_canonical_control": { "type": "boolean" },
+        "is_canonical_runtime": { "type": "boolean" },
+        "is_non_canonical": { "type": "boolean" },
+        "registry_path": { "type": "string" },
+        "next_action": { "type": "string" },
+        "next_command": { "type": ["string", "null"] },
+        "error": { "type": ["string", "null"] }
+      }
+    },
+    "campaign": {
+      "type": "object",
+      "properties": {
+        "campaign_id": { "type": ["string", "null"] },
+        "status": { "type": ["string", "null"] },
+        "formal_task_consumption_allowed": { "type": "boolean" },
+        "current_campaign_path": { "type": ["string", "null"] }
+      }
+    },
+    "runtime_qualification": {
+      "type": ["object", "null"],
+      "properties": {
+        "status": { "type": ["string", "null"] },
+        "reused": { "type": ["boolean", "null"] },
+        "cache_key": { "type": ["string", "null"] },
+        "fingerprint_sha256": { "type": ["string", "null"] }
+      }
+    },
+    "live_gate": {
+      "type": ["object", "null"],
+      "properties": {
+        "status": { "type": ["string", "null"] },
+        "receipt_path": { "type": ["string", "null"] }
+      }
+    },
+    "run_campaign_dry_run": {
+      "type": ["object", "null"],
+      "properties": {
+        "verdict": { "type": ["string", "null"] },
+        "ready_receipt": { "type": ["string", "null"] }
+      }
+    },
+    "next_action": { "type": "string" },
+    "next_command": { "type": ["string", "null"] },
+    "errors": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

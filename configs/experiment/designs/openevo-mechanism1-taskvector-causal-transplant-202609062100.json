@@ -1,0 +1,98 @@
+{
+  "schema": "openevo.mechanism1-taskvector-causal-transplant.202609062100",
+  "experiment_id": "M1-A-TV-CAUSAL-TRANSPLANT-ADJACENT-ACCEPTED-STATE-SUCCESSOR",
+  "program_id": "openevo-mechanism-1.0-202609052200",
+  "status": "PREREGISTERED_SUCCESSOR_EXECUTION_LOCKED",
+  "execution_authority": false,
+  "formal_task_consumption_allowed": false,
+  "supersedes_for_future_execution": "configs/experiment/designs/openevo-mechanism1-taskvector-causal-transplant-202609052200.json",
+  "preserves": {
+    "predecessor_disposition": "BLOCKED_NOT_IDENTIFIABLE",
+    "ceiling_evidence": "IMMUTABLE",
+    "scientific_question": "within-model portability, direction specificity, and behavioral causality of a late accepted-state direction",
+    "budget_and_controls": "UNCHANGED"
+  },
+  "benchmark": "WebShop",
+  "model": {
+    "id": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+  },
+  "source_selection": {
+    "lineage": "sealed Ceiling-1.0 qwen3-1p7b accepted parameter-state lineage",
+    "ordered_state_definition": "S_0 is the bound pre-update accepted adapter state; S_i is each later accepted active adapter state in strictly increasing accepted-transition order.",
+    "duplicate_rule": "A state whose adapter SHA-256 equals the preceding accepted state is not a distinct state and cannot advance i.",
+    "final_state": "theta_final = S_K",
+    "previous_state": "theta_prev = S_(K-1), the immediately preceding distinct accepted state",
+    "transplant_target": "theta_target = S_(K-2), the immediately preceding distinct accepted state before theta_prev",
+    "source_vector": "tau_adjacent_late = theta_final - theta_prev",
+    "minimum_distinct_states": 3,
+    "selection_uses_reward": false,
+    "terminal_seal_required": true
+  },
+  "identifiability_gate": {
+    "evaluated_before_probe_manifest_materialization": true,
+    "required": [
+      "accepted-state ledger and component-store reconstruction resolve S_(K-2), S_(K-1), and S_K to exact receipts and adapter SHA-256 identities",
+      "the three adapter SHA-256 identities are pairwise distinct",
+      "accepted-transition indices are consecutive in the distinct accepted-state ledger",
+      "round indices and generation indices are strictly increasing",
+      "the reconstructed Gram norm of tau_adjacent_late is finite and strictly greater than zero"
+    ],
+    "failure_status": "NOT_IDENTIFIABLE",
+    "on_failure": "consume zero WebShop episodes and create no replacement direction"
+  },
+  "budget": {
+    "closed_loop_cells_max": 9,
+    "max_closed_loop_episodes": 576,
+    "tasks_per_cell": 64
+  },
+  "interventions": [
+    "theta_target baseline",
+    "theta_target + 0.5 * tau_adjacent_late",
+    "theta_target + 1.0 * tau_adjacent_late",
+    "theta_target - 1.0 * tau_adjacent_late",
+    "three deterministic Gram-norm-matched random directions with seeds 2026090501, 2026090502, 2026090503",
+    "natural theta_prev reference",
+    "natural theta_final reference"
+  ],
+  "controls": [
+    "signed intervention",
+    "dose response",
+    "three norm-matched random controls"
+  ],
+  "probe_panel": {
+    "size": 64,
+    "fresh_task_generalization_claim": false,
+    "paired_generation_seed_schedule": "frozen before execution",
+    "selection": "first 64 unique shared-Stage2 training task IDs by first appearance, excluding every task contributing to accepted transitions in (theta_prev, theta_final], and excluding all Ceiling final-panel tasks"
+  },
+  "primary_endpoints": [
+    "paired mean WebShop task_score*100",
+    "paired exact success count"
+  ],
+  "secondary_endpoints": [
+    "target-token NLL",
+    "first-action margin/top1",
+    "hidden-state drift"
+  ],
+  "m1c_signal_contract": {
+    "eligible_signal": "sealed +1.0 * tau_adjacent_late result from this successor only",
+    "threshold": "beats the median of all three norm-matched random controls by >=1.0 mean task-score point",
+    "safety": "does not reduce exact-success count versus theta_target baseline",
+    "predecessor_signal_forbidden": true
+  },
+  "claim_boundary": {
+    "allowed": "within-model controlled-replay causal behavior for this mechanically selected adjacent late direction",
+    "forbidden": [
+      "fresh-task generalization",
+      "claiming the successor was the original preregistration",
+      "treating identifiability failure as a causal null",
+      "selecting another window after outcomes"
+    ]
+  },
+  "external_teacher_calls": 0,
+  "final_panel_access": 0,
+  "result_dependent_stopping": false,
+  "ray_workload": "mechanism1_taskvector_eval_q17",
+  "engineering_platform_authority": "docs/experiment-tracking/OPEN_EVO_CEILING_1.0_END_TO_END_MASTER_PLAN.md §2.3"
+}

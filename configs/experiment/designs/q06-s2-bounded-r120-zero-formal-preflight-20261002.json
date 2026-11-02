@@ -1,0 +1,84 @@
+{
+  "schema": "openevo.q06.s2-bounded-r120-zero-formal-preflight-design.v1",
+  "campaign_id": "20261002-0001-q06-s2-bounded-r120",
+  "experiment_id": "20261002-q06-s2-bounded-r120",
+  "question_id": "Q06_TOKEN_CLICK_ENTROPY",
+  "owner_pr": 633,
+  "contract": {
+    "path": "configs/experiment/advisor-questions/q06-s2-bounded-r120-prospective-contract.v1.json",
+    "status": "BLOCKED_PENDING_EXECUTOR_AND_LAUNCH_QUALIFICATION"
+  },
+  "intent": "zero-formal-preflight-only",
+  "final_panel_access": 0,
+  "frozen_scientific_contract": {
+    "final_panel_unlock": false,
+    "cell_id": "bounded-r120",
+    "checkpoint_id": "after_120_rounds",
+    "checkpoint_adapter_sha256": "c8ef26c3c96515495703d97148c1f4845c09814b686987f7150022099c67fd11",
+    "panel_sha256": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+    "evaluation_tasks": 64,
+    "passes": 1,
+    "training_rollouts": 0,
+    "optimizer_updates": 0,
+    "teacher_calls": 0,
+    "adaptive_reruns": 0,
+    "max_generation_calls": 960,
+    "max_generated_tokens": 491520,
+    "max_scorer_forward_calls": 100000,
+    "max_scorer_input_tokens": 1000000,
+    "max_gpu_hours": 2,
+    "max_persistent_output_bytes": 1073741824
+  },
+  "preflight_contract": {
+    "formal_task_consumption_allowed": false,
+    "task_bearing_train_dev_allowed": false,
+    "gpu_allocation_allowed": true,
+    "final_panel_access_allowed": false,
+    "synthetic_smoke_only": true,
+    "scientific_payload_calls": 0,
+    "external_teacher_calls": 0,
+    "final_panel_access": 0
+  },
+  "resource_boundary": {
+    "policy": "Select one exact GPU UUID dynamically through the canonical owner from the established standing pool at point of use.",
+    "authorized_gpu_uuids": [
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ],
+    "selected_gpu_uuid": null,
+    "preemption_allowed": false,
+    "co_residency": "Use same-project live evidence; do not infer a co-resident owner or workload."
+  },
+  "completed_prior_phase": {
+    "campaign_id": "20260928-2338-post-advisor-unanswered",
+    "phase": "POST-ADVISOR-E1-EXECUTION-SEALED",
+    "status": "execution-sealed",
+    "already_consumed_rollouts": 1024,
+    "remaining_rollout_budget": 0,
+    "formal_task_consumption_allowed": false,
+    "gpu_allocation_allowed": false,
+    "final_panel_access": 0,
+    "seal_sha256": "b03d0cbcb9e5fc89a8d8974952222aa5d35ffb083bc6a47239cfa30b2b893725",
+    "archive": {
+      "release": {
+        "path": "configs/experiment/activations/post-advisor-e1-a11-terminal-seal-release-202609302100.json",
+        "sha256": "3eac9758b9f3ac8bf141bdfc611ef80cf31d93ca2010744141a0a68f4a2affde"
+      },
+      "authority_detail": {
+        "path": "configs/experiment/activations/post-advisor-e1-a11-terminal-seal-authority-detail-202609302100.json",
+        "sha256": "6f3ba4f350457934fae020b618b3ebbe799be3e2131ccca2ffbbd0d8b82cf328"
+      },
+      "reconciliation": {
+        "path": "docs/evidence/post-advisor-unanswered-20260928/E1_POSTSEAL_RECONCILIATION_20260930.json",
+        "sha256": "11abe12cab607d40bf05a54cd243bd1bcd1eeacd37d8475016aeac8120a364a8"
+      },
+      "postseal_execution_state_sha256": "9a489bbac03eb72559989e4958bade00d203f96a8587d06b678844569d43e381"
+    }
+  }
+}

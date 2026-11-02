@@ -1,0 +1,222 @@
+{
+  "completed_at": "2026-09-21T00:57:30+08:00",
+  "created_at": "2026-09-21T00:57:30+08:00",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/completed_1p7b_artifact_dag_backfill.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "e54045347c6db875826ce7d3b15d9aefea595d447595ee83410def8cc0ae63db"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/BACKFILL_CONFIG_202609210057.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "812e0070c08db449b1c8d7af24f9c7a57e901e2336f75df1528c9cb360d2d784"
+    },
+    "contract_identities": [
+      {
+        "identity": {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/experiment-passports/202609160255-bounded-effective-state-gdr/FROZEN_PASSPORT_ORIGINAL.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "fe604447923ce134baf9c707b7d2073bed49555a5488b1c45062e68b9099a330"
+        },
+        "name": "experiment-passport"
+      }
+    ],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "578eb0eb9dbd8bd30787d4cd277129186a49f7ffca8456badbcbc7571bceb8f3",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/completed-1p7b-publication-20260918/OFF_HF_PUBLICATION_RECEIPT.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "578eb0eb9dbd8bd30787d4cd277129186a49f7ffca8456badbcbc7571bceb8f3"
+          }
+        ],
+        "logical_role": "bounded-source-0",
+        "size_bytes": 1215
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "e80ce4719f6426c53b0b484ec471f3c5ceb03041e65903c7f2d141e11d2af6c1",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/completed-1p7b-publication-20260918/ON_HF_PUBLICATION_RECEIPT.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "e80ce4719f6426c53b0b484ec471f3c5ceb03041e65903c7f2d141e11d2af6c1"
+          }
+        ],
+        "logical_role": "bounded-source-1",
+        "size_bytes": 1283
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "d2438714659bc00820506d73645fdf9f89aa73b5fa4d1650024c83246b80df60",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/completed-1p7b-publication-20260918/BOUNDED_HF_SPLIT_PUBLICATION_VERIFY.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "d2438714659bc00820506d73645fdf9f89aa73b5fa4d1650024c83246b80df60"
+          }
+        ],
+        "logical_role": "bounded-source-2",
+        "size_bytes": 1135
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "f9b6825f9652e2226699356f968072878b39fcf1a15613305c1dc091b7601b99",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/completed-1p7b-publication-20260918/BOUNDED_PRIVATE_HF_FULL_EXACT_VERIFY.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "f9b6825f9652e2226699356f968072878b39fcf1a15613305c1dc091b7601b99"
+          }
+        ],
+        "logical_role": "bounded-source-3",
+        "size_bytes": 562
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "181b14e5a7fd2fa78bc81e8340ce568e43cbfc82254da759d2757bb9f65b463b",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/completed-1p7b-publication-20260918/OWNER_HF_SPLIT_PLACEMENT_DECISION_20260919.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "181b14e5a7fd2fa78bc81e8340ce568e43cbfc82254da759d2757bb9f65b463b"
+          }
+        ],
+        "logical_role": "bounded-source-4",
+        "size_bytes": 1786
+      }
+    ],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "deterministic-backfill",
+      "randomness": "none"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "e19144e9fc59549dcfc1fad2a6b2b32965f60df29f94a3d359b1c925f7b2eee0",
+  "operation_schema_version": "202609210057",
+  "operation_type": "completed-1p7b.backfill.bounded-publication",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [
+        "181b14e5a7fd2fa78bc81e8340ce568e43cbfc82254da759d2757bb9f65b463b",
+        "578eb0eb9dbd8bd30787d4cd277129186a49f7ffca8456badbcbc7571bceb8f3",
+        "d2438714659bc00820506d73645fdf9f89aa73b5fa4d1650024c83246b80df60",
+        "e80ce4719f6426c53b0b484ec471f3c5ceb03041e65903c7f2d141e11d2af6c1",
+        "f9b6825f9652e2226699356f968072878b39fcf1a15613305c1dc091b7601b99"
+      ],
+      "digest": "08c37f6662e22932cff9f535767211d53aa34fb1e3b77f86e919b3f462d39b28",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/BOUNDED_PUBLICATION_DAG_BINDING.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "08c37f6662e22932cff9f535767211d53aa34fb1e3b77f86e919b3f462d39b28"
+        }
+      ],
+      "logical_role": "backfill-binding",
+      "size_bytes": 2063
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "completed-1p7b.backfill.bounded-publication-202609210057",
+    "created_at": "2026-09-21T00:57:30+08:00",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/completed-1p7b-publication-20260918/BOUNDED_HF_SPLIT_PUBLICATION_VERIFY.json",
+      "docs/evidence/completed-1p7b-publication-20260918/BOUNDED_PRIVATE_HF_FULL_EXACT_VERIFY.json",
+      "docs/evidence/completed-1p7b-publication-20260918/OFF_HF_PUBLICATION_RECEIPT.json",
+      "docs/evidence/completed-1p7b-publication-20260918/ON_HF_PUBLICATION_RECEIPT.json",
+      "docs/evidence/completed-1p7b-publication-20260918/OWNER_HF_SPLIT_PLACEMENT_DECISION_20260919.json"
+    ],
+    "experiment_id": "202609160255-bounded-effective-state-gdr",
+    "external_views": [
+      {
+        "evidence_path": "docs/evidence/completed-1p7b-publication-20260918/BOUNDED_HF_SPLIT_PUBLICATION_VERIFY.json",
+        "kind": "hf",
+        "path": null,
+        "reason": "immutable HF revision bound by exact repository evidence; network view is not automatic reuse authority",
+        "repository": "example-account/openevo-bounded-effective-state-gdr-1p7b-states",
+        "revision": "75d66482136c14dd83723babb0f77289d4bdcb69",
+        "sha256": "d2438714659bc00820506d73645fdf9f89aa73b5fa4d1650024c83246b80df60"
+      },
+      {
+        "evidence_path": "docs/evidence/completed-1p7b-publication-20260918/BOUNDED_PRIVATE_HF_FULL_EXACT_VERIFY.json",
+        "kind": "hf",
+        "path": null,
+        "reason": "immutable HF revision bound by exact repository evidence; network view is not automatic reuse authority",
+        "repository": "example-account/openevo-bounded-effective-state-gdr-1p7b-raw-evidence",
+        "revision": "9be9e97700ac125d891e53798832c77836b51758",
+        "sha256": "f9b6825f9652e2226699356f968072878b39fcf1a15613305c1dc091b7601b99"
+      }
+    ],
+    "passport_sha256": "5d9adea0312ea93f4a12fa561fae5fa5fa8bd8f0f5cbff7d86c7db51371b5e42",
+    "producer_scope": "EXPERIMENT"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "ALLOWLISTED_ENGINEERING_ONLY",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Verified historical engineering evidence may be surfaced as REUSE_CANDIDATE only; consumer/scientific authority remains external to the DAG."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "PURE_ENGINEERING",
+  "status": "PASS",
+  "supersedes": []
+}

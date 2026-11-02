@@ -1,0 +1,173 @@
+{
+  "schema": "openevo.experiment-h1.40-g2-multigeneration.v1",
+  "campaign_id": "20260820-0140-h140-g2-multigeneration",
+  "phase": "H1.40-G2",
+  "status": "preregistered-pre-execution",
+  "formal_task_consumption_allowed": false,
+  "title": "Two-generation endogenous self-evolution after H1.39 replication",
+  "scientific_question": "After one independently replicated endogenous parameter-evolution step, can G1 generate new endogenous E2 experience, produce G2, preserve prior capability, and obtain incremental fresh-task transfer beyond G1?",
+  "claim_boundary": "Only a preregistered MG4 result supports two-generation endogenous self-evolution under this frozen WebShop contract; no result supports universal recursive self-improvement.",
+  "current_preparation_boundary": "This preparation goal consumes zero H1.40 formal task identities, zero H1.40 GPU-hours, creates no G2 adapter, and evaluates no T2 panel.",
+  "provenance": {
+    "h1.39_campaign": "20260820-0139-h139-mr-independent-replication",
+    "h1.39_primary_classification": "R4 BOTH_REPLICATE",
+    "h1.39_secondary_classification": "R5 CONFIRMED_METHOD_DIFFERENCE",
+    "h1.39_formal_execution_sha": "f45ae330f1d119d48b0e30c406990b76fb331ca9",
+    "h1.39_analysis_sha": "2353546d979fde40d1ce61cdb49e5e1ea290d958",
+    "materialized_from_sha": "f46f724df33ecb11168549779d4e9f69e775b23f"
+  },
+  "generations": {
+    "g0": {"name": "frozen BASE", "adapter": "none"},
+    "g1": {
+      "name": "H1.38B final SD-LoRA adapter",
+      "adapter_file_sha256": "47e63d417f85cb2defed5ff1ee934128b96e6a4f78a8f410fa052957d919190c",
+      "adapter_tensor_digest": "eedc36232f04a8a7d6e8fc6a38b935758db65206f4945a6cfa35c4ab666a48f9",
+      "source_campaign": "20260820-0129-h138b-method-control"
+    },
+    "g2": {
+      "name": "future G1-parent SD-LoRA update from endogenous E2",
+      "adapter_file_sha256": null,
+      "adapter_tensor_digest": null,
+      "status": "not-created"
+    }
+  },
+  "method_identity": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "model_content_pin": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+    "official_open_evo_stable": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "parser_contract": "seed3090.webshop-action-parser.v3-action-command",
+    "evaluator": "WebShop task_score/won",
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "updater": "SD-LoRA only; inherit H1.38B matched training contract exactly",
+    "forbidden_changes": ["ordinary-G2", "rank sweep", "learning-rate sweep", "optimizer sweep", "prompt redesign", "parser redesign", "teacher", "SEED", "MemoryOps", "retrieval", "stronger base", "Qwen3", "SD-LoRA-RR", "D16"]
+  },
+  "success_qualification": {
+    "schema": "seed3090.webshop-endogenous-success.v1",
+    "source_code": "scripts/openevo_webshop/h1_closed_loop_tracked.py",
+    "source_code_sha256": "4a493d57855a10f755523f2f87bcd0a451fd2405a27c6bbc9a16e2d33aaf3e29",
+    "predicate": "identity_ok == true AND trace_complete == true AND parser_or_fallback_failure == false AND final_task_score > 0 AND error is falsey",
+    "not_won_only": true,
+    "sealed_h1_38b_d8_records_sha256": "d206c20e4d08a9c1785a6af9c2edb510db4a478d5d459395537706a2d7d8191c",
+    "sealed_h1_38b_d8_selection_sha256": "b8c35b51aed3bf942cb2e45e7c9c0e68239d6efc27a3d7be8bc6a5ed54ff70c7",
+    "sealed_e1_identity_order": [607, 2192, 4238, 4477, 4533, 5753, 5819, 6751]
+  },
+  "selection": {
+    "e2_reservoir_manifest": "configs/experiment/manifests/h1.40-g2-e2-reservoir-v1.json",
+    "e1_retention_manifest": "configs/experiment/manifests/h1.40-g2-e1-retention-set-v1.json",
+    "h1_39_preservation_manifest": "configs/experiment/manifests/h1.40-g2-h139-preservation-anchor-v1.json",
+    "t2_manifest": "configs/experiment/manifests/h1.40-g2-t2-panel-v1.json",
+    "exclusion_ledger": "configs/experiment/manifests/h1.40-g2-exclusion-ledger-v1.json",
+    "e2_selection_seed": 20260820401,
+    "preservation_selection_seed": 20260820402,
+    "t2_selection_seed": 20260820403,
+    "harvest_task_count": 64,
+    "harvest_seeds": [2026104000, 2026104001, 2026104002, 2026104003],
+    "harvest_max_attempts": 256,
+    "selection_rule": "first 8 E2 reservoir identities in manifest order with at least 2 qualified successes; take earliest two frozen seeds; no reward magnitude ranking",
+    "harvest_stop_rule": "MGH HARVEST_INSUFFICIENT; stop and do not train G2 if fewer than 8 identities qualify after 256 attempts",
+    "e1_retention_task_count": 8,
+    "preservation_task_count": 32,
+    "t2_task_count": 64,
+    "evaluation_seeds": [2026104100, 2026104101, 2026104102, 2026104103],
+    "t2_seeds": [2026104200, 2026104201, 2026104202, 2026104203],
+    "materialized_manifest_file_sha256": {
+      "exclusion_ledger": "92cc0fe33f2d3a8db66759ac87ef6a4ceda5bd9c14bf99c1a2bf302fe0c10a04",
+      "e1_retention": "62146a8913bc8d7ba0a0531853ca1b01550975beb875143f805575ad577ca635",
+      "e2_reservoir": "589cbc18c30638b504cdcb1fb3d3aaf17ffb332479c8d64bb30787a38dfe12f6",
+      "h1_39_preservation": "607ecbdc3243e078df1e2319a364b59997ac22a0a790ec79a734f199eec9027c",
+      "t2": "b7499d094327fa294d4e561473e6853738e5ff00e5e6dd0fe183adacf6f63b9f"
+    },
+    "manifest_content_sha256": {
+      "exclusion_ledger": "3f9a17a6b140da7b300c5f6205aba832676adc9521c6cfda814cfe40088b72e8",
+      "e1_retention": "0dac2d5aba03f5f738749ca0d8b1dc627cb417f6b91cd213eafebbebf7265ad9",
+      "e2_reservoir": "c50d8fb05acdee87750a14de8f1134658a802d483bd7ee3370174bb741f38230",
+      "h1_39_preservation": "65f41a037133982b3d1421768911384e3e0d82df5a0031ce8e4a632dc4093172",
+      "t2": "28f9bc9830f9e26fffe518372c3e6f79df76a2c020748fe8263c7cc36aae194e"
+    },
+    "task_identity_digests": {
+      "e1_retention": "1d433152c2c1dce96a274a76f4ca442a8977311bd7bafaf7b072ae7ecc6dbc90",
+      "e2_reservoir": "e4a88d99828e0c341e37a7da149b88307949076ba6c13cec69996ee2cf463bac",
+      "h1_39_preservation": "a01b1d98861561910ff0fd5f55710963debcb80096939c663d6ba6aa6e113135",
+      "t2": "2a3719d03381b636ae97dfb0c1f7eb0fceaedf7c9f34e3cf16545f2d5afb338b"
+    },
+    "eligible_pool_count_before_h140": 5805,
+    "reserved_h140_identity_count": 168,
+    "exclusion_ledger_sha256": "3f9a17a6b140da7b300c5f6205aba832676adc9521c6cfda814cfe40088b72e8"
+  },
+  "training": {
+    "parent": "exact G1 SD-LoRA adapter",
+    "increments": 8,
+    "records_per_increment": 2,
+    "total_records": 16,
+    "increment_order": "E2 selected identity order; one identity per sequential increment",
+    "learning_rate": 0.0002,
+    "coefficient_learning_rate": 0.01,
+    "rank": 4,
+    "target_modules": ["q_proj", "v_proj"],
+    "optimizer": "AdamW",
+    "weight_decay": 0.0,
+    "epochs": 1,
+    "max_steps_per_increment": 16,
+    "replay_capacity": 64,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 1,
+    "max_length": 512,
+    "max_grad_norm": 1.0,
+    "seed": 1993,
+    "dtype": "bfloat16",
+    "g2_must_differ_from_g1": true
+  },
+  "matrices": {
+    "e2_harvest": {"arms": ["g1"], "tasks": 64, "seeds": 4, "attempts": 256},
+    "e2_acquisition": {"arms": ["g1", "g2"], "tasks": 8, "seeds": 4, "cells": 16, "attempts": 64, "contrast": "g2_minus_g1"},
+    "e1_retention": {"arms": ["g1", "g2"], "tasks": 8, "seeds": 4, "cells": 16, "attempts": 64, "contrast": "g2_minus_g1"},
+    "h1_39_preservation": {"arms": ["g1", "g2"], "tasks": 32, "seeds": 4, "cells": 64, "attempts": 256, "contrast": "g2_minus_g1"},
+    "t2_fresh": {"arms": ["g0", "g1", "g2"], "tasks": 64, "seeds": 4, "cells": 192, "attempts": 768, "primary_contrast": "g2_minus_g1", "secondary_contrasts": ["g1_minus_g0", "g2_minus_g0"]}
+  },
+  "analysis": {
+    "unit": "task cluster over four rollout seeds",
+    "primary_estimand": "T2 task-weighted mean reward difference G2 minus G1 over complete-valid four-seed task clusters",
+    "secondary_estimands": ["G1 minus BASE", "G2 minus BASE", "E2 acquisition G2 minus G1", "E1 retention G2 minus G1", "H1.39 preservation G2 minus G1"],
+    "bootstrap_rounds": 10000,
+    "bootstrap_seed": 20260820404,
+    "sign_flip_rounds": 10000,
+    "sign_flip_seed": 20260820405,
+    "report_itt_robustness": true,
+    "report_invalid_taxonomy": ["parser_or_fallback", "runtime", "identity", "incomplete_trace", "adapter_load_unverified", "base_fallback"]
+  },
+  "retention": {
+    "non_inferiority_margin_absolute": 0.05,
+    "e1_requirement": "lower 95% CI of G2 minus G1 > -0.05",
+    "h1_39_preservation_requirement": "lower 95% CI of G2 minus G1 > -0.05",
+    "margin_reason": "0.05 absolute task-score tolerance on the approximately [0,1] WebShop score scale"
+  },
+  "classification": {
+    "MG0": "STRUCTURALLY_INVALID: identity/provenance/G2 update/reload/fallback/formal contract failure",
+    "MGH": "HARVEST_INSUFFICIENT: fewer than 8 identities with two qualified endogenous successes after 256 attempts",
+    "MG1": "NO_G2_ACQUISITION: E2 acquisition G2 minus G1 <= 0",
+    "MG2": "NO_INCREMENTAL_FRESH_TRANSFER: acquisition positive but T2 G2 minus G1 delta <= 0 or CI lower <= 0",
+    "MG3": "TRANSFER_WITH_FORGETTING: T2 positive but either retention lower CI <= -0.05",
+    "MG4": "MULTI_GENERATION_SELF_EVOLUTION_SUPPORTED: endogenous E2, structural pass, acquisition positive, retention non-inferiority, T2 delta and CI lower positive, resource/provenance gates pass"
+  },
+  "resources": {
+    "campaign_gpu_hours_cap": 10.0,
+    "accounting_fields": ["qualification_gpu_hours", "harvest_gpu_hours", "engineering_invalid_gpu_hours", "training_gpu_hours", "evaluation_gpu_hours", "campaign_total_gpu_hours"],
+    "unknown_rule": "missing stage receipt yields unknown, never inferred zero",
+    "authorized_pool_basis": "current parent standing-pool policy intersected with immediate live-idle UUIDs; no historical H1.39 UUID list is inherited",
+    "kill_reset_preempt_allowed": false
+  },
+  "runtime": {
+    "fingerprint_reuse": "reuse H1.39 qualification receipts only when model/image/Python/dependencies/parser/evaluator/SD-LoRA format are unchanged; otherwise requalify",
+    "wandb": {"default": "online", "one_probe_per_execution_epoch": true, "offline_fallback": "save failure, circuit-break epoch, spool/hash, sync only at later boundary"}
+  },
+  "formal_execution_guard": {
+    "tasks_consumed": 0,
+    "gpu_hours_consumed": 0.0,
+    "g2_adapter_created": false,
+    "t2_panel_evaluated": false,
+    "launcher_must_fail_closed_while_status_is_preregistered": true
+  }
+}

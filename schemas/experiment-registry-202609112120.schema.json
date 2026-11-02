@@ -1,0 +1,128 @@
+{
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/experiment-registry-202609112120.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "entries": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "aliases": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "display_name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "experiment_id": {
+            "pattern": "^[0-9]{12}-[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "type": "string"
+          },
+          "latest_authority_paths": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "lifecycle_class": {
+            "enum": [
+              "ACTIVE_FORMAL",
+              "COMPLETE_SEALED",
+              "HISTORICAL_NO_RESUME",
+              "PAUSED_MANUAL_REVIEW",
+              "DIAGNOSTIC_ONLY"
+            ]
+          },
+          "lineage_parent": {
+            "pattern": "^[0-9]{12}-[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "passport_path": {
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+            "type": "string"
+          },
+          "passport_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "state_source": {
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "release_path": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "required_equal": {
+                "type": "object"
+              },
+              "type": {
+                "enum": [
+                  "static",
+                  "repo_json",
+                  "server_json",
+                  "release_external_executor"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "path",
+              "release_path",
+              "required_equal"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "experiment_id",
+          "aliases",
+          "display_name",
+          "passport_path",
+          "passport_sha256",
+          "state_source",
+          "latest_authority_paths",
+          "lineage_parent",
+          "lifecycle_class"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "role": {
+      "const": "identity-routing-only; never live state or execution authority"
+    },
+    "schema": {
+      "const": "openevo.experiment-registry.202609112120"
+    }
+  },
+  "required": [
+    "schema",
+    "role",
+    "entries"
+  ],
+  "title": "OpenEVO Experiment Registry",
+  "type": "object"
+}

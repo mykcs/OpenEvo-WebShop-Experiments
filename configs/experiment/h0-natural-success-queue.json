@@ -1,0 +1,609 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "updated_at": "2026-08-15",
+  "campaign_id": "20260814-0000-h0-natural-success",
+  "status": "h1.18-recovery-dataset-materialized-awaiting-success-state-control",
+  "current_group": "H1.18-reachability-filtered-recovery-diagnostic-v1",
+  "scientific_question": "Does frozen Qwen2.5-3B-Instruct have non-zero natural success probability under the frozen WebShop protocol?",
+  "queue": [
+    {
+      "experiment_group": "H0-natural-success-search-v1",
+      "phase": "H0",
+      "status": "complete-formal-matrix",
+      "question": "Measure natural success without training; only generation seed varies.",
+      "hypothesis": "At least one valid non-zero-reward rollout will appear in 128 independent attempts.",
+      "arms": ["base"],
+      "tasks": {
+        "selection_seed": 20260814,
+        "task_indices": [2822, 5135, 5294, 6769],
+        "task_source": "materialize from the remaining WebShop goal pool; exclude all Phase G task identities",
+        "rollouts_per_task": 32,
+        "initial_total": 128,
+        "extension_limit": 256
+      },
+      "frozen": {
+        "model": "Qwen/Qwen2.5-3B-Instruct",
+        "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "tokenizer_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+        "environment_seed": 2026,
+        "generation_seed_start": 2026081400,
+        "generation_seed_end": 2026081431,
+        "temperature": 0.4,
+        "max_steps": 15,
+        "max_new_tokens": 256,
+        "prompt_contract": "seed3090.webshop-shared-prompt.v1",
+        "action_contract": "seed3090.webshop-action-parser.v1",
+        "parser_retry": {"enabled": true, "seed_offset": 900000, "max_retries_per_step": 1},
+        "evaluator": "WebShop task_score/won",
+        "training": false
+      },
+      "primary_metrics": ["success_rate", "nonzero_reward_rate", "partial_reward_distribution"],
+      "diagnostic_metrics": ["parser_validity", "episode_steps", "failure_mode", "action_type_distribution", "generation_length", "runtime_error"],
+      "stop_branch": {
+        "successes_found": "capture immutable trajectories immediately; finish all 128 attempts, then queue H1 self-success supervision",
+        "zero_success_128": "extend with new seeds only to 256",
+        "zero_success_256": "stop brute-force search and queue H1 teacher-bootstrap; classify H0 as base-policy-seeding-failure"
+      },
+      "resource_policy": {
+        "gpu_use": "only explicitly idle and authorized GPUs",
+        "concurrency_probe": [2, 4, 8],
+        "allocation": "one process per GPU; no DDP; atomic per-episode files",
+        "ledger_fields": ["gpu_uuid", "pid", "user", "campaign", "run_id", "experiment_sha", "output_root", "wandb_run"]
+      },
+      "tracking": {
+        "project": "openevo-webshop-experiments",
+        "mode": "offline-first",
+        "group": "H0-natural-success-search-v1",
+        "raw_traces": "local evidence only",
+        "wandb_tables": "metadata and compact per-attempt diagnostics"
+      },
+      "runtime_blocker": {
+        "host": "experiment-host",
+        "ordinary_account": "experiment-host",
+        "observed": ["python3 is absent from ordinary-account PATH", "Docker API permission denied", "GPU sharing authorization policy not documented"],
+        "ordinary_user_runtime": {"python": "/workspace/openevo-workspace/runtime/envs/openevo/bin/python", "versions": {"python": "3.11.15", "torch": "2.12.1+cu130", "transformers": "4.51.1", "peft": "0.15.2", "wandb": "0.26.1"}},
+        "admin_readonly_facts": ["root alias reaches experiment-host", "prepared image experiment-host/openevo-scientific:qwen25-3b-webshop-20260814 exists", "image digest sha256:ce92e587e7c934827025c001fd9b70ec4cb6de2deacfdf9f0cc0777d3ab928f1"],
+        "resolution_needed": "record/confirm GPU allocation policy before scaling beyond a bounded single-GPU run; Docker is not required for direct ordinary-user runtime"
+      },
+      "next": "H1-successful-supervision-train-fit-v1"
+    },
+    {
+      "experiment_group": "H1-successful-supervision-train-fit-v1",
+      "phase": "H1",
+      "status": "complete-no-closed-loop-gain",
+      "question": "Can verified success trajectories be fit by SD-LoRA and produce closed-loop non-zero reward?",
+      "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+      "gate": "H0 gate passed; D0 still requires positive H1 closed-loop learning signal",
+      "result": {
+        "reconciliation": "/workspace/workspace/runs/phase-h1-successful-supervision-train-fit-v1-20260814/evidence/h1-reconciliation-v4.json",
+        "closed_loop": "SUCCESS-SD-LORA did not exceed BASE on unseen seeds",
+        "teacher_forced": "small positive SUCCESS target-fit delta; not held-out evidence"
+      }
+    },
+    {
+      "experiment_group": "H1.1-cross-arm-trace-likelihood-v1",
+      "phase": "H1.1",
+      "status": "complete-no-selective-trace-gain",
+      "question": "Does SUCCESS-SD-LORA selectively score successful unseen trajectories, or does it shift likelihood globally?",
+      "hypothesis": "The H1 target-fit gain is concentrated on successful trajectories and exposes a state-distribution mismatch.",
+      "arms": ["BASE-model", "FAILURE-SD-LORA-model", "SUCCESS-SD-LORA-model"],
+      "frozen": {
+        "generation": false,
+        "source": "H1 v4 valid unseen traces only",
+        "metric": "teacher-forced raw_completion token log-probability",
+        "matrix": "3 model arms x 3 source arms"
+      },
+      "result": {
+        "reconciliation": "/workspace/workspace/runs/phase-h1.1-cross-arm-trace-likelihood-v1-20260814/evidence/h1.1-reconciliation-v1.json",
+        "success_minus_base": {
+          "base_source": 0.0046770934,
+          "failure_source": 0.0046490713,
+          "success_source": 0.0046983681
+        },
+        "interpretation": "SUCCESS gain is global across source arms, not selective to success traces",
+        "first_divergence": "/workspace/workspace/runs/phase-h1.1-cross-arm-trace-likelihood-v1-20260814/evidence/h1.1-first-divergence-diagnostic-v1.json"
+      },
+      "next": "new frozen recovery/action-calibration protocol; D0 remains closed"
+    },
+    {
+      "experiment_group": "H1.2-decoding-calibration-transfer-v1",
+      "phase": "H1.2",
+      "status": "complete-no-success-greedy-rescue",
+      "question": "Can greedy decoding rescue or clarify the SUCCESS adapter degradation on the frozen H0 task panel?",
+      "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+      "frozen": {
+        "tasks": [2822, 5135, 5294, 6769],
+        "partitions": {"A": [2822, 5135], "B": [5294, 6769]},
+        "rollout_seeds": [2026081450, 2026081451, 2026081452, 2026081453],
+        "temperatures": {"stochastic": 0.4, "greedy": 0.0},
+        "attempts_per_cell": 8,
+        "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "experiment_git_sha": "48e18fb30890990995f125f9097f21966e6636f2",
+        "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae"
+      },
+      "result": {
+        "reconciliation": "/workspace/workspace/runs/phase-h1.2-decoding-calibration-transfer-v1-20260814/evidence/h1.2-reconciliation-v1.json",
+        "reconciliation_sha256": "2d353207e55df2aa972ac10ce4355fa46c56b237ddd066a076562b659bab0e31",
+        "final_manifest": "/workspace/workspace/runs/phase-h1.2-decoding-calibration-transfer-v1-20260814/manifests/h1.2-decoding-calibration-transfer-final.json",
+        "final_manifest_sha256": "b16aa586054182c949391f4d0c53c915c141eb0731a7c74afb10160f091825b3",
+        "total": {"attempts": 96, "valid": 63, "qualified_positive": 12, "runtime_errors": 0},
+        "success_greedy": {"attempts": 16, "valid": 0, "parser_or_fallback_failures": 16, "qualified_positive": 0},
+        "interpretation": "Greedy did not rescue SUCCESS; all SUCCESS greedy attempts failed the action contract, so efficacy is not identifiable from this arm."
+      },
+      "next": "repair SUCCESS greedy action-format compatibility, then rerun a frozen recovery/calibration panel; D0 remains closed"
+    },
+    {
+      "experiment_group": "H1.3-greedy-output-budget-v1",
+      "phase": "H1.3",
+      "status": "complete-selective-heldout-rescue-task-specific",
+      "question": "Does increasing greedy max_new_tokens from 256 to 512 restore fallback-free action-contract validity for frozen H1 adapters?",
+      "hypothesis": "H1.2 greedy outputs often truncated inside think; 512 tokens should reduce parser/fallback failures, especially for SUCCESS.",
+      "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+      "varying": {"temperature": 0.0, "max_new_tokens": [256, 512]},
+      "frozen": {
+        "tasks": [2822, 5135, 5294, 6769],
+        "partitions": {"A": [2822, 5135], "B": [5294, 6769]},
+        "rollout_seeds": [2026081450, 2026081451, 2026081452, 2026081453],
+        "max_steps": 15,
+        "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "experiment_code_sha": "4669da3",
+        "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae"
+      },
+      "result": {
+        "status": "invalid-runtime-gpu-binding",
+        "incident": "/workspace/workspace/runs/phase-h1.3-greedy-output-budget-v1-20260814/evidence/h1.3-gpu-binding-incident-v1.json",
+        "scientific_metrics_allowed": false,
+        "interpretation": "The UUID ledger did not bind inference to each selected GPU; preserve outputs but exclude the run from scientific metrics."
+      },
+      "next": "H1.3-greedy-output-budget-repair-v1"
+    },
+    {
+      "experiment_group": "H1.3-greedy-output-budget-repair-v1",
+      "phase": "H1.3-repair",
+      "status": "complete-new-task-positive-not-state-aware-selective",
+      "repair_of": "H1.3-greedy-output-budget-v1",
+      "question": "After correcting UUID-to-CUDA binding, does max_new_tokens=512 restore fallback-free greedy action-contract validity?",
+      "hypothesis": "The original H1.3 was runtime-invalid; binding each process to its UUID makes the exact budget comparison interpretable.",
+      "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+      "frozen": {
+        "tasks": [2822, 5135, 5294, 6769],
+        "partitions": {"A": [2822, 5135], "B": [5294, 6769]},
+        "rollout_seeds": [2026081450, 2026081451, 2026081452, 2026081453],
+        "temperatures": {"greedy": 0.0},
+        "max_new_tokens": [256, 512],
+        "max_steps": 15,
+        "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae"
+      },
+      "runtime_repair": "CUDA_VISIBLE_DEVICES=<selected UUID>; runner fails closed unless it matches --gpu-uuid",
+      "result": {
+        "status": "complete-reconciled",
+        "reconciliation": "/workspace/workspace/runs/phase-h1.3-greedy-output-budget-repair-v1-20260814/evidence/h1.3-reconciliation-v1.json",
+        "reconciliation_sha256": "2d7d8ea23e1c48f7b8583f82172853b468e002e18d5b01fa261330a43794aa2a",
+        "final_manifest": "/workspace/workspace/runs/phase-h1.3-greedy-output-budget-repair-v1-20260814/manifests/h1.3-greedy-output-budget-repair-final.json",
+        "final_manifest_sha256": "008164871481c7a9deace5f07421aace74c7495ba02864874f4def5589d29a11",
+        "binding_verification": "12/12 cells passed",
+        "total": {"attempts": 96, "valid": 52, "qualified_positive": 8, "runtime_errors": 0, "gpu_hours": 2.7545},
+        "budget_result": "SUCCESS valid 0/16 -> 8/16 at 256 -> 512, but qualified positives remained 0/16 and valid-episode mean reward remained 0.0"
+      },
+      "next": "H1.4-compact-action-prompt-v1"
+    },
+    {
+      "experiment_group": "H1.4-compact-action-prompt-v1",
+      "phase": "H1.4",
+      "status": "invalid-runtime-jdk",
+      "question": "Can compact action-format prompting restore fallback-free greedy behavior and non-zero reward for the frozen SUCCESS adapter?",
+      "hypothesis": "Limit reasoning and require a two-line tagged response to separate parser-format failure from policy/state-distribution failure.",
+      "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+      "prompt_regimes": ["baseline_v1_reference", "compact_v2"],
+      "frozen": {
+        "tasks": [2822, 5135, 5294, 6769],
+        "partitions": {"A": [2822, 5135], "B": [5294, 6769]},
+        "rollout_seeds": [2026081450, 2026081451, 2026081452, 2026081453],
+        "temperature": 0.0,
+        "max_new_tokens": 512,
+        "max_steps": 15,
+        "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae"
+      },
+      "new_cells": "3 arms x 2 partitions = 6 compact_v2 cells; sealed H1.3 repair greedy512 is the baseline reference",
+      "result": {
+        "status": "invalid-runtime-jdk",
+        "run_root": "/workspace/workspace/runs/phase-h1.4-compact-action-prompt-v1-20260814",
+        "prelaunch_manifest_sha256": "79d6510384a831d2e14a2e4e63feb71264582e7ac40d2a1c047c0be917fb57aa",
+        "binding_verification": "6/6 cells passed GPU-before checks; no compute app was observed after failure",
+        "runtime_error": "Unable to find javac",
+        "attempts": 48,
+        "scientific_metrics_allowed": false,
+        "interpretation": "All cells failed while constructing the WebShop environment before an episode trace; preserve artifacts and exclude from scientific metrics."
+      },
+      "next": "H1.4-compact-action-prompt-runtime-repair-v1"
+    },
+    {
+      "experiment_group": "H1.4-compact-action-prompt-runtime-repair-v1",
+      "phase": "H1.4-runtime-repair",
+      "status": "invalid-runtime-model-cache",
+      "repair_of": "H1.4-compact-action-prompt-v1",
+      "question": "With the pinned JDK exposed to the ordinary-user process, does compact action-format prompting restore fallback-free greedy behavior and non-zero reward for the frozen SUCCESS adapter?",
+      "hypothesis": "The prior H1.4 attempt was invalid before environment construction; exporting the pinned JDK should make the pre-registered compact-v2 comparison executable without changing scientific factors.",
+      "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+      "prompt_regime": "seed3090.webshop-compact-action-prompt.v2",
+      "frozen": {
+        "tasks": [2822, 5135, 5294, 6769],
+        "partitions": {"A": [2822, 5135], "B": [5294, 6769]},
+        "rollout_seeds": [2026081450, 2026081451, 2026081452, 2026081453],
+        "temperature": 0.0,
+        "max_new_tokens": 512,
+        "max_steps": 15,
+        "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+        "action_contract": "seed3090.webshop-action-parser.v1"
+      },
+      "runtime_repair": {
+        "cause": "JDK repair succeeded, but HF_HOME/HF_HUB_CACHE was not exported; tokenizer lookup failed before inference",
+        "jdk_home": "/workspace/openevo-workspace/runtime/phase-g-live-20260814/tools/jdk-11.0.20.1",
+        "scientific_factor_change": false,
+        "gpu_binding": "CUDA_VISIBLE_DEVICES=<selected UUID>; runner fails closed unless it matches --gpu-uuid"
+      },
+      "new_cells": "3 arms x 2 partitions = 6 compact_v2 cells; no duplicate baseline rerun",
+      "source_invalid_run": "/workspace/workspace/runs/phase-h1.4-compact-action-prompt-v1-20260814",
+      "claim_boundary": "Runtime repair only; no benchmark claim and D0 remains closed.",
+      "result": {
+        "status": "invalid-runtime-model-cache",
+        "run_root": "/workspace/workspace/runs/phase-h1.4-compact-action-prompt-runtime-repair-v1-20260814",
+        "attempts": 48,
+        "runtime_error": "Can't load tokenizer for Qwen/Qwen2.5-3B-Instruct",
+        "scientific_metrics_allowed": false,
+        "interpretation": "All cells failed before inference; pinned snapshot was separately verified loadable with HF_HOME/HF_HUB_CACHE set."
+      },
+      "next": "H1.4-compact-action-prompt-runtime-repair-v2"
+    },
+    {
+      "experiment_group": "H1.4-compact-action-prompt-runtime-repair-v2",
+      "phase": "H1.4-runtime-repair",
+      "status": "complete-reconciled-contract-and-reward-rescue",
+      "repair_of": "H1.4-compact-action-prompt-runtime-repair-v1",
+      "question": "With the pinned JDK and Hugging Face cache exposed to the ordinary-user process, does compact action-format prompting restore fallback-free greedy behavior and non-zero reward for the frozen SUCCESS adapter?",
+      "hypothesis": "The prior repair failed only at tokenizer lookup because the pinned model cache was not in the process environment; exporting the known cache paths should make the pre-registered compact-v2 comparison executable.",
+      "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+      "prompt_regime": "seed3090.webshop-compact-action-prompt.v2",
+      "frozen": {
+        "tasks": [2822, 5135, 5294, 6769],
+        "partitions": {"A": [2822, 5135], "B": [5294, 6769]},
+        "rollout_seeds": [2026081450, 2026081451, 2026081452, 2026081453],
+        "temperature": 0.0,
+        "max_new_tokens": 512,
+        "max_steps": 15,
+        "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+        "action_contract": "seed3090.webshop-action-parser.v1"
+      },
+      "runtime_repair": {
+        "jdk_home": "/workspace/openevo-workspace/runtime/phase-g-live-20260814/tools/jdk-11.0.20.1",
+        "hf_home": "/workspace/openevo-workspace/runtime/cache/huggingface",
+        "hf_hub_cache": "/workspace/openevo-workspace/runtime/cache/huggingface",
+        "model_snapshot": "/workspace/openevo-workspace/runtime/cache/huggingface/models--Qwen--Qwen2.5-3B-Instruct/snapshots/aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "scientific_factor_change": false,
+        "preflight": "AutoTokenizer.from_pretrained by model id with local_files_only=True must pass before launch"
+      },
+      "new_cells": "3 arms x 2 partitions = 6 compact_v2 cells; no duplicate baseline rerun",
+      "source_invalid_run": "/workspace/workspace/runs/phase-h1.4-compact-action-prompt-runtime-repair-v1-20260814",
+      "code_sha": "001ca07c5cfc7b9536b251b39d0e96fe2cc78810",
+      "result": {
+        "run_root": "/workspace/workspace/runs/phase-h1.4-compact-action-prompt-runtime-repair-v2-20260814",
+        "prelaunch_manifest_sha256": "de5c677462a231a3b03140eacb978306294ccd58d358438102041227d59431d2",
+        "final_manifest": "/workspace/workspace/runs/phase-h1.4-compact-action-prompt-runtime-repair-v2-20260814/manifests/h1.4-runtime-repair-v2-final.json",
+        "final_manifest_sha256": "ebff64ac99c43c5a16a8d10faa0d6f51f3a35913401c383a4666062868af5f62",
+        "reconciliation": "/workspace/workspace/runs/phase-h1.4-compact-action-prompt-runtime-repair-v2-20260814/evidence/h1.4-reconciliation-v1.json",
+        "reconciliation_sha256": "442a4efa0b99269d9a064e22af0caa8b2dcaa0f26b9e2ec7936a3faeafb68cac",
+        "binding_verification_sha256": "62b21346070ccaf62f640c8ab66c9bc120ec54edf5c0ac949092f626644b1691",
+        "total": {"attempts": 48, "valid": 48, "qualified_positive": 12, "runtime_errors": 0, "gpu_hours": 0.192923},
+        "by_arm": {
+          "base": {"valid": 16, "qualified_positive": 4, "mean_task_score_all": 0.00425},
+          "failure": {"valid": 16, "qualified_positive": 4, "mean_task_score_all": 0.00425},
+          "success": {"valid": 16, "qualified_positive": 4, "mean_task_score_all": 0.00425}
+        },
+        "paired_vs_sealed_h1_3_greedy512": {
+          "base": {"validity_delta": 8, "reward_delta_all_mean": 0.00425},
+          "failure": {"validity_delta": 0, "reward_delta_all_mean": -0.1625},
+          "success": {"validity_delta": 8, "reward_delta_all_mean": 0.00425}
+        },
+        "interpretation": "Compact-v2 restored 16/16 SUCCESS validity and 4 qualified positives, meeting the recovery branch; prompt-contract rescue is supported on this bounded panel, not a benchmark claim."
+      },
+      "claim_boundary": "Runtime repair only; no benchmark claim and D0 remains closed.",
+      "next": "H1.5-compact-recovery-action-calibration-v1"
+    },
+    {
+      "experiment_group": "H1.5-compact-recovery-action-calibration-v1",
+      "phase": "H1.5",
+      "status": "complete-confirmed-compact-rescue",
+      "question": "Does the compact-v2 action-format rescue for SUCCESS persist on fresh rollout seeds under the same frozen WebShop task panel?",
+      "hypothesis": "H1.4 compact-v2 restored SUCCESS validity and produced four qualified positives; a fresh-seed confirmation panel will test whether this is reproducible rather than a single-seed artifact.",
+      "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+      "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+      "frozen": {
+        "tasks": [2822, 5135, 5294, 6769],
+        "partitions": {"A": [2822, 5135], "B": [5294, 6769]},
+        "rollout_seeds": [2026081454, 2026081455, 2026081456, 2026081457],
+        "temperature": 0.0,
+        "max_new_tokens": 512,
+        "max_steps": 15,
+        "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+        "action_contract": "seed3090.webshop-action-parser.v1",
+        "runtime": "reuse H1.4 v2 pinned JDK/HF cache and UUID binding"
+      },
+      "cell_design": "3 arms x 2 partitions = 6 cells; 8 attempts per cell; compact-v2 only",
+      "branch_rule": {
+        "confirmation": "SUCCESS >=12/16 valid and >=2 qualified positives: retain bounded recovery evidence and design held-out/state-distribution test; D0 remains closed",
+        "failure": "below either threshold: diagnose state distribution/action choices; do not change adapter rank/LR/epochs",
+        "runtime_failure": "exclude and open a new repair group"
+      },
+      "baseline_reference": "/workspace/workspace/runs/phase-h1.4-compact-action-prompt-runtime-repair-v2-20260814/evidence/h1.4-reconciliation-v1.json",
+      "result": {
+        "run_root": "/workspace/workspace/runs/phase-h1.5-compact-recovery-action-calibration-v1-20260814",
+        "prelaunch_manifest_sha256": "85b3022cb7f1045328daa3cc1786d8821ee3ccecd0fd9a023cec01f764d510ee",
+        "reconciliation": "/workspace/workspace/runs/phase-h1.5-compact-recovery-action-calibration-v1-20260814/evidence/h1.5-reconciliation-v1.json",
+        "reconciliation_sha256": "3bcfad6d76bbb8399317fba166d9f090bf279e29b2a9443120b25be6d584cca8",
+        "final_manifest": "/workspace/workspace/runs/phase-h1.5-compact-recovery-action-calibration-v1-20260814/manifests/h1.5-final.json",
+        "final_manifest_sha256": "501327b2cfc2b46b136b0fb5ab87de45be7bfad9e50b09928ee9715d0c7aa785",
+        "binding_verification": "6/6 cells passed",
+        "total": {"attempts": 48, "valid": 48, "qualified_positive": 12, "runtime_errors": 0, "gpu_hours": 0.194063},
+        "success_gate": {"valid": 16, "qualified_positive": 4, "threshold_valid": 12, "threshold_qualified_positive": 2, "passed": true},
+        "interpretation": "Fresh seeds reproduced compact-v2 SUCCESS validity and qualified positives on the same bounded panel; this is contract-rescue evidence, not a benchmark claim."
+      },
+      "claim_boundary": "Fresh-seed confirmation of compact-v2 contract rescue on four frozen tasks; no benchmark claim and D0 remains closed.",
+      "next": "materialize a held-out/state-distribution test; keep D0 closed"
+    },
+    {
+      "experiment_group": "H1.6-heldout-state-distribution-v1",
+      "phase": "H1.6",
+      "status": "complete-contract-only-no-heldout-reward",
+      "question": "Does compact-v2 SUCCESS rescue transfer from the four H0 tasks to unseen tasks, or is the remaining gap a state-distribution problem?",
+      "hypothesis": "If compact-v2 fixes only output formatting, held-out tasks should become valid but remain near-zero reward; non-zero held-out reward would support broader policy rescue.",
+      "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+      "controls": "same adapters and compact-v2 prompt; only held-out task identities and fresh rollout seeds change",
+      "task_panel": {
+        "manifest": "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814/task-manifest.json",
+        "manifest_sha256": "a4e5e6927e6589ad035e650ff4cc0075fabe797e96945077b3a4bbd31cbfb29f",
+        "manifest_content_sha256": "86d04965b6bf5208e7e0958f6a7d1ba89ec70e580c95ce37a0946ecb3109a16c",
+        "goal_indices": [694, 2747, 3098, 3396, 4666, 4676, 4724, 6199],
+        "partitions": {"A": [694, 2747, 3098, 3396], "B": [4666, 4676, 4724, 6199]},
+        "excluded_phase_g_and_h0_h1": [566, 612, 1657, 2590, 2655, 2822, 3420, 3768, 4513, 5135, 5216, 5294, 5457, 6624, 6680, 6769],
+        "rollout_seeds": [2026081600, 2026081601, 2026081602, 2026081603]
+      },
+      "frozen_variables": {
+        "model": "Qwen/Qwen2.5-3B-Instruct",
+        "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+        "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+        "action_contract": "seed3090.webshop-action-parser.v1",
+        "environment_seed": 2026,
+        "temperature": 0.0,
+        "max_new_tokens": 512,
+        "max_steps": 15,
+        "evaluator": "WebShop task_score/won",
+        "runtime": "pinned JDK/HF cache and one UUID-bound process per cell"
+      },
+      "cell_design": "3 arms x 2 held-out partitions = 6 cells; 4 tasks x 4 fresh seeds = 16 attempts per cell; 96 total",
+      "primary_metrics": ["fallback-free valid rate", "qualified positive rate", "mean task_score among valid", "SUCCESS held-out reward versus BASE/FAILURE"],
+      "diagnostic_metrics": ["first action and action distribution", "search depth and click depth", "trajectory length/termination", "generation length", "parser/fallback rate", "task-level heterogeneity"],
+      "stop_branch": {
+        "heldout_rescue": "SUCCESS has >=12/16 valid in each partition and >=2 qualified positives overall: proceed to held-out residual/state test; D0 remains closed",
+        "valid_only": "SUCCESS valid >=12/16 but qualified positives <2: classify as contract-only rescue and diagnose state distribution",
+        "no_transfer": "SUCCESS valid <12/16: preserve negative transfer evidence; do not change adapter rank/LR/epochs",
+        "runtime_failure": "exclude artifacts and open a separate repair group"
+      },
+      "baseline_reference": "/workspace/workspace/runs/phase-h1.5-compact-recovery-action-calibration-v1-20260814/evidence/h1.5-reconciliation-v1.json",
+      "code_sha": "887bbb72979f7983557012dd1e17392efc81015f",
+      "claim_boundary": "Held-out transfer/state-distribution diagnostic; no benchmark claim, no D0 opening, no SEED comparison.",
+      "result": {
+        "run_root": "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814",
+        "prelaunch_manifest_sha256": "8e0dd57bf2183ca8faf635abcff927a9100de3547246ea90df30b3e24b61f14a",
+        "reconciliation": "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814/evidence/h1.6-reconciliation-v1.json",
+        "reconciliation_sha256": "8a3ee8fcc2e6327e0b34442453ba99781d0ed4eba1bbea2221d1b871735592c4",
+        "final_manifest": "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814/manifests/h1.6-final.json",
+        "final_manifest_sha256": "cb469a91b02bf4481763cb2226094b4691dee7e801f6adc030b779233fbd5fd2",
+        "binding_verification": "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814/evidence/h1.6-binding-verification-v1.json",
+        "binding_verification_sha256": "0a2f955876c12f02ec4b3105e6ddd0148150c51574d1f008889fb03228759bb9",
+        "binding_status": "pass",
+        "cells": "6/6",
+        "total": {"attempts": 96, "valid": 88, "qualified_positive": 0, "runtime_errors": 0, "parser_fallback_failures": 8, "gpu_hours": 0.518998},
+        "success_gate": {"partition_a_valid": "16/16", "partition_b_valid": "12/16", "qualified_positive": 0, "threshold_qualified_positive": 2, "passed": false},
+        "interpretation": "Compact-v2 restored mostly fallback-free validity on held-out tasks but produced no qualified positives; SUCCESS did not show held-out reward transfer. Classify as contract-only rescue and diagnose state distribution offline."
+      },
+      "next": "H1.7-offline-state-distribution-diagnosis-v1; keep D0 closed; next GPU experiment must use eight independent UUID-bound cells if scientifically justified"
+    },
+    {
+      "experiment_group": "H1.7-offline-state-distribution-diagnosis-v1",
+      "phase": "H1.7",
+      "status": "complete-retrospective-descriptive-diagnosis",
+      "question": "What trajectory differences separate seen-task compact-v2 positives from held-out valid zero-reward episodes?",
+      "result": {
+        "artifact": "/workspace/workspace/runs/phase-h1.7-offline-state-distribution-diagnosis-v1-20260814/evidence/h1.7-state-distribution-diagnosis-v1.json",
+        "artifact_sha256": "e3e44f82cd424a2289ccf5598f950cda85223d478c29aca8d1cecf9ff2557d16",
+        "script": "scripts/openevo_webshop/h1_7_state_distribution_diagnosis.py",
+        "script_sha256": "5efa22357d127d6f08678269b1687c8668ba5409301fed9730cd12ba11b71b2f",
+        "seen_qualified_positive_n": 12,
+        "heldout_valid_zero_n": 88,
+        "seen_positive_mean_steps": 3.0,
+        "heldout_valid_zero_mean_steps": 15.0,
+        "seen_positive_mean_buy_signal_count": 1.0,
+        "heldout_valid_zero_mean_buy_signal_count": 0.0,
+        "heldout_valid_zero_mean_next_count": 11.045455
+      },
+      "interpretation": "Held-out compact-v2 episodes are mostly parser-valid but over-navigate and never reach buy-now; this is consistent with a state-distribution/action-selection bottleneck, not causal proof.",
+      "claim_boundary": "Descriptive offline diagnosis only; no benchmark claim, no causal claim, no D0 opening, no SEED comparison, and no scientific value assigned to GPU occupancy.",
+      "next": "Keep D0 closed; if a new GPU experiment is justified, pre-register eight independent UUID-bound cells and use all eight authorized GPUs"
+    },
+    {
+      "experiment_group": "H1.8-state-aware-action-selection-v1",
+      "phase": "H1.8",
+      "status": "complete-selective-heldout-rescue-task-specific",
+      "question": "Can a minimal state-aware action cue convert compact-v2 held-out over-navigation into reward, and does the effect differ between BASE and SUCCESS-SD-LORA?",
+      "arms": ["BASE-compact-v2", "SUCCESS-compact-v2", "BASE-state-aware-v3", "SUCCESS-state-aware-v3"],
+      "task_panel": {"manifest": "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814/task-manifest.json", "manifest_sha256": "a4e5e6927e6589ad035e650ff4cc0075fabe797e96945077b3a4bbd31cbfb29f", "partitions": {"A": [694, 2747, 3098, 3396], "B": [4666, 4676, 4724, 6199]}, "rollout_seeds": [2026081700, 2026081701, 2026081702, 2026081703]},
+      "frozen": {"model": "Qwen/Qwen2.5-3B-Instruct", "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1", "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae", "action_contract": "seed3090.webshop-action-parser.v1", "environment_seed": 2026, "temperature": 0.0, "max_steps": 15, "max_new_tokens": 512, "evaluator": "WebShop task_score/won"},
+      "prompt_factor": {"control": "seed3090.webshop-compact-action-prompt.v2", "treatment": "seed3090.webshop-state-aware-action-prompt.v3", "parser_and_evaluator": "unchanged"},
+      "cell_design": "2 model arms x 2 prompt contracts x 2 held-out partitions = 8 cells; 16 attempts/cell; 128 total",
+      "gpu_plan": "one independent UUID-bound cell per authorized GPU; no DDP or duplicate deterministic cell",
+      "primary_metrics": ["fallback-free valid rate", "qualified positive rate", "mean task_score all/valid", "matched prompt/model-factor deltas"],
+      "diagnostic_metrics": ["next-page count", "product/buy-now transitions", "trajectory length", "generation words", "parser/fallback rate", "task heterogeneity"],
+      "claim_boundary": "Prompt-intervention test on frozen held-out tasks; no benchmark or broad generalization claim, no D0 opening without confirmation, no SEED comparison.",
+      "result": {"run_root": "/workspace/workspace/runs/phase-h1.8-state-aware-action-selection-v1-20260814", "prelaunch_manifest_sha256": "e23afdd804a3184ab3ead316e032fe14dce97a60e74e619a924126e2b474f726", "reconciliation_sha256": "6b117639ab536cc1426a55ae17ec4d0300fa89a5dfc7953d5ab3b0e8e48e64fa9", "wandb_postmortem_sha256": "9a249a52da5356a67e959cbf3155dc5dce2e13b7ca72979b1e96a165f0611945", "attempts": 128, "valid": 120, "qualified_positive": 4, "runtime_errors": 0, "gpu_hours": 0.7308, "binding": "8/8 UUID-bound cells passed; final compute apps empty", "classification": "selective state-aware held-out rescue with task heterogeneity"},
+      "next": "H1.9-state-aware-rescue-fresh-seed-confirmation-v1; keep D0 closed"
+    },
+    {
+      "experiment_group": "H1.9-state-aware-rescue-fresh-seed-confirmation-v1",
+      "phase": "H1.9",
+      "status": "complete-replicated-selective-task-specific-rescue",
+      "question": "Does the H1.8 selective state-aware SUCCESS rescue reproduce on independent seeds, and is it selective relative to BASE and compact-v2?",
+      "arms": ["BASE-compact-v2", "SUCCESS-compact-v2", "BASE-state-aware-v3", "SUCCESS-state-aware-v3"],
+      "task_panel": {"manifest": "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814/task-manifest.json", "manifest_sha256": "a4e5e6927e6589ad035e650ff4cc0075fabe797e96945077b3a4bbd31cbfb29f", "partition": "A", "goal_indices": [694, 2747, 3098, 3396], "seed_blocks": {"S1": [2026081800, 2026081801, 2026081802, 2026081803], "S2": [2026081804, 2026081805, 2026081806, 2026081807]}},
+      "frozen": {"model": "Qwen/Qwen2.5-3B-Instruct", "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1", "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae", "prompt_contracts": ["seed3090.webshop-compact-action-prompt.v2", "seed3090.webshop-state-aware-action-prompt.v3"], "action_contract": "seed3090.webshop-action-parser.v1", "environment_seed": 2026, "temperature": 0.0, "max_steps": 15, "max_new_tokens": 512, "evaluator": "WebShop task_score/won"},
+      "cell_design": "4 prompt/model conditions x 2 independent seed blocks = 8 cells; 16 attempts/cell; 128 total",
+      "gpu_plan": "one independent UUID-bound cell per authorized GPU; no DDP or duplicate deterministic cell",
+      "primary_metrics": ["qualified positives per block", "SUCCESS state-aware minus SUCCESS compact paired reward", "BASE versus SUCCESS interaction", "valid rate"],
+      "diagnostic_metrics": ["positive task identity", "buy-now rate", "next-page count", "product clicks", "trajectory length", "parser/fallback rate"],
+      "claim_boundary": "Fresh-seed confirmation on frozen held-out partition A; replicated rescue is task-specific to goal 3396, not a benchmark/generalization claim; no D0 opening and no SEED comparison.",
+      "result": {"run_root": "/workspace/workspace/runs/phase-h1.9-state-aware-rescue-fresh-seed-confirmation-v1-20260814", "prelaunch_manifest_sha256": "4d0359756edd58ab9dfda444b93cf273fa3cd4aa2eb4f5602905355295e53a9", "reconciliation_sha256": "33d39826c75f946efedf17872c05e208f7df8ed6819e4fb264cc436a81764f64", "wandb_postmortem_sha256": "56071d3e6c17b014bcd0a666ac7547ff39ddc80b6bf8e2b1973820dbb0840ad8", "attempts": 128, "valid": 128, "qualified_positive": 8, "runtime_errors": 0, "gpu_hours": 0.748777, "block_result": "S1 and S2 SUCCESS/state-aware-v3 each 4/16 positive; every compact and BASE control 0/16", "positive_task": "goal 3396 only; all eight fresh seeds", "classification": "replicated selective state-aware rescue, task-specific", "resource_note": "No compute PID remains; GPU1 retains 19850 MiB through a pre-existing nvitop handle; do not allocate GPU1 until released."},
+      "next": "H1.10-new-task-state-aware-transfer-v1; wait for GPU1 release anomaly; keep D0 closed"
+    },
+    {
+      "experiment_group": "H1.10-new-task-state-aware-transfer-v1",
+      "phase": "H1.10",
+      "status": "complete-new-task-positive-not-state-aware-selective",
+      "question": "Does the state-aware SUCCESS rescue transfer to new WebShop tasks excluded from H0, H1.6, H1.8, and H1.9?",
+      "arms": ["BASE-compact-v2", "SUCCESS-compact-v2", "BASE-state-aware-v3", "SUCCESS-state-aware-v3"],
+      "task_panel": {"manifest": "/workspace/workspace/runs/phase-h1.10-new-task-state-aware-transfer-v1-20260814/task-manifest.json", "manifest_sha256": "9fe12dd04dff86825f3100086f485f12f2497fb9a71bb9b0bd7917aa701a682f", "manifest_file_sha256": "2ed31d1ebe2ee91841edb27313e1a00ab580822d6e6f9a978837949ba3a18861", "partitions": {"A": [863, 1985, 2062, 3759], "B": [5169, 5170, 6017, 6306]}, "selection_seed": 20260819},
+      "frozen": {"model": "Qwen/Qwen2.5-3B-Instruct", "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1", "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae", "prompt_contracts": ["seed3090.webshop-compact-action-prompt.v2", "seed3090.webshop-state-aware-action-prompt.v3"], "action_contract": "seed3090.webshop-action-parser.v1", "environment_seed": 2026, "rollout_seeds": [2026081900, 2026081901, 2026081902, 2026081903], "temperature": 0.0, "max_steps": 15, "max_new_tokens": 512, "evaluator": "WebShop task_score/won"},
+      "cell_design": "4 prompt/model conditions x 2 new-task partitions = 8 cells; 16 attempts/cell; 128 total",
+      "gpu_plan": "one independent UUID-bound cell per authorized GPU; no DDP or duplicate deterministic cell",
+      "primary_metrics": ["qualified positives per partition", "SUCCESS state-aware minus SUCCESS compact paired reward", "BASE versus SUCCESS interaction", "valid rate"],
+      "claim_boundary": "New-task transfer test only; goal 5169 produced arm-independent positives in partition B, while partition A was zero-reward; no state-aware transfer, benchmark/generalization claim, or D0 opening.",
+      "result": {"run_root": "/workspace/workspace/runs/phase-h1.10-new-task-state-aware-transfer-v1-20260814", "task_manifest_sha256": "9fe12dd04dff86825f3100086f485f12f2497fb9a71bb9b0bd7917aa701a682f", "reconciliation_sha256": "c3e7547b83d811443a7db71ff2b696217ea8ece58a6873fedb6bba1b14ee5872", "wandb_postmortem_sha256": "304a0bc25ef842518e1b64b75c1c741d2c0f03c99ebbe8589d2eb638e1f7b091", "attempts": 128, "valid": 116, "qualified_positive": 12, "runtime_errors": 0, "gpu_hours": 0.687476, "classification": "new-task-positive-not-state-aware-selective", "positive_task": "goal 5169 only", "resource_note": "GPU1/6/7 retained nvitop residual; deferred cell sequentially reallocated to GPU0; no kill/reset."},
+      "next": "H1.11-new-positive-supervision-fit-v1; keep D0 closed"
+    },
+    {
+      "experiment_group": "H1.11-new-positive-supervision-fit-v1",
+      "phase": "H1.11",
+      "status": "complete-fit-without-closed-loop-transfer",
+      "question": "Can newly verified H1.10 positive trajectories be learned under matched positive/negative supervision and improve fresh-task closed-loop reward?",
+      "arms": ["BASE", "FAILURE-NEW-SD-LORA", "SUCCESS-NEW-SD-LORA"],
+      "source_panel": {"run_root": "/workspace/workspace/runs/phase-h1.10-new-task-state-aware-transfer-v1-20260814", "manifest_sha256": "9fe12dd04dff86825f3100086f485f12f2497fb9a71bb9b0bd7917aa701a682f", "positive": {"cell": "B__compact__success", "task": 5169, "seeds": [2026081900, 2026081901, 2026081902, 2026081903]}, "negative": {"cell": "B__compact__success", "task": 6017, "seeds": [2026081900, 2026081901, 2026081902, 2026081903]}, "pairing": "same rollout seed; all source traces valid and fallback-free"},
+      "evaluation_panel": {"manifest": "/workspace/workspace/runs/phase-h1.11-new-positive-supervision-fit-v1-20260815/task-manifest.json", "manifest_sha256": "0120266457887f2d27ee4fb741bda2bb18d533a192f14849fa0dee068d6705ec", "manifest_file_sha256": "8fbd90042d681ddf89787e8e5b876b3fd8e4c73d58a5299d3323dd79b826a4f2", "selection_seed": 20260820, "partitions": {"A": [509, 714, 2709, 4111], "B": [4170, 4849, 5678, 6602]}, "split": "held-out-h1.11-new-supervision"},
+      "frozen": {"model": "Qwen/Qwen2.5-3B-Instruct", "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1", "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae", "prompt_contract": "seed3090.webshop-compact-action-prompt.v2", "action_contract": "seed3090.webshop-action-parser.v1", "environment_seed": 2026, "evaluation_seeds": [2026082000, 2026082001, 2026082002, 2026082003], "temperature": 0.0, "max_steps": 15, "max_new_tokens": 512, "training_budget": "rank 4 q_proj/v_proj; one epoch; four optimizer steps; bfloat16"},
+      "cell_design": "3 supervision arms x 2 fresh-task partitions = 6 cells; 16 attempts/cell; 96 total",
+      "primary_metrics": ["training loss and teacher-forced target log-probability", "fresh-task valid rate", "qualified positive rate", "SUCCESS minus FAILURE/BASE paired reward"],
+      "claim_boundary": "Matched new-supervision fit and fresh-task closed-loop test only; no benchmark/generalization claim, no D0 opening, no SEED comparison.",
+      "result": {"run_root": "/workspace/workspace/runs/phase-h1.11-new-positive-supervision-fit-v1-20260815", "reconciliation_sha256": "cad44737f8d1c792ec3ea1af39cd0967eab1910451452e9fb82bbc57d7441206", "postmortem_sha256": "480c8e07b06da218f8597fc8ecfc9269ca7e9946b63d66eefe163ce4a38bdce1", "attempts": 96, "valid": 84, "qualified_positive": 20, "runtime_errors": 0, "training_loss": {"success_new": 0.4874048940837383, "failure_new": 0.9140076860785484}, "teacher_forced_mean_logprob": {"base": -0.26886156643824594, "failure_new": -0.26808957542528944, "success_new": -0.26112509955168806}, "cells": {"base_A": {"valid": 16, "positive": 4}, "base_B": {"valid": 12, "positive": 4}, "failure_A": {"valid": 16, "positive": 4}, "failure_B": {"valid": 12, "positive": 4}, "success_A": {"valid": 16, "positive": 0}, "success_B": {"valid": 12, "positive": 4}}, "classification": "positive-supervision-closed-loop-not-supported", "excluded_runtime_attempts": 80},
+      "next": "Bounded state/recovery diagnosis or a new pre-registered supervision design; keep D0 closed"
+    },
+    {
+      "experiment_group": "H1.12-post-fit-state-recovery-diagnosis-v1",
+      "phase": "H1.12",
+      "status": "complete-no-selective-recovery",
+      "question": "Did H1.11 SUCCESS-NEW fail to transfer because compact-v2 over-navigates or lacks state-aware recovery on fresh tasks?",
+      "arms": ["BASE-COMPACT", "BASE-STATE-AWARE", "SUCCESS-NEW-COMPACT", "SUCCESS-NEW-STATE-AWARE"],
+      "task_panel": {"manifest": "/workspace/workspace/runs/phase-h1.11-new-positive-supervision-fit-v1-20260815/task-manifest.json", "manifest_sha256": "0120266457887f2d27ee4fb741bda2bb18d533a192f14849fa0dee068d6705ec", "partitions": {"A": [509, 714, 2709, 4111], "B": [4170, 4849, 5678, 6602]}, "rollout_seeds": [2026082100, 2026082101, 2026082102, 2026082103]},
+      "cell_design": "2 adapters x 2 prompt contracts x 2 held-out partitions = 8 cells; 16 attempts/cell; 128 total",
+      "claim_boundary": "Post-fit state/recovery diagnosis only; no benchmark/generalization claim, no D0 opening, no SEED comparison.",
+      "result": {"run_root": "/workspace/workspace/runs/phase-h1.12-post-fit-state-recovery-diagnosis-v1-20260815", "reconciliation_sha256": "42f270988d80f60d7e11c850285f3be9bd60c1322532684481ec952677eacc92", "postmortem_sha256": "0740dc844d9f85f1b86f65af354ada253b66a54e855e5e65b0d6c4de6ff2f633", "attempts": 128, "valid": 116, "qualified_positive": 12, "classification": "state-aware-cue-not-selective-recovery", "protocol_invalid_attempts": 1},
+      "next": "Stop prompt rescue; design a new trajectory/state representation group and keep D0 closed"
+    },
+    {
+      "experiment_group": "H1.13-action-only-supervision-projection-v1",
+      "phase": "H1.13",
+      "status": "complete-action-only-fit-without-transfer",
+      "question": "Does removing hidden reasoning from supervised trajectory targets improve fresh-task transfer of the H1.11 positive signal?",
+      "arms": ["BASE", "FAILURE-ACTION-ONLY-SD-LORA", "SUCCESS-ACTION-ONLY-SD-LORA"],
+      "task_panel": {"manifest": "/workspace/workspace/runs/phase-h1.11-new-positive-supervision-fit-v1-20260815/task-manifest.json", "manifest_sha256": "0120266457887f2d27ee4fb741bda2bb18d533a192f14849fa0dee068d6705ec", "partitions": {"A": [509, 714, 2709, 4111], "B": [4170, 4849, 5678, 6602]}, "rollout_seeds": [2026082200, 2026082201, 2026082202, 2026082203]},
+      "cell_design": "3 supervision arms x 2 held-out partitions = 6 cells; 16 attempts/cell; 96 total",
+      "claim_boundary": "Action-target projection diagnosis only; no benchmark/generalization claim, no D0 opening, no SEED comparison.",
+      "result": {"run_root": "/workspace/workspace/runs/phase-h1.13-action-only-supervision-projection-v1-20260815", "reconciliation_sha256": "5c6affb6ea34476c8f49ef9d215e363b6d8a242fb8b28d28da243a5335e4a983", "postmortem_sha256": "b5baff762f79797ae9f40d115315bd7133eb31b56992ec244332db4185aad595", "attempts": 96, "valid": 76, "qualified_positive": 8, "classification": "action-only-fit-without-selective-closed-loop-transfer"},
+      "next": "Stop direct action-target projection; design a state/critic or recovery-aware objective as a new group and keep D0 closed"
+    },
+    {
+      "experiment_group": "H1.14-student-state-recovery-v1",
+      "phase": "H1.14",
+      "status": "resource-preparation-complete-no-evaluation-panel",
+      "question": "Does matched supervision on student-visited failure/recovery states improve fresh-task closed-loop success more than matched successful-demonstration supervision?",
+      "arms": ["BASE", "SUCCESS-STATE-CONTROL", "STUDENT-RECOVERY"],
+      "source_panel": {"train_tasks": [3420, 6624, 5216, 2655, 5457, 3768, 4513, 1657], "evaluation_tasks": {"A": [509, 714, 2709, 4111], "B": [4170, 4849, 5678, 6602]}, "first_divergence_artifact": "/workspace/workspace/runs/phase-h1.13-action-only-supervision-projection-v1-20260815/evidence/h1.13-first-divergence-v1.json", "first_divergence_sha256": "d33fbb06888bf01571b8458dcb9352e1b8a61fb9e04ee2487fdf0b6d124860f9"},
+      "independent_variable": "training source-state distribution only",
+      "frozen": {"model": "Qwen/Qwen2.5-3B-Instruct", "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1", "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae", "prompt_contract": "seed3090.webshop-compact-action-prompt.v2", "action_contract": "seed3090.webshop-action-parser.v1", "acquisition_seeds": [2026082300, 2026082301, 2026082302, 2026082303], "evaluation_seeds": [2026082400, 2026082401, 2026082402, 2026082403], "training_budget": "rank 4 q_proj/v_proj; one epoch; four optimizer steps; bfloat16"},
+      "teacher_boundary": "training-data oracle on train-only student states; forbidden during evaluation and forbidden from seeing held-out outcomes",
+      "teacher": "Qwen/Qwen2.5-14B-Instruct local snapshot at /workspace/workspace/models/qwen2.5-14b-instruct; payload_sha256=c8088f27057871992a2bf885fce0f5b3f5db56e1549cd60de9add5f434a89c9f; evidence_sha256=30c28c9c52afe441dac0bd683d374713c3f0b7e2110d9cb8bb2477b297011152",
+      "recovery_candidate_rule": "parser-valid states before repeated-next, repeated-action, or backtrack; max four per episode; teacher temperature 0, max_new_tokens 256, seed base 2026082500",
+      "cell_design": "3 arms x 2 held-out partitions = 6 cells; 16 attempts/cell; independent UUID-bound cells only",
+      "primary_metrics": ["qualified-positive rate", "final task_score", "STUDENT-RECOVERY minus SUCCESS-STATE paired reward", "valid rate"],
+      "claim_boundary": "Student-state recovery diagnosis only; no Q3 opening, benchmark/generalization claim, H2, D0, retention/transfer claim, or SEED comparison.",
+      "gpu_followup": "The H1.14 evaluation panel was not launched; its train-only recovery corpus was frozen and consumed by H1.15 under a separate registered question.",
+      "resource_preparation_result": {"run_root": "/workspace/workspace/runs/phase-h1.14-student-state-recovery-v1-20260815", "episodes": 32, "valid_labels": 128, "labels_sha256": "58c7ea73b46298eac176a0703c46ecc52c6a93b1d8ca173d967cbfe913603061", "evaluation_panel_launched": false, "train_oracle_reachability_evidence_sha256": "0e180dc53f5406766171e04b24a48479596516bbc89f89da569ed2808de9f439", "train_oracle_target_found": 6, "train_oracle_qualified_success": 6, "train_oracle_query_unreachable": [4513, 1657]},
+      "next": "H1.15 carrier diagnostic completed; stop carrier micro-variants after H1.16 and keep Q3/H2/D0/retention/transfer/SEED closed"
+    },
+    {
+      "experiment_group": "H1.15-recovery-corpus-carrier-diagnostic-v1",
+      "phase": "H1.15",
+      "status": "complete-diagnostic-not-strict-causal",
+      "question": "Does the same train-only recovery corpus help through TEXT-MEMORY or PARAMETRIC carriers relative to BASE?",
+      "arms": ["BASE", "TEXT-MEMORY", "PARAMETRIC"],
+      "cell_design": "3 arms x 2 partitions x 16 attempts = 96 scheduled attempts",
+      "frozen": {"model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1", "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae", "recovery_labels_sha256": "58c7ea73b46298eac176a0703c46ecc52c6a93b1d8ca173d967cbfe913603061"},
+      "result": {"run_root": "/workspace/workspace/runs/phase-h1.15-recovery-corpus-carrier-diagnostic-v1", "reconciliation_sha256": "4f4bcf8b2670cd96ef125d2e4ed7e8850a75777923d5ee9d75b16fa0422e5d78", "scheduled": 96, "valid": 76, "qualified_positive": 16, "runtime_process_errors": 0, "classification": "heterogeneous-and-not-strict-causal-due-to-invalid-cells-and-executable-sha-drift"},
+      "next": "Do not treat this as a causal carrier claim; H1.16 supplies strict same-SHA confirmation."
+    },
+    {
+      "experiment_group": "H1.16-strict-carrier-confirmation-v1",
+      "phase": "H1.16",
+      "status": "complete-clean-negative",
+      "question": "On a fresh task panel and one runner SHA, does carrier choice produce a selective fresh-task closed-loop gain?",
+      "arms": ["BASE", "TEXT-MEMORY", "PARAMETRIC"],
+      "cell_design": "3 arms x 4 partitions x 8 attempts = 96 attempts",
+      "frozen": {"runner_git_sha": "84cc530", "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1", "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae"},
+      "result": {"run_root": "/workspace/workspace/runs/phase-h1.16-strict-carrier-confirmation-v1-20260815", "manifest_sha256": "2ef534c9ecd0d13c4a75c635d8d1c05f9ca093896b4c1a6024267e072c9af438", "manifest_file_sha256": "9f5e19b898f333319d167b210ba1f447e2b6772fdf47bab775470a41382c40f1", "reconciliation_sha256": "af287765cc18c1585ae8372d618c1085ae3c6ca958a2930e3029e7c62a69ad87", "attempts": 96, "valid": 96, "qualified_positive": 0, "runtime_process_errors": 0, "paired_delta_sums": {"text_memory_minus_base": 0.0, "parametric_minus_base": 0.0, "parametric_minus_text_memory": 0.0}, "classification": "base-agent-interface-experience-usability-bottleneck"},
+      "next": "Stop carrier and adapter micro-variants; require a new interface/model-capability question."
+    },
+    {
+      "experiment_group": "H1.17-horizon-interface-diagnostic-v1",
+      "phase": "H1.17",
+      "status": "complete-clean-negative",
+      "question": "Is the H1.16 zero-reward result primarily caused by the frozen 15-step action horizon?",
+      "arms": ["BASE-15", "BASE-30"],
+      "cell_design": "2 horizons x 4 partitions x 8 attempts = 64 attempts",
+      "frozen": {"runner_git_sha": "84cc530", "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1", "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae", "unique_core_variable": "max_steps"},
+      "result": {"run_root": "/workspace/workspace/runs/phase-h1.17-horizon-interface-diagnostic-v1-20260815", "manifest_sha256": "26188f4f8d175f022fae96f2e9c6e0135e5edef0e756a9319dc1de5e707d5a95", "manifest_file_sha256": "25f2395bf2d0e305a6e20e41d2d7d6634312d1455dfe2a94bd48902cae485c33", "reconciliation_sha256": "fa708b1891c0268b579cfff1426c5349b02844c3000d36939118f84529cae587", "oracle_evidence_sha256": "06e7088db60f1f7a206be9e9d6ed52a91d7ad71fe2d6c049b780c7cfa76fed2d", "attempts": 64, "valid": 64, "qualified_positive": 0, "runtime_process_errors": 0, "base30_minus_base15_delta_sum": 0.0, "oracle_target_found": 6, "oracle_qualified_success": 4, "oracle_partial": 2, "classification": "horizon-not-sufficient; model-action-interface-failure-on-feasible-subset; two-tasks-not-query-reachable"},
+      "next": "Do not extend the horizon or sweep carriers; preregister a new interface/model-capability diagnostic only if it isolates a remaining causal explanation."
+    },
+    {
+      "experiment_group": "H1.18-reachability-filtered-recovery-diagnostic-v1",
+      "phase": "H1.18",
+      "status": "recovery-dataset-materialized-awaiting-success-state-control",
+      "question": "On a task-reachability-filtered train panel, does matched student-visited recovery supervision transfer better than matched successful oracle-state supervision?",
+      "arms": ["BASE", "SUCCESS-STATE", "STUDENT-RECOVERY"],
+      "independent_variable": "training source-state distribution only",
+      "training_tasks": [3420, 6624, 5216, 2655, 5457, 3768],
+      "excluded_unreachable_training_tasks": [4513, 1657],
+      "evaluation_tasks": [744, 1263, 1623, 3020, 3848, 4415, 5593, 6091],
+      "evaluation_seeds": [2026082700, 2026082701, 2026082702, 2026082703],
+      "cell_design": "3 arms x 4 partitions x 8 attempts = 96 attempts; first wave uses eight UUID-bound GPUs",
+      "frozen": {"model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1", "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae", "teacher_payload_sha256": "c8088f27057871992a2bf885fce0f5b3f5db56e1549cd60de9add5f434a89c9f", "max_steps": 30},
+      "materialized": {"recovery_manifest_sha256": "2aec8372a741efaadf0de6ad556c72392ee5007f38c295b056123fd403f3c6ce", "recovery_records_sha256": "408fc3b09ff3b1f8403b049356692ff2e96b0de39d751f008ed0a7fda361d437", "success_state_oracle_records_sha256": "6e1d4c509c0dd1bbc1aebfc8b985976af228394ae9a39f1f3b41bb796c57eea3", "success_state_oracle_summary_sha256": "1c202526f1e23e576acd4efa5d9b8e7a0295a1f6e37ea833147092876946f6fc", "evaluation_manifest_sha256": "ed2c27d1ecbc7e4f7b36401b41a18c314d37127a98c2332d5cae322cb79e68d4", "evaluation_manifest_file_sha256": "9899dd431fd42f55d5fdd255ff6d876f493b0d0ad5dfc99d7d75ed939fc88d6ce"},
+      "latest_gpu_resource_gate": {"path": "/workspace/workspace/runs/phase-h1.18-reachability-filtered-recovery-diagnostic-v1-20260815/evidence/h1.18-gpu-resource-gate-20260814T202538Z.json", "sha256": "30586b16e9eb84a82c67318e142ff94ef3f00c4664b6ac55407e0f0f9009203e", "all_eligible": false, "cards_checked": 8, "memory_used_mib_range": [22382, 22386], "cross_container_owner_visibility": "verified_read_only_via_root_control_plane", "external_container": "dev-guozy", "external_container_user": "guozy", "external_service": "eight vLLM Qwen3.5-9B workers on CUDA_VISIBLE_DEVICES=0..7"},
+      "required_before_launch": ["96-record success-state dataset labeled by the same teacher", "manifests and hashes", "eight genuinely idle authorized UUIDs"],
+      "branch_rule": "selective STUDENT-RECOVERY positive requires independent new-task/new-seed confirmation; negative or task-specific result keeps Q3/H2/D0/retention/transfer/SEED closed",
+      "claim_boundary": "Reachability-filtered source-state diagnosis only; no Q3 or benchmark/generalization claim"
+    },
+    {
+      "experiment_group": "D0-offline-hindsight-delta-v1",
+      "phase": "D0",
+      "status": "queued-gated-on-positive-H1",
+      "question": "Does residual-aware offline hindsight update outperform standard success SD-LoRA under the same data and budget?",
+      "arms": ["BASE", "SUCCESS-SD-LORA", "RESIDUAL-AWARE-ADAPTER"],
+      "gate": "requires positive H1 closed-loop learning signal; current H1 result does not open this gate"
+    }
+  ],
+  "active_scientific_claim": "H0 positive natural-success signal plus bounded H1 fit; H1.6 found no compact-v2 held-out reward, H1.7 diagnosed over-navigation, H1.8/H1.9 showed a task-specific state-aware rescue on goal 3396, H1.10 found an arm-independent natural positive on goal 5169 with no selective transfer, H1.11 found target fit without fresh-task closed-loop transfer, H1.12 found no selective state-aware recovery, H1.13 found action-only fit without selective transfer, H1.14 produced a train-only recovery corpus without launching its evaluation panel, H1.15 was heterogeneous and not strict-causal, H1.16 found no carrier gain, and H1.17 found no horizon gain while exposing a mixed task-reachability boundary; D0 remains closed",
+  "prohibited_claims": ["Phase G reward improvement", "H0 success probability", "DeltaNet equivalence", "8-GPU utilization as scientific value", "SUCCESS greedy efficacy from validity-confounded H1.2 results"]
+}

@@ -1,0 +1,128 @@
+{
+  "command": [
+    "/workspace/maintenance/q03-runtime-qualification-20261002-01/venv/bin/python",
+    "-m",
+    "q03_step119_validation_runtime",
+    "--run-as-uid",
+    "1001",
+    "--run-as-gid",
+    "1001",
+    "--model-path",
+    "/dev/shm/q03-step119-model-merge-r6",
+    "--parquet-path",
+    "${SOURCE_ROOT}/q03_step119_validation/test.parquet",
+    "--manifest-path",
+    "${SOURCE_ROOT}/q03_step119_validation/task_manifest.json",
+    "--source-root",
+    "${SOURCE_ROOT}",
+    "--run-dir",
+    "/workspace/runs/q03-step119-val128-20261025"
+  ],
+  "container": {
+    "network": "none"
+  },
+  "execution": {
+    "mode": "host-orchestrator",
+    "runtime_entrypoint": {
+      "kind": "module",
+      "module": "q03_step119_validation_runtime"
+    },
+    "runtime_import_modules": [
+      "q03_step119_validation_runtime",
+      "verl.trainer.main_ppo",
+      "agent_system.multi_turn_rollout.rollout_loop",
+      "verl.workers.rollout.vllm_rollout.vllm_rollout_spmd",
+      "verl.utils.dataset.q03_source_faithful_manifest",
+      "verl.utils.dataset.q03_step119_validation_dataset",
+      "agent_system.environments.env_manager",
+      "agent_system.environments.env_package.webshop.envs",
+      "verl.workers.actor.dp_actor",
+      "verl.trainer.ppo.ray_trainer",
+      "verl.trainer.ppo.q03_step119_validation_results"
+    ],
+    "runtime_python": "/workspace/maintenance/q03-runtime-qualification-20261002-01/venv/bin/python",
+    "runtime_source_target": "/workspace/src/seed"
+  },
+  "gpu_gate": {
+    "interval_seconds": 1,
+    "max_idle_memory_mib": 16,
+    "max_idle_utilization_percent": 0,
+    "timeout_seconds": 0
+  },
+  "identity": {
+    "gid": 1001,
+    "uid": 1001
+  },
+  "image": "experiment-host/openevo-scientific@sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "image_id": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "paths": {
+    "cache": "cache",
+    "data": "datasets/webshop-1000",
+    "models": "models",
+    "runs": "runs"
+  },
+  "required_paths": [
+    {
+      "expected_type": "dir",
+      "path": "maintenance/seed-paperstyle-minimax-20261007/seed-source"
+    },
+    {
+      "expected_type": "file",
+      "path": "runs/20261004-1457-q03-seed-stage2/data/verl-agent/text/test.parquet"
+    },
+    {
+      "expected_type": "file",
+      "path": "control/q03-step119-source-24ad/configs/experiment/manifests/q03-step119-public-validation-id-manifest-20261025.json"
+    },
+    {
+      "expected_type": "file",
+      "path": "control/q03-step119-source-24ad/scripts/openevo_webshop/q03_step119_validation_runtime.py"
+    }
+  ],
+  "run_id": "202610251359-q03-step119-val128",
+  "runtime_asset_overlays": [
+    {
+      "base_target": "/workspace/src/seed",
+      "expected_type": "file",
+      "sha256": "7133b314e7e75b5754ecdd8b6a7bbca7fa7da9fa9d59e87985c39a6201f6d6bd",
+      "source": "maintenance/q03-step119-source-overlay-r13/fad137dd81994eac19fcb3d9fe611fa459b0b4c058a27794ba21757ef08f4021/verl/utils/dataset/q03_step119_validation_dataset.py",
+      "target": "/workspace/src/seed/verl/utils/dataset/q03_step119_validation_dataset.py"
+    },
+    {
+      "base_target": "/workspace/src/seed",
+      "expected_type": "file",
+      "sha256": "ff1531de3b0c58daf1631360ad71151e3954f72ed4f6fe1886aff7632799c410",
+      "source": "maintenance/q03-step119-source-overlay-r13/fad137dd81994eac19fcb3d9fe611fa459b0b4c058a27794ba21757ef08f4021/verl/utils/dataset/q03_source_faithful_manifest.py",
+      "target": "/workspace/src/seed/verl/utils/dataset/q03_source_faithful_manifest.py"
+    }
+  ],
+  "runtime_asset_staging_root": "maintenance/q03-step119-runtime-r15-assets",
+  "runtime_assets": [
+    {
+      "expected_type": "dir",
+      "sha256": "8747853ed9e3ad82331023559d05351158bdd4cba38b67ea56f85ffd1a568744",
+      "source": "maintenance/q03-step119-profile-source-r12/8747853ed9e3ad82331023559d05351158bdd4cba38b67ea56f85ffd1a568744/tree",
+      "target": "/workspace/src/seed"
+    }
+  ],
+  "schema": "openevo.webshop.run-profile.v1",
+  "source": {
+    "experiment": {
+      "path": "control/q03-step119-source-24ad",
+      "revision": "24ad8ea49673c3eddc3d1ea3f557b14878310417"
+    },
+    "openevo": {
+      "path": "control/openevo-core",
+      "revision": "a85f9a8dc5cc9870695a4301d8fc128a7ec38fb0"
+    }
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "group": "20261025-0825-q03-step119-val128",
+    "mode": "disabled",
+    "on_error": "fail",
+    "probe_epoch": "202610251359-q03-step119-val128",
+    "project": "openevo-webshop-experiments"
+  },
+  "workspace": "/workspace"
+}

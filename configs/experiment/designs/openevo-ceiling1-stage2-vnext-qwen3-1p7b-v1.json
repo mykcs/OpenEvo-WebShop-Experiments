@@ -1,0 +1,96 @@
+{
+  "schema": "openevo.ceiling1-stage2-vnext-qwen3-1p7b-design.v1",
+  "status": "FROZEN_PREREG_NEEDS_LAUNCH_READINESS",
+  "activation_authority": false,
+  "arm": "qwen3-1p7b",
+  "authority_recorded_at": "2026-09-03T19:17:00+08:00",
+  "authority_source": "User instructed: if qwen3-1p7b is ready for Stage2, start it. This design freezes the missing Stage2 scientific contract but does not authorize launch until engineering/readiness gates pass.",
+  "scientific_question": "Can Qwen3-1.7B sustain the same Stage2-vNext persistent-evidence learning rule used for the 3B design, without model-specific strategy tuning or additional teacher/final-panel budget?",
+  "algorithm_identity": {
+    "source_design": "configs/experiment/designs/openevo-ceiling1-stage2-vnext-3b-v1.json",
+    "same_persistent_typed_evidence_ledger": true,
+    "same_candidate_state_transaction": true,
+    "same_promotion_rule": true,
+    "same_carrier_channels": ["text_memory", "parametric_sd_lora", "skill_bundle", "agent_system"],
+    "same_round_semantics": true,
+    "model_specific_strategy_changes": false
+  },
+  "model": {
+    "id": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "path": "/workspace/models/qwen3-1.7b",
+    "context_window": 40960,
+    "chat_template_enable_thinking": false
+  },
+  "frozen_protocol": {
+    "formal_rollouts": 20480,
+    "rounds": 160,
+    "rollouts_per_round": 128,
+    "tasks_per_round": 16,
+    "rollouts_per_task": 8,
+    "schedule_path": "configs/experiment/manifests/h1.44-on-3b-training-schedule-v1.json",
+    "schedule_identity_role": "shared Stage2 schedule; the 3b filename is historical naming only and must not imply a model-specific schedule",
+    "sampling": {
+      "do_sample": true,
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": 0,
+      "repetition_penalty": 1.0,
+      "max_new_tokens": 512,
+      "max_steps": 15
+    },
+    "step_seed_policy": "injective-v1",
+    "external_teacher_calls": 0,
+    "final_panel_access_before_own_stage2_seal": 0,
+    "effective_rank_limit": 4096,
+    "task_vector_online_control": false
+  },
+  "candidate_state_transaction": {
+    "all_candidates_generated_from_same_prior_state": true,
+    "probe_only_if_candidate_differs": true,
+    "acceptance_probe_uses_already_consumed_training_tasks": true,
+    "formal_task_consumption_delta": 0,
+    "final_panel_access_delta": 0,
+    "mechanical_non_regression": [
+      "engineering_invalid_zero",
+      "constraint_escape_zero",
+      "environment_action_schema_violation_zero",
+      "candidate_invalid_terminated_lte_prior",
+      "candidate_exact_success_gte_prior",
+      "candidate_positive_score_gte_prior",
+      "candidate_mean_score_gte_prior"
+    ],
+    "strict_task_improvement_required": "at least one of exact_success, positive_score, or mean_score is strictly greater",
+    "neutral_behavior_change": "REJECT_KEEP_PRIOR_STATE"
+  },
+  "typed_evidence_ledger": {
+    "persistent_across_rounds": true,
+    "evidence_survives_noop": true,
+    "append_only_identity": true,
+    "llm_verifier_calls": 0,
+    "deterministic_verifier": "target-bound-v2",
+    "noop_consumes_or_clears_evidence": false
+  },
+  "forbidden": [
+    "mechanically renaming the existing 3B launcher without Qwen3 readback tests",
+    "model-specific success-count gates",
+    "7/8 or 16-success magic gates",
+    "evidence reset at 128-rollout boundaries",
+    "automatic carrier/SD promotion without candidate-state acceptance",
+    "new external teacher calls",
+    "final-panel access before qwen3-1p7b Stage2 seal",
+    "enabling Qwen3 thinking by tokenizer default",
+    "using Stage2 outcomes to revise this preregistration"
+  ],
+  "launch_readiness_required": [
+    "PRE_STAGE2_READY_qwen3-1p7b.json PASS and hash-bound",
+    "controller accepts qwen3-1p7b as a first-class arm instead of aliasing it to 3b or 7b",
+    "Qwen3 model/revision/context/thinking readback exact",
+    "Stage2 base merge from the current OPSD adapter PASS",
+    "GPU lease policy contains qwen3-1p7b workload identities",
+    "round-0 non-formal launch-readiness/first-write gate PASS",
+    "exact execution SHA clean checkout",
+    "separate immutable Stage2 activation receipt"
+  ],
+  "next_gate": "Implement and pass launch-readiness. Only then may the user's 2026-09-03 instruction be converted into a Stage2 activation receipt and formal round-0 launch."
+}

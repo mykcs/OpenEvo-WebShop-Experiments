@@ -1,0 +1,27 @@
+{
+  "schema": "openevo.revision-naming-policy.202609041833",
+  "status": "CURRENT",
+  "decision_timestamp": "202609041833",
+  "revision_format": "YYYYMMDDHHMM",
+  "scope": [
+    "branches",
+    "run_roots",
+    "authorities",
+    "amendments",
+    "activations",
+    "wandb_runs_groups_tags",
+    "artifacts",
+    "manifests",
+    "handoffs",
+    "human_facing_protocol_labels",
+    "new_internal_schema_identities"
+  ],
+  "ordinal_revision_labels_for_new_internal_identity": "FORBIDDEN",
+  "historical_registry": "configs/experiment/legacy-revision-registry-202609041833.json",
+  "policy_document": "docs/operations/governance/REVISION_NAMING_POLICY_202609041833.md",
+  "exceptions": [
+    "external_ecosystem_versions_not_owned_by_openevo",
+    "immutable_historical_bytes",
+    "backward_compatibility_readers_for_legacy_serialized_data"
+  ]
+}

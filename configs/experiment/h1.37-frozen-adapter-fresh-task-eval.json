@@ -1,0 +1,130 @@
+{
+  "standard_core": "v1",
+  "standard_profile": "vNext",
+  "campaign_id": "20260818-0000-h137-frozen-adapter-fresh-task-eval",
+  "status": "launch-authorized",
+  "title": "H1.37 frozen-adapter fresh-task paired evaluation (no retraining)",
+  "objective": "Test whether the already-trained H1.36 self-evolution SD-LoRA adapter improves reward on a previously untouched WebShop task sample relative to its frozen Qwen2.5-7B base, without any retraining or hyperparameter change.",
+  "scientific_question": "Given the already-trained H1.36 self-evolution adapter (worker sd-lora-b7e36404ca6320620e3f86e5225699e3), does it improve reward on a previously untouched WebShop task sample relative to its frozen Qwen2.5-7B base?",
+  "explicitly_not_tested": "This campaign does NOT re-ask 'can 7B open the capability gate' -- H1.36 already reinterpreted that question (both 3B and 7B crossed the >=2-task / >=8-episode data-qualification threshold). The open variable is transfer, not capability.",
+  "rationale": "H1.36 produced an underpowered null on an 8-task x 4-seed frozen panel (mean paired delta ~ -0.0036/attempt, one positive task per arm). Its evaluation tasks were training-unseen but previously consumed in H1.29, and 8 tasks cannot distinguish 'no effect' from 'small effect in noise'. H1.37 freezes the exact H1.36 base + trained adapter and evaluates paired on 64 previously untouched tasks to get a statistically meaningful read on fresh-task transfer without touching LR/rank/epoch/data, so there is no 'rescue H1.36' researcher-degrees-of-freedom concern.",
+  "benchmark": "webshop",
+  "phase": "H1.37",
+  "direction": "A - strong-base pure self-evolution (frozen-artifact evaluation; no teacher)",
+  "split": "no training; frozen-artifact paired evaluation on a previously untouched 64-task sample",
+  "protocol_status": "preregistered",
+  "formal_task_consumption_allowed": true,
+  "independent_variable": "evaluation task sample ONLY (64 previously untouched WebShop tasks). Every model/adapter/parser/inference variable is frozen identical to the H1.36 v3 evaluation.",
+  "frozen_objects": {
+    "base_model": "Qwen/Qwen2.5-7B-Instruct local content pin 0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e (same checkpoint as H1.36)",
+    "self_evolution_adapter": "H1.36-trained SD-LoRA adapter worker sd-lora-b7e36404ca6320620e3f86e5225699e3 under run phase-h1.36-strong-base-self-evolution-v1-20260818; content sha256 pinned fail-closed at launch",
+    "action_parser": "seed3090.webshop-action-parser.v3-action-command (the validated v3 contract)",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "inference_contract": "temperature 0.0, max_steps 30, max_new_tokens 512, environment_seed 2026, rollout seeds [2026090200, 2026090201, 2026090202, 2026090203]"
+  },
+  "forbidden_changes": [
+    "no retraining",
+    "no new self-generated records added to the dataset",
+    "no LoRA rank change",
+    "no learning-rate change",
+    "no epoch / optimizer-step change",
+    "no prompt change",
+    "no decoding change",
+    "no checkpoint selection",
+    "no post-hoc manifest / task-sample swap after seeing results"
+  ],
+  "arms": [
+    "BASE",
+    "SELF-EVOLUTION"
+  ],
+  "planned_matrix": {
+    "evaluation_tasks": 64,
+    "harvest_tasks": 0,
+    "evaluation_seeds": [
+      2026090200,
+      2026090201,
+      2026090202,
+      2026090203
+    ],
+    "cells": 128,
+    "attempts": 512,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "temperature": 0.0,
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v3-action-command"
+  },
+  "primary_estimand": {
+    "definition": "Delta = (1/N) * sum_i (R_self,i - R_base,i), the mean paired reward difference per episode over all valid paired attempts",
+    "headline_is_mean_not_sum": true,
+    "note": "H1.36 exposed that a cumulative paired-delta SUM is easily misread as a mean; H1.37 reports the mean per-episode delta as the headline and never the raw sum as the headline."
+  },
+  "inference": {
+    "unit": "task (cluster): 64 task-level paired effects, not 512 independent episodes",
+    "methods_preregistered": [
+      "task-cluster bootstrap 95% CI for the mean paired per-episode delta (resample tasks with replacement, keep all of a task's episodes)",
+      "task-level sign-flip paired randomization test (two-sided p-value)"
+    ],
+    "resample_seed": 20260818,
+    "bootstrap_rounds": 10000,
+    "permutation_rounds": 10000,
+    "narrow_half_width_threshold": 0.05
+  },
+  "reported_metrics": [
+    "base mean reward",
+    "self-evolution mean reward",
+    "mean paired delta per episode (primary)",
+    "task-level paired delta",
+    "positive / tie / negative task counts",
+    "success counts per arm",
+    "95% task-cluster bootstrap CI",
+    "paired randomization p-value"
+  ],
+  "interpretation_zones_preregistered": {
+    "transfer-positive": "task-cluster CI95 lower bound > 0 -- first credible evidence that a frozen self-generated SD-LoRA update transfers to unseen WebShop tasks",
+    "clean-negative": "Delta ~= 0 with a narrow CI (half-width <= 0.05) containing 0 -- Qwen2.5-7B can generate successful endogenous training data and the optimizer internalizes it, yet the update fails to improve task-level generalization; this directly motivates the H1.38 task-diversity campaign",
+    "underpowered": "CI still wide (half-width > 0.05) -- H1.37 remains underpowered; this is NOT a negative result"
+  },
+  "manifest_sealing": {
+    "sealed_before_any_evaluation": true,
+    "fields_recorded": [
+      "sampling universe",
+      "exclusion list (count + sha256)",
+      "sampling seed",
+      "exact 64 task IDs",
+      "manifest sha256",
+      "generation timestamp",
+      "preregistration commit SHA"
+    ],
+    "exclusion_policy": "exclude every goal_idx selected/observed/consumed in any prior committed campaign (superset of H1.29/H1.36 train+eval and the H1.36 self-generated-training task identities)",
+    "exclusion_count": 229,
+    "exclusion_sha256": "0d73fb07a1c06403cdcbbd042f2807757126e064dfdc8c05e771fbab98ebe9c4",
+    "sampling_seed": 20260818
+  },
+  "provenance": {
+    "preregistration": "configs/experiment/h1.37-frozen-adapter-fresh-task-eval.json",
+    "derives_from_campaign": "20260818-0000-h136-strong-base-self-evolution",
+    "official_open_evo_stable": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "model_local_dir": "/workspace/models/qwen2.5-7b-instruct",
+    "model_revision": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+    "model_revision_kind": "local-content-pin"
+  },
+  "next_hypothesis_if_clean_negative": "H1.38: at a fixed record budget, vary ONLY the number of distinct self-generated-training task identities (e.g. 32 records / 4 tasks vs 32 / 16 vs 32 / 32) to test whether self-generated-data task diversity -- not capability -- determines transfer. This is more scientifically valuable than sweeping LoRA rank/LR/epoch.",
+  "claim_boundary": "H1.37 can establish only whether the frozen H1.36 adapter yields a fresh-task distributional gain over its frozen base on an untouched sample. It cannot claim Q3, H2, SEED superiority, retention, or GPT/OPSD equivalence.",
+  "hard_boundaries": [
+    "Run one UUID-bound child container per GPU; scientific processes use UID/GID 1001:1001.",
+    "Do not delete, restart or reset unrelated containers or GPUs.",
+    "No training in this campaign; evaluation traces never enter any dataset.",
+    "Invalid runtime/parser/identity attempts are retained but excluded from scientific denominators.",
+    "Do not claim a SEED win from H1.37; the SEED comparison needs a separate frozen matched contract."
+  ],
+  "tracking": {
+    "entity": "example-entity",
+    "project": "openevo-webshop-experiments",
+    "group": "20260818-0000-h137-frozen-adapter-fresh-task-eval",
+    "default_mode": "online",
+    "offline_fallback": "only after exact online initialization failure is saved in wandb-online-probe.json and the completed spool receives a hash"
+  },
+  "updated_at_utc": "2026-08-18T08:40:00Z"
+}

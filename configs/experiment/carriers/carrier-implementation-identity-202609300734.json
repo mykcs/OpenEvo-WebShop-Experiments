@@ -1,0 +1,79 @@
+{
+  "carrier_contract_identity_sha256": "2d42c2e0914581af2c37ecbb0497faf8c1beed07774fc0da13d984d3a4317ba6",
+  "component_file_count": 30,
+  "evidence_only": true,
+  "execution_authority": false,
+  "health_component_identities": {
+    "generator": "dd4569b7141af669c1c86e08eb4e68a71938b42b5555501870eaf010357366c8",
+    "governor": "07403677436ae9e1dd8fbf9ee7ada2e3d8556dbaf7c3086e513c7a821395aa9c",
+    "repair": "e717b689f02c88067032fd07ec822750e45848997aacb30b0e8261e66756b416",
+    "router": "78964e7455e512808829cac059be8a737a2aab3f66b077f87d7969ff48de0dc3",
+    "validator": "93723a9fa2eff82bbac3bc04652c2b8f12409f316f8894bfe3ef80eff6516157"
+  },
+  "identity_projection": {
+    "carrier_generator_identities": {
+      "agent_system": "dd4569b7141af669c1c86e08eb4e68a71938b42b5555501870eaf010357366c8",
+      "skill_bundle": "dd4569b7141af669c1c86e08eb4e68a71938b42b5555501870eaf010357366c8",
+      "text_memory": "dd4569b7141af669c1c86e08eb4e68a71938b42b5555501870eaf010357366c8"
+    },
+    "component_slots": {
+      "component_000": "856cc7b0f41ef4f0e698cb6565f12a0cba696a943446834de5c83aabfeda6377",
+      "component_001": "dad56bb15519612bc0be29a34221167346180f2947a3431e9c1e40d6d5ec67b4",
+      "component_002": "81c9afac5d2324a206ce545e466c6ffff22f8b692ac4cd2fecc309f0440d1d3c",
+      "component_003": "1d5c50ae2072dc77f002d128ceaaf6dac4c0868d1cdbd4e8204542f7f8e0a708",
+      "component_004": "827cdb25dc796a5362a6af3fa5cb5222552e5eb0e3a6fec390bd42fc98d3dbc1",
+      "component_005": "58b4574a32bc8f9ee190fc85060ee212937f4803b36b6a29e5b438a02a4d7a9e",
+      "component_006": "498b990d2c6c7ae19df90b87978e3a14c6e2f90d6b56cb18bbe15fe63e462709",
+      "component_007": "8f258a4a651f2743a641de7181839fedbdfd095eb62073b253453ef6644aa4b6",
+      "component_008": "15dae25602b5998c070e6bc43ac9e8dbdd693b05d2df38fc094f1d6d70f82d82",
+      "component_009": "2a70402408f8220c861f60c73eaa5cf569060f09f0e9de316404e2f77fb07e2f",
+      "component_010": "f3a02bf985888fb8113a2ac359ed8bc69105b7a38db2d1cee051eaa6a779aef5",
+      "component_011": "321f49d41475dce24060cd61986583cbeef4f705a3955c8e10666d4c5d73ffcb",
+      "component_012": "15b6df4bedd721da8471b5d9246812d4e91b71b227c81d4dbc6855bb555c3406",
+      "component_013": "5cd5f04601e60b2be693b1526dd788b43e5e371bf620ec69759d1050999b1a5c",
+      "component_014": "d80e73f79bfba82a71a40efdce3499f7a5fa4a588b1b03e1d6dc296e1c239efb",
+      "component_015": "66caf311f94678573deef5610ca65648e26cba577f18f2ec82c8237b8aab4bae",
+      "component_016": "bc7359f2db2c7ba388e4ce250300fda061ad6c3f730396860014c45d15aa0eac",
+      "component_017": "efebcd63f3f6d189324e4c09d7f0c4fffeaa690c0fba8486d193549e3dd639c7",
+      "component_018": "0f3fc7819b4f669a7c9acac7d47bd8ad8a2aa44e384ff9fd0ee7c4d45742ad55",
+      "component_019": "09a4b64f53157d5bb274f0ddd4db29b29b2f23aa8aa6a1d9ba44a77851e12964",
+      "component_020": "6cc1a8c3b18e9ef801bd41f0c357840b7455cde5699c081eef88d6b7104c835c",
+      "component_021": "c9fbca018adaa7c50f53c3698d7b0d36cb401fa95a82012063b2b850bec7eed8",
+      "component_022": "d43bb95f6811c91648e5f9e06911f4e389ed0d0736d2df1369d004ad2add747f",
+      "component_023": "30b696e8df70117fb7e3a136f8acc19f9359f05d3ba06b22ecfdda23f8ea3213",
+      "component_024": "ef410da28285699831117d1b5ba963d6012b09e01a51d8cde039bb236f04254a",
+      "component_025": "37d09100041d776efb0f35a289c2602ef141c89278c33cf3c74358be0253a587",
+      "component_026": "eb9292f2a4338dfc6c47d0f5a10c401630d6bcbe220b1f36f229ffe7fc817dde",
+      "component_027": "4474cfa11699f17516ea5056a1a03087aa13a96aae6d49546910c6060fd0da31",
+      "component_028": "a68d9464d97fa0511538543b4119a362f9199bcb03eddbf7eac0b898d9ccd0fd",
+      "component_029": "7a8936a8584046f75096354911db1f9a0582347378455b05f9c6f9c6aca8544d"
+    },
+    "contract_name": "Carrier Contract",
+    "contract_version": 2,
+    "generation_call_budget": {
+      "max_primary_calls": 1,
+      "max_repair_calls": 1
+    },
+    "health_policy_identity_sha256": "38a4ad15794ad88c334f81ed6ef014c1896862737c20f76e165033e3424e21fc",
+    "health_schema_sha256": "58b4574a32bc8f9ee190fc85060ee212937f4803b36b6a29e5b438a02a4d7a9e",
+    "minimum_update_quota": null,
+    "paired_arm_mechanism_parity_required": true,
+    "role_identities": {
+      "generator": "dd4569b7141af669c1c86e08eb4e68a71938b42b5555501870eaf010357366c8",
+      "governor": "07403677436ae9e1dd8fbf9ee7ada2e3d8556dbaf7c3086e513c7a821395aa9c",
+      "health": "7426d261afd36aa50eb5e5c47cdda5108aaeb3380d07b33193b53b14a4dace0b",
+      "health_failure": "1b9c995054a41f7d510421d62c7519232b54d876ab2a0f960f194fca88c1e100",
+      "identity_admission": "e1e30d3c15201b2030b206ad3af60fd430c8bbffaa27333adbf410d0d2cdd80f",
+      "instrumentation": "c2e67aeb504cd2319716619800305de11915e2ce12c006467338a822974fdc64",
+      "repair": "e717b689f02c88067032fd07ec822750e45848997aacb30b0e8261e66756b416",
+      "router": "78964e7455e512808829cac059be8a737a2aab3f66b077f87d7969ff48de0dc3",
+      "runtime_readback": "966c7354f789963f167b6c49d856a54d13484c27f1d233ce22e9515b8942f1ff",
+      "scope_policy": "c8334e5bf2dd260b69b80d32a9488ba40462d27a1ec6b08c091fdda8f698b6cc",
+      "state_entry_resume": "0adcaedd15a7704df1ef10cd1dffee95c94da9809b73f63c02ad0c586d3d85f6",
+      "validator": "93723a9fa2eff82bbac3bc04652c2b8f12409f316f8894bfe3ef80eff6516157"
+    },
+    "scope_policy_identity_sha256": "2dbd39cc21ad3f50c221c687e8df0e4466323aeffde46ef2ad3463e5870153af",
+    "source_map_identity_sha256": "3d6b91130013dea27af078707bea754fb6f48f8e27362c9dd9e26d74d49a4e84"
+  },
+  "schema": "openevo.carrier-implementation-identity.202609300734"
+}

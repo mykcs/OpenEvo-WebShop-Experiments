@@ -1,0 +1,137 @@
+{
+  "completed_at": "2026-09-21T23:02:39+08:00",
+  "created_at": "2026-09-21T23:02:39+08:00",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/historical_7b_public_release_artifact_dag_backfill.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "407e1e4dc31f76dfaf2edb7f0b90f6b06e74fb2b868f274475dcb7bb0ba15612"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/experiment-passports/202609212302-historical-7b-public-release-dag/BACKFILL_CONFIG_202609212302.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "4fa2f4e24d42557683b1b353adbaf493d165ec30ab40b7f677552d44f34de567"
+    },
+    "contract_identities": [],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "df1fac0849deb8de4bf4cc0a2e4295a871ee74d3aa11b81f423e643d95856592",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/huggingface-stage2-checkpoint-decomposition-20260921/QWEN25_7B_PUBLIC_RELEASE_EXECUTION_202609212302.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "df1fac0849deb8de4bf4cc0a2e4295a871ee74d3aa11b81f423e643d95856592"
+          }
+        ],
+        "logical_role": "public-release-receipt",
+        "size_bytes": 5861
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "1029d6e5197e64eb8a59878654e910951d2a61dedcba452686f1703cbddf3c9c",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/experiment-passports/202609111853/LINEAGE_INVENTORY_202609111853.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "1029d6e5197e64eb8a59878654e910951d2a61dedcba452686f1703cbddf3c9c"
+          }
+        ],
+        "logical_role": "legacy-lineage-inventory",
+        "size_bytes": 13384
+      }
+    ],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "deterministic-backfill",
+      "randomness": "none"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "22bded556b667196d136b0e5124ab33f0d27647602c311a2b6db5eaddba29b60",
+  "operation_schema_version": "202609212302",
+  "operation_type": "historical-7b.backfill.public-final-adapter-release",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [
+        "1029d6e5197e64eb8a59878654e910951d2a61dedcba452686f1703cbddf3c9c",
+        "df1fac0849deb8de4bf4cc0a2e4295a871ee74d3aa11b81f423e643d95856592"
+      ],
+      "digest": "6e61651892d4bb0dd16e14345303ea96eef8e0f051a3c994430590a3ee85f812",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/experiment-passports/202609212302-historical-7b-public-release-dag/HISTORICAL_7B_PUBLIC_RELEASE_DAG_BINDING.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "6e61651892d4bb0dd16e14345303ea96eef8e0f051a3c994430590a3ee85f812"
+        }
+      ],
+      "logical_role": "backfill-binding",
+      "size_bytes": 1445
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "historical-7b.backfill.public-final-adapter-release-202609212302",
+    "created_at": "2026-09-21T23:02:39+08:00",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/experiment-passports/202609111853/LINEAGE_INVENTORY_202609111853.json",
+      "docs/evidence/huggingface-stage2-checkpoint-decomposition-20260921/QWEN25_7B_PUBLIC_RELEASE_EXECUTION_202609212302.json"
+    ],
+    "experiment_id": null,
+    "external_views": [
+      {
+        "evidence_path": "docs/evidence/huggingface-stage2-checkpoint-decomposition-20260921/QWEN25_7B_PUBLIC_RELEASE_EXECUTION_202609212302.json",
+        "kind": "hf",
+        "path": null,
+        "reason": "public immutable revision bound by exact anonymous fresh-readback release evidence; network view is not scientific reuse authority",
+        "repository": "example-account/openevo-ceiling1-qwen25-7b-historical-final-adapters",
+        "revision": "e18e0c7b02c247717f76c0b9fe2273c61b338fc4",
+        "sha256": "df1fac0849deb8de4bf4cc0a2e4295a871ee74d3aa11b81f423e643d95856592"
+      }
+    ],
+    "passport_sha256": null,
+    "producer_scope": "ENGINEERING_GLOBAL"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "ALLOWLISTED_ENGINEERING_ONLY",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "This is a deterministic provider/provenance backfill only. Historical model-state consumption remains subject to the original scientific authority."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "PURE_ENGINEERING",
+  "status": "PASS",
+  "supersedes": []
+}

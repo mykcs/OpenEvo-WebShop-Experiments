@@ -1,0 +1,68 @@
+{
+  "activation_authority": false,
+  "arm": "qwen3-1p7b",
+  "asset_contract": {
+    "consumes": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen3-1p7b--stage1e_skill_bundle",
+        "role": "upstream-phase"
+      }
+    ],
+    "produces": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen3-1p7b--stage1f_agent_system",
+        "provider": "server",
+        "provider_id": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/AGENT_SYSTEM_COMPLETE_qwen3-1p7b.json",
+        "role": "phase-receipt"
+      }
+    ],
+    "publication": [],
+    "recovery": [],
+    "registry_policy": "observation-first-canonical-if-proven",
+    "telemetry": []
+  },
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 0,
+    "local_reflector_requests_max": 10,
+    "optimizer_steps_max": 0
+  },
+  "completion": {
+    "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/AGENT_SYSTEM_COMPLETE_qwen3-1p7b.json",
+    "required_equal": {
+      "arm": "qwen3-1p7b",
+      "chat_template_enable_thinking": false,
+      "consumed_rows_total": 1440,
+      "schema": "openevo.ceiling1-agent-system-stage1.v2",
+      "status": "pass"
+    },
+    "sha256": "e9a1c48643b902edf3db22ed8d675471d5c97a2a1fd5a080aa116015592d0ad1"
+  },
+  "historical_execution_provenance": {
+    "original_checkout": "/workspace/control/openevo-experiment-shared-prestage2-1ebcd9e6",
+    "original_execution_sha": "1ebcd9e67bba01869c27003f303d1d155128dfa3",
+    "rule": "do not infer missing producer identity from names or timestamps",
+    "status": "PROVEN"
+  },
+  "historical_execution_source": {
+    "checkout": "/workspace/control/openevo-experiment-shared-prestage2-1ebcd9e6",
+    "execution_sha": "1ebcd9e67bba01869c27003f303d1d155128dfa3"
+  },
+  "phase": "stage1f_agent_system",
+  "release_mode": "adoption",
+  "retry": {
+    "exact_resume": false,
+    "reason": "immutable completion adopted into current control plane; no execution is authorized by this release"
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "configs/experiment/amendments/openevo-ceiling-1.0-stage1-capacity-recovery-v1.json",
+    "required_equal": {
+      "schema": "openevo.ceiling1-stage1-capacity-recovery-amendment.v1",
+      "status": "FROZEN"
+    },
+    "sha256": "10f9e04fa5c4ff8d9d927e45c88be8236f23f1d9843b8579a71ac0e5c592ad44"
+  },
+  "status": "ADOPTED_IMMUTABLE_COMPLETION"
+}

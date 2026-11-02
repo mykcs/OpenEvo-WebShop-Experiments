@@ -1,0 +1,28 @@
+{
+  "$id": "openevo.engineering-incident.202609281950",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenEVO engineering incident receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "openevo.engineering-incident.202609281950"},
+    "fingerprint": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "category": {"enum": ["PRELAUNCH_ENGINEERING","RESOURCE_ORCHESTRATION","RUNTIME_INFRA","INTERFACE_CONTRACT","SCIENTIFIC"]},
+    "layer": {"type": "string", "minLength": 1},
+    "code": {"type": "string", "minLength": 1},
+    "validator_id": {"type": "string", "minLength": 1},
+    "repair_class": {"type": "string", "minLength": 1},
+    "detail": {"type": "string"},
+    "run_id": {"type": "string", "minLength": 1},
+    "selected_gpu_uuids": {"type": "array", "items": {"type": "string"}},
+    "occurrence_index": {"type": "integer", "minimum": 1},
+    "promotion_required": {"type": "boolean"},
+    "auto_repair_allowed": {"const": false},
+    "observed_at_epoch": {"type": "number", "minimum": 0},
+    "formal_task_consumed": {"const": false},
+    "scientific_authority_granted": {"const": false},
+    "retry_authority_granted": {"const": false},
+    "receipt_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "required": ["schema","fingerprint","category","layer","code","validator_id","repair_class","detail","run_id","selected_gpu_uuids","occurrence_index","promotion_required","auto_repair_allowed","observed_at_epoch","formal_task_consumed","scientific_authority_granted","retry_authority_granted","receipt_sha256"]
+}

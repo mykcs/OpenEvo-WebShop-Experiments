@@ -1,0 +1,65 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.9-state-aware-rescue-fresh-seed-confirmation-v1",
+  "phase": "H1.9",
+  "status": "complete-replicated-selective-task-specific-rescue",
+  "scientific_question": "Does the H1.8 selective state-aware SUCCESS rescue reproduce on independent seeds, and is it selective relative to BASE and compact-v2?",
+  "hypothesis": "The H1.8 SUCCESS/state-aware-v3 rescue on held-out partition A will reproduce on fresh seeds; if it appears only on goal 3396, the effect is task-specific rather than broad held-out transfer.",
+  "arms": ["BASE-compact-v2", "SUCCESS-compact-v2", "BASE-state-aware-v3", "SUCCESS-state-aware-v3"],
+  "controls": {
+    "model_factor": "BASE versus frozen SUCCESS-SD-LORA",
+    "prompt_factor": "compact-v2 versus frozen state-aware-v3",
+    "seed_factor": "two independent fresh seed blocks",
+    "task_panel": "frozen H1.8 held-out partition A; no training or task changes"
+  },
+  "task_panel": {
+    "manifest": "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814/task-manifest.json",
+    "manifest_sha256": "a4e5e6927e6589ad035e650ff4cc0075fabe797e96945077b3a4bbd31cbfb29f",
+    "partition": "A",
+    "goal_indices": [694, 2747, 3098, 3396],
+    "seed_blocks": {"S1": [2026081800, 2026081801, 2026081802, 2026081803], "S2": [2026081804, 2026081805, 2026081806, 2026081807]}
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "prompt_contracts": ["seed3090.webshop-compact-action-prompt.v2", "seed3090.webshop-state-aware-action-prompt.v3"],
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_steps": 15,
+    "max_new_tokens": 512,
+    "evaluator": "WebShop task_score/won",
+    "runtime": "pinned JDK/HF cache and one UUID-bound process per cell",
+    "adapters": "BASE none; SUCCESS frozen H1 success adapter; no retraining"
+  },
+  "cell_design": "4 prompt/model conditions x 2 independent seed blocks = 8 cells; 4 tasks x 4 seeds/cell; 128 total attempts",
+  "gpu_plan": "one independent UUID-bound cell per authorized GPU; no DDP or duplicate deterministic cell",
+  "primary_metrics": ["qualified positives per block", "SUCCESS state-aware minus SUCCESS compact paired reward", "BASE versus SUCCESS interaction", "valid rate"],
+  "diagnostic_metrics": ["positive task identity", "buy-now rate", "next-page count", "product clicks", "trajectory length", "parser/fallback rate"],
+  "stop_branch": {
+    "replicated_selective": "SUCCESS state-aware has >=2 qualified positives in each block and exceeds compact with BASE at zero: proceed to a new-task confirmation before any D0 design",
+    "seed_or_task_specific": "positive effect appears in only one block or one task: retain H1.8 as task-specific evidence and do not open D0",
+    "null": "no qualified positives: classify H1.8 rescue as non-reproducible; stop prompt tweaking",
+    "runtime_failure": "exclude invalid cells and open a separate repair group"
+  },
+  "claim_boundary": "Fresh-seed confirmation on a frozen held-out partition; the replicated rescue is task-specific to goal 3396, not a benchmark/generalization claim; no D0 opening and no SEED comparison.",
+  "result": {
+    "run_root": "/workspace/workspace/runs/phase-h1.9-state-aware-rescue-fresh-seed-confirmation-v1-20260814",
+    "prelaunch_manifest_sha256": "4d0359756edd58ab9dfda444b93cf273fa3cd4aa2eb4f5602905355295e53a9",
+    "reconciliation_sha256": "33d39826c75f946efedf17872c05e208f7df8ed6819e4fb264cc436a81764f64",
+    "reconciliation_script": "scripts/openevo_webshop/h1_9_reconcile.py",
+    "reconciliation_script_sha256": "ea5c7babed8d6672ece3843ec7ab7be8372c9c27101966c88903e348488178a2",
+    "wandb_postmortem_sha256": "56071d3e6c17b014bcd0a666ac7547ff39ddc80b6bf8e2b1973820dbb0840ad8",
+    "attempts": 128,
+    "valid": 128,
+    "qualified_positive": 8,
+    "runtime_errors": 0,
+    "gpu_hours": 0.748777,
+    "block_result": "S1 and S2 SUCCESS/state-aware-v3 each 4/16 positive; every compact and BASE control 0/16",
+    "positive_task": "goal 3396 only; all eight fresh seeds",
+    "classification": "replicated selective state-aware rescue, task-specific",
+    "resource_note": "No compute PID remains; GPU1 retains 19850 MiB through a pre-existing nvitop handle. Do not allocate GPU1 until released; no reset or kill performed.",
+    "next": "Pre-register H1.10 new-task state-aware transfer; keep D0 closed"
+  }
+}

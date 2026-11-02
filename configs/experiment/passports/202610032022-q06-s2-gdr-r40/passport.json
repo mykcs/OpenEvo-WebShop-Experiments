@@ -1,0 +1,356 @@
+{
+  "artifact_policy": {
+    "assets": [],
+    "default_disclosure_state": "PRIVATE",
+    "default_recovery_state": "SERVER_ONLY",
+    "large_asset_provider": "Durable server artifact storage; publication or external export remains subject to the project asset policy.",
+    "state_model_policy": "docs/operations/publication/RESEARCH_ASSET_RECOVERY_AND_DISCLOSURE_POLICY.zh-CN.md",
+    "wandb_is_sole_backup": false
+  },
+  "authority_paths": [
+    "configs/experiment/advisor-questions/q06-s2-gdr-r40-202610032022-contract.json",
+    "docs/evidence/q06-remaining-science-202610032022/gdr-r40-manifest.json",
+    "configs/experiment/preregistrations/q06-s2-gdr-r40-202610032022.json",
+    "configs/experiment/profiles/q06-s2-gdr-r40-202610032022.json",
+    "configs/experiment/path-contracts/q06-s2-gdr-r40-202610032022.json",
+    "configs/experiment/activations/q06-s2-gdr-r40-202610032022-release.json",
+    "configs/experiment/activations/q06-s2-gdr-r40-202610032022-current-campaign.json",
+    "scripts/openevo_webshop/q06_s2_remaining_host_orchestrator.py",
+    "scripts/openevo_webshop/q06_s2_bounded_r120_probe_guard.py"
+  ],
+  "budget_contract": {
+    "accounting_rule": "Exactly one fixed 64-task pass; no retry or adaptive rerun, zero optimizer updates and final-panel access.",
+    "external_teacher_call_limit": 0,
+    "final_panel_access_limit": 0,
+    "horizon": 15,
+    "optimizer_step_limit": 0,
+    "rollout_limit": 64,
+    "rollouts_per_round": 64,
+    "round_limit": 0,
+    "source": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/preregistrations/q06-s2-gdr-r40-202610032022.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "29ded962857db210b51ec9d493f2a9981c092c2d4e4e43db9d8b3eba7a094210"
+    }
+  },
+  "campaign_id": "20261003-2022-q06-s2-gdr-r40",
+  "created_at": "2026-10-03T12:22:15Z",
+  "experiment_id": "202610032022-q06-s2-gdr-r40",
+  "initial_execution_identity": {
+    "activation": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/advisor-questions/q06-s2-gdr-r40-202610032022-contract.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "33359b4b4661f27d8b4a3a9a91ce20afa9d68c1841ea689c17c9c20d2d4fc80e"
+    },
+    "dependency_lock": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/assets/runtimes/h144-scientific-runtime-v1.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "f57f0d3255ebf5cdcc6d97dd4ac7fec6fd25e7e628aadc81ae24569c77f6d492"
+    },
+    "experiment_repository": "mykcs/openevo-experiment",
+    "frozen_science_sha": "161126c258b6723ceb721e6387d956988cf22a62",
+    "initial_experiment_sha": "09d3bd89b815cf5abbc9c38e0ae97283084dbac8",
+    "initial_ray_sha": "a85f9a8dc5cc9870695a4301d8fc128a7ec38fb0",
+    "initial_run_root": "/workspace/runs/q06-s2-gdr-r40-202610032022",
+    "launcher": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/q06_s2_remaining_host_orchestrator.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "63488110818c29f27db0a44e0b5aaded8f315227bc5c4d830c01570d4cced8c3"
+    },
+    "python_version": "3.11.16",
+    "release": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/activations/q06-s2-gdr-r40-202610032022-release.json",
+      "reason": "Launch release embeds this frozen Passport digest; its self-referential digest is recorded in the Formal Start receipt instead.",
+      "repository": null,
+      "revision": null,
+      "sha256": null
+    },
+    "runtime_asset_lock": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/assets/runtimes/h144-scientific-runtime-v1.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "f57f0d3255ebf5cdcc6d97dd4ac7fec6fd25e7e628aadc81ae24569c77f6d492"
+    },
+    "runtime_digest_kind": "IMAGE_ID",
+    "runtime_fingerprint": "b30116a2f0ef92ff7e011e5c96f922461e24b7743319634abfdcd840bf85cb8a",
+    "runtime_image_digest": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+    "upstream_openevo_sha": "a85f9a8dc5cc9870695a4301d8fc128a7ec38fb0",
+    "upstream_repository": "mykcs/OpenEvo"
+  },
+  "parent_experiment_id": "202610020000-q06-s2-bounded-r120",
+  "passport_payload_sha256": "b6b0a7cc190e9b2c2e35a649b3502b8c5a3cb09471a6dde2764eb876098234e3",
+  "provenance": {
+    "evidence_paths": [
+      "configs/experiment/advisor-questions/q06-s2-gdr-r40-202610032022-contract.json",
+      "docs/evidence/q06-remaining-science-202610032022/gdr-r40-manifest.json",
+      "configs/experiment/preregistrations/q06-s2-gdr-r40-202610032022.json",
+      "configs/experiment/profiles/q06-s2-gdr-r40-202610032022.json",
+      "configs/experiment/path-contracts/q06-s2-gdr-r40-202610032022.json",
+      "configs/experiment/activations/q06-s2-gdr-r40-202610032022-release.json",
+      "configs/experiment/activations/q06-s2-gdr-r40-202610032022-current-campaign.json",
+      "scripts/openevo_webshop/q06_s2_remaining_host_orchestrator.py",
+      "scripts/openevo_webshop/q06_s2_bounded_r120_probe_guard.py"
+    ],
+    "parent_lineage_note": "Append-only remaining matrix; training lineage /workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/on; no replay of completed Q06 cells.",
+    "revision_naming_note": "Exact preregistered remaining S2 cell with source-observed context; canonical release/router governs launch.",
+    "status": "NEW_DECLARATION",
+    "unknown_fields": []
+  },
+  "resume_policy": {
+    "automatic_gpu_start": false,
+    "policy": "MANUAL_REVIEW_ONLY",
+    "reason": "One exact 64-task pass; preserve any partial consumption. Engineering recovery requires exact consumption reconciliation.",
+    "requires_receipt_chain": true
+  },
+  "schema": "openevo.experiment-passport.202609111800",
+  "scientific_identity": {
+    "acceptance_policy": {
+      "candidate_rule": "One fixed pass of the sealed 64-task panel; report descriptive entropy only.",
+      "credit_assignment": "No model update, candidate selection, adaptive rerun, retry, teacher call or final-panel access.",
+      "name": "Q06_S2_FIXED_CHECKPOINT_DESCRIPTIVE_EVALUATION",
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/q06-s2-gdr-r40-202610032022.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "29ded962857db210b51ec9d493f2a9981c092c2d4e4e43db9d8b3eba7a094210"
+      }
+    },
+    "action_contract": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/q17_fixed_checkpoint_probe.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "2906ef13392f182d1cf4a644b69ff19cd8f177c74b35ffd18896459e77130070"
+    },
+    "benchmark": "WebShop",
+    "claim_boundary": "One remaining S2 fixed checkpoint evaluation; no independent prospective prediction confirmation or causal claim.",
+    "evaluator_contract": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/q06_s2_bounded_r120_probe_guard.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "dc1a375781dc6898799ca39d979e3501e5028acf17e97bbe3f35807d5335d6a1"
+    },
+    "external_teacher": {
+      "future_call_budget": 0,
+      "prior_analyses": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/q06-s2-gdr-r40-202610032022.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "29ded962857db210b51ec9d493f2a9981c092c2d4e4e43db9d8b3eba7a094210"
+      },
+      "role": "none in Q06 S2"
+    },
+    "final_panel_policy": {
+      "future_access_limit": 0,
+      "policy": "LOCKED_ZERO_ACCESS_Q06",
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/q06-s2-gdr-r40-202610032022.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "29ded962857db210b51ec9d493f2a9981c092c2d4e4e43db9d8b3eba7a094210"
+      }
+    },
+    "harness": {
+      "profile": "q06-s2-gdr-r40-202610032022",
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/profiles/q06-s2-gdr-r40-202610032022.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "35ae479f6e48b7dca1d69e1e950b3a9d31b32ee84d5c568e6c30dd356e82c496"
+      },
+      "thinking": false
+    },
+    "human_intervention_policy": "No endpoint, task, retry, or metric selection after freeze; integrity failure preserves partial output and requires separate review.",
+    "hypothesis": "The frozen checkpoint yields measurable token and legal-click choice entropy on the fixed WebShop panel.",
+    "model": {
+      "asset": {
+        "evidence_path": "docs/evidence/experiment-passports/202609111915/Q17_LIVE_BINDINGS_20260911.json",
+        "kind": "server_file",
+        "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b/verification-receipt.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "324ed4f5a6dd5d6a664ad8f4e1cb340e439394d3b7dd7dbe047f313d6815502b"
+      },
+      "dtype": "bfloat16",
+      "model_id": "Qwen/Qwen3-1.7B",
+      "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "tokenizer_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+    },
+    "optimizer": {
+      "batch_size": null,
+      "epochs": null,
+      "extra_settings": {},
+      "gradient_accumulation_steps": null,
+      "learning_rate": null,
+      "name": null
+    },
+    "parser_contract": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "scripts/openevo_webshop/q17_fixed_checkpoint_probe.py",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "09d3bd89b815cf5abbc9c38e0ae97283084dbac8",
+      "sha256": "2906ef13392f182d1cf4a644b69ff19cd8f177c74b35ffd18896459e77130070"
+    },
+    "prompt_contract": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/advisor-questions/q06-s2-gdr-r40-202610032022-contract.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "33359b4b4661f27d8b4a3a9a91ce20afa9d68c1841ea689c17c9c20d2d4fc80e"
+    },
+    "protocol_fingerprint": "1292055c7d96c4431e79a4bf55ebcc97ce4fb6fbf54d348d73678923488dddc2",
+    "research_question": "Q06 fixed-checkpoint uncertainty at Effective-State GDR ON R40, with honest pre-action features.",
+    "sampling": {
+      "do_sample": true,
+      "extra_settings": {
+        "max_steps": 15,
+        "repetition_penalty": 1.0
+      },
+      "max_new_tokens": 512,
+      "temperature": 1.0,
+      "top_k": 0,
+      "top_p": 1.0
+    },
+    "sd_lora": {
+      "alpha": 128,
+      "effective_rank_cap": 128,
+      "extra_settings": {
+        "endpoint_adapter_sha256": "723df2a2ee0630367589149366aef1ddb1111e3fbe6ba81f6c524a3ed3bfb3b7",
+        "mode": "fixed sealed after_040_rounds; no updates"
+      },
+      "rank": 128,
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/advisor-questions/q06-s2-gdr-r40-202610032022-contract.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "33359b4b4661f27d8b4a3a9a91ce20afa9d68c1841ea689c17c9c20d2d4fc80e"
+      },
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ]
+    },
+    "seed_policy": {
+      "rng_contract": "Use the frozen paired task seeds and step index policy; GPU selection does not change seeds.",
+      "schedule": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "docs/evidence/q06-remaining-science-202610032022/gdr-r40-manifest.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "637901a7c7d12361fd72632d634ab8db475ae4740a6dc686204fb563f5019928"
+      },
+      "schedule_id": "q06-s2-gdr-r40-202610032022-paired-panel",
+      "seed_base": 202609231600000
+    },
+    "split": "development/validation 64-task panel; final panel locked",
+    "stop_rule": {
+      "max_rollouts": 64,
+      "max_rounds": 0,
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/q06-s2-gdr-r40-202610032022.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "29ded962857db210b51ec9d493f2a9981c092c2d4e4e43db9d8b3eba7a094210"
+      }
+    },
+    "task_manifest": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/q06-remaining-science-202610032022/gdr-r40-manifest.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "637901a7c7d12361fd72632d634ab8db475ae4740a6dc686204fb563f5019928"
+    },
+    "training_data_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/advisor-questions/q06-s2-gdr-r40-202610032022-contract.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "33359b4b4661f27d8b4a3a9a91ce20afa9d68c1841ea689c17c9c20d2d4fc80e"
+    },
+    "treatment": "Exactly one 64-task pass of after_040_rounds; unchanged shared carriers/model/panel/sampling; no model update.",
+    "what_changed": [
+      "Only remaining checkpoint identity and opt-in pre-action recording."
+    ],
+    "what_must_stay_fixed": [
+      "Frozen shared model/runtime/carriers/tasks/seeds/sampling.",
+      "64 tasks one pass; training/optimizer/teacher/final/adaptive retry zero."
+    ]
+  },
+  "status": "FROZEN",
+  "tracking_policy": {
+    "approved_artifact_roles": [
+      "passport",
+      "run-manifest",
+      "startup-receipt",
+      "closeout-receipt",
+      "evaluation-summary",
+      "bounded-table"
+    ],
+    "entity": null,
+    "mode_order": [
+      "online",
+      "offline",
+      "disabled"
+    ],
+    "project": null,
+    "role": "MIRROR_ONLY",
+    "scientific_authority": false
+  }
+}

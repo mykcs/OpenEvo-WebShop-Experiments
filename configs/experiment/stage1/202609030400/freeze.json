@@ -1,0 +1,51 @@
+{
+  "confirmation": {
+    "path": "/workspace/runs/20260903-shared-min-deliberation/confirmation64/FINAL_CONFIRMATION.json",
+    "sha256": "e54be6a4d01353a5a04b9d617c2e1e3a2d6378d386769d234e7b5268fe03aa5b"
+  },
+  "downstream_auto_launch_forbidden": true,
+  "freeze_id": "202609030400",
+  "generation_files": {
+    "configs/experiment/manifests/h1.44-on-3b-training-schedule-v1.json": "1b3ac4252cda4d25d9542713e68e2fa4aacd90ceb377e5c03c8c1ad7c6878428",
+    "configs/experiment/stage1/202609021800/design.json": "b5f2aaae25371f1c8aeebc233f690fdbfe69c42e97f5ee0b990d9d21e2fb0784",
+    "configs/experiment/stage1/202609021800/freeze.json": "6b586aa4f82120ffbd293155c66c3ecec970d3b9e5ab9813fcd1dfba28d3195d",
+    "scripts/openevo_webshop/q25_stage1_sampling_pilot_runtime.py": "dcd480bf72750dcbeb13cce4ce408f4b082bdaaeffc0dee1168b47f1d5b44260",
+    "scripts/openevo_webshop/q25_stage1_seed_native_prompt.py": "29fb7fa55079cdd9a87121fa7601a60f9c278d6e7a711a2f82f66ac80bc4e6fd",
+    "scripts/openevo_webshop/q25_stage1_seed_native_runtime.py": "a22fd126c08fa185dd27bff3e48af1c089da7bb71735a30f80cbbd2301c07a0d",
+    "scripts/openevo_webshop/q25_stage1_seed_native_worker.py": "b442f20cd10006e032a460c7f8d1947e830cb83ad47f3d235e57759a0b436067",
+    "scripts/openevo_webshop/q25_stage1_successor_runtime.py": "d48cce88a040514446f30ea2250242606dd1c33416ce6c3aa0c40e80bba911b4",
+    "scripts/openevo_webshop/shared_stage1_min_deliberation_runtime.py": "4aae6f32d3882b07d2811307e0864af9d59db92fa6c72f36eb1fb949dd5f2ca1",
+    "scripts/openevo_webshop/shared_stage1_seed_native_min_deliberation_worker.py": "f87cafa4d66f39d45e3b3628f4988a9213a7c07418cac3f895ec6ad51d0e8fcc",
+    "scripts/openevo_webshop/shared_stage1_seed_native_soft_deliberation_prompt.py": "d5a44d152f7b32f58ddb66b92bd478f6ed01f66847c6d42c5157aa9bc0d19390",
+    "scripts/openevo_webshop/stage1_202609021800/contract.py": "d52503c818113058cb79123778efa586284504a80e7aaa1ebbc4ebde900bc088",
+    "scripts/openevo_webshop/stage1_202609021800/worker.py": "f83a042eb600c04cf8651b7dfb84755cc2f85001233ea47381c4ea7cb5ede34d"
+  },
+  "governance_files": {
+    "configs/experiment/stage1/202609030400/design.json": "1c8734f00d7c15d29829693b139f1284f87e52b75eec6b6dbdd6c33ff4addc47",
+    "configs/experiment/stage1/202609030400/schedule.json": "a033575ceca38588e963fa5f91056325bfd0b43ccf9c34b90ac39cf52c17a783",
+    "scripts/openevo_webshop/launch_shared_stage1_202609030400.sh": "87f238455edf800e5535594d46f74760ee72b329c107c5f5347c41bee861ad21",
+    "scripts/openevo_webshop/seal_shared_stage1_202609030400.py": "3b0bfbcaa17cfc39b06dba1726df735c1cf91f88d6a6ec1c0aa002df5bdf7b34",
+    "scripts/openevo_webshop/shared_stage1_202609030400_worker.py": "a607b2f134f63b3a5d95215b7b9ce980221d539387c2a235f332861b36e7d50d"
+  },
+  "models": {
+    "qwen25-3b": {
+      "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+      "weight_sha256": [
+        "67347b23fb4165b652eb6611f5e1f2a06dfcddba8e909df1b2b0b1857bee06c2",
+        "a40d941d0e7e0b966ad8b62bb6d6b7c88cce1299197b599d9d0a4ce59aabfc1d"
+      ]
+    },
+    "qwen3-1p7b": {
+      "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "weight_sha256": [
+        "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5",
+        "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9"
+      ]
+    }
+  },
+  "qualified_execution_git_sha": "23f51ab4b7038d23f16076f047d16e767529a319",
+  "reward_or_success_is_pass_gate": false,
+  "schema": "openevo.shared-stage1.freeze-manifest.v1",
+  "status": "FROZEN",
+  "upstream_source_freeze_id": "202609021800"
+}

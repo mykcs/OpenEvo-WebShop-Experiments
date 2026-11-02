@@ -1,0 +1,93 @@
+{
+  "base_config_sha256": "869793ae8e3694f352fca579b2d5d3562c21201a18ec5210678f1101be22157e",
+  "entries": [
+    {
+      "allowed_selected_gpu_sets": [
+        [
+          4,
+          5,
+          6,
+          7
+        ]
+      ],
+      "authority_refs": [
+        {
+          "git_sha": "8f03ada870bc252c06fe11e297e775ba9438eb1d",
+          "path": "docs/evidence/bounded-recurrence-gdr-20260915/prelaunch-hardening-202609151830/GPU4567_FORMAL_LANE_SUCCESSOR_20260916.json",
+          "sha256": "d272e022bb6dade53dc6165a274872f319de06ae3504ce07ec85d74d8d79907f",
+          "status": "PROSPECTIVELY_FROZEN_BEFORE_FORMAL_LAUNCH"
+        },
+        {
+          "git_sha": "8f03ada870bc252c06fe11e297e775ba9438eb1d",
+          "path": "docs/evidence/bounded-recurrence-gdr-20260915/prelaunch-hardening-202609151830/CORESIDENT_ROLLOUT_RESOURCE_SUCCESSOR_20260916.json",
+          "sha256": "5105ac614e25d7d61542ce655c2c26a5881dbc5823d3476bff3d6b5d9c5070b8",
+          "status": "PASS_EFFECTIVE_STATE_PREFERRED_TOPOLOGY"
+        }
+      ],
+      "candidate_gpu_indices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "fallback_allowed": false,
+      "formal_activation_granted": false,
+      "gpu_count": 4,
+      "name": "bounded-gpu4567-full-pool-rollout",
+      "placement_mode": "GANG_ALL_OR_NOTHING",
+      "scientific_authority_granted": false,
+      "topology_id": "00981f43bbd0dfa0d2ce5da4cb01261e12c0c2e2c7724ca71bb6df52bfe83e09",
+      "workloads": [
+        "bounded_off_rollout",
+        "bounded_on_rollout"
+      ]
+    },
+    {
+      "allowed_selected_gpu_sets": [
+        [
+          4
+        ]
+      ],
+      "authority_refs": [
+        {
+          "git_sha": "8f03ada870bc252c06fe11e297e775ba9438eb1d",
+          "path": "docs/evidence/bounded-recurrence-gdr-20260915/prelaunch-hardening-202609151830/FORMAL_RESOURCE_EXECUTION_CONTRACT.json",
+          "sha256": "0095378143c25cdea7c1d5631ff5009152c3d72a11c58ad44c7c8b22eee5c5e3",
+          "status": "PROSPECTIVELY_FROZEN_BEFORE_FORMAL_LAUNCH"
+        },
+        {
+          "git_sha": "8f03ada870bc252c06fe11e297e775ba9438eb1d",
+          "path": "docs/evidence/bounded-recurrence-gdr-20260915/prelaunch-hardening-202609151830/GPU4567_FORMAL_LANE_SUCCESSOR_20260916.json",
+          "sha256": "d272e022bb6dade53dc6165a274872f319de06ae3504ce07ec85d74d8d79907f",
+          "status": "PROSPECTIVELY_FROZEN_BEFORE_FORMAL_LAUNCH"
+        }
+      ],
+      "candidate_gpu_indices": [
+        4
+      ],
+      "fallback_allowed": false,
+      "formal_activation_granted": false,
+      "gpu_count": 1,
+      "name": "bounded-gpu4-serial-post-rollout",
+      "placement_mode": "QUALIFIED_SUBSET",
+      "scientific_authority_granted": false,
+      "topology_id": "5336d37c1d576bcc35d6b0565ef51559c76c5da0840ac9c40595c537c55c98d5",
+      "workloads": [
+        "bounded_off_text_memory",
+        "bounded_off_sd_lora",
+        "bounded_off_skill_bundle",
+        "bounded_off_agent_system",
+        "bounded_on_text_memory",
+        "bounded_on_sd_lora",
+        "bounded_on_skill_bundle",
+        "bounded_on_agent_system"
+      ]
+    }
+  ],
+  "formal_activation_granted": false,
+  "profile_registry_sha256": "11970341a9f6c75bad26821803e61b39a11216c24509c5a4635f04827ad7875a",
+  "registry_id": "2dc6166569907bed888b9352946bb4f54bbafa643137d585a959a683d842279f",
+  "schema": "openevo.qualified-topology-registry.202609170845",
+  "scientific_authority_granted": false,
+  "status": "PROSPECTIVE_IDENTITY_PRESERVATION_ONLY"
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "openevo.webshop-h1.35-state-aware-navigation-diagnostic.v1",
+  "experiment": "H1.35-state-aware-navigation-diagnostic",
+  "phase": "H1.35",
+  "status": "preregistered-not-authorized",
+  "formal_task_consumption_allowed": false,
+  "scientific_question": "Can the existing state-aware navigation prompt reduce the dominant next-page loop and produce native Qwen positives on the H1.30 task-identity panel after parser validity is repaired?",
+  "hypothesis": "Holding model, tasks, seeds, evaluator, horizon, and v2 parser fixed, state-aware-v3 will reduce repeated next actions and increase product/buy-now transitions relative to compact-v2.",
+  "baseline": {
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v2-missing-close",
+    "source": "H1.34 parser-contract diagnostic",
+    "reconciliation_sha256": "c1d5310812c322c29cb49f0e3923aa55f685d4caa34137625dd341ed2cc34dc0"
+  },
+  "treatment": {
+    "prompt_contract": "seed3090.webshop-state-aware-action-prompt.v3",
+    "policy": "Search once, prefer a plausible product before pagination, cap consecutive Next actions at two, select required options before buy now."
+  },
+  "model": {
+    "id": "Qwen/Qwen2.5-3B-Instruct",
+    "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1"
+  },
+  "panel": {
+    "manifest_sha256": "8a55f08190e83010b7764a8137901935dc2e635513910fcdceae86502176036b",
+    "task_count": 16,
+    "train_only": true,
+    "evaluation_task_consumption": 0
+  },
+  "rollout_contract": {
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "rollout_seeds": [2026091200, 2026091201, 2026091202, 2026091203],
+    "attempt_count": 64
+  },
+  "controls": {
+    "teacher": "disabled",
+    "adapter": "none",
+    "open_evo_training": "disabled",
+    "environment_seed": 2026081401,
+    "evaluator": "WebShop task_score/won"
+  },
+  "primary_metrics": [
+    "qualified positive count",
+    "valid attempt rate",
+    "mean task score",
+    "navigation-next loop count",
+    "product/buy-now transition count",
+    "parser/fallback failure rate"
+  ],
+  "decision_rule": "Report the prompt-only paired diagnostic against H1.34; any task-local positive remains non-formal and does not open H1.30 or D0.",
+  "claim_boundary": "Prompt/navigation diagnostic only. It cannot establish OpenEvo efficacy, teacher benefit, broad model capability, or OpenEvo-versus-SEED superiority."
+}

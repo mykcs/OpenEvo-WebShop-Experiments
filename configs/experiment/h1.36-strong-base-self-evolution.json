@@ -1,0 +1,125 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.36-strong-base-self-evolution-v1",
+  "campaign_id": "20260818-0000-h136-strong-base-self-evolution",
+  "phase": "H1.36",
+  "status": "draft",
+  "direction": "A - strong-base pure self-evolution with no teacher (user direction 2026-08-18)",
+  "program_target": "Measure whether OpenEvo can improve WebShop score, speed, or execution quality, then compare the stabilized route with a separately frozen SEED baseline.",
+  "scientific_question": "Does raising the base-model scale from Qwen2.5-3B to Qwen2.5-7B open the self-evolution capability gate (at least two train task identities and eight qualified self-generated episodes) that 3B failed, on the SAME frozen H1.29 task manifest?",
+  "hypothesis": "H1.27 showed Qwen2.5-7B and Granite-3.3-2B each produced qualified positives where Qwen2.5-3B produced zero. If capability is the bottleneck, then on the identical frozen H1.29 train tasks, seeds, and contracts, Qwen2.5-7B should yield at least two task identities and eight qualified self-generated episodes, opening the gate H1.29 could not.",
+  "independent_variable": "base-model scale (Qwen2.5-3B-Instruct -> Qwen2.5-7B-Instruct); every other variable is frozen task-matched to H1.29",
+  "route_decision": {
+    "current_evidence": "H1.29 closed self-evolution-not-supported for Qwen2.5-3B (capability gate produced positives but the held-out transfer stayed 0.0; and at the 3B scale the harvest gate is the binding constraint). H1.27 showed a one-scale-up base (7B) crosses the qualified-positive threshold that 3B could not.",
+    "selected_route": "strong-base self-evolution (direction A): repeat the exact H1.29 self-evolution route with the base model scaled 3B -> 7B and nothing else changed",
+    "fallback_route": "If Qwen2.5-7B ALSO fails the capability gate on the same tasks, capability at this scale is not the binding constraint; stop this route and either register route B (teacher bootstrap with a hashed teacher manifest and privileged-context boundary) or a matched SEED contract. Do not silently substitute another model or an online endpoint.",
+    "capability_gate": "Proceed to training only if at least two train task identities yield qualified self-generated episodes and at least eight qualified episodes in total."
+  },
+  "arms": {
+    "BASE": "frozen Qwen2.5-7B-Instruct with no adapter",
+    "SELF-EVOLUTION": "one rank-4 OpenEvo SD-LoRA adapter trained only on qualified Qwen2.5-7B self-generated success episodes from the train split"
+  },
+  "train_panel": {
+    "tasks": [2822, 5135, 5294, 6769, 2901, 3449, 4313, 4600],
+    "rollout_seeds": [2026090100, 2026090101, 2026090102, 2026090103],
+    "selection_rule": "reuse the frozen H1.29 task manifest verbatim (NOT a fresh selection) so the 7B-versus-3B comparison is task-matched; task description text is re-derived from the seed root and cross-checked against the frozen record sha256",
+    "frozen_source_manifest": "docs/evidence/remote-runs/2026-08-16/h1.29/manifests/h1.29-task-manifest-v1.json",
+    "frozen_source_manifest_sha256": "d048893f0555855cd94d9e38573f8d67adab5c57021abf3937766b0e878db90d",
+    "frozen_source_manifest_note": "sha256 of the committed H1.29 public-manifest-record file, the artifact the H1.36 builder loads and verifies. The record anchors the original H1.29 server-side run manifest via its server_file_sha256 (a7c3fc7a, see h1_29_manifest_sha256 below) and the canonical content hash e42188b1; the two manifest artifacts were previously conflated into one hash constant.",
+    "frozen_source_manifest_errata": "Forensics on 2026-08-18 found the frozen record's stored hash for evaluation goal 1082 is a corrupt 63-char value (25ab31a4faf...); the authoritative execution-time server manifest (server_file_sha256 a7c3fc7a) and the live seed root both give 25ab4caf4faf.... The frozen record file is left byte-identical (its integrity anchors still verify); the builder corrects only this one expected hash via H129_RECORD_ERRATA and keeps the gate fail-closed for all 16 tasks. See docs/evidence/remote-runs/2026-08-16/h1.29/manifests/h1.29-task-manifest-v1-errata-goal-1082.md.",
+    "qualification": "identity_ok and trace_complete and no parser/fallback/error and final_task_score > 0"
+  },
+  "evaluation_panel": {
+    "tasks": [594, 1082, 1568, 1614, 1719, 2087, 4709, 5790],
+    "rollout_seeds": [2026090200, 2026090201, 2026090202, 2026090203],
+    "cells": 16,
+    "attempts": 64,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "temperature": 0.0,
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1"
+  },
+  "comparison_to_h1_29": {
+    "design": "identical task manifest, rollout seeds, prompt/action contracts, and training hyperparameters; only the base model differs, yielding a paired Qwen2.5-7B versus Qwen2.5-3B capability comparison on the same tasks",
+    "h1_29_baseline": "Qwen2.5-3B self-evolution closed negative (self-evolution-not-supported); H1.36 tests whether scaling the base reverses the harvest-gate outcome",
+    "h1_29_execution_git_sha": "290385835f1232fa6853971fe6a5f00ceca43f6c",
+    "h1_29_manifest_sha256": "a7c3fc7a398a5513c38f5420e57b39f80e44fd11386869bcf5401406b7e86249"
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "model_local_dir": "/workspace/models/qwen2.5-7b-instruct",
+    "model_revision": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+    "model_revision_kind": "local-content-pin (sha256 over config.json + model.safetensors.index.json + tokenizer_config.json); the model is a pinned read-only local directory, not an HF hub snapshot, so the content pin replaces an HF commit hash",
+    "model_config_sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+    "model_index_sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+    "model_tokenizer_config_sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+    "upstream_open_evo_stable": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "environment_seed": 2026,
+    "python_runtime_fingerprint": "e3cb53bced07b519157ceca2698935bf0be45a58d08465c87c618ef62c31ee18",
+    "python_runtime_fingerprint_note": "sha256 of the sorted pip freeze of the shared phase-g-live-20260814 env. H1.29 used d7220829; the env was later changed by the deliberate doctor-openevo-327d2f5-20260817 dependency repair (auxiliary serving/async/lightgbm packages only). torch 2.12.1, transformers 4.51.1, peft 0.15.2, accelerate 1.10.1, numpy 1.26.4, safetensors 0.5.3 verified byte-identical to the H1.29 era, so the drift carries no scientific confound; H1.36 pins the current doctor-passed state rather than rebuilding.",
+    "training": {
+      "rank": 4,
+      "target_modules": ["q_proj", "v_proj"],
+      "learning_rate": 0.0002,
+      "coefficient_learning_rate": 0.01,
+      "epochs": 1,
+      "max_steps": 8,
+      "max_length": 512,
+      "replay_capacity": 64,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 1,
+      "gradient_checkpointing": true,
+      "dtype": "bfloat16",
+      "seed": 1993
+    }
+  },
+  "metrics": {
+    "primary": [
+      "qualified self-generated train episodes by task identity (the capability gate)",
+      "SELF-EVOLUTION minus BASE paired task_score",
+      "scientific-valid rate",
+      "qualified-positive rate by task identity"
+    ],
+    "diagnostic": [
+      "self-trajectory step count",
+      "parser/fallback rate",
+      "buy-now transition",
+      "valid-action rate",
+      "premature-next-page rate",
+      "valid-episode wall time seconds",
+      "first divergence step",
+      "training loss",
+      "adapter state change"
+    ],
+    "invalid": ["runtime error", "identity mismatch", "incomplete trace", "parser/fallback failure"]
+  },
+  "positive_rule": "The capability gate passes at 7B (where 3B failed), and SELF-EVOLUTION has a positive aggregate paired score delta over BASE plus positive mean score on at least two complete task identities; this remains a route result and does not open Q3 without independent confirmation.",
+  "negative_rule": "If the capability gate still fails at 7B, classify self-evolution as capability-insensitive at this scale and stop; if training succeeds but the held-out paired delta is non-positive or task-local, retain the negative result and do not sweep rank/LR/epoch/prompt.",
+  "invalid_rule": "Exclude runtime/parser/identity failures from scientific denominators; repair only provenance/runtime faults before a fresh preregistered group.",
+  "contamination_rules": [
+    "train and evaluation task identities are disjoint (inherited from the frozen H1.29 split)",
+    "evaluation outcomes and traces never enter the self-generated dataset",
+    "only Qwen2.5-7B outputs from train tasks may enter the self-generated dataset; H1.29 3B trajectories never enter it",
+    "no teacher, oracle, memory, retrieval, prompt change, or action post-processing during evaluation",
+    "one formal adapter training run and no retry after valid completion",
+    "the task manifest is reused frozen from H1.29, not freshly selected, to preserve task-matched comparability"
+  ],
+  "resource_budget": {
+    "harvest_attempts": 32,
+    "training_runs": 1,
+    "evaluation_cells": 16,
+    "planned_gpus": 8,
+    "gpu_hours_cap": 10,
+    "parallel_policy": "eight UUID-bound sibling containers for train harvest and each evaluation wave; no duplicate occupancy",
+    "staged_launch": "harvest stage runs the harvest wave and the fail-closed capability gate first; the train and evaluation stages run only after the gate is observed open"
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "project": "openevo-webshop-experiments",
+    "default_mode": "online",
+    "offline_fallback": "only after exact online initialization/upload failure is captured with error and spool hash"
+  },
+  "claim_boundary": "H1.36 can establish only whether base-model scale opens the self-evolution capability gate and, if so, a bounded fresh-task route result. It cannot claim Q3, H2, ordinary-LoRA superiority, retention, transfer, SEED superiority, or GPT/OPSD equivalence. The SEED win target belongs to a later matched comparison.",
+  "next_gate": "CPU tests and the manifest/materializer audit must pass before formal task consumption is enabled; the harvest capability gate is observed before any training or evaluation cells run."
+}

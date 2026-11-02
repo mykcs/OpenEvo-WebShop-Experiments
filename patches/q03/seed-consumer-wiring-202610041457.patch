@@ -1,0 +1,407 @@
+diff --git a/examples/seed_trainer/_common/webshop.sh b/examples/seed_trainer/_common/webshop.sh
+index 90b1cefdaf44494d53c62895c6591755d2e96c11..f7fb19a439c5681f26d301679fba2ac00150463f 100755
+--- a/examples/seed_trainer/_common/webshop.sh
++++ b/examples/seed_trainer/_common/webshop.sh
+@@ -36,0 +37,10 @@
++ENV_SEED="${ENV_SEED:-0}"
++DATA_SEED="${DATA_SEED:-1}"
++POLICY_SEED="${POLICY_SEED:-null}"
++if [[ "$POLICY_SEED" == "null" ]]; then
++  CHECKPOINT_ENVIRONMENT_RNG="${CHECKPOINT_ENVIRONMENT_RNG:-False}"
++  NATIVE_TEST_FREQ="${NATIVE_TEST_FREQ:-5}"
++else
++  CHECKPOINT_ENVIRONMENT_RNG="${CHECKPOINT_ENVIRONMENT_RNG:-True}"
++  NATIVE_TEST_FREQ="${NATIVE_TEST_FREQ:--1}"
++fi
+@@ -85,0 +96 @@
++    data.seed="$DATA_SEED" \
+@@ -107,0 +119 @@
++    actor_rollout_ref.rollout.engine_seed="$POLICY_SEED" \
+@@ -144 +156 @@
+-    env.seed=0 \
++    env.seed="$ENV_SEED" \
+@@ -155 +167,2 @@
+-    trainer.test_freq=5 \
++    trainer.checkpoint_environment_rng="$CHECKPOINT_ENVIRONMENT_RNG" \
++    trainer.test_freq="$NATIVE_TEST_FREQ" \
+diff --git a/verl/trainer/config/ppo_trainer.yaml b/verl/trainer/config/ppo_trainer.yaml
+index c4187a8de402ba59a3b2786955fcc61596e5808b..cfc86d2dd9b1ec7d61a06d0f2c622779217dbea4 100755
+--- a/verl/trainer/config/ppo_trainer.yaml
++++ b/verl/trainer/config/ppo_trainer.yaml
+@@ -15,0 +16 @@
++  seed: 1 # default used by main_ppo.create_rl_sampler when omitted
+@@ -119,0 +121 @@
++    engine_seed: null # engine-only seed; distinct from per-request SamplingParams.seed
+@@ -315,0 +318 @@
++  checkpoint_environment_rng: False # opt-in update-boundary WebShop exact resume
+diff --git a/verl/utils/checkpoint/fsdp_checkpoint_manager.py b/verl/utils/checkpoint/fsdp_checkpoint_manager.py
+index f5980129e91e5a4baf3ad544516aceeb829cc258..be8dd7a635e386ea0d70e8d71bc760662341adf5 100755
+--- a/verl/utils/checkpoint/fsdp_checkpoint_manager.py
++++ b/verl/utils/checkpoint/fsdp_checkpoint_manager.py
+@@ -32,0 +33,34 @@
++ROLLOUT_RNG_STATE_KEY = "q03_rollout_rng"
++
++
++def _save_rollout_rng_state(extra_state_dict, state_provider):
++    if state_provider is None:
++        return
++    state = state_provider.get_rollout_rng_state()
++    if state is None:
++        raise RuntimeError("rollout.engine_seed requires a checkpointable rollout RNG state")
++    extra_state_dict[ROLLOUT_RNG_STATE_KEY] = state
++
++
++def _validate_rollout_rng_checkpoint(extra_state_dict, state_provider):
++    has_state = ROLLOUT_RNG_STATE_KEY in extra_state_dict
++    if state_provider is not None and not has_state:
++        raise RuntimeError("checkpoint is missing required rollout RNG state")
++    if state_provider is None and has_state:
++        raise RuntimeError("checkpoint contains rollout RNG but no rollout RNG owner is configured")
++    if has_state:
++        state_provider.validate_rollout_rng_state(extra_state_dict[ROLLOUT_RNG_STATE_KEY])
++
++
++def _load_rollout_rng_state(extra_state_dict, state_provider):
++    if ROLLOUT_RNG_STATE_KEY not in extra_state_dict:
++        if state_provider is not None:
++            raise RuntimeError("checkpoint is missing required rollout RNG state")
++        return
++    if state_provider is None:
++        raise RuntimeError("checkpoint contains rollout RNG but no rollout RNG owner is configured")
++    state = extra_state_dict[ROLLOUT_RNG_STATE_KEY]
++    state_provider.validate_rollout_rng_state(state)
++    state_provider.set_rollout_rng_state(state)
++
++
+@@ -57,0 +92 @@
++        rollout_rng_state_provider=None,
+@@ -67,0 +103 @@
++        self.rollout_rng_state_provider = rollout_rng_state_provider
+@@ -103,0 +140 @@
++        _validate_rollout_rng_checkpoint(extra_state_dict, self.rollout_rng_state_provider)
+@@ -124,0 +162 @@
++        _load_rollout_rng_state(extra_state_dict, self.rollout_rng_state_provider)
+@@ -175,0 +214 @@
++                _save_rollout_rng_state(extra_state_dict, self.rollout_rng_state_provider)
+diff --git a/verl/workers/fsdp_workers.py b/verl/workers/fsdp_workers.py
+index 990f7c1fabfd7083960412635909042b1961071e..4d6f5d059506c0232b5d9aec075b7426c0fc4018 100755
+--- a/verl/workers/fsdp_workers.py
++++ b/verl/workers/fsdp_workers.py
+@@ -79,0 +80,13 @@
++def _construct_with_engine_rng_isolation(factory, *, engine_seed=None, **kwargs):
++    """Explicit engine seeds must not replace the learner's global RNG state."""
++    if engine_seed is None:
++        return factory(**kwargs)
++    from verl.utils.checkpoint.checkpoint_manager import BaseCheckpointManager
++
++    learner_rng = BaseCheckpointManager.get_rng_state()
++    try:
++        return factory(**kwargs)
++    finally:
++        BaseCheckpointManager.load_rng_state(learner_rng)
++
++
+@@ -423 +436,2 @@
+-                rollout = vLLMRollout(
++                rollout = _construct_with_engine_rng_isolation(
++                    vLLMRollout, engine_seed=self.config.rollout.get("engine_seed"),
+@@ -434 +448,2 @@
+-                rollout = vllm_rollout_cls(
++                rollout = _construct_with_engine_rng_isolation(
++                    vllm_rollout_cls, engine_seed=self.config.rollout.get("engine_seed"),
+@@ -455,0 +471 @@
++                engine_seed=self.config.rollout.get("engine_seed"),
+@@ -593,0 +610,5 @@
++            rollout_rng_state_provider = None
++            if self.config.rollout.get("engine_seed") is not None:
++                rollout_rng_state_provider = getattr(self, "rollout_sharding_manager", None)
++                if not callable(getattr(rollout_rng_state_provider, "get_rollout_rng_state", None)):
++                    raise RuntimeError("rollout.engine_seed requires the FSDP vLLM rollout RNG owner")
+@@ -599,0 +621 @@
++                rollout_rng_state_provider=rollout_rng_state_provider,
+diff --git a/verl/workers/rollout/vllm_rollout/vllm_rollout.py b/verl/workers/rollout/vllm_rollout/vllm_rollout.py
+index 3ce7b2006e8e030e312e55631286ab3c9d652f4e..60ca0fc56fd2b44c4e92ddce98eea3a2a8ccc364 100755
+--- a/verl/workers/rollout/vllm_rollout/vllm_rollout.py
++++ b/verl/workers/rollout/vllm_rollout/vllm_rollout.py
+@@ -119,0 +120,6 @@
++        engine_seed = config.get("engine_seed")
++        if engine_seed is not None:
++            configured_engine_seed = engine_kwargs.get("seed")
++            if configured_engine_seed is not None and int(configured_engine_seed) != int(engine_seed):
++                raise ValueError("conflicting rollout.engine_seed and rollout.engine_kwargs.vllm.seed")
++            engine_kwargs["seed"] = int(engine_seed)
+diff --git a/verl/workers/rollout/vllm_rollout/vllm_rollout_spmd.py b/verl/workers/rollout/vllm_rollout/vllm_rollout_spmd.py
+index e7c6308d3e1ef971c72259bf3bcbdb3b856820f4..63b05d02e91de5ba8bab6169777f91f3c42c0a2e 100755
+--- a/verl/workers/rollout/vllm_rollout/vllm_rollout_spmd.py
++++ b/verl/workers/rollout/vllm_rollout/vllm_rollout_spmd.py
+@@ -177,0 +178,6 @@
++        engine_seed = config.get("engine_seed")
++        configured_engine_seed = engine_kwargs.pop("seed", None)
++        if engine_seed is None:
++            engine_seed = configured_engine_seed if configured_engine_seed is not None else config.get("seed", 0)
++        elif configured_engine_seed is not None and int(configured_engine_seed) != int(engine_seed):
++            raise ValueError("conflicting rollout.engine_seed and rollout.engine_kwargs.vllm.seed")
+@@ -215 +221 @@
+-            seed=config.get("seed", 0),
++            seed=engine_seed,
+diff --git a/verl/workers/sharding_manager/fsdp_vllm.py b/verl/workers/sharding_manager/fsdp_vllm.py
+index d5249ce0fbcf0a85ecbb60893e2b858f0f02cdee..f3cb54db21d994769b0eec48d007caf4dc1f794d 100755
+--- a/verl/workers/sharding_manager/fsdp_vllm.py
++++ b/verl/workers/sharding_manager/fsdp_vllm.py
+@@ -14,0 +15 @@
++import hashlib
+@@ -20 +21 @@
+-from typing import List
++from typing import List, Optional
+@@ -50,0 +52,74 @@
++
++def _rollout_seed_for_dp_rank(engine_seed, dp_rank):
++    if engine_seed is None:
++        return int(dp_rank) + 1000
++    material = f"verl.rollout.engine_seed.v1:{int(engine_seed)}:{int(dp_rank)}".encode("ascii")
++    return int.from_bytes(hashlib.sha256(material).digest()[:8], byteorder="big", signed=False)
++
++
++def _validate_rollout_rng_state_payload(
++    state, *, engine_seed, dp_rank, derived_seed, expected_shape, expected_dtype, tensor_type
++):
++    if engine_seed is None:
++        raise RuntimeError("checkpoint contains rollout RNG but rollout.engine_seed is unset")
++    if not isinstance(state, dict) or state.get("version") != 1:
++        raise ValueError("unsupported rollout RNG checkpoint state")
++    if int(state.get("engine_seed", -1)) != int(engine_seed):
++        raise ValueError("rollout RNG checkpoint engine_seed mismatch")
++    if int(state.get("dp_rank", -1)) != int(dp_rank):
++        raise ValueError("rollout RNG checkpoint dp_rank mismatch")
++    if int(state.get("derived_seed", -1)) != int(derived_seed):
++        raise ValueError("rollout RNG checkpoint derived seed mismatch")
++    rng_state = state.get("gen_random_states")
++    if not isinstance(rng_state, tensor_type):
++        raise ValueError("rollout RNG checkpoint state must be a tensor")
++    if rng_state.dtype != expected_dtype or tuple(rng_state.shape) != tuple(expected_shape):
++        raise ValueError("rollout RNG checkpoint tensor dtype or shape mismatch")
++    if getattr(getattr(rng_state, "device", None), "type", None) != "cpu":
++        raise ValueError("rollout RNG checkpoint tensor must be on CPU")
++    if len(tuple(rng_state.shape)) != 1 or int(rng_state.numel()) <= 0:
++        raise ValueError("rollout RNG checkpoint tensor must be a non-empty vector")
++    return rng_state
++
++
++def _isolate_explicit_rollout_session_entry(method):
++    from functools import wraps
++
++    @wraps(method)
++    def enter(self, *args, **kwargs):
++        if self.rollout_engine_seed is None:
++            return method(self, *args, **kwargs)
++        from verl.utils.checkpoint.checkpoint_manager import BaseCheckpointManager
++
++        if getattr(self, "_q03_learner_rng_state", None) is not None:
++            raise RuntimeError("explicit rollout RNG session is already entered")
++        self._q03_learner_rng_state = BaseCheckpointManager.get_rng_state()
++        try:
++            return method(self, *args, **kwargs)
++        except BaseException:
++            BaseCheckpointManager.load_rng_state(self._q03_learner_rng_state)
++            self._q03_learner_rng_state = None
++            raise
++
++    return enter
++
++
++def _isolate_explicit_rollout_session_exit(method):
++    from functools import wraps
++
++    @wraps(method)
++    def exit(self, *args, **kwargs):
++        if self.rollout_engine_seed is None:
++            return method(self, *args, **kwargs)
++        from verl.utils.checkpoint.checkpoint_manager import BaseCheckpointManager
++
++        learner_rng = getattr(self, "_q03_learner_rng_state", None)
++        if learner_rng is None:
++            raise RuntimeError("explicit rollout RNG session has no learner state")
++        try:
++            return method(self, *args, **kwargs)
++        finally:
++            BaseCheckpointManager.load_rng_state(learner_rng)
++            self._q03_learner_rng_state = None
++
++    return exit
+@@ -64 +139,2 @@
+-        layered_summon: bool = True
++        layered_summon: bool = True,
++        engine_seed: Optional[int] = None,
+@@ -82,0 +159,3 @@
++        self.rollout_engine_seed = None if engine_seed is None else int(engine_seed)
++        self.rollout_dp_rank = None
++        self.rollout_derived_seed = None
+@@ -103 +182,4 @@
+-            get_torch_device().manual_seed(gen_dp_rank + 1000)  # make sure all tp ranks have the same random states
++            self.rollout_dp_rank = int(gen_dp_rank)
++            generation_seed = _rollout_seed_for_dp_rank(self.rollout_engine_seed, gen_dp_rank)
++            self.rollout_derived_seed = int(generation_seed)
++            get_torch_device().manual_seed(generation_seed)  # same state across TP ranks, separate DP streams
+@@ -112,0 +195,30 @@
++    def get_rollout_rng_state(self):
++        if self.rollout_engine_seed is None:
++            return None
++        if self.gen_random_states is None:
++            raise RuntimeError("rollout RNG is unavailable without a device mesh")
++        return {
++            "version": 1,
++            "engine_seed": self.rollout_engine_seed,
++            "dp_rank": self.rollout_dp_rank,
++            "derived_seed": self.rollout_derived_seed,
++            "gen_random_states": self.gen_random_states.clone(),
++        }
++
++    def validate_rollout_rng_state(self, state):
++        if self.gen_random_states is None:
++            raise RuntimeError("rollout RNG is unavailable without a device mesh")
++        return _validate_rollout_rng_state_payload(
++            state,
++            engine_seed=self.rollout_engine_seed,
++            dp_rank=self.rollout_dp_rank,
++            derived_seed=self.rollout_derived_seed,
++            expected_shape=self.gen_random_states.shape,
++            expected_dtype=self.gen_random_states.dtype,
++            tensor_type=torch.Tensor,
++        )
++
++    def set_rollout_rng_state(self, state):
++        self.gen_random_states = self.validate_rollout_rng_state(state).clone()
++
++    @_isolate_explicit_rollout_session_entry
+@@ -214,0 +327 @@
++    @_isolate_explicit_rollout_session_exit
+diff --git a/agent_system/environments/env_package/webshop/envs.py b/agent_system/environments/env_package/webshop/envs.py
+index c9b43e29a5643f63eee04cba3327623623815a9f..55f2cb7dbf37f1193e90e0b509908d5b6be20eef 100755
+--- a/agent_system/environments/env_package/webshop/envs.py
++++ b/agent_system/environments/env_package/webshop/envs.py
+@@ -115,0 +116 @@
++        self._selection_seed = seed
+@@ -173,0 +175,35 @@
++
++    def _task_selection_identity(self):
++        return {
++            'seed': self._selection_seed, 'is_train': self.is_train,
++            'env_num': self.env_num, 'group_n': self.group_n,
++            'goal_idxs': tuple(self.goal_idxs),
++        }
++
++    def get_task_selection_rng_state(self):
++        """Snapshot only the update-boundary task-selection stream."""
++        state = self._rng.get_state()
++        return {'version': 1, 'identity': self._task_selection_identity(),
++                'rng': (state[0], state[1].copy(), *state[2:])}
++
++    def validate_task_selection_rng_state(self, payload):
++        if not isinstance(payload, dict) or payload.get('version') != 1:
++            raise ValueError('unsupported WebShop task-selection RNG checkpoint')
++        if payload.get('identity') != self._task_selection_identity():
++            raise ValueError('WebShop task-selection checkpoint identity mismatch')
++        state = payload.get('rng')
++        if (not isinstance(state, tuple) or len(state) != 5
++                or state[0] != 'MT19937' or not isinstance(state[1], np.ndarray)
++                or state[1].dtype != np.dtype('uint32') or state[1].shape != (624,)
++                or type(state[2]) is not int or not 0 <= state[2] <= 624
++                or type(state[3]) is not int or state[3] not in (0, 1)
++                or not isinstance(state[4], (float, np.floating))
++                or not np.isfinite(state[4])):
++            raise ValueError('invalid WebShop MT19937 checkpoint state')
++        # Validate on a separate owner: rejection never advances the live stream.
++        probe = np.random.RandomState(0)
++        probe.set_state(state)
++        return (state[0], state[1].copy(), *state[2:])
++
++    def load_task_selection_rng_state(self, payload):
++        self._rng.set_state(self.validate_task_selection_rng_state(payload))
+diff --git a/agent_system/environments/base.py b/agent_system/environments/base.py
+index e39641a3e1038720a6324729f2ac99719561a1bd..caecb2550d2a2f03edc20bdc88b73bcb33cfab17 100755
+--- a/agent_system/environments/base.py
++++ b/agent_system/environments/base.py
+@@ -111,0 +112,9 @@
++    def get_task_selection_rng_state(self):
++        return self.envs.get_task_selection_rng_state()
++
++    def validate_task_selection_rng_state(self, payload):
++        return self.envs.validate_task_selection_rng_state(payload)
++
++    def load_task_selection_rng_state(self, payload):
++        self.envs.load_task_selection_rng_state(payload)
++
+diff --git a/verl/trainer/ppo/ray_trainer.py b/verl/trainer/ppo/ray_trainer.py
+index 19c2762b12b98627b0cb14a5006ddfc68f5eb39f..4e98c7f85a575deaf333b5338684edcf14596edf 100755
+--- a/verl/trainer/ppo/ray_trainer.py
++++ b/verl/trainer/ppo/ray_trainer.py
+@@ -501,0 +502,7 @@
++def _require_environment_rng_checkpoint(config):
++    if (OmegaConf.select(config, "env.env_name") == "Webshop"
++            and OmegaConf.select(config, "actor_rollout_ref.rollout.engine_seed") is not None
++            and OmegaConf.select(config, "trainer.checkpoint_environment_rng") is not True):
++        raise RuntimeError("explicit WebShop policy seed requires environment RNG checkpointing")
++
++
+@@ -532,0 +540 @@
++        _require_environment_rng_checkpoint(config)
+@@ -2912,0 +2921,36 @@
++    def _environment_rng_owners(self):
++        if not self.config.trainer.get("checkpoint_environment_rng", False):
++            return {}
++        owners = {"train": self.envs}
++        if self.val_envs is not None:
++            owners["validation"] = self.val_envs
++        for role, owner in owners.items():
++            for method in ("get_task_selection_rng_state", "validate_task_selection_rng_state", "load_task_selection_rng_state"):
++                if not callable(getattr(owner, method, None)):
++                    raise RuntimeError(f"{role} environment lacks exact task-selection RNG owner")
++        return owners
++
++    def _snapshot_environment_rng(self):
++        owners = self._environment_rng_owners()
++        if not owners:
++            return None
++        return {"version": 1, "global_step": self.global_steps,
++                "streams": {role: owner.get_task_selection_rng_state() for role, owner in owners.items()}}
++
++    def _validate_environment_rng(self, payload):
++        owners = self._environment_rng_owners()
++        if not owners:
++            return
++        if (not isinstance(payload, dict) or payload.get("version") != 1
++                or payload.get("global_step") != self.global_steps
++                or not isinstance(payload.get("streams"), dict)
++                or set(payload["streams"]) != set(owners)):
++            raise ValueError("environment RNG checkpoint step/stream identity mismatch")
++        for role, owner in owners.items():
++            owner.validate_task_selection_rng_state(payload["streams"][role])
++
++    def _restore_environment_rng(self, payload):
++        self._validate_environment_rng(payload)
++        for role, owner in self._environment_rng_owners().items():
++            owner.load_task_selection_rng_state(payload["streams"][role])
++
+@@ -2918,0 +2963,2 @@
++
++        environment_rng = self._snapshot_environment_rng()
+@@ -2938,0 +2985,3 @@
++
++        if environment_rng is not None:
++            torch.save(environment_rng, os.path.join(local_global_step_folder, "environment_rng.pt"))
+@@ -2978,0 +3028,11 @@
++        # Check required state before mutating actor/optimizer or dataloader.
++        environment_rng = None
++        if self._environment_rng_owners():
++            environment_rng_path = os.path.join(global_step_folder, "environment_rng.pt")
++            if not os.path.isfile(environment_rng_path):
++                raise RuntimeError("checkpoint is missing required environment task-selection RNG state")
++            if not os.path.isfile(os.path.join(global_step_folder, "data.pt")):
++                raise RuntimeError("checkpoint is missing required dataloader state for exact resume")
++            environment_rng = torch.load(environment_rng_path, map_location="cpu", weights_only=False)
++            self._validate_environment_rng(environment_rng)
++
+@@ -2994,0 +3055,3 @@
++
++        if environment_rng is not None:
++            self._restore_environment_rng(environment_rng)

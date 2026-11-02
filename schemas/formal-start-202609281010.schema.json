@@ -1,0 +1,47 @@
+{
+  "$id": "openevo.formal-start.202609281010",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenEVO Formal Start boundary receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "openevo.formal-start.202609281010"},
+    "status": {"const": "FORMAL_START_COMMITTED"},
+    "run_id": {"type": "string", "minLength": 1},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "selected_gpu_uuids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^GPU-[A-Za-z0-9-]+$"}
+    },
+    "image_id": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "command_identity": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "prelaunch_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "receipt_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      },
+      "required": ["path", "sha256", "receipt_sha256"]
+    },
+    "readiness": {"type": "object"},
+    "output_root": {"type": "string", "minLength": 1},
+    "formal_task_consumption_before": {"const": false},
+    "formal_task_consumption_may_begin": {"const": true},
+    "formal_start_committed": {"const": true},
+    "scientific_authority_granted_by_receipt": {"const": false},
+    "committed_at_epoch": {"type": "number", "minimum": 0},
+    "receipt_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "required": [
+    "schema", "status", "run_id", "campaign_id", "selected_gpu_uuids",
+    "image_id", "command_identity", "prelaunch_receipt", "readiness",
+    "output_root", "formal_task_consumption_before",
+    "formal_task_consumption_may_begin", "formal_start_committed",
+    "scientific_authority_granted_by_receipt", "committed_at_epoch",
+    "receipt_sha256"
+  ]
+}

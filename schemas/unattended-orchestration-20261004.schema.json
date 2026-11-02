@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "openevo.unattended-orchestration.20261004",
+  "type": "object",
+  "required": [
+    "schema",
+    "scientific_authority",
+    "state_root",
+    "max_parallel_arms",
+    "lanes",
+    "arms"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openevo.unattended-orchestration.20261004"
+    },
+    "scientific_authority": {
+      "const": false
+    },
+    "state_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "poll_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "max_parallel_arms": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "lanes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "gpu_uuids"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "gpu_uuids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^GPU-(?:[0-9A-Fa-f]{32}|[0-9A-Fa-f]{8}(?:-[0-9A-Fa-f]{4}){3}-[0-9A-Fa-f]{12})$"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "arms": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "run_output_root",
+          "authority_path",
+          "rounds",
+          "eligible_lanes",
+          "launch"
+        ],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "priority": {"type": "integer"},
+          "run_output_root": {"type": "string", "minLength": 1},
+          "authority_path": {"type": "string", "minLength": 1},
+          "rounds": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"type": "integer"}
+          },
+          "eligible_lanes": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "launch": {
+            "type": "object",
+            "required": ["cwd", "argv", "expected_git_head"],
+            "properties": {
+              "cwd": {"type": "string", "minLength": 1},
+              "expected_git_head": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{40}$"
+              },
+              "argv": {
+                "type": "array",
+                "minItems": 3,
+                "items": {"type": "string", "minLength": 1}
+              },
+              "env": {
+                "type": "object",
+                "required": ["OPENEVO_AUTHORIZED_GPU_UUIDS"],
+                "properties": {
+                  "OPENEVO_AUTHORIZED_GPU_UUIDS": {"const": "${GPU_UUIDS}"}
+                },
+                "additionalProperties": {"type": "string"}
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "gpu_handoff_contract": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type":"string","minLength":1},
+        "sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"}
+      },
+      "additionalProperties":false
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1},
+        "user": {"type": "string", "minLength": 1},
+        "group": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

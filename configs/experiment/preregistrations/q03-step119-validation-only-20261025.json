@@ -1,0 +1,228 @@
+{
+  "campaign_id": "20261025-0825-q03-step119-val128",
+  "evaluation_episode_limit": 128,
+  "experiment_id": "202610251359-q03-step119-val128",
+  "external_teacher_call_limit": 0,
+  "final_panel_access_limit": 0,
+  "formal_task_consumption_allowed": false,
+  "frozen_scientific_contract": {
+    "acceptance_policy": {
+      "candidate_rule": "Exactly the 128 ordered task IDs in the pinned ID-only manifest; do not replace or retry a task based on its score.",
+      "credit_assignment": "Report each task result and task_score with the observed denominator; make no causal or between-checkpoint comparison.",
+      "name": "descriptive 128-task validation record; no pass threshold",
+      "source": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "44de1b68c817be538997d856bc473ff382d5f861e4700df3dc7991fefa24529f"
+      }
+    },
+    "action_contract": {
+      "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+      "kind": "server_file",
+      "path": "/workspace/maintenance/seed-paperstyle-minimax-20261007/seed-source-clean-v1/agent_system/environments/env_package/webshop/envs.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "1a8a73b5e02854a822aa03dcb66a9fbf8d67c028f963f36845bf34fb1b60ea7c"
+    },
+    "benchmark": "WebShop public validation using the pinned SEED evaluator",
+    "claim_boundary": "Descriptive result for one historical checkpoint only; no causal comparison, training claim, final-panel claim, or paper-reproduction claim.",
+    "evaluator_contract": {
+      "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+      "kind": "server_file",
+      "path": "/workspace/maintenance/seed-paperstyle-minimax-20261007/seed-source-clean-v1/verl/trainer/main_ppo.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "cb5547674b8af03da4555af63887ce13a93054e5d1026a0138b79c46f77e012b"
+    },
+    "external_teacher": {
+      "future_call_budget": 0,
+      "prior_analyses": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "44de1b68c817be538997d856bc473ff382d5f861e4700df3dc7991fefa24529f"
+      },
+      "role": "none; validation-only"
+    },
+    "final_panel_policy": {
+      "future_access_limit": 0,
+      "policy": "No final-panel access",
+      "source": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "44de1b68c817be538997d856bc473ff382d5f861e4700df3dc7991fefa24529f"
+      }
+    },
+    "harness": {
+      "profile": "pinned public SEED WebShop val_only evaluator",
+      "source": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "44de1b68c817be538997d856bc473ff382d5f861e4700df3dc7991fefa24529f"
+      },
+      "thinking": false
+    },
+    "human_intervention_policy": "No manual policy steering, task substitution, outcome retry, or score editing during the validation pass.",
+    "hypothesis": "No causal or improvement hypothesis is tested; this is a same-checkpoint archival measurement only.",
+    "model": {
+      "asset": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "kind": "hf",
+        "path": "checkpoints/global_step_119/actor",
+        "reason": "Directory identity is the exact immutable revision; eight model-shard SHA-256 values and five supporting-file SHA-256 values are enumerated in artifact_policy.assets.",
+        "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+        "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+        "sha256": null
+      },
+      "dtype": "float32 (native checkpoint tensor dtype; all eight rank shards inspected with weights-only mmap metadata load)",
+      "model_id": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+      "model_revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+      "tokenizer_revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409"
+    },
+    "optimizer": {
+      "batch_size": 0,
+      "epochs": 0,
+      "extra_settings": {
+        "optimizer_updates": 0,
+        "training_rollouts": 0
+      },
+      "gradient_accumulation_steps": 0,
+      "learning_rate": 0,
+      "name": "none (validation-only)"
+    },
+    "parser_contract": {
+      "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+      "kind": "server_file",
+      "path": "/workspace/maintenance/seed-paperstyle-minimax-20261007/seed-source-clean-v1/agent_system/environments/env_package/webshop/projection.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "25c9bb7a8f4f2e68292a3ca25596e83493cb7be67fef2e7215c1800b5bc6c228"
+    },
+    "prompt_contract": {
+      "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+      "kind": "server_file",
+      "path": "/workspace/maintenance/seed-paperstyle-minimax-20261007/seed-source-clean-v1/agent_system/environments/env_package/webshop/envs.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "1a8a73b5e02854a822aa03dcb66a9fbf8d67c028f963f36845bf34fb1b60ea7c"
+    },
+    "protocol_fingerprint": "8692a7584c30d6620150dc47def6439eec939dc2c78eda0c26cb8425ff3e445f",
+    "research_question": "What descriptive WebShop validation result does the exact Q03 Stream A native global_step_119 checkpoint produce on the frozen public 128-task test split?",
+    "sampling": {
+      "do_sample": true,
+      "extra_settings": {
+        "history_length": 2,
+        "max_environment_steps": 15,
+        "rollout_engine": "vllm",
+        "thinking": false
+      },
+      "max_new_tokens": 512,
+      "temperature": 0.4,
+      "top_k": -1,
+      "top_p": 1.0
+    },
+    "sd_lora": {
+      "alpha": 0,
+      "effective_rank_cap": 0,
+      "extra_settings": {
+        "adapter_used": false,
+        "agent_system": false,
+        "memory": false,
+        "skill": false
+      },
+      "rank": 0,
+      "source": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "44de1b68c817be538997d856bc473ff382d5f861e4700df3dc7991fefa24529f"
+      },
+      "target_modules": []
+    },
+    "seed_policy": {
+      "rng_contract": "The 128 test.parquet carrier rows have extra_info.index 0..127 and bind by panel slot to the ID-only manifest; sampled_session_index is not a parquet row index. env.seed=0 gives validation RandomState(1000) session draw and worker seeds 1000+slot. generation_seed=2026082500+panel_ordinal; each WebShop action request uses generation_seed+step_index through one per-prompt vLLM SamplingParams.seed. A shared default seed is invalid for this schedule.",
+      "schedule": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "44de1b68c817be538997d856bc473ff382d5f861e4700df3dc7991fefa24529f"
+      },
+      "schedule_id": "q03-step119-public-panel-0-127-env-seed-0-generation-seed-base-2026082500-per-step-plus-index",
+      "seed_base": 2026082500
+    },
+    "split": "test (128 public validation task IDs; ID-only manifest)",
+    "stop_rule": {
+      "max_rollouts": 0,
+      "max_rounds": 0,
+      "source": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "44de1b68c817be538997d856bc473ff382d5f861e4700df3dc7991fefa24529f"
+      }
+    },
+    "task_manifest": {
+      "evidence_path": "configs/experiment/manifests/q03-step119-public-validation-id-manifest-20261025.json",
+      "kind": "repository_file",
+      "path": "configs/experiment/manifests/q03-step119-public-validation-id-manifest-20261025.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "4498a0821301043fa6d7b0677763d4e9f7c8165645f4e7dfb12af86670176d2d"
+    },
+    "training_data_identity": {
+      "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+      "kind": "repository_file",
+      "path": "configs/experiment/designs/q03-step119-validation-only-20261025.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "44de1b68c817be538997d856bc473ff382d5f861e4700df3dc7991fefa24529f"
+    },
+    "treatment": "Load the exact native global_step_119 model and execute one validation-only pass over task IDs 0 through 127.",
+    "what_changed": [
+      "A one-pass validation-only measurement is declared for the exact step-119 checkpoint; it does not modify model weights."
+    ],
+    "what_must_stay_fixed": [
+      "Checkpoint step and eight source shard identities",
+      "Public test split, 128 task IDs, dataset hash, and manifest hash",
+      "Pinned SEED commit and evaluator settings in the design",
+      "Zero optimizer updates, zero training rollouts, and zero final-panel access",
+      "vLLM validation sampling: temperature 0.4, top_p 1.0, top_k -1 (unbounded), max_new_tokens 512, environment seed 0",
+      "All eight native model shards use float32 tensors"
+    ]
+  },
+  "optimizer_update_limit": 0,
+  "schema": "openevo.q03.step119.validation-preregistration.v1",
+  "status": "FROZEN_SCIENCE_PRELAUNCH",
+  "stop_rule": "One pass over exactly the frozen ordered 128 public task IDs; retain failures/partial results; no task substitution, outcome retry, training, optimizer updates, or final-panel access.",
+  "training_rollout_limit": 0
+}

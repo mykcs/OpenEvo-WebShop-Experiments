@@ -1,0 +1,58 @@
+{
+  "activation_authority": false,
+  "benchmark": "WebShop",
+  "campaign_router": "configs/experiment/campaigns/current-mechanism1-autonomous.json",
+  "ceiling_relationship": "Ceiling-1.0 remains immutable source evidence and is not superseded or modified by this program.",
+  "claim_boundary": {
+    "allowed": [
+      "within-model causal parameter interventions",
+      "bounded prospective guided microtrial",
+      "matched Stage1 initialization comparison"
+    ],
+    "forbidden": [
+      "SEED paper-score reproduction claim",
+      "fresh-task generalization claim from replay-only cells",
+      "retroactive improvement of Ceiling-1.0",
+      "cross-model vector arithmetic"
+    ]
+  },
+  "delivery_priority_window": {
+    "result_dependent_scientific_stopping_forbidden": true,
+    "role": "experiment ordering and delivery priority only",
+    "target_review_date_sgt": "2026-09-10"
+  },
+  "engineering_platform_authority": "docs/experiment-tracking/OPEN_EVO_CEILING_1.0_END_TO_END_MASTER_PLAN.md §2.3",
+  "experiment_passport_sha256": {
+    "configs/experiment/designs/openevo-mechanism1-parameter-theme-knockout-202609052200.json": "0ddfe90890254c362f31177b788ffe1cee219624de604d29584de5f288a8f426",
+    "configs/experiment/designs/openevo-mechanism1-seed-stage1-init-probe-3b-202609052200.json": "0f3528b174a8df206aafa1f45cb55d7fe0f1aa7ccbf647dd708bab61137c6c18",
+    "configs/experiment/designs/openevo-mechanism1-taskvector-causal-transplant-202609052200.json": "1c47d20f5e9d2d37479d3341547de703fb61d815c0e554bdc02f74f0a044ff83",
+    "configs/experiment/designs/openevo-mechanism1-taskvector-guided-microtrial-202609052200.json": "069e28890c5eda56c381ea716b1d6408ca3676f9f55233578f88b6305a478b83"
+  },
+  "experiment_passports": [
+    "configs/experiment/designs/openevo-mechanism1-taskvector-causal-transplant-202609052200.json",
+    "configs/experiment/designs/openevo-mechanism1-parameter-theme-knockout-202609052200.json",
+    "configs/experiment/designs/openevo-mechanism1-taskvector-guided-microtrial-202609052200.json",
+    "configs/experiment/designs/openevo-mechanism1-seed-stage1-init-probe-3b-202609052200.json"
+  ],
+  "first_principles": [
+    "Preserve the running Ceiling-1.0 line; Mechanism-1.0 never edits its scientific state in place.",
+    "Causal intervention outranks correlation: parameter magnitude alone is never called importance.",
+    "Direction-specific claims require norm-matched random controls and signed or dose-response interventions.",
+    "Every adaptive gate is preregistered before downstream outcomes are seen.",
+    "Negative and null results are retained; no best checkpoint, direction, seed, or random control is selected after outcomes.",
+    "Cross-model TaskVector injection is forbidden unless a later contract defines a valid shared representation.",
+    "Final-panel access is zero for the whole program unless a later separately preregistered program adds a final evaluation.",
+    "SEED is a bounded initialization reference here, not a full-paper-score reproduction target.",
+    "GPU utilization is subordinate to information gain; ready work may share resources, but idle-filling may not create science work."
+  ],
+  "master_plan": "docs/science/webshop/program/OPEN_EVO_MECHANISM_1.0_MASTER_PLAN.md",
+  "program_id": "openevo-mechanism-1.0-202609052200",
+  "ray_profile_registry": "configs/experiment/openevo-mechanism1-ray-profile-registry-202609052200.json",
+  "repository_base_sha": "707e5be2de0472483089b638a3d10d69683686c8",
+  "schema": "openevo.mechanism1-program.202609052200",
+  "scientific_question": "Does OpenEvo write reusable, direction-specific causal structure into parameter space, and can that structure be used prospectively to steer later self-improvement under a fixed additional budget?",
+  "status": "PREREGISTERED_RESOURCE_PROFILES_READY_EXECUTION_LOCKED",
+  "theme_zh": "从能力天花板到可干预的自我进化：先观察，再因果干预，最后尝试控制。",
+  "title": "OpenEVO-Mechanism-1.0 — From Ceiling to Controllable Self-Improvement",
+  "website_route": "/research/seed-openevo/study/capability-exploration/mechanism-1-0/"
+}

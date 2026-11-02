@@ -1,0 +1,19 @@
+{
+  "adapter_path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/on/round-039/sd-lora/bounded-state",
+  "campaign_id": "20261003-2022-q06-s2-gdr-r40",
+  "execution_source": {
+    "path": "/workspace/maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-production-scorer-202610031200/execution-source-09d3bd89",
+    "repository": "https://github.com/mykcs/openevo-experiment.git",
+    "revision": "09d3bd89b815cf5abbc9c38e0ae97283084dbac8"
+  },
+  "network": "none",
+  "output_root": "/workspace/runs/q06-s2-gdr-r40-202610032022",
+  "persistent_output_bytes_limit": 1073741824,
+  "schema": "openevo.q06.s2-remaining-path-contract.v1",
+  "science_runtime_source": {
+    "path": "/workspace/maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-s2-bounded-r120-268fc8e3/execution-source-161126c2",
+    "repository": "https://github.com/mykcs/openevo-experiment.git",
+    "revision": "161126c258b6723ceb721e6387d956988cf22a62"
+  },
+  "task_panel_manifest_path": "docs/evidence/q17-validation-curve-20260923/coarse-manifest-q17-directapply-validation-curve-202609231600.json"
+}

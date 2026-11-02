@@ -1,0 +1,192 @@
+{
+  "activation_authority": false,
+  "arm": "3b",
+  "candidate_state_transaction": {
+    "acceptance_probe": {
+      "already_consumed_training_tasks": true,
+      "final_panel_access_delta": 0,
+      "formal_task_consumption_delta": 0,
+      "harness_profile": "201.1",
+      "manifest_path": "configs/experiment/manifests/openevo-ceiling-1.0-harness201-g4-probe-v1.json",
+      "manifest_sha256": "d74c7c4eedd60141b858b03db933b5e0c546fb965a5a751dc92aee051a3f723a",
+      "probe_rows_never_enter_training_evidence": true,
+      "same_positions_and_seeds_prior_vs_candidate": true,
+      "task_count": 16
+    },
+    "accepted": "seal CandidateState as State_k+1 and consume exactly bound evidence IDs",
+    "compose": "compose all carrier outcomes into one CandidateState_k_plus_1; unchanged carriers point to State_k artifacts",
+    "generation": "all carrier candidates for round k are generated from the same accepted State_k, preserving current parallel-carrier causal semantics",
+    "no_candidate_change": "seal accounting round with State_k unchanged and no acceptance probe",
+    "probe_required_if_candidate_differs": true,
+    "promotion_rule": {
+      "candidate_exact_success_gte_prior": true,
+      "candidate_invalid_terminated_lte_prior": true,
+      "candidate_mean_score_gte_prior": true,
+      "candidate_positive_score_gte_prior": true,
+      "constraint_escape_zero": true,
+      "engineering_invalid_zero": true,
+      "environment_action_schema_violation_zero": true,
+      "neutral_behavior_change": "REJECT_KEEP_PRIOR_STATE",
+      "no_significance_claim": true,
+      "strict_task_improvement_required": "at least one of exact_success, positive_score, or mean_score is strictly greater"
+    },
+    "rejected": "retain immutable candidate artifacts/receipt; active next state remains State_k; mark bound evidence attempted/rejected for identical method revision"
+  },
+  "carrier_channels": {
+    "agent_system": {
+      "auto_promotion": false,
+      "candidate_generation": "existing OpenEVO reflector only if it independently returns UPDATE",
+      "global_policy_noise_guard": "no promotion without state-level causal acceptance"
+    },
+    "sd_lora": {
+      "component_limit": null,
+      "effective_rank_limit": 4096,
+      "eligible_online_evidence": "clean exact-success whole trajectories only in v1",
+      "max_records_256_role": "optimizer/resource capacity cap only; never a success gate",
+      "reason": "C step-level causal microtest changed behavior but demonstrated zero reward benefit",
+      "selector": "preserve current clean exact-success / distinct-task selector semantics for v1; same-task multiplicity expansion requires a later amendment",
+      "verified_partial_step_evidence_eligible": false
+    },
+    "skill_bundle": {
+      "auto_promotion": false,
+      "candidate_generation": "existing OpenEVO reflector, with typed transition evidence and prior skill"
+    },
+    "text_memory": {
+      "auto_promotion": false,
+      "candidate_generation": "existing OpenEVO reflector, but input is typed ledger evidence rather than treating whole failures as correct answers"
+    }
+  },
+  "forbidden": [
+    "gate=8 or any task-count magic gate",
+    "16-success gate",
+    "256-rollout parametric cadence as a scientific gate",
+    "clear evidence because a 128-rollout round ended",
+    "whole partial trajectory SFT from reward>=0.5",
+    "verified partial steps into SD-LoRA v1",
+    "automatic promotion of Memory/Skill/Agent/SD artifacts",
+    "reuse C diagnostic adapter",
+    "reuse G3 updated carrier state",
+    "resume old 3B 3200-rollout formal lineage",
+    "fuzzy action repair",
+    "new external teacher calls",
+    "final-panel access before own Stage2 seal",
+    "post-hoc modification of promotion rule after formal outcomes"
+  ],
+  "frozen_protocol": {
+    "effective_rank_limit": 4096,
+    "external_teacher_calls": 0,
+    "final_panel_locked_until_own_stage2_seal": true,
+    "formal_rollouts": 20480,
+    "independent_component_count_ceiling": null,
+    "rollouts_per_round": 128,
+    "rounds": 160,
+    "schedule_path": "configs/experiment/manifests/h1.44-on-3b-training-schedule-v1.json",
+    "schedule_sha256": "1b3ac4252cda4d25d9542713e68e2fa4aacd90ceb377e5c03c8c1ad7c6878428",
+    "stage2_config_path": "configs/experiment/openevo-ceiling-1.0-stage2-final-v1.json",
+    "stage2_config_sha256": "328713d810744c50eca090648c2317be46ed1fd61f303727acf68687bc8eafe4",
+    "step_seed_policy": "injective-v1"
+  },
+  "interface": {
+    "dynamic_allowed_actions_constraint": true,
+    "fuzzy_repair": false,
+    "profile": "201.1",
+    "reasoning_language_is_action_validity_gate": false,
+    "unconstrained_fallback": false
+  },
+  "name": "OpenEVO-Ceiling-1.0 3B Stage2-vNext persistent evidence + candidate-state acceptance",
+  "next_gate": "Implement this exact Stage2-vNext design + CPU/static tests + launch-readiness. No additional pre-Stage2 scientific experiment.",
+  "origin": {
+    "agent_sha256": "f08129ae6f51787db42980850e038a0861f5b5dcd0ef4913e9c70801e78c66e1",
+    "base_verification_path": "/workspace/runs/20260830-openevo-ceiling-1.0-stage1-analysis-v1/stage2-base/3b/verification-receipt.json",
+    "base_verification_sha256": "482c807ae6b7cf9910644f5af16c794d74691463bf3257f37a17da8d2114ca9d",
+    "carrier_root": "/workspace/runs/20260831-openevo-harness201-preformal/compiled-carriers-v4-final",
+    "g3_shadow_state_inherited": false,
+    "g3_updated_memory_or_skill_inherited": false,
+    "memory_sha256": "a0b24d9cf6d2283605ebf3db64dc1ff590ecf5cda69c852a533a0aada9f8d46d",
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "old_formal_3200_prefix_inherited": false,
+    "sd_adapter_at_round0": null,
+    "skill_sha256": "82630984e39bf15b503ee56a559a4e0c15ecd7cb174a8bec224c7865ed2ee64f",
+    "step_sd_C_adapter_inherited": false
+  },
+  "prestage2_evidence": {
+    "A_carrier_ablation_sha256": "2c9e653ed9ce4ecd3ed786e0dc653b863bf308f99226867d672dee769fa2c3a2",
+    "B_verifier_sha256": "878d380f67bf9ed6becce03d40575296e93ec65edcf7ef1d1492b8879eecb204",
+    "C_step_sd_sha256": "5fc4fa772439e15a6984ed2341eec855e96c52054fbb5aeddebab917b75b0619",
+    "closeout_path": "docs/evidence/remote-runs/2026-09-02/ceiling1-stage2-vnext-preformal/PRESTAGE2_A_B_C_CLOSEOUT.json",
+    "closeout_sha256": "4c5e6d9fc7e20cbe9026ec736e086dec061660f4ce8022e792d6e975e73e07d5"
+  },
+  "resource_policy": {
+    "managed_gpu_indices": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "no_mid_round_preemption": true,
+    "seven_b_priority": true,
+    "three_b_selection_preference": [
+      7,
+      6,
+      5,
+      4
+    ],
+    "unmanaged_gpu_indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "v5_config_sha256": "f7b1301fe3448d6f530fa691f4fc53e1aeac7e2169137f2cec63612f52a1d96f"
+  },
+  "round_semantics": {
+    "noop_resets_evidence": false,
+    "parameter_or_carrier_update_required_each_round": false,
+    "round_is": "observation/accounting boundary",
+    "round_is_not": [
+      "learning evidence reset boundary",
+      "mandatory parameter-update boundary",
+      "success-count gate"
+    ]
+  },
+  "schema": "openevo.ceiling1-stage2-vnext-3b-design.v1",
+  "scientific_question": "Can 3B sustain Stage2 learning when observation rounds no longer reset evidence, deterministic partial evidence is routed conservatively, and any changed candidate state must demonstrate fixed causal task benefit before promotion?",
+  "status": "FROZEN_DESIGN_NO_ACTIVATION_AUTHORITY",
+  "typed_evidence_ledger": {
+    "append_only_identity": true,
+    "consumption": {
+      "accepted_candidate": "only evidence IDs explicitly bound to accepted updates become consumed",
+      "noop": "no evidence is consumed or cleared",
+      "rejected_candidate": "retain immutable evidence but mark attempted/rejected for the same prior-state+method-revision; do not repeat the identical candidate without new evidence"
+    },
+    "deterministic_verifier": "target-bound-v2",
+    "evidence_survives_noop": true,
+    "labels": {
+      "unknown": "never promoted to supervision merely because it appears plausible",
+      "verified_mistake": [
+        "goal_option_mismatch",
+        "premature_or_inexact_buy"
+      ],
+      "verified_positive": [
+        "exact_target_product",
+        "goal_option_match_on_exact_target",
+        "exact_success_buy"
+      ]
+    },
+    "llm_verifier_calls": 0,
+    "persistent_across_rounds": true,
+    "replay_parity_required": true,
+    "source_identity_fields": [
+      "round_index",
+      "schedule_position",
+      "task_id",
+      "step",
+      "action",
+      "instruction_sha256",
+      "evidence_kind",
+      "evidence_sha256"
+    ],
+    "verifier_result_sha256": "878d380f67bf9ed6becce03d40575296e93ec65edcf7ef1d1492b8879eecb204"
+  }
+}

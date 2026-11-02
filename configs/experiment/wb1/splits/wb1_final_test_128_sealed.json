@@ -1,0 +1,26 @@
+{
+  "amendment_required_before_unlock": true,
+  "campaign_id": "20260821-2341-wb1-seed-aligned-webshop-benchmark",
+  "canonical_sha256": "56e94a5d96ee3de625324ccf51510ddf68351adeb762c290bda0874b5abf4455",
+  "final_pool": {
+    "count": 500,
+    "end_exclusive": 500,
+    "start_inclusive": 0
+  },
+  "final_unlock_allowed": false,
+  "ordered_final_goal_ids": [],
+  "protocol_sha256": "133385386bc9c29c4fa9e49bef4b96cfe8b93d0152109280257389fad2e3e41b",
+  "schema": "openevo.wb1-final-selector.v1",
+  "selector_evidence": {
+    "finding": "test pool is range(500); val_data_size=128 is a batch-size setting and not a WebShop final selector; no ordered selector was recoverable",
+    "searched_pinned_paths": [
+      "agent_system/environments/env_package/webshop/envs.py",
+      "examples/seed_trainer/_common/webshop.sh",
+      "examples/data_preprocess/prepare.py",
+      "baseline_models/test.py"
+    ],
+    "source_commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+    "source_repository": "jinyangwu/SEED"
+  },
+  "selector_status": "unresolved"
+}

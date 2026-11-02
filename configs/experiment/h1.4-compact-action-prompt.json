@@ -1,0 +1,51 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.4-compact-action-prompt-v1",
+  "phase": "H1.4",
+  "status": "pre-registered",
+  "scientific_question": "Can a compact action-format prompt restore fallback-free greedy behavior and non-zero reward for the frozen SUCCESS adapter?",
+  "hypothesis": "H1.3 shows that extra output budget restores some SUCCESS validity but not reward; requiring short reasoning plus an explicit two-line action format will reduce remaining parser failures and expose whether policy quality, rather than formatting, limits reward.",
+  "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+  "prompt_regimes": [
+    {"name": "baseline_v1_reference", "contract": "seed3090.webshop-shared-prompt.v1", "source": "sealed H1.3 repair greedy512 results; no duplicate rollout"},
+    {"name": "compact_v2", "contract": "seed3090.webshop-compact-action-prompt.v2", "source": "new downstream prompt implementation"}
+  ],
+  "scientific_control": "baseline_v1_reference is the H1.3 repair greedy512 arm matched on task, seed, model, adapter, and evaluator; only compact_v2 is newly generated.",
+  "task_panel": {
+    "task_manifest": "/workspace/workspace/runs/phase-h0-natural-success-search-v1-20260814-rerun-rng-fix/task-manifest.json",
+    "task_manifest_sha256": "fec3203f8abfad571048d27dfac1dd7c6fd62ad784d452939b09de1bb9f4e077",
+    "task_indices": [2822, 5135, 5294, 6769],
+    "partitions": {"A": [2822, 5135], "B": [5294, 6769]},
+    "rollout_seeds": [2026081450, 2026081451, 2026081452, 2026081453]
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_steps": 15,
+    "max_new_tokens": 512,
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "parser_retry_seed_offset": 900000,
+    "evaluator": "WebShop task_score/won",
+    "runtime_gpu_contract": "CUDA_VISIBLE_DEVICES exactly one selected GPU UUID"
+  },
+  "compact_prompt_contract": {
+    "name": "seed3090.webshop-compact-action-prompt.v2",
+    "instruction": "Keep reasoning under 30 words. Output exactly two tagged lines: <think>brief reason</think> and <action>one admissible action</action>. Do not list products, repeat the instruction, or write text after </action>.",
+    "no_parser_change": true,
+    "no_evaluator_change": true
+  },
+  "primary_metrics": ["fallback-free valid rate", "qualified positive rate among valid", "mean task_score among valid", "compact-minus-baseline paired reward and validity deltas"],
+  "diagnostic_metrics": ["tag-complete rate", "first parser failure step", "generation length", "action distribution", "max-step termination", "trajectory uniqueness", "latency and VRAM"],
+  "execution": {"new_cells": "3 arms x 2 partitions = 6 compact_v2 cells; 8 attempts per cell", "baseline": "reuse sealed H1.3 repair greedy512 artifacts as reference", "gpu_policy": "one UUID-bound process per cell; launch only on verified idle GPUs; do not fill remaining cards with duplicate deterministic baseline"},
+  "stop_branch": {
+    "contract_and_reward_rescue": "if SUCCESS compact_v2 reaches >=12/16 valid and >=2 qualified positives, queue a frozen recovery/action-calibration panel; D0 remains closed",
+    "contract_only": "if validity reaches threshold but qualified positives remain below 2, retain contract-only evidence and diagnose state distribution",
+    "no_rescue": "preserve negative evidence; do not change adapter rank/LR/epochs",
+    "runtime_failure": "exclude and preserve artifacts; repair in a new group"
+  },
+  "code_sha": "21e1b14a6136f79c030dcf46f410ae73472ea484",
+  "claim_boundary": "Bounded prompt/action-format diagnostic on four frozen WebShop tasks; no benchmark claim and D0 remains closed."
+}

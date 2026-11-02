@@ -1,0 +1,72 @@
+{
+  "$id": "openevo.resource-request.202609170600",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "envelope": {
+      "type": "object"
+    },
+    "execution_generation_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "fallback_topology_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "operation_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "placement_mode": {
+      "enum": [
+        "GANG_ALL_OR_NOTHING",
+        "QUALIFIED_SUBSET"
+      ]
+    },
+    "preferred_gpu_indices": {
+      "items": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "qualified_topology_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "request_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "resource_policy_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "openevo.resource-request.202609170600"
+    },
+    "scientific_authority_granted": {
+      "const": false
+    }
+  },
+  "required": [
+    "schema",
+    "request_id",
+    "operation_id",
+    "execution_generation_id",
+    "resource_policy_identity",
+    "qualified_topology_identity",
+    "envelope",
+    "placement_mode",
+    "preferred_gpu_indices",
+    "fallback_topology_identity",
+    "scientific_authority_granted"
+  ],
+  "title": "OpenEVO resource request",
+  "type": "object"
+}

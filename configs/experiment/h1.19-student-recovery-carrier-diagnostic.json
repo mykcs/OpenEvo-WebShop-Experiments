@@ -1,0 +1,180 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.19-student-recovery-carrier-diagnostic-v1",
+  "phase": "H1.19",
+  "status": "complete-with-invalid-attempts",
+  "scientific_question": "With one frozen H1.18 student-recovery corpus, is the information usable through text memory, parametric SD-LoRA, or neither on held-out WebShop tasks?",
+  "hypothesis": "H1.18 found no cross-partition selective recovery gain. This matched carrier diagnostic tests whether the bottleneck is parametric internalization or broader experience/interface usability.",
+  "independent_variable": "experience carrier only",
+  "arms": {
+    "BASE": "frozen Qwen2.5-3B-Instruct with no experience and no adapter",
+    "TEXT_MEMORY": "frozen base with deterministic top-1 lexical retrieval from the frozen H1.18 student-recovery corpus injected at every evaluation step",
+    "PARAMETRIC": "frozen base reloaded with the already-fitted H1.18 student-recovery SD-LoRA adapter; no refit or sweep"
+  },
+  "shared_experience": {
+    "source_group": "H1.18-reachability-filtered-recovery-diagnostic-v1",
+    "records_path": "/workspace/workspace/runs/phase-h1.18-reachability-filtered-recovery-diagnostic-v1-20260815/datasets/student-recovery-v2/records.jsonl",
+    "records_sha256": "408fc3b09ff3b1f8403b049356692ff2e96b0de39d751f008ed0a7fda361d437",
+    "record_count": 96,
+    "train_task_ids": [
+      3420,
+      6624,
+      5216,
+      2655,
+      5457,
+      3768
+    ],
+    "evaluation_access": "train-only corpus; no evaluation task, seed, score, trace, or outcome may enter the bank"
+  },
+  "evaluation_panel": {
+    "manifest_path": "/workspace/workspace/runs/phase-h1.18-reachability-filtered-recovery-diagnostic-v1-20260815/manifests/h1.18-task-manifest.json",
+    "manifest_sha256": "989dd431fd42f55d5fdd255ff6d876f493b0d0ad5dfc99d7d75ed939fc88d6ce",
+    "partitions": {
+      "P1": [
+        744,
+        1263
+      ],
+      "P2": [
+        1623,
+        3020
+      ],
+      "P3": [
+        3848,
+        4415
+      ],
+      "P4": [
+        5593,
+        6091
+      ]
+    },
+    "heldout_task_ids": [
+      744,
+      1263,
+      1623,
+      3020,
+      3848,
+      4415,
+      5593,
+      6091
+    ],
+    "rollout_seeds": [
+      2026082700,
+      2026082701,
+      2026082702,
+      2026082703
+    ],
+    "attempts_per_cell": 8,
+    "planned_cells": 12,
+    "planned_attempts": 96
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "tokenizer_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "runner_git_sha": "a384eff73426965536760b37d3a435a2a30f7730",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "temperature": 0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "text_memory_retrieval": "top-1 token-set cosine; event_id tie-break; max retrieved prompt 1400 chars",
+    "parametric_artifact_path": "/workspace/workspace/runs/phase-h1.18-reachability-filtered-recovery-diagnostic-v1-20260815/artifacts/h1.18-student-recovery-fit-online-gpu2-v1/workers/sd-lora-745f214ecc61158812089cb3a96671ab/adapter",
+    "parametric_adapter_digest": "a8a4f8449d36ef928b940befcf394ea5f841b3052aaff44ca520222384ae588b"
+  },
+  "contamination_checks": [
+    "training task IDs are disjoint from all eight evaluation task IDs",
+    "evaluation seeds are not used to create the shared experience corpus",
+    "TEXT_MEMORY and PARAMETRIC consume the same records_sha256",
+    "no teacher, held-out outcome, or post-test prompt change is allowed",
+    "each cell has an isolated seed-root and explicit GPU UUID"
+  ],
+  "resource_budget": {
+    "planned_gpus": 8,
+    "parallelism": "wave 1: BASE P1-P4 and TEXT_MEMORY P1-P4 on all eight UUID-bound GPUs; wave 2: PARAMETRIC P1-P4 on four GPUs",
+    "expected_gpu_hours": "12 measured cell wall-times; no occupancy-only work",
+    "gpu_policy": "use only idle authorized GPUs; release them after each wave"
+  },
+  "tracking": {
+    "wandb_mode": "online",
+    "wandb_entity": "example-entity",
+    "wandb_project": "openevo-webshop-experiments",
+    "wandb_group": "H1.19-student-recovery-carrier-diagnostic-v1",
+    "offline_exception": "only if online initialization or upload fails; record the exact error and preserve the local spool for later sync"
+  },
+  "primary_metrics": [
+    "qualified-positive rate",
+    "mean final task score over all attempts",
+    "TEXT_MEMORY minus BASE paired score",
+    "PARAMETRIC minus BASE paired score",
+    "PARAMETRIC minus TEXT_MEMORY paired score",
+    "valid rate"
+  ],
+  "diagnostics": [
+    "retrieval hit count and similarity",
+    "parser/fallback failure rate",
+    "Next/backtrack/repeated-navigation counts",
+    "buy-now transition rate",
+    "episode length",
+    "adapter reload identity and protocol fingerprint"
+  ],
+  "stop_rule": "one bounded carrier diagnostic; no rank/LR/epoch sweep, no prompt rescue, no repeated seeds",
+  "branch_rule": {
+    "text_memory_positive_parametric_negative": "classify parametric internalization bottleneck; preregister one localized parametric mechanism only after reconciliation",
+    "both_negative": "classify base-agent/interface/experience-usability bottleneck; stop adapter micro-variants",
+    "parametric_positive": "replicate on fresh task IDs and seeds before discussing Q3",
+    "task_specific_or_mixed": "retain heterogeneity and keep Q3/H2/D0/retention/transfer/SEED closed",
+    "invalid": "repair only runtime/provenance contract; do not alter carrier semantics or denominator"
+  },
+  "upstream_audit": {
+    "stable_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "checked": [
+      "OpenEvo#296",
+      "OpenEvo#297",
+      "OpenEvo#238",
+      "OpenEvo#298",
+      "OpenEvo#293"
+    ],
+    "decision": "retain pinned runtime; no upstream change affects this freshly preregistered WebShop carrier diagnostic"
+  },
+  "claim_boundary": "Carrier diagnosis only. This group cannot by itself open Q3, H2, D0, retention/transfer, or SEED.",
+  "artifact_policy": "raw traces, adapter weights, datasets, and caches remain on the server; GitHub receives the queue and compact evidence index only",
+  "execution_result": {
+    "reconciliation_path": "docs/evidence/remote-runs/2026-08-15/h1.19/evidence/h1.19-reconciliation-v1.json",
+    "run_index_path": "docs/evidence/remote-runs/2026-08-15/h1.19/evidence/h1.19-run-index-v1.json",
+    "scheduled_attempts": 96,
+    "scientific_valid_attempts": 84,
+    "parser_or_fallback_invalid_attempts": 12,
+    "runtime_errors": 0,
+    "common_valid_pairs": 20,
+    "arm_metrics": {
+      "BASE": {
+        "attempts": 32,
+        "valid": 28,
+        "qualified_positives": 4,
+        "mean_score_all_attempts": 0.0625
+      },
+      "TEXT_MEMORY": {
+        "attempts": 32,
+        "valid": 28,
+        "qualified_positives": 0,
+        "mean_score_all_attempts": 0
+      },
+      "PARAMETRIC": {
+        "attempts": 32,
+        "valid": 28,
+        "qualified_positives": 4,
+        "mean_score_all_attempts": 0.0625
+      }
+    },
+    "paired_delta_sums": {
+      "TEXT_MEMORY_minus_BASE": 0,
+      "PARAMETRIC_minus_BASE": 0,
+      "PARAMETRIC_minus_TEXT_MEMORY": 0
+    },
+    "classification": "no-carrier-specific-selective-closed-loop-gain",
+    "q3_unlocked": false,
+    "excluded_operational_attempts": "The first eight cache-path attempts failed before episode creation because the model identifier was passed instead of the local cached model path; retained outside the denominator."
+  }
+}

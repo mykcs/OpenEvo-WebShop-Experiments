@@ -1,0 +1,61 @@
+{
+  "activation_authority": false,
+  "arm": "qwen3-1p7b",
+  "asset_contract": {
+    "consumes": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen3-1p7b--stage1a_collection",
+        "role": "upstream-phase"
+      }
+    ],
+    "produces": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen3-1p7b--stage1a_postcollection_audit",
+        "provider": "server",
+        "provider_id": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/READY_FOR_MINIMAX_qwen3-1p7b.json",
+        "role": "phase-receipt"
+      }
+    ],
+    "publication": [],
+    "recovery": [],
+    "registry_policy": "observation-first-canonical-if-proven",
+    "telemetry": []
+  },
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 0,
+    "local_reflector_requests_max": 0,
+    "optimizer_steps_max": 0
+  },
+  "completion": {
+    "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/READY_FOR_MINIMAX_qwen3-1p7b.json",
+    "required_equal": {
+      "arm": "qwen3-1p7b",
+      "freeze_id": "202609030400",
+      "status": "PASS",
+      "trajectory_count": 1440
+    },
+    "sha256": "4cb2c487fe4dccad40d8526c0d1820248609ead12d9ef42f027d6c6117980ddd"
+  },
+  "historical_execution_provenance": {
+    "rule": "do not infer missing producer identity from names or timestamps",
+    "status": "PARTIAL_UNKNOWN_NOT_UPGRADED"
+  },
+  "phase": "stage1a_postcollection_audit",
+  "release_mode": "adoption",
+  "retry": {
+    "exact_resume": false,
+    "reason": "immutable completion adopted into current control plane; no execution is authorized by this release"
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "configs/experiment/campaigns/202609030400/authority-snapshots/87de73669b61b5952cfc36e712dad9b4e7722b83652307b3465f8599b91cf5a5.json",
+    "required_equal": {
+      "freeze_id": "202609030400",
+      "status": "FROZEN"
+    },
+    "sha256": "87de73669b61b5952cfc36e712dad9b4e7722b83652307b3465f8599b91cf5a5"
+  },
+  "status": "ADOPTED_IMMUTABLE_COMPLETION"
+}

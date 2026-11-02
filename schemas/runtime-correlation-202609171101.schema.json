@@ -1,0 +1,44 @@
+{
+  "$id": "openevo.runtime-correlation.202609171101",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenEVO runtime correlation metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "openevo.runtime-correlation.202609171101"},
+    "correlation_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "event_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "generation_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "operation_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "arm": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+$"},
+    "round_index": {"type": "integer", "minimum": 0},
+    "attempt_index": {"type": "integer", "minimum": 0},
+    "lease_id": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "otel_attributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": ["string", "integer"]
+      }
+    },
+    "telemetry_authority": {"const": false},
+    "operation_identity_authority": {"const": false},
+    "scientific_authority": {"const": false},
+    "scientific_retry_authorized": {"const": false}
+  },
+  "required": [
+    "schema",
+    "correlation_id",
+    "event_id",
+    "generation_id",
+    "operation_id",
+    "arm",
+    "round_index",
+    "attempt_index",
+    "lease_id",
+    "otel_attributes",
+    "telemetry_authority",
+    "operation_identity_authority",
+    "scientific_authority",
+    "scientific_retry_authorized"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "openevo.webshop-h1.30-task-identity-diagnostic.v1",
+  "standard_core": "v1",
+  "standard_profile": "vNext",
+  "experiment": "H1.30-task-identity-diagnostic",
+  "campaign_id": "20260817-0000-h130-task-identity-diagnostic",
+  "status": "preregistered-not-authorized",
+  "formal_task_consumption_allowed": false,
+  "scientific_question": "Under the H1.30 temperature-0 rollout contract, are task identities previously positive under H0.1 more likely to yield qualified positives than a matched fresh-draw group that was non-positive in the v3 capability harvest?",
+  "claim_boundary": "Train-only diagnostic of task-identity heterogeneity; it cannot establish OpenEvo efficacy, SEED superiority, or causal task difficulty.",
+  "source_contracts": {
+    "h0_manifest": "docs/evidence/remote-runs/2026-08-17/h0.1/manifests/h0.1-success-discovery-v2.json",
+    "h0_reconciliation": "docs/evidence/remote-runs/2026-08-17/h0.1/evidence/h0.1-reconciliation.json",
+    "h130_v3_training_manifest": "docs/evidence/remote-runs/2026-08-17/h1.30/manifests/h1.30-training-manifest-v3.json",
+    "h130_v3_evaluation_manifest": "docs/evidence/remote-runs/2026-08-17/h1.30/manifests/h1.30-task-manifest-v3.json",
+    "h130_v3_failure_taxonomy": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-failure-taxonomy-v3.json"
+  },
+  "task_groups": {
+    "prior_positive": [
+      "webshop_001166",
+      "webshop_001880",
+      "webshop_002316",
+      "webshop_002887",
+      "webshop_003227",
+      "webshop_003512",
+      "webshop_004169",
+      "webshop_005376"
+    ],
+    "v3_nonpositive": [
+      "webshop_000920",
+      "webshop_001006",
+      "webshop_001193",
+      "webshop_001720",
+      "webshop_001763",
+      "webshop_001795",
+      "webshop_002331",
+      "webshop_002813"
+    ]
+  },
+  "controls": {
+    "model_id": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "rollout_seeds": [
+      2026091200,
+      2026091201,
+      2026091202,
+      2026091203
+    ],
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "evaluator": "seed3090.webshop-task-score-won-evaluator.v1",
+    "attempts": 64,
+    "gpu_policy": "eight UUID-bound train-only cells; no formal evaluation task"
+  },
+  "exclusions": [
+    "all H1.30 v3 evaluation identities",
+    "all teacher-derived data",
+    "all H1.30 formal method arms",
+    "post-hoc task replacement or success-based resampling"
+  ],
+  "metrics": [
+    "qualified_positive_count",
+    "qualified_positive_rate",
+    "qualified_positive_task_count",
+    "parser_or_fallback_failure_count",
+    "failure_taxonomy_by_group"
+  ],
+  "decision_rule": "Report group-level rates with all invalid attempts retained; do not promote this diagnostic to a formal comparison or change the H1.30 capability threshold post hoc."
+}

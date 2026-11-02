@@ -1,0 +1,82 @@
+{
+  "activation_authority": false,
+  "endpoint_runtime": {
+    "adapter_mounts_allowed": false,
+    "image_repository": "vllm/vllm-openai",
+    "local_image_id": "sha256:61fc8a896b0a4fbbbdc063bc4b0dbc25ce98e02b5050c24aeb7830ac02039b14",
+    "runtime_version": "0.28.0",
+    "served_model_name": "Qwen/Qwen2.5-3B-Instruct"
+  },
+  "experiment_id": "M1-D-SEED-STAGE1-INIT-PROBE-3B",
+  "failure_policy": "Any failed identity, runtime, format, VRAM, or release gate is FAIL. Do not compensate by using Stage2 merged weights, changing the frozen M1-D task manifest, or consuming benchmark tasks.",
+  "forbidden_model_inputs": [
+    "the Ceiling Stage2 merged 3B base containing the Stage1 OPSD adapter",
+    "any SD-LoRA, LoRA, OPSD, PEFT, or other learned adapter",
+    "any model file whose SHA differs from the registered original base identity"
+  ],
+  "formal_task_consumption_allowed": false,
+  "m1d_context": {
+    "matched_manifest_path": "configs/experiment/manifests/openevo-mechanism1-m1d-seed-stage1-matched-202609060000.json",
+    "matched_manifest_sha256": "b00b5d0e93f6ce9e05561a96f1752375db10095eb804a344e0dedcc5b71f89b8"
+  },
+  "model_identity": {
+    "asset_registry_path": "configs/assets/models/qwen2.5-3b-instruct.json",
+    "asset_registry_sha256": "05f7c4e50133dd8edb87122c282ae1976df0131f9a86711d02b10ffad843f595",
+    "content_pin": "12f6da9ba14a8878c8aed27bd19e1129335ae51419c7098016fca9c3d442ce83",
+    "hf_id": "Qwen/Qwen2.5-3B-Instruct",
+    "required_files_sha256": {
+      "config.json": "eed00b17e22553979d090fa492e587e92885e328914c8e0b0b78f0a0d3576b3b",
+      "generation_config.json": "ea35dfb6fc5051b01114f9b995820d55dab01ed33ee490f6378b442af82c09f9",
+      "model-00001-of-00002.safetensors": "67347b23fb4165b652eb6611f5e1f2a06dfcddba8e909df1b2b0b1857bee06c2",
+      "model-00002-of-00002.safetensors": "a40d941d0e7e0b966ad8b62bb6d6b7c88cce1299197b599d9d0a4ce59aabfc1d",
+      "model.safetensors.index.json": "bc8aaa0c87d4335177e01c765f1de0db81661c67c1a72fbfb0d521b09f5ddc56",
+      "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+      "tokenizer_config.json": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+    },
+    "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1"
+  },
+  "model_recovery": {
+    "all_required_hashes_must_pass_before_ray_selection": true,
+    "operational_path_is_not_scientific_identity": true,
+    "source": "public Hugging Face fixed revision",
+    "storage_medium": "ephemeral RAM-backed filesystem"
+  },
+  "next_gate_on_pass": "Publish endpoint qualification evidence; M1-D execution remains locked until a separate per-phase activation receipt explicitly authorizes the 1,440-trajectory run.",
+  "pass_gates": [
+    "all seven registered original-base file SHA256 values match",
+    "Ray selection uses mechanism1_seed_stage1_3b with exactly one secondary_spare GPU",
+    "endpoint starts with no adapter and serves the registered model name",
+    "OpenAI models-list endpoint returns HTTP 200 and the registered served model identity",
+    "one synthetic chat completion returns HTTP 200 and non-empty text containing one action tag pair",
+    "peak endpoint GPU memory attributable to the qualification stays at or below 9000 MiB",
+    "zero WebShop resets, zero frozen M1-D task access, zero formal trajectory consumption",
+    "qualification container exits and Ray reservation/lease is released"
+  ],
+  "program_id": "openevo-mechanism-1.0-202609052200",
+  "purpose": "Qualify the exact original Qwen2.5-3B OpenAI-compatible policy endpoint before any M1-D benchmark trajectory is consumed.",
+  "ray_contract": {
+    "mechanism_reservations_before_select": 0,
+    "outer_ray_is_only_gpu_authority": true,
+    "profile_registry_path": "configs/experiment/openevo-mechanism1-ray-profile-registry-202609052200.json",
+    "profile_registry_sha256": "b5465792554c066389c9f8e870a6d2d27d233b750f372c03e9ff54e67b56a407",
+    "release_required_after_smoke": true,
+    "selection_count": 1,
+    "selection_forbidden_until_original_base_hash_pass": true,
+    "slot_class": "secondary_spare",
+    "vram_request_mib_per_gpu": 9000,
+    "workload": "mechanism1_seed_stage1_3b"
+  },
+  "schema": "openevo.mechanism1-m1d-policy-endpoint-qualification.202609061100",
+  "status": "PREREGISTERED_EXECUTION_LOCKED",
+  "synthetic_request": {
+    "benchmark_task_identity": null,
+    "final_panel_access": 0,
+    "formal_task_consumption": 0,
+    "max_completion_tokens": 64,
+    "prompt": "You are validating an OpenAI-compatible policy endpoint. This is synthetic infrastructure input, not a WebShop benchmark task. Briefly reason, then output exactly one action tag: <action>search[synthetic qualification]</action>. Do not write anything after the closing action tag.",
+    "prompt_sha256": "b45f24f5785cd3c23c7058c8ebf1ef46ff2aec5fe2de863acb5ed27b31d0712f",
+    "request_level_sampling_seed": null,
+    "temperature": 0.4,
+    "webshop_reset_count": 0
+  }
+}

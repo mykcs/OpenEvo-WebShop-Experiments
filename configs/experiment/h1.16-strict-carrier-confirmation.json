@@ -1,0 +1,68 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.16-strict-carrier-confirmation-v1",
+  "phase": "H1.16",
+  "status": "completed-clean-negative-carrier-confirmation",
+  "scientific_question": "Does the H1.15 parametric carrier signal survive on fresh task identities and fresh rollout seeds under one identical runner SHA?",
+  "hypothesis": "H1.15 showed heterogeneous parametric positives but was not a strict same-SHA comparison. A confirmation must distinguish a reusable carrier effect from task/partition luck and runner provenance.",
+  "arms": ["BASE", "TEXT-MEMORY", "PARAMETRIC"],
+  "experience_source": {
+    "role": "the same frozen H1.14 train-only recovery corpus and H1.15 official SD-LoRA artifact",
+    "source_group": "H1.14-student-state-recovery-v1",
+    "evaluation_access": "no H1.16 task, seed, trace, score, or outcome enters memory or training"
+  },
+  "task_selection": {
+    "builder": "scripts/openevo_webshop/build_h1_16_manifest.py",
+    "selection_seed": 20260825,
+    "freshness": "goal IDs excluded from H0-H1.15 recorded panels and H1.14/H1.15 training source",
+    "partitions": "P1-P4, two task identities per partition",
+    "rollout_seeds": [2026082500, 2026082501, 2026082502, 2026082503]
+  },
+  "cell_design": "3 arms x 4 task partitions x 8 attempts = 96 attempts; one cell per authorized GPU, eight cells concurrent then four cells",
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "runner_git_sha": "69c5e9cc30e69b3312e2be29c58cc1b740c31877",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_steps": 15,
+    "max_new_tokens": 512,
+    "parametric_artifact": "H1.15 official SD-LoRA v4; no refit or sweep"
+  },
+  "resource_policy": {
+    "planned_gpus": 8,
+    "planned_cells": 12,
+    "parallelism": "first eight independent UUID-bound cells; then four independent UUID-bound cells",
+    "isolation": "one private WebShop/Lucene seed-root copy per cell",
+    "no_occupancy_only_work": true
+  },
+  "primary_metrics": ["qualified-positive rate", "final task_score", "paired carrier reward deltas", "valid rate"],
+  "stop_rule": "one confirmation only; no rank/LR/epoch sweep, no repeated H1.16 seeds, no prompt rescue",
+  "branch_rule": {
+    "selective_parametric_positive": "only then open Q3 confirmation discussion; do not open Q3 from this panel alone",
+    "task_specific_or_mixed": "retain heterogeneity and keep Q3/H2/D0/retention/SEED closed",
+    "invalid": "repair runtime/provenance only; do not alter carrier semantics or denominator"
+  },
+  "claim_boundary": "Fresh-task carrier confirmation only; not a general learning, Q3, H2, retention, transfer, or SEED claim.",
+  "result": {
+    "run_root": "/workspace/workspace/runs/phase-h1.16-strict-carrier-confirmation-v1-20260815",
+    "manifest_sha256": "2ef534c9ecd0d13c4a75c635d8d1c05f9ca093896b4c1a6024267e072c9af438",
+    "manifest_file_sha256": "9f5e19b898f333319d167b210ba1f447e2b6772fdf47bab775470a41382c40f1",
+    "reconciliation_sha256": "af287765cc18c1585ae8372d618c1085ea3c6ca958a2930e3029e7c62a69ad87",
+    "attempts": 96,
+    "valid": 96,
+    "qualified_positive": 0,
+    "runtime_process_errors": 0,
+    "paired_excluded": 0,
+    "paired_delta_sums": {
+      "text_memory_minus_base": 0.0,
+      "parametric_minus_base": 0.0,
+      "parametric_minus_text_memory": 0.0
+    },
+    "classification": "both-carriers-negative-base-agent-interface-or-experience-usability-bottleneck",
+    "next": "Stop adapter micro-variants and keep Q3/H2/D0/retention/transfer/SEED closed; any interface or experience-content change requires a new question and preregistration."
+  }
+}

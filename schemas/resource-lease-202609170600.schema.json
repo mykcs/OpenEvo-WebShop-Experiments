@@ -1,0 +1,84 @@
+{
+  "$id": "openevo.resource-lease.202609170600",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "execution_generation_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "lease_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "lease_receipt_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "operation_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "placement_group_name": {
+      "minLength": 1,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "qualified_topology_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "request_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "openevo.resource-lease.202609170600"
+    },
+    "scientific_authority_granted": {
+      "const": false
+    },
+    "selected_gpus": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "index": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "uuid": {
+            "pattern": "^GPU-[A-Za-z0-9-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "index",
+          "uuid"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "topology_authority_granted": {
+      "const": false
+    }
+  },
+  "required": [
+    "schema",
+    "lease_id",
+    "request_id",
+    "operation_id",
+    "execution_generation_id",
+    "qualified_topology_identity",
+    "selected_gpus",
+    "placement_group_name",
+    "lease_receipt_identity",
+    "scientific_authority_granted",
+    "topology_authority_granted"
+  ],
+  "title": "OpenEVO resource lease",
+  "type": "object"
+}

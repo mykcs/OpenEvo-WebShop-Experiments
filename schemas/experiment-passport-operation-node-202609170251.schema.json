@@ -1,0 +1,404 @@
+{
+  "$defs": {
+    "artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_type": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "derived_from_digests": {
+          "items": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "minItems": 0,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "digest": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "digest_algorithm": {
+          "const": "sha256"
+        },
+        "locations": {
+          "items": {
+            "$ref": "#/$defs/reference"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "logical_role": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "digest_algorithm",
+        "digest",
+        "size_bytes",
+        "logical_role",
+        "locations",
+        "derived_from_digests"
+      ],
+      "type": "object"
+    },
+    "reference": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "repository_file",
+            "git_file",
+            "server_file",
+            "hf",
+            "oci",
+            "unresolved"
+          ]
+        },
+        "path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "repository": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "repository",
+        "revision",
+        "path",
+        "sha256",
+        "evidence_path",
+        "reason"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/experiment-passport-operation-node-202609170251.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "completed_at": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "identity_payload": {
+      "additionalProperties": false,
+      "properties": {
+        "code_identity": {
+          "$ref": "#/$defs/reference"
+        },
+        "config_identity": {
+          "$ref": "#/$defs/reference"
+        },
+        "contract_identities": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "identity": {
+                "$ref": "#/$defs/reference"
+              },
+              "name": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "identity"
+            ],
+            "type": "object"
+          },
+          "minItems": 0,
+          "type": "array"
+        },
+        "dataset_schedule_identity": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "execution_generation_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "input_artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifact"
+          },
+          "minItems": 0,
+          "type": "array"
+        },
+        "runtime_identity": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "runtime_identity_policy": {
+          "enum": [
+            "BOUND",
+            "NOT_IDENTITY_BEARING"
+          ]
+        },
+        "stochastic_identity": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "execution_generation_id",
+        "code_identity",
+        "config_identity",
+        "runtime_identity_policy",
+        "runtime_identity",
+        "dataset_schedule_identity",
+        "contract_identities",
+        "input_artifacts",
+        "stochastic_identity"
+      ],
+      "type": "object"
+    },
+    "node_kind": {
+      "const": "operation"
+    },
+    "operation_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "operation_schema_version": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "operation_type": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "outputs": {
+      "items": {
+        "$ref": "#/$defs/artifact"
+      },
+      "minItems": 0,
+      "type": "array"
+    },
+    "producer_attempt": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "execution_sha": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "enum": [
+            "LIVE",
+            "BACKFILL",
+            "PILOT"
+          ]
+        }
+      },
+      "required": [
+        "attempt_id",
+        "source",
+        "execution_sha",
+        "created_at"
+      ],
+      "type": "object"
+    },
+    "provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_paths": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+            "type": "string"
+          },
+          "minItems": 0,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "experiment_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "external_views": {
+          "items": {
+            "$ref": "#/$defs/reference"
+          },
+          "minItems": 0,
+          "type": "array"
+        },
+        "passport_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "producer_scope": {
+          "enum": [
+            "EXPERIMENT",
+            "ENGINEERING_GLOBAL"
+          ]
+        }
+      },
+      "required": [
+        "producer_scope",
+        "experiment_id",
+        "passport_sha256",
+        "evidence_paths",
+        "external_views"
+      ],
+      "type": "object"
+    },
+    "reuse": {
+      "additionalProperties": false,
+      "properties": {
+        "automatic_reuse_permitted": {
+          "type": "boolean"
+        },
+        "default_policy": {
+          "enum": [
+            "ALLOWLISTED_ENGINEERING_ONLY",
+            "REVIEW_REQUIRED_DETERMINISM",
+            "EXPERIMENT_POLICY_REQUIRED",
+            "FORMAL_REPLAY_POLICY_REQUIRED",
+            "MODEL_UPDATE_REUSE_FORBIDDEN_BY_DEFAULT",
+            "FINAL_EVAL_POLICY_REQUIRED"
+          ]
+        },
+        "mechanical_eligibility": {
+          "enum": [
+            "ELIGIBLE",
+            "INELIGIBLE"
+          ]
+        },
+        "operation_allowlisted": {
+          "type": "boolean"
+        },
+        "reason": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "mechanical_eligibility",
+        "default_policy",
+        "operation_allowlisted",
+        "automatic_reuse_permitted",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "openevo.experiment-passport-operation-node.202609170251"
+    },
+    "side_effect_class": {
+      "enum": [
+        "PURE_ENGINEERING",
+        "DETERMINISTIC_COMPUTATION",
+        "STOCHASTIC_SCIENTIFIC_RESULT",
+        "FORMAL_ROLLOUT",
+        "MODEL_UPDATE",
+        "FINAL_EVALUATION"
+      ]
+    },
+    "status": {
+      "enum": [
+        "PLANNED",
+        "RUNNING",
+        "PASS",
+        "FAIL",
+        "INVALID",
+        "STALE",
+        "SUPERSEDED"
+      ]
+    },
+    "supersedes": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "minItems": 0,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema",
+    "node_kind",
+    "operation_type",
+    "operation_schema_version",
+    "operation_digest",
+    "identity_payload",
+    "side_effect_class",
+    "status",
+    "outputs",
+    "provenance",
+    "producer_attempt",
+    "reuse",
+    "created_at",
+    "completed_at",
+    "supersedes"
+  ],
+  "title": "OpenEVO Experiment Passport content-addressed operation node with ExecutionGeneration binding",
+  "type": "object"
+}

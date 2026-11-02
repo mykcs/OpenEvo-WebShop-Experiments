@@ -1,0 +1,23 @@
+{
+  "base_pool_state_is_not_rewritten": true,
+  "compatible_base_config_sha256": [
+    "beab708daf799ad8a0150f8ff2599762695c4c88cc9d9158afd704ab5f6c0e5a"
+  ],
+  "profiles": {
+    "mechanism1_seed_stage1_3b": {
+      "arm": "mechanism1-seed-stage1-3b",
+      "max_gpus": 1,
+      "min_gpus": 1,
+      "slot_class": "secondary_spare",
+      "target_gpus": 1,
+      "vram_request_mib": 9000
+    }
+  },
+  "registry_id": "openevo-mechanism1-m1d-gpu3-ray-profiles-202609061300",
+  "schema": "openevo.ray-workload-profile-registry.202609052200",
+  "slot_class_contract": {
+    "no_base_profile_shadowing": true,
+    "secondary_spare": "uses the auxiliary GPU3 arm_q17_slot only as a qualification resource lane; scientific arm identity remains mechanism1-seed-stage1-3b"
+  },
+  "status": "QUALIFICATION_ONLY_NO_SCIENCE_ACTIVATION"
+}

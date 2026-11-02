@@ -1,0 +1,395 @@
+{
+  "artifact_policy": {
+    "assets": [
+      {
+        "asset_id": "sealed-bounded-r151-rank128-adapter",
+        "required_for_resume": true,
+        "role": "initial-fork-state",
+        "source": {
+          "evidence_path": "docs/evidence/post-advisor-unanswered-20260928/REUSABLE_STATE_IDENTITY_20260929.json",
+          "kind": "server_file",
+          "path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/round-151/sd-lora/bounded-state/adapter_model.safetensors",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "812e64cff1efc55d3eb7e293876c0ab8658734b42486898306e3a338335d784a"
+        }
+      }
+    ],
+    "default_disclosure_state": "PRIVATE",
+    "default_recovery_state": "SERVER_ONLY",
+    "large_asset_provider": "Hugging Face plus durable server artifact storage",
+    "state_model_policy": "docs/operations/publication/RESEARCH_ASSET_RECOVERY_AND_DISCLOSURE_POLICY.zh-CN.md",
+    "wandb_is_sole_backup": false
+  },
+  "authority_paths": [
+    "configs/experiment/activations/post-advisor-e3-rank-capacity-authority-202609300248.json",
+    "configs/experiment/activations/post-advisor-e3-rank-capacity-release-202609300248.json",
+    "configs/experiment/activations/post-advisor-e3-rank16-authority-202609300248.json",
+    "configs/experiment/activations/post-advisor-e3-rank16-current-campaign-202609300248.json",
+    "configs/experiment/activations/post-advisor-e3-rank16-release-202609300248.json",
+    "configs/experiment/activations/post-advisor-e3-rank64-authority-202609300248.json",
+    "configs/experiment/activations/post-advisor-e3-rank64-current-campaign-202609300248.json",
+    "configs/experiment/activations/post-advisor-e3-rank64-release-202609300248.json",
+    "configs/experiment/activations/post-advisor-e3-rank8-authority-202609300248.json",
+    "configs/experiment/activations/post-advisor-e3-rank8-current-campaign-202609300248.json",
+    "configs/experiment/designs/post-advisor-unanswered-202609282338.json",
+    "configs/experiment/path-contracts/post-advisor-e3-rank-capacity-path-contract-202609300248.json",
+    "configs/experiment/preregistrations/post-advisor-e3-rank-capacity-preregistration-202609300248.json",
+    "configs/experiment/profiles/post-advisor-e3-rank16-profile-202609300248.json",
+    "configs/experiment/profiles/post-advisor-e3-rank64-profile-202609300248.json",
+    "configs/experiment/profiles/post-advisor-e3-rank8-profile-202609300248.json"
+  ],
+  "budget_contract": {
+    "accounting_rule": "Three new E3 arms, ranks 8/16/64; each R152-R159 x128 = 1024, total 3072; rank32/rank128 reused; teacher 0; final 0.",
+    "external_teacher_call_limit": 0,
+    "final_panel_access_limit": 0,
+    "horizon": 15,
+    "optimizer_step_limit": 24,
+    "rollout_limit": 3072,
+    "rollouts_per_round": 128,
+    "round_limit": 24,
+    "source": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/preregistrations/post-advisor-e3-rank-capacity-preregistration-202609300248.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "3af432e1b7f32077aea42b3d7eac79ca7c5268ffd400d9ec1842befac843974b"
+    }
+  },
+  "campaign_id": "20260928-2338-post-advisor-unanswered",
+  "created_at": "2026-09-30T02:48:00Z",
+  "experiment_id": "202609300248-post-advisor-e3-rank-capacity",
+  "initial_execution_identity": {
+    "activation": {
+      "evidence_path": null,
+      "kind": "unresolved",
+      "path": null,
+      "reason": "E3 C activation is created only after execution A and release B are reviewed and committed.",
+      "repository": null,
+      "revision": null,
+      "sha256": null
+    },
+    "dependency_lock": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "configs/assets/runtimes/h144-scientific-runtime-v1.json",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "c5e012814bb9509deb0e2cbc8d57a63e2b56889f",
+      "sha256": "f57f0d3255ebf5cdcc6d97dd4ac7fec6fd25e7e628aadc81ae24569c77f6d492"
+    },
+    "experiment_repository": "mykcs/openevo-experiment",
+    "frozen_science_sha": "7a2fd80874c2d3f898e0fd212f8d741659549576",
+    "initial_experiment_sha": "7a2fd80874c2d3f898e0fd212f8d741659549576",
+    "initial_ray_sha": "7a2fd80874c2d3f898e0fd212f8d741659549576",
+    "initial_run_root": "/workspace/runs/post-advisor-unanswered-20260928/e3-rank8-formal-202609300248",
+    "launcher": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "scripts/openevo_webshop/post_advisor_e3_rank_capacity_runner_202609300248.py",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "7a2fd80874c2d3f898e0fd212f8d741659549576",
+      "sha256": "b6f6a4acc26e9182f4328885ad64050a36c99bfd31e257a69421f955c1e2ed55"
+    },
+    "python_version": "3.11.16",
+    "release": {
+      "evidence_path": "docs/evidence/post-advisor-unanswered-20260928/REUSABLE_STATE_IDENTITY_20260929.json",
+      "kind": "server_file",
+      "path": "/workspace/maintenance/bounded-gpu2457-successor-a6f67b66-20260918/AUTHORIZED_FORMAL_LAUNCH_GPU2457-2ea603e403641cec.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "2ea603e403641cec3494aa12bde869130efcca946657b54c6c5a97bf9cbd6caa"
+    },
+    "runtime_asset_lock": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "configs/assets/runtimes/h144-scientific-runtime-v1.json",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "c5e012814bb9509deb0e2cbc8d57a63e2b56889f",
+      "sha256": "f57f0d3255ebf5cdcc6d97dd4ac7fec6fd25e7e628aadc81ae24569c77f6d492"
+    },
+    "runtime_digest_kind": "IMAGE_ID",
+    "runtime_fingerprint": "b6141431aff7c5ccce5b2d5a3b1f0c0bdd3caa5d0ca3695e8a31d815e7882381",
+    "runtime_image_digest": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+    "upstream_openevo_sha": "a85f9a8dc5cc9870695a4301d8fc128a7ec38fb0",
+    "upstream_repository": "mykcs/OpenEvo"
+  },
+  "parent_experiment_id": null,
+  "passport_payload_sha256": "d0872644b88f3d29e06a108a76a71630dff89d392d794a6b33fc1b8d6db3aff2",
+  "provenance": {
+    "evidence_paths": [
+      "configs/experiment/designs/post-advisor-unanswered-202609282338.json",
+      "docs/evidence/post-advisor-unanswered-20260928/REUSABLE_STATE_IDENTITY_20260929.json",
+      "configs/experiment/preregistrations/post-advisor-e1-beta-direction-preregistration-202609282338.json"
+    ],
+    "parent_lineage_note": "E3 freezes three rank-capacity arms from the common R151 boundary under exact execution A; B releases are rank-specific and C activation remains a separate boundary.",
+    "revision_naming_note": "Canonical 202609282338 experiment identity; historical treatment literal retained by execution controller. The A activation reference records the PENDING prelaunch state; only later C activation may permit formal execution.",
+    "status": "NEW_DECLARATION",
+    "unknown_fields": [
+      "E3 B release commit",
+      "E3 C activation",
+      "formal run roots",
+      "final live resource receipts"
+    ]
+  },
+  "resume_policy": {
+    "automatic_gpu_start": false,
+    "policy": "EXACT_RECEIPT_LINEAGE_ONLY",
+    "reason": "Only exact R151 fork, B/C activation, no-replay round receipts and current live gates authorize continuation.",
+    "requires_receipt_chain": true
+  },
+  "schema": "openevo.experiment-passport.202609111800",
+  "scientific_identity": {
+    "acceptance_policy": {
+      "candidate_rule": "Mechanically valid raw update is normalized by Frobenius norm for nonzero delta; select beta in [0.25,0.5,0.75,1.0] by lowest NLL on the fitting current+replay batches; apply beta times the raw direction. Zero delta is no-op with undefined cosine.",
+      "credit_assignment": "Only current-round and frozen replay training examples choose beta; no reward, Task Score, probe, Task Vector, or final-panel feedback.",
+      "name": "E1_DIRECTION_PRESERVING_POSITIVE_BETA",
+      "source": {
+        "evidence_path": null,
+        "kind": "git_file",
+        "path": "configs/experiment/designs/post-advisor-unanswered-202609282338.json",
+        "reason": null,
+        "repository": "mykcs/openevo-experiment",
+        "revision": "6b4ff4503adc9494c949f654521f09ee52ec28b4",
+        "sha256": "65cebfddc2962488c95cc218820bedba704b65f611e927edaefa94f68524acd4"
+      }
+    },
+    "action_contract": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "docs/evidence/experiment-passports/202609111915/Q17_HARNESS_IDENTITY_20260911.json",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "c5e012814bb9509deb0e2cbc8d57a63e2b56889f",
+      "sha256": "eb6d643ce634210eebeb38a5bb7751d582cc7cd53346f4f282276cde25558b57"
+    },
+    "benchmark": "WebShop",
+    "claim_boundary": "rank8 evidence does not establish sufficiency below rank8",
+    "evaluator_contract": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "docs/evidence/experiment-passports/202609111915/Q17_HARNESS_IDENTITY_20260911.json",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "c5e012814bb9509deb0e2cbc8d57a63e2b56889f",
+      "sha256": "eb6d643ce634210eebeb38a5bb7751d582cc7cd53346f4f282276cde25558b57"
+    },
+    "external_teacher": {
+      "future_call_budget": 0,
+      "prior_analyses": {
+        "evidence_path": null,
+        "kind": "git_file",
+        "path": "docs/evidence/experiment-passports/202609111915/Q17_BUNDLE_EVIDENCE_20260911.json",
+        "reason": null,
+        "repository": "mykcs/openevo-experiment",
+        "revision": "c5e012814bb9509deb0e2cbc8d57a63e2b56889f",
+        "sha256": "31d85632cb084b8c64e77734eedb2b439bdc5424546aae7aaf6d8f963e26b1e8"
+      },
+      "role": "none during Stage2"
+    },
+    "final_panel_policy": {
+      "future_access_limit": 0,
+      "policy": "LOCKED_ZERO_ACCESS_E3",
+      "source": {
+        "evidence_path": null,
+        "kind": "git_file",
+        "path": "configs/experiment/designs/post-advisor-unanswered-202609282338.json",
+        "reason": null,
+        "repository": "mykcs/openevo-experiment",
+        "revision": "6b4ff4503adc9494c949f654521f09ee52ec28b4",
+        "sha256": "65cebfddc2962488c95cc218820bedba704b65f611e927edaefa94f68524acd4"
+      }
+    },
+    "harness": {
+      "profile": "201.1",
+      "source": {
+        "evidence_path": "docs/evidence/experiment-passports/202609111915/Q17_HARNESS_IDENTITY_20260911.json",
+        "kind": "server_file",
+        "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-readiness/qwen3-1p7b/harness201-final-v2-generic/finalize-receipt.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "6dc842cf9f95d216bedaeb709ed370570f63d7fcc34d565c909892498094c7fd"
+      },
+      "thinking": false
+    },
+    "human_intervention_policy": "No outcome-dependent scientific changes during the formal run. Engineering recovery is exact-receipt-only; GPU release or observability state never authorizes launch.",
+    "hypothesis": "The three fixed persistent-state ranks locate the capacity knee relative to sealed rank32/rank128 baselines.",
+    "model": {
+      "asset": {
+        "evidence_path": "docs/evidence/experiment-passports/202609111915/Q17_LIVE_BINDINGS_20260911.json",
+        "kind": "server_file",
+        "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b/verification-receipt.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "324ed4f5a6dd5d6a664ad8f4e1cb340e439394d3b7dd7dbe047f313d6815502b"
+      },
+      "dtype": "bfloat16",
+      "model_id": "Qwen/Qwen3-1.7B",
+      "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "tokenizer_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+    },
+    "optimizer": {
+      "batch_size": 1,
+      "epochs": 1.0,
+      "extra_settings": {
+        "coefficient_learning_rate": 0.01,
+        "current_coefficient_init": 0.8,
+        "current_rank": 8,
+        "maintained_state_rank": 128,
+        "max_grad_norm": 1.0,
+        "max_length": 2048,
+        "replay_capacity": 64,
+        "training_seed": 1993
+      },
+      "gradient_accumulation_steps": 1,
+      "learning_rate": 0.0002,
+      "name": "AdamW"
+    },
+    "parser_contract": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "docs/evidence/experiment-passports/202609111915/Q17_HARNESS_IDENTITY_20260911.json",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "c5e012814bb9509deb0e2cbc8d57a63e2b56889f",
+      "sha256": "eb6d643ce634210eebeb38a5bb7751d582cc7cd53346f4f282276cde25558b57"
+    },
+    "prompt_contract": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "docs/evidence/experiment-passports/202609111915/Q17_HARNESS_IDENTITY_20260911.json",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "c5e012814bb9509deb0e2cbc8d57a63e2b56889f",
+      "sha256": "eb6d643ce634210eebeb38a5bb7751d582cc7cd53346f4f282276cde25558b57"
+    },
+    "protocol_fingerprint": "4a3c8412eb909982ca5e61983d0051be2f99196f9a81fe36dd5e5aaea3b84bb3",
+    "research_question": "Where is the persistent-state capacity knee below rank128?",
+    "sampling": {
+      "do_sample": true,
+      "extra_settings": {
+        "max_steps": 15,
+        "repetition_penalty": 1.0
+      },
+      "max_new_tokens": 512,
+      "temperature": 1.0,
+      "top_k": 0,
+      "top_p": 1.0
+    },
+    "sd_lora": {
+      "alpha": 128.0,
+      "effective_rank_cap": 128,
+      "extra_settings": {
+        "bounded_recompression": true,
+        "current_update_rank": 8,
+        "maintained_state_rank": 128,
+        "persistent_state_rank_grid": [
+          8,
+          16,
+          64
+        ]
+      },
+      "rank": 8,
+      "source": {
+        "evidence_path": null,
+        "kind": "git_file",
+        "path": "docs/evidence/bounded-recurrence-gdr-20260915/first-state-rank128-adapter-config-template-20260915T104300.json",
+        "reason": null,
+        "repository": "mykcs/openevo-experiment",
+        "revision": "c5e012814bb9509deb0e2cbc8d57a63e2b56889f",
+        "sha256": "cbd30da3262c20cd0df9542d7577d14568db14e7d9cbb69291c0182da96d4ee8"
+      },
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ]
+    },
+    "seed_policy": {
+      "rng_contract": "rollout seed = 148000000 + schedule_position; injective per-step generation seed; GPU and shard identity never enter task or generation seeds",
+      "schedule": {
+        "evidence_path": null,
+        "kind": "git_file",
+        "path": "configs/experiment/manifests/h1.44-on-3b-training-schedule-v1.json",
+        "reason": null,
+        "repository": "mykcs/openevo-experiment",
+        "revision": "c5e012814bb9509deb0e2cbc8d57a63e2b56889f",
+        "sha256": "1b3ac4252cda4d25d9542713e68e2fa4aacd90ceb377e5c03c8c1ad7c6878428"
+      },
+      "schedule_id": "injective-step-seed-v1",
+      "seed_base": 148000000
+    },
+    "split": "Frozen canonical WebShop Small Stage2 schedule, R152-R159 (128 rollouts per round); 64-task held-out development panel only; final panel locked.",
+    "stop_rule": {
+      "max_rollouts": 3072,
+      "max_rounds": 24,
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/post-advisor-e1-beta-direction-preregistration-202609282338.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "cc4d24d3bade1e2d48d5228b29ce8190a4cd4ba1b5ba9cfe19cd929a28c105bc"
+      }
+    },
+    "task_manifest": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "configs/experiment/manifests/h1.44-on-3b-training-schedule-v1.json",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "c5e012814bb9509deb0e2cbc8d57a63e2b56889f",
+      "sha256": "1b3ac4252cda4d25d9542713e68e2fa4aacd90ceb377e5c03c8c1ad7c6878428"
+    },
+    "training_data_identity": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "configs/experiment/manifests/h1.44-on-3b-training-schedule-v1.json",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "c5e012814bb9509deb0e2cbc8d57a63e2b56889f",
+      "sha256": "1b3ac4252cda4d25d9542713e68e2fa4aacd90ceb377e5c03c8c1ad7c6878428"
+    },
+    "treatment": "BOUNDED_OFF rank-capacity sweep; same R151 source, ranks 8/16/64, same R152-R159 task/seed schedule.",
+    "what_changed": [
+      "Only the persistent-state rank and predeclared rank-specific R151 compression vary across new E3 arms."
+    ],
+    "what_must_stay_fixed": [
+      "Qwen3-1.7B revision, Harness201.1, prompt/action/parser/evaluator semantics",
+      "R152-R159 task/seed schedule, 128 rollouts per rank per round",
+      "Same sealed R151 source and predeclared rank-specific compression assets",
+      "BOUNDED_OFF transition/replay/selection semantics",
+      "Zero external-teacher calls and zero final-panel access"
+    ]
+  },
+  "status": "FROZEN",
+  "tracking_policy": {
+    "approved_artifact_roles": [
+      "passport",
+      "run-manifest",
+      "startup-receipt",
+      "closeout-receipt",
+      "evaluation-summary",
+      "bounded-table"
+    ],
+    "entity": "example-entity",
+    "mode_order": [
+      "online",
+      "offline",
+      "disabled"
+    ],
+    "project": "openevo-webshop-experiments",
+    "role": "MIRROR_ONLY",
+    "scientific_authority": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "campaign_id": "20261020-1610-advisor-fresh-gpu3",
+  "max_output_bytes": 2147483648,
+  "network": "none",
+  "output_root": "/workspace/runs/advisor-fresh-202610201610-gpu3",
+  "read_only_inputs": [
+    "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b",
+    "/workspace/runs/phase-h1.20-action-admissibility-diagnostic-v1-20260815/seed-roots/base-P1",
+    "/workspace/maintenance/Q17-VALIDATION-CURVE-202609231600/runtime-ac130148",
+    "/workspace/control/advisor-fresh-followups-20261020-source/configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+    "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/round-159/sd-lora/bounded-state",
+    "/workspace/runs/post-advisor-unanswered-20260928/prepare/e4-reverse-v2-parent/reverse-adapters/reverse-direction-r156",
+    "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct/round-095/text-memory/memory.md",
+    "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct/round-000/skill-bundle/SKILL.md",
+    "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct/round-115/agent-system/agent_system.md"
+  ],
+  "runtime_uid_gid": "1001:1001",
+  "schema": "openevo.advisor-fresh-path-contract.v1"
+}

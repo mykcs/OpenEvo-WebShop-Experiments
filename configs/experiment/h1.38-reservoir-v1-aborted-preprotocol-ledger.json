@@ -1,0 +1,11 @@
+{
+  "schema": "openevo.h1.38-reservoir-aborted-preprotocol-ledger.v1",
+  "status": "excluded-from-formal-analysis",
+  "reason": "The initial feasibility launcher lacked the subsequently required GPU-hour/early-sufficiency and per-identity ledger contract. It was terminated before formal reconciliation; none of its output may enter the compliant reservoir denominator.",
+  "server_run_root": "/workspace/runs/phase-h1.38-diversity-feasibility-v1-20260818",
+  "aborted_manifest_file_sha256": "aff5c1d1b14f1913fb4edd39382926ecc8721995775c4749374c712b43078ab8",
+  "aborted_manifest_canonical_sha256": "aebfcf75a7e67e2baea0bdc69adbdab4128987caf124f4dde6f003cd8dd5ce5b",
+  "observed_attempt_rows_before_stop": 70,
+  "task_ids": [4640, 1718, 2448, 3811, 2119, 6453, 3835, 5617, 6466, 5821, 2743, 5148, 5481, 5637, 2452, 6023, 3760, 6080, 4790, 6283, 1702, 5778, 3619, 4946, 4497, 1283, 3963, 3401, 6567, 2424, 4687, 4465, 5327, 1604, 2025, 853, 1729, 1633, 870, 4855, 1475, 5728, 4189, 5223, 934, 838, 2649, 3342, 5040, 5287, 6561, 5448, 511, 6102, 1370, 6415, 4394, 2169, 1724, 6134, 3565, 6052, 1243, 5241],
+  "reuse_policy": "Exclude all 64 task identities from every later reservoir/evaluation selection, regardless of whether an individual cell completed."
+}

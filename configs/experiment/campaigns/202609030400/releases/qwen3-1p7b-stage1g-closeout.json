@@ -1,0 +1,62 @@
+{
+  "activation_authority": false,
+  "arm": "qwen3-1p7b",
+  "asset_contract": {
+    "consumes": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen3-1p7b--stage1f_agent_system",
+        "role": "upstream-phase"
+      }
+    ],
+    "produces": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen3-1p7b--stage1g_closeout",
+        "provider": "server",
+        "provider_id": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/PRE_STAGE2_READY_qwen3-1p7b.json",
+        "role": "phase-receipt"
+      }
+    ],
+    "publication": [],
+    "recovery": [],
+    "registry_policy": "observation-first-canonical-if-proven",
+    "telemetry": []
+  },
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 0,
+    "local_reflector_requests_max": 0,
+    "optimizer_steps_max": 0
+  },
+  "completion": {
+    "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/PRE_STAGE2_READY_qwen3-1p7b.json",
+    "required_equal": {
+      "arm": "qwen3-1p7b",
+      "freeze_id": "202609030400",
+      "stage2_authorized": false,
+      "status": "PASS"
+    },
+    "sha256": "878032df8522524eccc561ddff63e7e6ff010c23e4c46ce1a49f20995ad0d856"
+  },
+  "historical_execution_provenance": {
+    "rule": "do not infer missing producer identity from names or timestamps",
+    "status": "PARTIAL_UNKNOWN_NOT_UPGRADED"
+  },
+  "phase": "stage1g_closeout",
+  "release_mode": "adoption",
+  "retry": {
+    "exact_resume": false,
+    "reason": "immutable completion adopted into current control plane; no execution is authorized by this release"
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "configs/experiment/campaigns/202609030400/authority-snapshots/48d885cb13f39f4b42cc361d6f4c333bae8ed0d8f891978b2755b932ccad519d.json",
+    "required_equal": {
+      "freeze_id": "202609030400",
+      "schema": "openevo.shared-prestage2.v1",
+      "status": "FROZEN_METHOD"
+    },
+    "sha256": "48d885cb13f39f4b42cc361d6f4c333bae8ed0d8f891978b2755b932ccad519d"
+  },
+  "status": "ADOPTED_IMMUTABLE_COMPLETION"
+}

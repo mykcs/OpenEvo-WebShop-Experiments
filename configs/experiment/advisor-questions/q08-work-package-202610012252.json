@@ -1,0 +1,149 @@
+{
+  "schema": "openevo.advisor-work-package.v1",
+  "question_id": "Q08",
+  "owner_pr": 635,
+  "status": "PLANNED_NOT_ACTIVATED",
+  "plan": "docs/science/webshop/advisor-questions/2026-09-22/Q08_COMPREHENSIVE_EXECUTION_PLAN_20261001.md",
+  "execution_authority": {
+    "formal_task_consumption_allowed": false,
+    "gpu_allocation_allowed": false,
+    "final_panel_access_allowed": false,
+    "final_panel_access": 0
+  },
+  "science": {
+    "estimand": "fixed historical lineage/cohort late-minus-first-post-effective-exposure score, acquisition measured separately",
+    "claim_boundary": "no rollout=learning inference; no causal/catastrophic-forgetting or training-seed population claim",
+    "primary_metric": "paired Task Score retention delta",
+    "practical_effect_threshold": 0.05
+  },
+  "dependencies": {
+    "hard": [],
+    "selection": [],
+    "historical": [
+      "frozen96 outcome-blind seen task panel",
+      "12 checkpoint matrix/10 tensor PASS cells",
+      "768 exact historical fresh-result rows"
+    ],
+    "existing_execution_gates": [
+      "current q08 profile/release/router/claim/qualification must exist and bind exact source",
+      "missing checkpoints stay omitted without exact recovery",
+      "conditional initial baseline needs prospective budget amendment"
+    ]
+  },
+  "stages": [
+    {
+      "id": "S0",
+      "role": "audit",
+      "trigger": "always CPU; source-owned ledger/dataset/update reconciliation",
+      "budget": {
+        "training_rollouts": 0,
+        "training_slots": 0,
+        "evaluation_episodes": 0
+      },
+      "freeze_required": [
+        "task-to-training inclusion receipts",
+        "accepted state-change proof",
+        "per-checkpoint exposure table"
+      ]
+    },
+    {
+      "id": "S1",
+      "role": "primary",
+      "trigger": "ten retained cells exact-qualified and canonical activated",
+      "budget": {
+        "training_rollouts": 0,
+        "training_slots": 0,
+        "evaluation_episodes": 960
+      },
+      "freeze_required": [
+        "source/runtime/core/carriers/model identity",
+        "original task/generation seeds",
+        "observed generation/token GPU-hour/storage caps"
+      ]
+    },
+    {
+      "id": "S2",
+      "role": "conditional",
+      "trigger": "two missing Ordinary payloads recovered at original exact hashes; original-owner contract reconciled",
+      "budget": {
+        "training_rollouts": 0,
+        "training_slots": 0,
+        "evaluation_episodes": 192
+      },
+      "freeze_required": [
+        "byte-exact recovery receipts",
+        "cell authority amendment"
+      ]
+    },
+    {
+      "id": "S3",
+      "role": "conditional",
+      "trigger": "pre-exposure unavailable and exact initial state exists; outcome-blind full EARLY cohorts; new contract activated",
+      "budget": {
+        "training_rollouts": 0,
+        "training_slots": 0,
+        "evaluation_episodes": 96
+      },
+      "freeze_required": [
+        "initial state identity and evaluator bridge",
+        "exact baseline dedup to32 if all scientific identities match",
+        "budget outside original1920",
+        "original-owner prospective amendment"
+      ]
+    }
+  ],
+  "budget_accounting": {
+    "historical_fresh_reused_episodes": 768,
+    "new_seen_available_episodes": 960,
+    "new_seen_recovery_conditional_max": 192,
+    "original_conceptual_total_max": 1920,
+    "initial_baseline_extra_conditional_max": 96,
+    "training_rollouts_max": 0
+  },
+  "acceptance": [
+    "fixed96 task membership and complete missing/invalid coverage",
+    "accepted update needs dataset inclusion plus changed active state receipt",
+    "acquisition and retention distinct with two nine-contrast interval families",
+    "no substituted missing first-post checkpoint",
+    "seen outcomes actually executed/sealed; preparation and CPU analysis are not scientific closure"
+  ],
+  "luna": {
+    "reading_order": [
+      "AGENTS.md",
+      "docs/evidence/advisor/liaochang/2026-09-22-meeting-transcript.raw.md",
+      "docs/science/webshop/advisor-questions/2026-09-22/Q08_COMPREHENSIVE_EXECUTION_PLAN_20261001.md",
+      "docs/evidence/advisor-q08-retention-202610010523/seen-panel-manifest.json",
+      "docs/evidence/advisor-q08-retention-202610010523/checkpoint-matrix.json",
+      "docs/evidence/advisor-q08-retention-202610010523/fresh-reuse-audit.json",
+      "configs/experiment/current-campaign.json",
+      "docs/dev/experiment-reliability/README.md"
+    ],
+    "implementation_steps": [
+      "run the source-bound normalized adapter on each frozen lineage inventory and reconcile accepted-update receipts",
+      "run normalized CPU retention analysis and source provenance audit",
+      "reconcile canonical q08 source/profile/release/router/one-use claims",
+      "qualify and run activated original96 seen cells without fresh reruns",
+      "produce complete stats/curves/heatmaps and four-question seal"
+    ],
+    "cpu_commands": [
+      "python3 scripts/analysis/advisor_q08_retention_analysis.py --help",
+      "python3 scripts/analysis/advisor_q08_retention_analysis.py --input work/q08-normalized-lineage.json --resamples 50000 --seed 20261001",
+      "python3 -m pytest -q tests/test_advisor_q08_retention_analysis.py tests/test_advisor_q08_retention_input_adapter.py"
+    ],
+    "remaining_work": [
+      "three frozen lineage inventories, real adapter source receipts, and accepted-update reconciliation",
+      "canonical execution authority preparation",
+      "zero-formal qualification and960 real seen episodes",
+      "typed missing/recovery handling",
+      "actual per-lineage statistics and seal",
+      "conditional initial baseline contract if needed"
+    ],
+    "stop_conditions": [
+      "unproven accepted training exposure",
+      "missing exact checkpoint typed PARTIAL",
+      "incomplete/invalid cohort coverage cannot close primary claim",
+      "engineering failures preserve original attempts",
+      "final access0; unresolved live owner waits"
+    ]
+  }
+}

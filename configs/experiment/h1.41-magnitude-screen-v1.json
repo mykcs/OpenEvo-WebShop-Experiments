@@ -1,0 +1,165 @@
+{
+  "schema": "openevo.experiment-h1.41-magnitude-screen.v1",
+  "campaign_id": "20260821-0141-h141-magnitude-screen",
+  "phase": "H1.41-MD",
+  "status": "preregistered-pre-execution",
+  "formal_task_consumption_allowed": false,
+  "title": "H1.41 matched continual-update magnitude screen",
+  "scientific_question": "Does resetting cumulative SD-LoRA magnitudes before each new endogenous increment improve stable parameter integration relative to the exact H1.40 updater?",
+  "claim_boundary": "This campaign tests an updater mechanism only. It may support a magnitude-policy effect, a null, or a measurement diagnosis. It cannot support fresh T2 transfer or multi-generation self-evolution because no T2 panel is opened.",
+  "parent_closeout": {
+    "campaign_id": "20260820-0140r2-h140-g2-multigeneration",
+    "classification": "complete-upstream-gate-failed",
+    "closeout_audit": "docs/evidence/remote-runs/2026-08-21/H140_CLOSEOUT_SELECTOR_AUDIT.md",
+    "artifact_autopsy": "docs/evidence/remote-runs/2026-08-21/h1.40-md/ARTIFACT_AUTOPSY.md",
+    "t2_panel_reuse_forbidden": true
+  },
+  "source_artifacts": {
+    "sealed_h140_e2_run_root": "/workspace/runs/phase-h140-g2-r2-20260820/formal-e2-harvest-retry1",
+    "selection_file": "e2-selection-reconciled.json",
+    "harvest_file": "e2-harvest-attempts-reconciled.jsonl",
+    "reuse_is_limited_to_sealed_training_records": true,
+    "evaluation_records_enter_replay": false
+  },
+  "frozen_scientific_contract": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "model_content_pin": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+    "official_open_evo_stable": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "open_evo_current_governance": "unverified-404; stable pin is historical last-verified evidence",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "parser_contract": "seed3090.webshop-action-parser.v3-action-command",
+    "evaluator": "WebShop task_score/won",
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "target_modules": ["q_proj", "v_proj"],
+    "rank": 4,
+    "learning_rate": 0.0002,
+    "coefficient_learning_rate": 0.01,
+    "coefficient_init": 0.8,
+    "epochs": 1,
+    "max_steps_per_increment": 16,
+    "replay_capacity": 64,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 1,
+    "max_length": 512,
+    "max_grad_norm": 1.0,
+    "training_seed": 1993,
+    "dtype": "bfloat16",
+    "source_selection": {
+      "selection_file_sha256": "31fc010055fea64110b174be0c28320a28cf31fd96532f4b7cdc6d6954368f12",
+      "selection_record_sha256": "46afa4f1ada5a8e878e456c46059249491d3336b11be2d176ee6e09368e3a55c",
+      "task_ids": [
+        "webshop_005386",
+        "webshop_003523",
+        "webshop_004231",
+        "webshop_004140",
+        "webshop_006468",
+        "webshop_003560",
+        "webshop_005001",
+        "webshop_001227"
+      ],
+      "records_per_task": 2,
+      "total_records": 16,
+      "reuse_rule": "Reuse only the sealed H1.40 E2 training records; no new harvest and no H1.40 T2 records. Evaluation records never enter replay."
+    },
+    "arms": {
+      "C0_exact_h140": {
+        "description": "Exact H1.40 updater control.",
+        "magnitude_policy": "warm_start_prior_magnitudes_v1",
+        "reset_all_to_coefficient_init": false,
+        "upstream_patch": null
+      },
+      "C1_reset_magnitude": {
+        "description": "Matched updater with only cumulative magnitude initialization changed.",
+        "magnitude_policy": "reset_all_to_coefficient_init_v1",
+        "reset_all_to_coefficient_init": true,
+        "upstream_patch": "scripts/openevo_webshop/patches/openevo-sd-lora-reset-magnitudes.patch",
+        "upstream_patch_sha256": "3b399a38978c1ef8a3df33d9b9784825086ed43e43099ae8cebf909c575392d6"
+      }
+    },
+    "evaluation_panels": {
+      "acquisition_e2": {
+        "manifest": "configs/experiment/manifests/h1.40-g2-e2-reservoir-v1.json",
+        "manifest_content_sha256": "c50d8fb05acdee87750a14de8f1134658a802d483bd7ee3370174bb741f38230",
+        "task_ids": ["webshop_005386", "webshop_003523", "webshop_004231", "webshop_004140", "webshop_006468", "webshop_003560", "webshop_005001", "webshop_001227"],
+        "rollout_seeds": [2026082100, 2026082101, 2026082102, 2026082103],
+        "attempts_per_arm": 32
+      },
+      "retention_e1": {
+        "manifest": "configs/experiment/manifests/h1.40-g2-e1-retention-set-v1.json",
+        "manifest_content_sha256": "0dac2d5aba03f5f738749ca0d8b1dc627cb417f6b91cd213eafebbebf7265ad9",
+        "task_ids": ["webshop_000607", "webshop_002192", "webshop_004238", "webshop_004477", "webshop_004533", "webshop_005753", "webshop_005819", "webshop_006751"],
+        "rollout_seeds": [2026082110, 2026082111, 2026082112, 2026082113],
+        "attempts_per_arm": 32
+      },
+      "preservation_h139": {
+        "manifest": "configs/experiment/manifests/h1.40-g2-h139-preservation-anchor-v1.json",
+        "manifest_content_sha256": "65f41a037133982b3d1421768911384e3e0d82df5a0031ce8e4a632dc4093172",
+        "task_ids": ["webshop_001879", "webshop_006259", "webshop_002794", "webshop_002786", "webshop_001996", "webshop_003752", "webshop_005297", "webshop_006359", "webshop_002333", "webshop_001947", "webshop_002771", "webshop_006031", "webshop_006485", "webshop_002043", "webshop_006762", "webshop_000896", "webshop_003370", "webshop_003720", "webshop_004357", "webshop_002525", "webshop_000658", "webshop_003352", "webshop_000850", "webshop_002038", "webshop_002888", "webshop_005037", "webshop_004322", "webshop_003673", "webshop_002131", "webshop_004958", "webshop_006009", "webshop_000826"],
+        "rollout_seeds": [2026082120, 2026082121, 2026082122, 2026082123],
+        "attempts_per_arm": 128
+      }
+    }
+  },
+  "analysis": {
+    "unit": "task cluster over four rollout seeds",
+    "contrasts": ["C0_minus_G1", "C1_minus_G1", "C1_minus_C0"],
+    "bootstrap_rounds": 10000,
+    "bootstrap_seed": 2026082140,
+    "sign_flip_rounds": 10000,
+    "sign_flip_seed": 2026082141,
+    "primary_gates": {
+      "acquisition": "all attempts valid AND point estimate arm_minus_G1 > 0",
+      "retention": "all attempts valid AND lower 95% CI arm_minus_G1 > -0.05",
+      "preservation": "all attempts valid AND lower 95% CI arm_minus_G1 > -0.05"
+    },
+    "measurement_invalid_rule": "Any parser/fallback/runtime/identity/incomplete-trace/adapter-load invalid attempt makes that stage upstream-stage-invalid; invalid attempts are never silently scored as zero and no later T2 is opened.",
+    "mechanism_selector": {
+      "MEASUREMENT_INVALID": "Either arm has an upstream-stage-invalid panel.",
+      "C1_MECHANISM_SUPPORTED": "Both arms are fully valid; C1 passes all three upstream gates; and at least one preregistered C1_minus_C0 95% CI excludes zero in the favorable direction without a corresponding preservation failure.",
+      "NULL_OR_INCONCLUSIVE": "Both arms are fully valid but the C1_minus_C0 intervals do not meet the mechanism criterion, or both arms fail the same upstream gate.",
+      "C0_ONLY_PASS": "C0 passes all three gates and C1 does not; report as evidence against this reset policy, not as evidence for a different untested mechanism."
+    }
+  },
+  "resource_contract": {
+    "formal_task_attempts": 384,
+    "new_harvest_attempts": 0,
+    "t2_attempts": 0,
+    "gpu_hours_cap": 6.0,
+    "accounting": "exact per attempt; unknown intervals are not reported as zero",
+    "authorized_pool_basis": "current parent standing pool intersected with immediate live-idle UUIDs",
+    "kill_reset_preempt_allowed": false
+  },
+  "execution_prerequisites": {
+    "cpu_contract_tests": true,
+    "exact_head_ci_green": true,
+    "experiment_checkout_clean": true,
+    "pinned_openevo_sha_verified": true,
+    "c1_patch_apply_check": true,
+    "path_contract_and_container_probe": true,
+    "immediate_live_idle_gpu_gate": true,
+    "wrapper_finally_receipt": true,
+    "h141_path_contract": "configs/experiment/h1.41-path-contract-v1.json",
+    "patched_core_preflight": "scripts/openevo_webshop/prepare_h141_upstream.py",
+    "patched_core_receipt": "/workspace/runs/phase-h141-magnitude-screen-20260821/receipts/patched-core.json"
+  },
+  "forbidden": [
+    "H1.40 T2 panel",
+    "rank reduction",
+    "replay policy change",
+    "rollout-count change",
+    "prompt/parser/evaluator change",
+    "teacher data",
+    "MemoryOps or text-memory carrier",
+    "extra seeds/tasks/retries after a stopping rule",
+    "unregistered upstream code import"
+  ],
+  "formal_execution_guard": {
+    "tasks_consumed": 0,
+    "gpu_hours_consumed": 0.0,
+    "arms_executed": [],
+    "t2_panel_evaluated": false,
+    "launcher_must_fail_closed_while_status_is_preregistered": true
+  }
+}

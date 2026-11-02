@@ -1,0 +1,68 @@
+{
+  "activation_authority": false,
+  "arm": "qwen25-3b",
+  "asset_contract": {
+    "consumes": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen25-3b--stage1b_teacher_evidence",
+        "role": "upstream-phase"
+      }
+    ],
+    "produces": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen25-3b--stage1c_opsd",
+        "provider": "server",
+        "provider_id": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/OPSD_COMPLETE_qwen25-3b.json",
+        "role": "phase-receipt"
+      }
+    ],
+    "publication": [],
+    "recovery": [],
+    "registry_policy": "observation-first-canonical-if-proven",
+    "telemetry": []
+  },
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 0,
+    "local_reflector_requests_max": 0,
+    "optimizer_steps_max": 18239
+  },
+  "completion": {
+    "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/OPSD_COMPLETE_qwen25-3b.json",
+    "required_equal": {
+      "arm": "qwen25-3b",
+      "optimizer_steps_total": 18239,
+      "records_total": 18239,
+      "status": "PASS"
+    },
+    "sha256": "616beabb2d24d684b0f14721f2fb4495e8285f546241cd8166b6fcec44ba655f"
+  },
+  "historical_execution_provenance": {
+    "original_checkout": "/workspace/control/openevo-experiment-shared-prestage2-3c6391af",
+    "original_execution_sha": "3c6391af20d01c06d3b370ead110d225b4b10df0",
+    "rule": "do not infer missing producer identity from names or timestamps",
+    "status": "PROVEN"
+  },
+  "historical_execution_source": {
+    "checkout": "/workspace/control/openevo-experiment-shared-prestage2-3c6391af",
+    "execution_sha": "3c6391af20d01c06d3b370ead110d225b4b10df0"
+  },
+  "phase": "stage1c_opsd",
+  "release_mode": "adoption",
+  "retry": {
+    "exact_resume": false,
+    "reason": "immutable completion adopted into current control plane; no execution is authorized by this release"
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "configs/experiment/campaigns/202609030400/authority-snapshots/b8d10e17369b6a33ecc64dd5f9af79019e806886ad368e7c73b19ffcc1d950c0.json",
+    "required_equal": {
+      "freeze_id": "202609030400",
+      "schema": "openevo.shared-prestage2.v1",
+      "status": "FROZEN_METHOD"
+    },
+    "sha256": "b8d10e17369b6a33ecc64dd5f9af79019e806886ad368e7c73b19ffcc1d950c0"
+  },
+  "status": "ADOPTED_IMMUTABLE_COMPLETION"
+}

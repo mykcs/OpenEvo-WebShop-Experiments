@@ -1,0 +1,84 @@
+{
+  "schema": "openevo.mechanism1-m1d-minimax-posthoc.202609061925",
+  "status": "PREREGISTERED_ZERO_FORMAL_TRAJECTORIES",
+  "program_id": "openevo-mechanism-1.0-202609052200",
+  "experiment_id": "M1-D-SEED-STAGE1-INIT-PROBE-3B",
+  "bound_at_sgt": "2026-09-06T19:25:00+08:00",
+  "scientific_contract_changed": false,
+  "formal_state_at_binding": {
+    "m1d_baseline_rollout_records": 0,
+    "m1d_minimax_records": 0,
+    "final_panel_access": 0,
+    "seed_stage2_rollouts": 0
+  },
+  "source_bindings": {
+    "m1d_design": {
+      "path": "configs/experiment/designs/openevo-mechanism1-seed-stage1-init-probe-3b-202609052200.json",
+      "sha256": "0f3528b174a8df206aafa1f45cb55d7fe0f1aa7ccbf647dd708bab61137c6c18"
+    },
+    "m1d_activation": {
+      "path": "configs/experiment/activations/openevo-mechanism1-m1d-stage1-execution-release-202609061825.json",
+      "sha256": "5d26f8e7c32830eda6e92bba5df09a986da053751abc8ae715dfcc2ce0c70b53"
+    },
+    "matched_manifest_sha256": "b00b5d0e93f6ce9e05561a96f1752375db10095eb804a344e0dedcc5b71f89b8",
+    "inherited_minimax_handoff_sha256": "fb8959b6a068a39e58fa33e1919d98b44b50565eff105a19372092cc9628ddbe"
+  },  "analyzer": {
+    "payload_path": "docs/evidence/mechanism1/m1d-minimax-runtime-202609061925/h146_analyze_trajectories.py",
+    "payload_sha256": "46f9ecda2b912baf17261541df277ca87289f7aaaeb27ef946d089d36938b940",
+    "provider": "MiniMax",
+    "model": "MiniMax-M3",
+    "base_url": "https://api.minimaxi.com/v1", "revision_naming_annotation": "legacy-revision-compat",
+    "analysis_prompt_version": "seed",
+    "skill_mode": "episode_only",
+    "include_episode_summary": true,
+    "thinking_type": "adaptive",
+    "reasoning_split": true,
+    "temperature": 0.0,
+    "max_completion_tokens": 1024,
+    "workers": 4,
+    "transport_attempts": 2,
+    "parse_attempts": 2,
+    "timeout_seconds": 120,
+    "resume_success_definition": "parse_ok=true only",
+    "failed_rows_must_be_retried": true
+  },
+  "new_seed_corpus": {
+    "source": "/workspace/runs/mechanism1-m1d-seed-stage1-202609061500/baseline_rollouts.jsonl",
+    "required_trajectory_count": 1440,
+    "required_parse_ok": 1440,
+    "required_parse_failures": 0,
+    "new_webshop_calls_during_analysis": 0,
+    "trajectory_sha_binding_required": true
+  },  "existing_openevo_3b_comparator": {
+    "reuse_allowed_only_if_identity_matches": true,
+    "trajectory_corpus_sha256": "4b243feffaf8aa795bd3727f3ca60a6ba9c0333e4229397e6437b86d941af7a3",
+    "minimax_complete_status": "PASS",
+    "minimax_parse_ok": 1440,
+    "minimax_parse_failures": 0,
+    "analyzer_sha256": "46f9ecda2b912baf17261541df277ca87289f7aaaeb27ef946d089d36938b940",
+    "model": "MiniMax-M3",
+    "thinking_type": "adaptive",
+    "reasoning_split": true
+  },
+  "comparison_endpoints": [
+    "exact-success trajectory count",
+    "positive-score trajectory count",
+    "mean task_score*100",
+    "search-loop frequency",
+    "target-product identification",
+    "option-selection errors",
+    "buy-timing errors",
+    "trajectory diversity",
+    "MiniMax error taxonomy"
+  ],
+  "forbidden": [
+    "changing analyzer model or prompt after observing M1-D outcomes",
+    "changing thinking_type or reasoning_split after observing M1-D outcomes",
+    "using MiniMax to generate WebShop actions",
+    "SEED skill generation",
+    "SEED SFT training",
+    "SEED Stage2",
+    "final-panel access"
+  ],
+  "hard_stop": "STOP after M1-D trajectory seal plus MiniMax 1440/1440 parse_ok seal and matched comparison; no SEED Stage2."
+}

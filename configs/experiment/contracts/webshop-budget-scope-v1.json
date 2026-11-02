@@ -1,0 +1,28 @@
+{
+  "schema": "openevo.webshop-budget-scope.v1",
+  "status": "active-scope-guard",
+  "scopes": {
+    "openevo-ceiling-1.0": {
+      "unit": "round",
+      "rounds": 160,
+      "tasks_per_round": 16,
+      "rollouts_per_task": 8,
+      "rollouts_per_round": 128,
+      "total_rollouts": 20480,
+      "round_indexes": "0..159",
+      "completion_state": "next_round == 160",
+      "live_authority_pr": 264,
+      "live_authority_branch": "codex/ceiling1-component-store-v2-20260902"
+    },
+    "wb1-seed-paper-faithful": {
+      "unit": "update",
+      "updates": 150,
+      "tasks_per_update": 16,
+      "rollouts_per_task": 8,
+      "episodes_per_update": 128,
+      "total_valid_episodes": 19200,
+      "source": "configs/experiment/wb1/protocol.json"
+    }
+  },
+  "forbidden_inference": "Never use the WB1/SEED paper-faithful 150-update budget as an OpenEVO-Ceiling-1.0 stop condition."
+}

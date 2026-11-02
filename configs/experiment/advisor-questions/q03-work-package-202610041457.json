@@ -1,0 +1,298 @@
+{
+  "schema": "openevo.advisor-work-package.v1",
+  "question_id": "Q03",
+  "owner_pr": 630,
+  "status": "PLANNED_NOT_ACTIVATED",
+  "plan": "docs/science/webshop/advisor-questions/2026-09-22/Q03_COMPREHENSIVE_EXECUTION_PLAN_20261001.md",
+  "prospective_authority_amendment": {
+    "path": "configs/experiment/amendments/q03-seed-stage2-authority-supersession-202610041457.json"
+  },
+  "execution_authority": {
+    "formal_task_consumption_allowed": false,
+    "gpu_allocation_allowed": false,
+    "final_panel_access_allowed": false,
+    "final_panel_access": 0
+  },
+  "science": {
+    "estimand": "Equal-weight two-stream canonical update160 minus exact shared Stage1 start Task Score",
+    "claim_boundary": "Conditional on one Stage1 checkpoint, frozen OpenEVO trajectories/MiniMax analyses and pinned SEED-style Stage2; not exact paper reproduction or causal SEED-versus-OpenEVO algorithm comparison. Invalid actions do not prove interface defects.",
+    "primary_metric": "mean paired WebShop Task Score",
+    "practical_effect_threshold": 0.02,
+    "primary_checkpoint": {
+      "policy_update": 160
+    },
+    "analysis_seed": 2026100103,
+    "bootstrap_replicates": 10000,
+    "alpha": 0.05,
+    "multiplicity": "one primary; Holm within secondary milestone/exact families",
+    "sampling_unit": "paired task across both streams, separate seed-sensitive summaries; not independent Stage1 training repeats"
+  },
+  "source": {
+    "repository": "https://github.com/jinyangwu/SEED",
+    "commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+    "files": {
+      "examples/seed_trainer/_common/webshop.sh": "246dde9772ae7a3769d64ffcd7d62797194bcbce00e7967929db2161a30547fa",
+      "examples/seed_trainer/run_webshop_sft_glm_self.sh": "4a1a4978e5d0731bccfa0337ff89f9ac47b54fd68c69e2ae9e898168b32297f1",
+      "examples/data_preprocess/prepare.py": "a48104d81afed8c6cbf89c732ceb5909e758ae854e50abbeb7cb95e754c9b22f",
+      "verl/trainer/ppo/ray_trainer.py": "cf48fc1f96b3f80cbe0de2d80672fc8afa047bed1d01b44d564cc5ada9067b75",
+      "agent_system/environments/env_package/webshop/envs.py": "1a8a73b5e02854a822aa03dcb66a9fbf8d67c028f963f36845bf34fb1b60ea7c"
+    }
+  },
+  "start": {
+    "stage1_training_receipt_sha256": "058180b0398237588c4a8a3d452381d60d094b73b01a8819fe3de231c6d227e8",
+    "checkpoint_files": {
+      "index": "b50d570fe2656be1735f0f78cf4edd44792c9db9add93986675499703fd89f43",
+      "shard_1": "c82052a77f4fd94a1219e5c5b3382295712fb366f03c02f21d2380370727ce0c",
+      "shard_2": "8721a7b713a99b1b3fe23eb4c8a0fe6d8b4d72e1b0923d98a5e11ff2ecd1d5f9"
+    },
+    "checkpoint_supporting_files": {
+      "added_tokens.json": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+      "config.json": "6a0d1e71ba8820e7267830ffe8bfed62e12ca95a75508712e201b030a3a8f0e1",
+      "generation_config.json": "5fcde6bd4727e23c4edd990ac9a8e714506fdf1b0526213948162c74dae6b714",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+      "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "tokenizer_config.json": "3c0884a30471f4f542dc89630f62a380bb70a341fafda826136a7be921fec7ea",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "historical_receipt_policy": "Restore exact immutable receipts; preserve sealed negative; no old evaluator result reused as canonical start"
+  },
+  "stage2": {
+    "updates_per_seed": 160,
+    "tasks_per_update": 16,
+    "group_size": 8,
+    "slots_per_update": 128,
+    "train_batch_size": 16,
+    "streams": [
+      {
+        "id": "A",
+        "environment_seed": 0,
+        "policy_seed": 20261001,
+        "data_seed": 20261001
+      },
+      {
+        "id": "B",
+        "environment_seed": 1,
+        "policy_seed": 20261002,
+        "data_seed": 20261002
+      }
+    ],
+    "external_teacher_calls": 0,
+    "internal_teacher": "enabled policy_vllm episode/critical-step skill analysis; forwards and tokens require separate accounting",
+    "native_validation": {
+      "trainer.test_freq": -1,
+      "trainer.val_before_train": false,
+      "evaluation_episodes": 0
+    },
+    "environment_rng_checkpoint_required": true
+  },
+  "evaluation": {
+    "milestones": [
+      0,
+      40,
+      80,
+      120,
+      160
+    ],
+    "panel_size": 64,
+    "panel_sha256": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+    "canonical_harness": "scripts/openevo_webshop/q17_fixed_full_checkpoint_probe_20260930.py",
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "max_steps": 15,
+      "max_new_tokens": 512,
+      "do_sample": true,
+      "top_k": 0,
+      "repetition_penalty": 1.0,
+      "step_seed_policy": "paired_generation_seed + step_index * 100000"
+    },
+    "carrier_rule": "one frozen memory/skill/agent identity shared across start and every milestone; hashes require future manifest",
+    "historical_evaluator": {
+      "contract": "seed-eval",
+      "temperature": 0.4,
+      "inference_carriers": "none"
+    },
+    "old_start_result_reusable_as_canonical": false,
+    "environment_seed_policy": "frozen panel task worker_seed",
+    "panel_manifest_sha256": "2d5d1620065a15840ae20fed324038312aec74b0895e13c9d283177928bf1a3b"
+  },
+  "dependencies": {
+    "hard": [
+      "Exact source/start/export/evaluator bridge and public-semantics fidelity",
+      "Separate two-seed prospective amendment/runtime/resource/storage/activation before scientific consumption"
+    ],
+    "selection": [
+      "Q02/Q10 only if a later independently frozen contract replaces initialization; current start remains #597"
+    ],
+    "historical": [
+      "#597 checkpoint and negative outcome kept immutable",
+      "Ordinary/Bounded checkpoint context reuse only under full evaluator identity"
+    ],
+    "existing_execution_gates": [
+      "The old E5 E1-E4 seal prerequisite is superseded only for prospective Q03 by the owner-authorized 202610041457 amendment; E1-E4 evidence and owner-specific states remain unchanged and are not represented as sealed by Q03.",
+      "Old E5 profile is single seed20480 and remains inert; new plan does not activate it"
+    ]
+  },
+  "stages": [
+    {
+      "id": "A0_SOURCE_START_BRIDGE",
+      "role": "audit",
+      "trigger": "Always before activation; only supplied local bytes can prove source/start identity",
+      "budget": {
+        "training_rollouts": 0,
+        "training_slots": 0,
+        "evaluation_episodes": 0
+      },
+      "freeze_required": [
+        "runtime image/core SHA and compatibility patch classifications",
+        "full-model/export-tool/carrier/prompt/action/parser hashes",
+        "trace diagnosis separating strategy failures and interface defects",
+        "Native generation interface qualification uses one TP1 GPU and fixed train-pool goal500; zero-task FSDP component qualification uses the target DP8/SP1 topology and a fixed synthetic fixture. All qualification records cumulative measured usage and a revisable two GPU-hour planning estimate, with binding stops only from verified user/platform/resource-policy limits across every allocated UUID, including historical attempts; none is hidden in canonical640 or formal training."
+      ]
+    },
+    {
+      "id": "B_TWO_SEED_STAGE2",
+      "role": "primary",
+      "trigger": "Both complete160-update streams under a new exact authority; no score-driven stop",
+      "budget": {
+        "training_rollouts": 40960,
+        "training_slots": 40960,
+        "policy_updates": 320,
+        "actor_optimizer_steps_upper_bound": 9600,
+        "environment_steps_upper_bound": 614400,
+        "policy_response_tokens_upper_bound": 314572800,
+        "policy_vllm_analysis_requests_upper_bound": 40960,
+        "policy_vllm_prompt_tokens_upper_bound": 671088640,
+        "policy_vllm_completion_tokens_upper_bound": 167772160,
+        "evaluation_episodes": 640,
+        "evaluation_environment_steps_upper_bound": 9600,
+        "evaluation_generated_tokens_upper_bound": 5529600,
+        "external_teacher_calls": 0,
+        "native_auxiliary_evaluation_episodes": 0,
+        "actor_optimizer_step_bound_basis": "CONDITIONAL_PROFILE_NOT_EXECUTION_FROZEN: max15 active steps, global minibatch64, rollout.n1, PPO epochs1, DP8/SP1, copy padding and skill_gen optimizer disabled; actual qualification must bind effective config before activation",
+        "evaluation_generation_calls_upper_bound": 19200,
+        "learner_reference_teacher_forward_bound_basis": "CONDITIONAL_PROFILE_NOT_EXECUTION_FROZEN: DP8/SP1, actor old/ref/teacher micro16, actor micro8, dynamic_bsz false, prompt4096+response512, global minibatch64, PPO epochs1, step_priority scoring, skill_gen/sp/id auxiliary losses disabled; counts aggregate rank forwards, not worker-group RPCs or generation calls",
+        "actor_old_logprob_forward_calls_upper_bound": 38400,
+        "reference_logprob_forward_calls_upper_bound": 38400,
+        "policy_teacher_logprob_forward_calls_upper_bound": 40960,
+        "actor_gradient_forward_calls_upper_bound": 76800,
+        "actor_backward_calls_upper_bound": 76800,
+        "actor_old_logprob_token_positions_upper_bound": 2831155200,
+        "reference_logprob_token_positions_upper_bound": 2831155200,
+        "policy_teacher_logprob_token_positions_upper_bound": 2842951680,
+        "actor_gradient_token_positions_upper_bound": 2831155200
+      },
+      "freeze_required": [
+        "actual env/policy/data RNG consumer and 16x8 group/task ledger",
+        "actual effective config and source binding for conditional learner/reference/teacher forward/token-position ceilings; per-update real ledger includes batch padding, actual non-padding tokens and generation calls separately",
+        "Conditional profile ceiling, not an audited execution configuration: 128 trajectories x at most 15 active steps = 1920 training rows; rollout.n=1, 1 PPO epoch and global actor minibatch64 imply at most30 synchronized optimizer steps/update,9600 total; freeze finite scientific counters/retry rules, exact DP/SP, padding, disabled skill_gen auxiliary optimizer path, measured GPU cost planning estimate and any verified binding resource limit with its source",
+        "evidence-preserving checkpoint/export/storage schedule for both seeds",
+        "same canonical update0 and milestone evaluator identity"
+      ]
+    },
+    {
+      "id": "C_OPENEVO_CONTEXT",
+      "role": "conditional",
+      "trigger": "Only historical checkpoints lacking identity-matched canonical evaluation; no training reruns; context is not matched algorithm control",
+      "budget": {
+        "training_rollouts": 0,
+        "training_slots": 0,
+        "evaluation_episodes": 640,
+        "evaluation_environment_steps_upper_bound": 9600,
+        "evaluation_generated_tokens_upper_bound": 5529600,
+        "evaluation_generation_calls_upper_bound": 19200
+      },
+      "freeze_required": [
+        "Ordinary and Bounded five milestone mappings",
+        "policy/round/accepted-update/cumulative-slot axes",
+        "data/teacher/substrate unequal contracts disclosed"
+      ]
+    }
+  ],
+  "budget_policy": {
+    "all_numbers": "Scientific counts are prospective maxima, not activation; qualification planning estimates do not create binding stop authority",
+    "gross_capability_episode_upper_bound": 1280,
+    "canonical_episode_upper_bound": 640,
+    "qualification_episodes": "one fixed non-held-out WebShop train-pool task (goal index500) for native generation interface; zero-task fixed synthetic fixture for DP8/SP1 FSDP parameter-update/save/restore/export components; engineering qualification only; formal_task_consumed=false; all previous attempts remain in cumulative resource accounting",
+    "qualification_reset_attempts_upper_bound": null,
+    "qualification_no_science_retry_rule": "Reward-blind engineering repair and revalidation may continue after model generation or action within existing task/resource authority, with cumulative resource accounting when a diagnosed fault has been corrected; preserve all attempts and actual resource consumption. Invalid model actions or low rewards alone never authorize a retry, replacement, seed/task change, or result selection. Unchanged repeated failures require diagnosis rather than blind replay.",
+    "qualification_gpu_hours_upper_bound": null,
+    "qualification_generation_calls": null,
+    "qualification_generation_tokens_per_call_upper_bound": 512,
+    "native_auxiliary_evaluation_episodes": 0,
+    "internal_teacher_cost": "bounded above by stage B policy_vllm request/prompt/completion ceilings; learner/reference scoring forwards remain separately counted",
+    "training_attempt_policy": "No outcome retry or replacement slot. Reconcile partial side effects; resume only exact missing work permitted by the immutable ledger.",
+    "evaluation_generated_token_upper_bound_per_64_episode_milestone": 552960,
+    "open_before_activation": [
+      "formal two-stream measured cost/resource plan and verified binding-limit provenance, if applicable; Agent estimates do not become hard stops by freezing; the one-step qualification peak is not a training throughput bound",
+      "exact native policy prompt/action/parser, runtime, FSDP exporter and canonical Q17 evaluator identity; prior smoke used a custom prompt, fallback action and held-out session0, so native/canonical qualification remains unknown",
+      "actual effective native profile/source and runtime consumer binding for conditional optimizer/reference/teacher forward-call and token-position ceilings",
+      "persistent storage and recovery/checkpoint-retention schedule"
+    ],
+    "unknown_cost_policy": "No fabricated teacher/token/throughput/storage numbers; freeze real costs before activation",
+    "exact_reuse": "Same canonical start may save64; old seed-eval result cannot replace it",
+    "qualification_goal_index": 500,
+    "qualification_action_steps_upper_bound": null,
+    "qualification_budget_accounting": "Cumulative allocated GPU-hours sum over every occupied UUID and attempt, including historical failures, startup/model loading and subsequent engineering revalidation. Preserve the measured 5817.845415040851 GPU seconds and every historical receipt. The 2 GPU-hour Agent estimate is retained for planning, not a task stop rule; generic completion instructions did not state a numeric hard stop. Refresh usage, GPU/lock/capacity and actual platform/resource-policy limits before launch; each attempt has an operational timeout. Continue diagnosed engineering repair toward acceptance without blind replay or scientific outcome retries. Null per-operation and binding qualification caps do not grant unlimited permission or formal activation. Formal science GPU-hour, storage and remaining qualification gates must still freeze before activation.",
+    "qualification_gpu_hours_planning_estimate": 2,
+    "qualification_budget_authority": {
+      "classification": "AGENT_PLANNING_ESTIMATE_NOT_BINDING_LIMIT",
+      "estimate_origin": "Codex-authored 1 GPU-hour qualification plan, revised to 2 in section7.7; user requested completion without stating a numeric hard stop",
+      "current_authority": "Human replacement AGENTS.md budget authority clause; authorized PR630 continuous engineering repair and qualification on existing LYG pool without preemption",
+      "binding_limit_source": null,
+      "historical_allocated_gpu_seconds_conservative_upper_bound": 5817.845415040851,
+      "scope": "engineering qualification only; frozen scientific matrix and activation prerequisites unchanged"
+    }
+  },
+  "acceptance": [
+    "Both full Stage2 streams or typed boundary; fixed0/40/80/120/160 curves",
+    "Exact source/start/export/evaluator/patch/carrier and raw task receipt hashes",
+    "Effect/CI/per-stream consistency plus limits of one common Stage1 initialization",
+    "Invalid actions preserved as scientific outcomes unless independently proven contract defect",
+    "Report internal teacher and all separate costs; final access zero",
+    "Four-question result summary; preparation is never scientific closure"
+  ],
+  "luna": {
+    "reading_order": [
+      "AGENTS.md",
+      "docs/dev/README.md",
+      "docs/dev/experiment-reliability/README.md",
+      "docs/dev/experiment-reliability/LIFECYCLE.md",
+      "docs/dev/experiment-reliability/FAILURE_TAXONOMY.md",
+      "docs/science/webshop/advisor-questions/2026-09-22/Q03_COMPREHENSIVE_EXECUTION_PLAN_20261001.md",
+      "configs/experiment/advisor-questions/q03-work-package-202610041457.json",
+      "configs/experiment/profiles/post-advisor-e5-stage2-preparation-profile-20260930.json",
+      "docs/evidence/post-advisor-unanswered-20260928/E5_PREPARATION_INERT_RECONCILIATION_20260930.json"
+    ],
+    "implementation_steps": [
+      "CPU source/start/evaluator audit; restore raw negative receipts without overwrites",
+      "Classify sealed invalid actions using exact raw traces and CPU parser replay",
+      "Build qualified public-compatible runtime/FSDP exporter and fixed evaluator bridge",
+      "Prospectively reconcile old budget/gate and freeze all RNG, teacher and storage costs",
+      "New exact authority then two complete streams and canonical curve",
+      "Seal statistics and next-phase routing"
+    ],
+    "cpu_commands": [
+      "python3 scripts/analysis/q03_identity_bridge_audit.py",
+      "python3 -m unittest discover -s tests -p test_q03_identity_bridge_audit.py",
+      "git diff --check"
+    ],
+    "remaining_work": [
+      "No Stage2 scientific checkpoint/output exists from this preparation",
+      "Runtime/image compatibility, full evaluator consumer and result-analysis bridge; local identity manifest binding the already verified pinned source and LYG Stage1 receipt/checkpoint hashes",
+      "Finish trace classification beyond epoch2/3; qualify FSDP-to-HF export and fixed evaluator consumers; bind patches/q03/seed-consumer-wiring-202610041457.patch (SHA256 7718fadec0e0b892fb4583de146c9f3225fc50dd4d36a3ef41ea6381f3ece94c) into the exact source/runtime identity, then qualify VLLM engine seeding, TP worker seeds, resume RNG state, policy_vllm interleaving, and the limited data.seed row-order scope",
+      "Freeze internal teacher/scoring/token/GPU/storage costs, ledger/recovery/checkpoint-retention contract",
+      "Formal activation and old gate reconciliation",
+      "Bridge contract receipt separates semantic prompt/action hashes from code-file hashes; audit complete sampling and per-task RNG."
+    ],
+    "stop_conditions": [
+      "Source/patch/start/evaluator identity or budget mismatch",
+      "Public semantics cannot be preserved",
+      "No qualified exact runtime/resource/storage/export route",
+      "Budget exhausted or missing recovery authority",
+      "Never erase a sealed negative, silently retry a model outcome, or read final panel"
+    ]
+  }
+}

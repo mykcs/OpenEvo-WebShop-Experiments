@@ -1,0 +1,93 @@
+{
+  "schema": "seed3090.webshop-h1.27-model-capability-preregistration.v1",
+  "campaign_id": "20260815-1400-h127-model-capability",
+  "phase": "H1.27",
+  "status": "preregistered-awaiting-resource-gate",
+  "scientific_question": "Does the frozen WebShop action contract remain unusable because Qwen2.5-3B lacks the base-agent capability needed for product selection, or is the failure shared by comparable small instruction models?",
+  "hypothesis": "A larger or capability-diverse base model will show a selective fresh-task closed-loop advantage under the same WebShop contract; if every model remains at zero, the evidence favors a benchmark/interface or task-content bottleneck rather than Qwen2.5-3B scale alone.",
+  "arms": [
+    "QWEN25-3B",
+    "QWEN25-7B",
+    "GRANITE33-2B",
+    "PHI4-MINI"
+  ],
+  "unique_core_variable": "base_model_family_and_scale",
+  "frozen_variables": [
+    "WebShop catalog and environment seed",
+    "task identities and task text",
+    "compact-v2 prompt contract",
+    "action parser and fallback validity rule",
+    "30-step horizon and 512 max new tokens",
+    "temperature 0 and paired rollout seeds",
+    "no training, teacher, memory, retrieval, adapter, or outcome-based tuning",
+    "same single-GPU runtime and explicit UUID binding"
+  ],
+  "primary_metrics": [
+    "valid qualified-positive rate by model and task",
+    "mean final task score over valid attempts",
+    "full win rate",
+    "buy-now transition rate"
+  ],
+  "diagnostic_metrics": [
+    "parser/fallback invalid",
+    "search action rate",
+    "product-link click rate",
+    "repeated click and next/backtrack rate",
+    "episode length and trace completeness"
+  ],
+  "task_manifest": "docs/evidence/remote-runs/2026-08-15/h1.27/H1.27_TASK_MANIFEST.json",
+  "task_manifest_sha256": "71926d841b1689f35aa96c271bcab7aae32ece07b033ec8e623d414b3d72c242",
+  "tasks": [
+    505,
+    506,
+    507,
+    508
+  ],
+  "rollout_seeds": [
+    2026085000,
+    2026085001,
+    2026085002,
+    2026085003
+  ],
+  "budget": {
+    "cells": 16,
+    "attempts": 64,
+    "gpu_hours_cap": 4,
+    "attempts_per_cell": 4,
+    "no_retry_after_valid_completion": true
+  },
+  "contamination_check": {
+    "tasks_disjoint_from_h0_h1_26": true,
+    "evaluation_outcomes_used_for_selection_or_prompt": false,
+    "training_data_used": false,
+    "teacher_assistance": false,
+    "memory_or_retrieval": false,
+    "adapter_used": false
+  },
+  "provenance": {
+    "model_assets": "manifest-bound local model paths and inventory digests in H1.27_TASK_MANIFEST.json",
+    "official_open_evo_stable": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "upstream_audit": "stable unchanged; PR #297 SD-LoRA-RR and PR #298 MemEvolve remain draft and are not used",
+    "runtime_base_commit": "c3e0ad53733980effa0d9b39ec9620ec867a627b",
+    "runtime_branch": "codex/h1.27-model-capability-20260815"
+  },
+  "stop_rule": "Stop after all 64 valid formal attempts or after the 4 GPU-hour cap; operational failures are preserved and excluded, then repaired only before a fresh formal start.",
+  "positive_branch": "If one model selectively exceeds QWEN25-3B across at least two task identities and paired seeds, preregister an independent confirmation on new tasks before interpreting Q3; do not claim OpenEvo efficacy.",
+  "negative_branch": "If all models remain at zero or gains are task-local, close the scale-only question and design an explicitly scoped experience-content or task-family study; do not sweep prompt, carrier, rank, LR, or epoch.",
+  "claim_boundary": "Base-agent capability diagnostic only. It cannot open Q3, H2, D0, retention/transfer, or SEED.",
+  "tracking": {
+    "entity": "example-entity",
+    "project": "openevo-webshop-experiments",
+    "group": "20260815-1400-h127-model-capability",
+    "wandb_mode": "online",
+    "offline_fallback": "only after exact online initialization/upload failure with preserved error and spool hash"
+  },
+  "required_runtime_contract": [
+    "JAVA_HOME/bin/javac",
+    "explicit authorized GPU UUID",
+    "no compute apps on selected UUID",
+    "output and W&B paths under /dev/shm",
+    "online W&B initialization",
+    "model config/tokenizer/template preflight"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "campaign_id": "20260928-2338-post-advisor-unanswered",
+  "command": [
+    "env",
+    "PYTHONPATH=/workspace/control/q06-gdr-context-preparation-20261001",
+    "python3",
+    "/workspace/control/q06-gdr-context-preparation-20261001/scripts/openevo_webshop/q06_context_host_orchestrator.py",
+    "--authority-repo",
+    "/workspace/control/q06-gdr-context-preparation-20261001",
+    "--execution-source",
+    "/workspace/control/post-advisor-e1-a11-authority-20260930",
+    "--release",
+    "/workspace/control/q06-gdr-context-preparation-20261001/configs/experiment/activations/q06-gdr-context-202610011303-release.json",
+    "--router",
+    "/workspace/control/q06-gdr-context-preparation-20261001/configs/experiment/activations/q06-gdr-context-202610011303-current-campaign.json",
+    "--output-dir",
+    "/workspace/runs/post-advisor-unanswered-20260928/q06-gdr-context-202610011303/historical_gdr_r159_rank128",
+    "--gpu-uuid",
+    "${GPU_UUID}"
+  ],
+  "container": {
+    "network": "none"
+  },
+  "execution": {
+    "mode": "host-orchestrator"
+  },
+  "gpu_gate": {
+    "interval_seconds": 1,
+    "max_idle_memory_mib": 16,
+    "max_idle_utilization_percent": 0,
+    "timeout_seconds": 0
+  },
+  "identity": {
+    "gid": 1001,
+    "uid": 1001
+  },
+  "image": "experiment-host/openevo-scientific@sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "image_id": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "lock_root": ".gpu-locks",
+  "paths": {
+    "cache": "cache",
+    "data": "datasets/webshop-1000",
+    "models": "runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base",
+    "runs": "runs/post-advisor-unanswered-20260928"
+  },
+  "prelaunch": {
+    "runtime_python": "python3"
+  },
+  "required_paths": [
+    {
+      "expected_type": "file",
+      "path": "runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b/config.json"
+    },
+    {
+      "expected_type": "file",
+      "path": "runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b/model.safetensors"
+    },
+    {
+      "expected_type": "file",
+      "path": "runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b/verification-receipt.json"
+    },
+    {
+      "expected_type": "file",
+      "path": "control/q06-gdr-context-preparation-20261001/scripts/openevo_webshop/q06_context_host_orchestrator.py"
+    }
+  ],
+  "run_id": "post-advisor-q06-gdr-context-202610011303",
+  "schema": "openevo.webshop.run-profile.v1",
+  "source": {
+    "experiment": {
+      "path": "control/post-advisor-e1-a11-authority-20260930",
+      "revision": "0e1ea4bbb62215be71a68f206eabf442c0227f58"
+    },
+    "openevo": {
+      "path": "control/openevo-core",
+      "revision": "a85f9a8dc5cc9870695a4301d8fc128a7ec38fb0"
+    }
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "group": "20260928-2338-post-advisor-unanswered",
+    "mode": "disabled",
+    "on_error": "fail",
+    "probe_epoch": "post-advisor-q06-gdr-context-202610011303",
+    "project": "openevo-webshop-experiments"
+  },
+  "workspace": "/workspace"
+}

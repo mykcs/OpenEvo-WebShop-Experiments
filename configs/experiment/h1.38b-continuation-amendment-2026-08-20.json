@@ -1,0 +1,75 @@
+{
+  "schema": "openevo.webshop-h1.38b-continuation-amendment.v1",
+  "status": "published",
+  "campaign_id": "20260820-0129-h138b-method-control",
+  "parent_scientific_head": "23aa9ada98920c7f0577f06d97f6804f548a330f",
+  "parent_preregistration": "configs/experiment/h1.38b-method-control-v1.json",
+  "parent_partial_reconciliation": "docs/evidence/remote-runs/2026-08-20/h1.38b-qualification/h1.38b-partial-reconciliation-010c622.json",
+  "scope": "time-window-and-execution-orchestration-only",
+  "scientific_contract_changed": false,
+  "preserved_contract": {
+    "sealed_d8_records_sha256": "d206c20e4d08a9c1785a6af9c2edb510db4a478d5d459395537706a2d7d8191c",
+    "sealed_d8_selection_sha256": "b8c35b51aed3bf942cb2e45e7c9c0e68239d6efc27a3d7be8bc6a5ed54ff70c7",
+    "sample_plan_bundle_sha256": "fb3ad9d07b12b4726ce18502acaef239d03c8376440ec3648486e87b3fee2732",
+    "evaluation_manifest_sha256": "47c6ea7dcc7ffa7940b4319da5ad878a9e094a5ed4ed87b5a525b46cac84959f",
+    "evaluation_manifest_file_sha256": "10451328295670a36b9783f8bf3a85cfb867530a6078d4a6a6789d1c36128119",
+    "training_identity_count": 8,
+    "training_record_count": 16,
+    "fresh_task_count": 48,
+    "planned_cells": 184,
+    "planned_attempts": 704,
+    "campaign_gpu_hours_cap": 6.0,
+    "authorized_gpu_uuids": [
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ]
+  },
+  "window": {
+    "start_at_utc": "2026-08-20T04:50:00Z",
+    "start_epoch": 1787201400,
+    "deadline_at_utc": "2026-08-21T04:50:00Z",
+    "deadline_epoch": 1787287800,
+    "no_new_cell_after_utc": "2026-08-21T04:30:00Z",
+    "no_new_cell_after_epoch": 1787286600,
+    "duration_hours": 24,
+    "safe_boundary_minutes": 20,
+    "deadline_policy": "campaign_gpu_hour_cap_precedes_time_window"
+  },
+  "budget": {
+    "inherited_gpu_hours": 0.014166666666666666,
+    "remaining_gpu_hours_at_amendment": 5.985833333333333,
+    "campaign_total_gpu_hours_cap": 6.0,
+    "formal_attempt_cap": 704
+  },
+  "execution": {
+    "branch": "codex/h138b-continuation-20260820",
+    "execution_sha_binding": "launcher-environment-exact-pushed-head",
+    "amendment_sha_binding": "git-history-of-pushed-branch",
+    "run_root": "/workspace/runs/phase-h1.38b-method-control-v1-20260820",
+    "launcher": "scripts/openevo_webshop/launch_h138b_method_control.sh",
+    "launcher_sha256": "717d619e87e5353a8d1a4409f6fc14dad19bbca41dd0a54f0c7b24e072c22f3e",
+    "bounded_gpu_gate": "pinned-7B SD-LoRA parameter-change/save/reload/inference-load gate before formal evaluation"
+  },
+  "authorization": {
+    "source": "parent standing six-UUID pool plus unchanged H1.38B campaign allowlist",
+    "is_reservation": false,
+    "selected_uuid_requires_immediate_live_idle": true,
+    "excluded_uuids": [
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ],
+    "no_reset_kill_preempt_or_scope_expansion": true
+  },
+  "fresh_panel": {
+    "consumption_allowed_only_after_structural_gate": true,
+    "must_remain_untouched_on_gate_failure": true
+  },
+  "upstream": {
+    "stable_pin": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "access_policy": "retry audit before formal campaign; fail closed if exact upstream source remains unavailable"
+  }
+}

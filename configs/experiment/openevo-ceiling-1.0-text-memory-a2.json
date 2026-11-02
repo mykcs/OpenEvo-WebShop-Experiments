@@ -1,0 +1,37 @@
+{
+  "a2_trigger": "if and only if a logical unit has exactly 20 inputs and both A1 primary and exact-same-input repair saturate at 2048",
+  "base_policy": "A1",
+  "coverage": {
+    "duplicates": 0,
+    "omissions": 0,
+    "required_source_rows": 1440
+  },
+  "current_202609030400_authority": {
+    "a11_4096_rejected": true,
+    "a11_evidence_root": "/workspace/runs/20260902-text-memory-a11-three-arm-compare",
+    "reconfirmed_at": "2026-09-03 SGT",
+    "symmetric_capacity_authority": "configs/experiment/amendments/openevo-ceiling-1.0-stage1-capacity-recovery-v1.json"
+  },
+  "external_teacher_calls_after_frozen_pool": 0,
+  "final_panel_consumption_before_freeze": 0,
+  "forbidden": [
+    "5+5 recursive split",
+    "unbounded adaptive tree",
+    "outcome-based split",
+    "split on non-saturation errors",
+    "automatic further amendment"
+  ],
+  "recovery": {
+    "child_policy": "each child gets primary 2048 + at most one exact-same-child repair 2048",
+    "max_split_depth": 1,
+    "parent_policy": "merge exactly the two child representations; primary 2048 + at most one exact-same-two-child repair 2048",
+    "recursive_split": false,
+    "split": "first 10 inputs / last 10 inputs in frozen order",
+    "split_depth": 1
+  },
+  "schema": "openevo.ceiling1-text-memory-a2.v1",
+  "scientific_trigger": "3B A1 level-00-node-015 full-20 primary and exact-same-20 repair both reached the 2048-token hard cap; 7B A1 completed without this terminal failure",
+  "stage2_rollout_consumption_before_freeze": 0,
+  "status": "frozen-after-A1-3b-failure-before-any-stage2-consumption",
+  "symmetry": "same policy for 3B and 7B; if A2 trigger is not reached, A1 execution is path-equivalent and need not be rerun"
+}

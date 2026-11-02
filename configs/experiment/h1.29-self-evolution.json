@@ -1,0 +1,128 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.29-self-evolution-v1",
+  "campaign_id": "20260816-2230-h129-self-evolution",
+  "phase": "H1.29",
+  "status": "draft",
+  "program_target": "Measure whether OpenEvo can improve WebShop score, speed, or execution quality on Qwen2.5-3B, then compare the stabilized route with a separately frozen SEED baseline.",
+  "scientific_question": "Can Qwen2.5-3B-Instruct convert its own fresh successful WebShop trajectories into an OpenEvo SD-LoRA update that improves held-out closed-loop behavior?",
+  "hypothesis": "If Qwen2.5-3B can produce enough parser-valid, non-zero-reward trajectories on train-only tasks, replaying those complete self-generated trajectories should improve fresh-task behavior over the frozen BASE under the same evaluation contract.",
+  "independent_variable": "self-generated successful trajectory replay versus no adapter",
+  "route_decision": {
+    "current_evidence": "H0 established bounded natural success, while H1.11/H1.28 did not establish fresh-task transfer from externally selected or oracle-labeled states.",
+    "selected_route": "self-evolution",
+    "fallback_route": "If the Qwen2.5-3B capability gate fails, stop this self-generated route. A separate GPT/OPSD bootstrap may be registered only after an exact GPT trajectory manifest, train/evaluation split, teacher source hash, and privileged-context boundary are available; do not substitute Qwen14B or an online endpoint silently.",
+    "capability_gate": "Proceed to training only if at least two train task identities yield qualified self-generated episodes and at least eight qualified episodes in total."
+  },
+  "arms": {
+    "BASE": "frozen Qwen2.5-3B-Instruct with no adapter",
+    "SELF-EVOLUTION": "one rank-4 OpenEvo SD-LoRA adapter trained only on qualified Qwen2.5-3B self-generated success episodes from the train split"
+  },
+  "train_panel": {
+    "known_tasks": [2822, 5135, 5294, 6769],
+    "additional_tasks": "four deterministic fresh train-only tasks selected by the materializer",
+    "rollout_seeds": [2026090100, 2026090101, 2026090102, 2026090103],
+    "selection_rule": "known H0 natural-success tasks plus four new train-only tasks; all evaluation tasks are disjoint",
+    "qualification": "identity_ok and trace_complete and no parser/fallback/error and final_task_score > 0"
+  },
+  "evaluation_panel": {
+    "tasks": "eight deterministic fresh tasks selected after excluding all versioned task identities and train tasks",
+    "rollout_seeds": [2026090200, 2026090201, 2026090202, 2026090203],
+    "cells": 16,
+    "attempts": 64,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "temperature": 0.0,
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1"
+  },
+  "seeding_and_comparison": {
+    "h1_29_role": "route-feasibility and fresh-task transfer gate; no SEED arm is mixed into this causal panel",
+    "h1_30_role": "separate matched OpenEvo-versus-SEED comparison after H1.29 produces a valid route or a preregistered GPT/OPSD route",
+    "frozen_comparison_contract": {
+      "catalog": "indexes_1k",
+      "environment_seed": 2026,
+      "task_ids": "same frozen task manifest for both methods",
+      "rollout_seeds": "same frozen seed list for both methods",
+      "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+      "action_contract": "seed3090.webshop-action-parser.v1",
+      "model_revision": "same Qwen2.5-3B-Instruct revision when the SEED implementation supports it; otherwise mark the comparison non-comparable",
+      "invalid_attempt_policy": "report runtime/parser/identity failures separately and never hide them inside task score"
+    },
+    "metrics": {
+      "primary": ["mean task_score", "won rate"],
+      "speed": ["median valid episode wall time seconds", "median seconds per valid step"],
+      "quality": ["valid-action rate", "buy-now transition rate", "premature-next-page rate"],
+      "win_rule": "OpenEvo is a candidate winner only if paired comparison on the frozen manifest is positive on at least one prespecified metric, with method identity and invalid-rate receipts; this is not a claim until independent rerun or uncertainty analysis is complete."
+    },
+    "seed_source_boundary": "SEED runtime, weights, and private server assets are not copied into this repository; the future H1.30 manifest must record an exact public source/revision or an auditable external artifact hash."
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "tokenizer_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_open_evo_stable": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "environment_seed": 2026,
+    "training": {
+      "rank": 4,
+      "target_modules": ["q_proj", "v_proj"],
+      "learning_rate": 0.0002,
+      "coefficient_learning_rate": 0.01,
+      "epochs": 1,
+      "max_steps": 8,
+      "max_length": 512,
+      "replay_capacity": 64,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 1,
+      "gradient_checkpointing": true,
+      "dtype": "bfloat16",
+      "seed": 1993
+    }
+  },
+  "metrics": {
+    "primary": [
+      "qualified self-generated train episodes by task identity",
+      "SELF-EVOLUTION minus BASE paired task_score",
+      "scientific-valid rate",
+      "qualified-positive rate by task identity"
+    ],
+    "diagnostic": [
+      "self-trajectory step count",
+      "parser/fallback rate",
+      "buy-now transition",
+      "valid-action rate",
+      "premature-next-page rate",
+      "valid-episode wall time seconds",
+      "first divergence step",
+      "training loss",
+      "adapter state change"
+    ],
+    "invalid": ["runtime error", "identity mismatch", "incomplete trace", "parser/fallback failure"]
+  },
+  "positive_rule": "The capability gate passes, and SELF-EVOLUTION has a positive aggregate paired score delta over BASE plus positive mean score on at least two complete task identities; this remains a route result and does not open Q3 without independent confirmation.",
+  "negative_rule": "If the capability gate fails, classify self-evolution as data-starved and stop; if training succeeds but the held-out paired delta is non-positive or task-local, retain the negative result and do not sweep rank/LR/epoch/prompt.",
+  "invalid_rule": "Exclude runtime/parser/identity failures from scientific denominators; repair only provenance/runtime faults before a fresh preregistered group.",
+  "contamination_rules": [
+    "train and evaluation task identities are disjoint",
+    "evaluation outcomes and traces never enter the self-generated dataset",
+    "only Qwen2.5-3B outputs from train tasks may enter the self-generated dataset",
+    "no teacher, oracle, memory, retrieval, prompt change, or action post-processing during evaluation",
+    "one formal adapter training run and no retry after valid completion"
+  ],
+  "resource_budget": {
+    "harvest_attempts": 32,
+    "training_runs": 1,
+    "evaluation_cells": 16,
+    "planned_gpus": 8,
+    "gpu_hours_cap": 6,
+    "parallel_policy": "eight UUID-bound sibling containers for train harvest and each evaluation wave; no duplicate occupancy"
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "project": "openevo-webshop-experiments",
+    "default_mode": "online",
+    "offline_fallback": "only after exact online initialization/upload failure is captured with error and spool hash"
+  },
+  "claim_boundary": "H1.29 can establish only self-generated data sufficiency and a bounded fresh-task route result. It cannot claim Q3, H2, ordinary-LoRA superiority, retention, transfer, SEED superiority, or GPT/OPSD equivalence. The SEED win target belongs to a later matched H1.30 comparison.",
+  "next_gate": "CPU tests and manifest/materializer audit must pass before formal task consumption is enabled."
+}

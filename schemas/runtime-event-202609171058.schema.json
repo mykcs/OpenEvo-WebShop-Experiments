@@ -1,0 +1,35 @@
+{
+  "$id": "openevo.runtime-event.202609171058",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenEVO framework-neutral runtime event",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "openevo.runtime-event.202609171058"},
+    "event_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "event_type": {"enum": ["OPERATION_READY", "RESOURCE_LEASED", "SIDE_EFFECT_MATERIALIZED", "ROUND_SEALED", "INTEGRITY_BLOCKED", "PAIR_AUDIT"]},
+    "subject_kind": {"enum": ["OPERATION_INTENT", "RESOURCE_LEASE", "OPERATION_TERMINAL", "ROUND_RECEIPT", "OPERATION_RESULT", "PAIR_RECEIPT"]},
+    "subject_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_receipt_identity": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "payload_identity": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "immutable_receipt_projection": {"const": true},
+    "scientific_authority": {"const": false},
+    "scientific_retry_authorized": {"const": false},
+    "resource_authority": {"const": false},
+    "reuse_authority": {"const": false}
+  },
+  "required": [
+    "schema",
+    "event_id",
+    "event_type",
+    "subject_kind",
+    "subject_id",
+    "source_receipt_identity",
+    "payload_identity",
+    "immutable_receipt_projection",
+    "scientific_authority",
+    "scientific_retry_authorized",
+    "resource_authority",
+    "reuse_authority"
+  ]
+}

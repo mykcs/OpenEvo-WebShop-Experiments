@@ -1,0 +1,28 @@
+{
+  "campaign_id": "20261002-0002-q06-s2-bounded-r120",
+  "experiment_id": "20261002-q06-s2-bounded-r120",
+  "frozen_scientific_contract": {
+    "adaptive_reruns": 0,
+    "cell_id": "bounded-r120",
+    "checkpoint_id": "after_120_rounds",
+    "episodes": 64,
+    "final_panel_access_allowed": false,
+    "formal_task_consumption_allowed": true,
+    "gpu_allocation_allowed": true,
+    "max_generated_tokens": 491520,
+    "max_generation_calls": 960,
+    "max_gpu_hours": 2,
+    "max_persistent_output_bytes": 1073741824,
+    "max_scorer_forward_calls": 100000,
+    "max_scorer_input_tokens": 1000000,
+    "optimizer_updates": 0,
+    "panel_sha256": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+    "passes": 1,
+    "teacher_calls": 0,
+    "training_rollouts": 0
+  },
+  "question_id": "Q06_TOKEN_CLICK_ENTROPY",
+  "schema": "openevo.q06.s2-bounded-r120-preregistration.v1",
+  "stage": "S2",
+  "status": "FROZEN"
+}

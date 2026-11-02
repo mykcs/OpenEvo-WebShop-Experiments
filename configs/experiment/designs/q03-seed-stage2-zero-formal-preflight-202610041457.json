@@ -1,0 +1,115 @@
+{
+  "schema": "openevo.q03.seed-stage2-zero-formal-preflight-design.v1",
+  "campaign_id": "20261004-1457-q03-seed-stage2",
+  "experiment_id": "202610041457-q03-seed-stage2",
+  "question_id": "Q03_SEED_STAGE2",
+  "owner_pr": 630,
+  "contract": {
+    "path": "configs/experiment/advisor-questions/q03-work-package-202610041457.json",
+    "sha256": "79e44b582e9d5f1c1968200c1de0d97c5016df6c562e115db46c8ac440bf01f2",
+    "status": "FROZEN_SCIENCE__QUALIFICATION_PENDING"
+  },
+  "authority_amendment": {
+    "path": "configs/experiment/amendments/q03-seed-stage2-authority-supersession-202610041457.json",
+    "sha256": "5c43388e7f28558140f10f5618004a58756f25b59bf2c8d248ed8078c28f71b9"
+  },
+  "intent": "zero-formal-preflight-only",
+  "final_panel_access": 0,
+  "frozen_scientific_contract": {
+    "final_panel_unlock": false,
+    "start_receipt_sha256": "058180b0398237588c4a8a3d452381d60d094b73b01a8819fe3de231c6d227e8",
+    "start_checkpoint": {
+      "index_sha256": "b50d570fe2656be1735f0f78cf4edd44792c9db9add93986675499703fd89f43",
+      "shard_1_sha256": "c82052a77f4fd94a1219e5c5b3382295712fb366f03c02f21d2380370727ce0c",
+      "shard_2_sha256": "8721a7b713a99b1b3fe23eb4c8a0fe6d8b4d72e1b0923d98a5e11ff2ecd1d5f9"
+    },
+    "stage2": {
+      "updates_per_stream": 160,
+      "tasks_per_update": 16,
+      "group_size": 8,
+      "rollouts_per_update": 128,
+      "streams": [
+        {
+          "id": "A",
+          "environment_seed": 0,
+          "policy_seed": 20261001,
+          "data_seed": 20261001
+        },
+        {
+          "id": "B",
+          "environment_seed": 1,
+          "policy_seed": 20261002,
+          "data_seed": 20261002
+        }
+      ],
+      "training_rollout_total": 40960,
+      "optimizer_update_total": 320,
+      "outcome_retries": 0
+    },
+    "canonical_evaluation": {
+      "milestones": [
+        0,
+        40,
+        80,
+        120,
+        160
+      ],
+      "panel_size": 64,
+      "panel_sha256": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+      "panel_manifest_sha256": "2d5d1620065a15840ae20fed324038312aec74b0895e13c9d283177928bf1a3b",
+      "sampling": {
+        "temperature": 1.0,
+        "top_p": 1.0,
+        "top_k": 0,
+        "do_sample": true,
+        "repetition_penalty": 1.0,
+        "max_steps": 15,
+        "max_new_tokens": 512,
+        "step_seed_policy": "paired_generation_seed + step_index * 100000"
+      },
+      "final_panel_access": 0,
+      "historical_update0_reused": false
+    },
+    "primary_estimand": "equal-weight pooled mean paired WebShop Task Score at update160 minus the same frozen Stage1 start at update0",
+    "practical_threshold": 0.02,
+    "paired_task_bootstrap_replicates": 10000,
+    "analysis_seed": 2026100103
+  },
+  "preflight_contract": {
+    "formal_task_consumption_allowed": false,
+    "task_bearing_train_dev_allowed": false,
+    "gpu_allocation_allowed": true,
+    "final_panel_access_allowed": false,
+    "synthetic_smoke_only": true,
+    "scientific_payload_calls": 0,
+    "external_teacher_calls": 0,
+    "optimizer_updates": 0,
+    "final_panel_access": 0
+  },
+  "resource_boundary": {
+    "policy": "Use only the standing eight-RTX-5090 UUID pool; capacity-based co-residency is allowed after qualified peak plus transient headroom is verified at point of use.",
+    "authorized_gpu_uuids": [
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ],
+    "preemption_allowed": false,
+    "external_or_owner_unresolved_workload_mutation_allowed": false
+  },
+  "completed_prior_phase": {
+    "campaign_id": "20260928-2338-post-advisor-unanswered",
+    "phase": "POST-ADVISOR-E1-EXECUTION-SEALED",
+    "status": "execution-sealed",
+    "already_consumed_rollouts": 1024,
+    "remaining_rollout_budget": 0,
+    "formal_task_consumption_allowed": false,
+    "gpu_allocation_allowed": false,
+    "final_panel_access": 0,
+    "seal_sha256": "b03d0cbcb9e5fc89a8d8974952222aa5d35ffb083bc6a47239cfa30b2b893725"
+  }
+}

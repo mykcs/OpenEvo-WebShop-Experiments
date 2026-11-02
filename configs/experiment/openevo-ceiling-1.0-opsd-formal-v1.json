@@ -1,0 +1,103 @@
+{
+  "activation_gates": [
+    "MiniMax 1440/1440 parse_ok and trajectory-SHA closed",
+    "OPSD action-step dataset manifest PASS with exact denominator",
+    "full token-length audit PASS with zero over-context records",
+    "same-completion audit PASS",
+    "GPU one-batch forward/backward/save/reload PASS",
+    "workload-specific peak-VRAM qualification PASS",
+    "OPSD adapter -> effective base -> Stage2 SD-LoRA composition PASS"
+  ],
+  "distillation": {
+    "beta": 0.5,
+    "loss": "generalized_jsd",
+    "teacher_model": "same frozen base model as student arm, adapter disabled, eval/no-grad",
+    "teacher_top_k": 128,
+    "temperature": 1.0
+  },
+  "lora": {
+    "alpha": 16,
+    "bias": "none",
+    "dropout": 0.0,
+    "rank": 8,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "task_type": "CAUSAL_LM"
+  },
+  "optimizer": {
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "learning_rate": 0.0001,
+    "max_grad_norm": 1.0,
+    "name": "AdamW",
+    "weight_decay": 0.01
+  },
+  "recovery": {
+    "checkpoint_contents": [
+      "adapter",
+      "optimizer",
+      "rng_state",
+      "data_cursor",
+      "recipe_sha256"
+    ],
+    "checkpoint_every_optimizer_steps": 1024,
+    "resume_policy": "exact continuation only; no resampling, no epoch restart, no outcome-based checkpoint selection"
+  },
+  "schedule": {
+    "dtype": "bfloat16",
+    "epochs": 1,
+    "gradient_accumulation_steps": 1,
+    "per_device_batch_size": 1,
+    "record_order": "source_schedule_position ascending, then step_idx ascending",
+    "seed": 1993,
+    "shuffle": false
+  },
+  "schema": "openevo.ceiling1-opsd-formal.v1",
+  "scientific_scope": "Stage1 parametric bootstrap only",
+  "source": {
+    "action_steps": {
+      "3b": 19630,
+      "7b": 15938
+    },
+    "additional_collection_required": "no additional WebShop environment collection; optional deterministic replay is qualification-only and not training data",
+    "analysis_requirement": "1440/1440 parse_ok MiniMax-M3 episode analyses with exact trajectory SHA binding",
+    "external_teacher_calls_during_opsd": 0,
+    "new_student_generation": false,
+    "new_webshop_collection": false,
+    "trajectories_per_arm": 1440
+  },
+  "status": "preregistered-pending-minimax-close-and-runtime-qualification",
+  "task_vector_observability": {
+    "checkpoint_deltas_recorded": true,
+    "enabled": true,
+    "may_change_training_policy": false
+  },
+  "tokenization": {
+    "completion": "tokenizer(saved_model_response, add_special_tokens=false)",
+    "max_sequence_length": 32768,
+    "original_generated_token_ids_were_persisted": false,
+    "over_context_behavior": "fail closed before training",
+    "prompt": "tokenizer.apply_chat_template([{role:user,content:prompt_content}], add_generation_prompt=true)",
+    "silent_truncation_allowed": false,
+    "stage1_text_roundtrip_audit": {
+      "3b": "19630/19630 exact",
+      "7b": "15938/15938 exact"
+    },
+    "terminal_special_token_policy": "collection decoded with skip_special_tokens=true; stripped terminal special tokens are outside the formal OPSD completion loss"
+  },
+  "views": {
+    "completion": "byte-identical saved original visible model_response text, canonical retokenization with pinned tokenizer; stripped terminal special tokens are not included in OPSD loss",
+    "loss_scope": "completion tokens only",
+    "same_completion_required": "same canonical completion token ids are appended to both student and teacher prompt sequences",
+    "student_prompt": "byte-identical original observation_prompt content, then pinned Qwen chat template with one user message and add_generation_prompt=true",
+    "teacher_privileged_field": "episode_skill only",
+    "teacher_prompt": "qualified privileged-feedback prefix + MiniMax episode_skill + byte-identical original student prompt content, then the same pinned Qwen chat template"
+  }
+}

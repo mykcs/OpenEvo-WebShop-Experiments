@@ -1,0 +1,173 @@
+{
+  "schema": "openevo.advisor-work-package.v1",
+  "question_id": "Q06",
+  "owner_pr": 633,
+  "status": "PLANNED_NOT_ACTIVATED",
+  "plan": "docs/science/webshop/advisor-questions/2026-09-22/Q06_COMPREHENSIVE_EXECUTION_PLAN_20261001.md",
+  "execution_authority": {
+    "formal_task_consumption_allowed": false,
+    "gpu_allocation_allowed": false,
+    "final_panel_access_allowed": false,
+    "final_panel_access": 0
+  },
+  "science": {
+    "estimand": "fixed-input uncertainty contrasts and decision-before-outcome incremental prediction",
+    "claim_boundary": "historical descriptive/predictive diagnostics; no entropy causality or controller generalization",
+    "primary_metric": "heldout MAE reduction relative to frozen simple baseline",
+    "practical_effect_threshold": 0.02
+  },
+  "dependencies": {
+    "hard": [],
+    "selection": [
+      "Q05 exact scalar-beta history only for secondary extension"
+    ],
+    "historical": [
+      "Q01/Q07 sealed identities",
+      "E2 sealed endpoint analysis and cost receipt"
+    ],
+    "existing_execution_gates": [
+      "native q06-gdr-context existing activation is launch-authorized for at most64; reconcile existing consumption before any resume; blueprint permissions remain inert",
+      "S2/S3 require original-owner prospective contract and canonical activation",
+      "resource/qualification/Passport/release point-of-use gates remain active"
+    ]
+  },
+  "stages": [
+    {
+      "id": "S0",
+      "role": "audit",
+      "trigger": "always; CPU only",
+      "budget": {
+        "training_rollouts": 0,
+        "training_slots": 0,
+        "evaluation_episodes": 0
+      },
+      "freeze_required": [
+        "raw/input adapter provenance",
+        "cell identity/reuse inventory"
+      ]
+    },
+    {
+      "id": "S1",
+      "role": "primary",
+      "trigger": "existing native64 exact gates qualified and activated",
+      "budget": {
+        "training_rollouts": 0,
+        "training_slots": 0,
+        "evaluation_episodes": 64
+      },
+      "freeze_required": [
+        "scoring forward/token/GPU-hour/storage ceiling",
+        "native exact identity"
+      ]
+    },
+    {
+      "id": "S2",
+      "role": "primary",
+      "trigger": "prospective expanded contract activated; omit unavailable cells",
+      "budget": {
+        "training_rollouts": 0,
+        "training_slots": 0,
+        "evaluation_episodes": 640
+      },
+      "freeze_required": [
+        "net new episodes after reuse/missing audit",
+        "shared runtime/carriers/panel",
+        "source/checkpoint identity",
+        "scoring cost ceiling"
+      ]
+    },
+    {
+      "id": "S3",
+      "role": "primary",
+      "trigger": "outcome-blind pre-action bank captured within S1/S2",
+      "budget": {
+        "training_rollouts": 0,
+        "training_slots": 0,
+        "evaluation_episodes": 0
+      },
+      "freeze_required": [
+        "bank256 coverage and strata",
+        "complete prompt/history/reasoning-prefix hashes",
+        "scoring forward/token/GPU-hour/storage ceilings"
+      ]
+    },
+    {
+      "id": "S4",
+      "role": "confirmation",
+      "trigger": "outer splits and predictors frozen before reading heldout labels",
+      "budget": {
+        "training_rollouts": 0,
+        "training_slots": 0,
+        "evaluation_episodes": 0
+      },
+      "freeze_required": [
+        "nested fit/analysis implementation",
+        "three protocol multiplicity family",
+        "fresh independent trajectory agreement and extra scoring cost"
+      ]
+    }
+  ],
+  "budget_accounting": {
+    "conceptual_historical_primary_episodes_max": 768,
+    "native64_is_subset_of_primary": true,
+    "primary_exact_reusable_episodes": 128,
+    "net_new_if_two_missing_cells_remain": 512,
+    "net_new_if_exact_cells_recovered_max": 640,
+    "existing_secondary_beta_episodes": 64,
+    "preserved_failed_attempt_episodes": 64,
+    "training_rollouts_max": 0,
+    "scoring_cost_free": false
+  },
+  "acceptance": [
+    "existing cells reused only at exact identity",
+    "fixed-bank observations/history and reasoning prefix bound",
+    "outer-label leakage rejected; historical vs prospective inference separated",
+    "effect/CI/practical value/cost recorded; wide CI is PARTIAL",
+    "scientific cells and outcomes sealed; CPU_INPUT_ELIGIBILITY_PASS is not completion"
+  ],
+  "luna": {
+    "reading_order": [
+      "AGENTS.md",
+      "docs/evidence/advisor/liaochang/2026-09-22-meeting-transcript.raw.md",
+      "docs/science/webshop/advisor-questions/2026-09-22/Q06_COMPREHENSIVE_EXECUTION_PLAN_20261001.md",
+      "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_E2_PAIRED_ANALYSIS.md",
+      "configs/experiment/current-campaign.json",
+      "docs/dev/experiment-reliability/README.md"
+    ],
+    "implementation_steps": [
+      "bind normalized adapter to actual pre-action raw facts",
+      "implement nested baseline/uncertainty predictor with independent outer splits",
+      "add full scorer known-logit and nonmutation verification",
+      "freeze expanded machine/runtime/resource contract without changing historical receipts",
+      "execute only canonical activated cells; analyse and seal four-question summary"
+    ],
+    "cpu_commands": [
+      "python3 scripts/analysis/advisor_q06_prediction_inputs.py --help",
+      "python3 scripts/analysis/advisor_q06_prediction_inputs.py cost --input docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_E2_CANDIDATE_SCORING_COST_RECEIPT.json",
+      "python3 -m pytest -q tests/test_advisor_q06_prediction_inputs.py tests/test_q17_click_entropy.py"
+    ],
+    "remaining_work": [
+      "normalized raw adapter",
+      "nested prediction/statistics implementation",
+      "complete scorer verification",
+      "adopt existing native64 activation/qualification; reconcile immutable ledger, reuse valid rows and resume only eligible missing work",
+      "expanded longitudinal/bank activation and evaluation",
+      "prospective independent predictive confirmation"
+    ],
+    "stop_conditions": [
+      "unproven pre-action feature provenance",
+      "missing exact checkpoint: typed PARTIAL",
+      "cost unbounded or outer-label leakage",
+      "own admission/controller/lease not resolved (other colocated workload attribution unresolved is not by itself a capacity veto)",
+      "final access always0"
+    ]
+  },
+  "existing_execution_to_reconcile": {
+    "activation": "configs/experiment/activations/q06-gdr-context-202610011303-current-campaign.json",
+    "native_limit": 64,
+    "authority_sha_prefix": "4a39dc3b",
+    "source_sha_prefix": "0e1ea4",
+    "launch_receipt_sha_prefix": "c0f7e593",
+    "adoption_rule": "Verify full identities/ledger at use; valid rows reused, live controller observed, only missing eligible work resumed; expansion has separate authority"
+  }
+}

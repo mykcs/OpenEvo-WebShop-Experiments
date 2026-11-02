@@ -1,0 +1,48 @@
+{
+  "container_image_required": true,
+  "execution_image": {
+    "id": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+    "reference": "experiment-host/openevo-scientific:h144-runtime-v1"
+  },
+  "execution_mode": "container",
+  "host_runtime_java": {
+    "java": {
+      "path": "/workspace/maintenance/post-advisor-e1-b1-prep-20260929/h144-bin/java",
+      "sha256": "c62ce6a76c8942b19b1c0bed7a412a1cdc08a6cdf0e8d5f7fcc5a65582a9ba8c"
+    },
+    "javac": {
+      "path": "/workspace/maintenance/post-advisor-e1-b1-prep-20260929/h144-bin/javac",
+      "sha256": "ff148a3dee07d3c7d72a54a907dd15cf4f87b9e4308950eb61a5004f10451d81"
+    },
+    "path_prefix": "/workspace/maintenance/post-advisor-e1-b1-prep-20260929/h144-bin",
+    "qualification_path_policy": "prepend path_prefix to PATH for oe run-campaign and Formal Start",
+    "runtime_image_id": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850"
+  },
+  "host_runtime_python": {
+    "executable": "/workspace/maintenance/post-advisor-e1-b1-prep-20260929/e1_h144_python_wrapper.sh",
+    "executable_kind": "host wrapper executing immutable H144 container Python with CPU-only network-off probes",
+    "version": "3.11.16",
+    "wrapper_sha256": "cd9d62961328cfdbaf53628d7dcba624bc5d2031c0c89ad6fdc01bd428838a90"
+  },
+  "model": {
+    "hf_id": "Qwen/Qwen3-1.7B",
+    "path": "/workspace/models/qwen3-1.7b-seed-runtime-70d244"
+  },
+  "openevo_core": {
+    "path": "/workspace/control/openevo-core",
+    "revision": "a85f9a8dc5cc9870695a4301d8fc128a7ec38fb0"
+  },
+  "route": {
+    "profile": "openevo",
+    "requires_java": true
+  },
+  "runtime_class": "Qwen3-1.7B WebShop Bounded E1 host-orchestrated h144 runtime",
+  "runtime_id": "post-advisor-e1-h144-qwen3-1p7b-202609282338",
+  "schema": "openevo.runtime-fingerprint.v1",
+  "seed_root": {
+    "path": "/workspace/assets/bounded-effective-state-formal-seed-root-20260915"
+  },
+  "webshop_data": {
+    "path": "/workspace/datasets/webshop-1000"
+  }
+}

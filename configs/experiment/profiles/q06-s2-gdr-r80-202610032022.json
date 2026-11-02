@@ -1,0 +1,112 @@
+{
+  "command": [
+    "env",
+    "PYTHONPATH=/workspace/maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-s2-remaining-202610032022/authority",
+    "python3",
+    "/workspace/maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-s2-remaining-202610032022/authority/scripts/openevo_webshop/q06_s2_remaining_host_orchestrator.py",
+    "--authority-repo",
+    "/workspace/maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-s2-remaining-202610032022/authority",
+    "--execution-source",
+    "/workspace/maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-production-scorer-202610031200/execution-source-09d3bd89",
+    "--release",
+    "/workspace/maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-s2-remaining-202610032022/authority/configs/experiment/activations/q06-s2-gdr-r80-202610032022-release.json",
+    "--router",
+    "/workspace/maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-s2-remaining-202610032022/authority/configs/experiment/activations/q06-s2-gdr-r80-202610032022-current-campaign.json",
+    "--output-dir",
+    "${RUN_DIR}/gdr-r80-output",
+    "--gpu-uuid",
+    "${GPU_UUID}"
+  ],
+  "container": {
+    "network": "none"
+  },
+  "execution": {
+    "mode": "host-orchestrator"
+  },
+  "execution_source": {
+    "path": "/workspace/maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-production-scorer-202610031200/execution-source-09d3bd89",
+    "repository": "https://github.com/mykcs/openevo-experiment.git",
+    "revision": "09d3bd89b815cf5abbc9c38e0ae97283084dbac8"
+  },
+  "gpu_gate": {
+    "co_residency_authorized": true,
+    "interval_seconds": 5,
+    "min_transient_headroom_mib": 2048,
+    "mode": "capacity",
+    "qualification_basis": "Actual Qwen3 2051-token constrained scoring with DynamicCache on fixed Bounded40/Ordinary160, plus conservative envelope and additional headroom; exact live canonical gate required",
+    "qualification_receipt": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/q06-remaining-science-202610032022/bounded-r40-real-cache-qualification.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "5b0d9ac8b4771ec8996d5452285330ed6c9d42e949027c12a9e6072e983d6aea"
+    },
+    "qualified_peak_memory_mib": 8192,
+    "timeout_seconds": 0
+  },
+  "host_orchestrator": {
+    "path": "scripts/openevo_webshop/q06_s2_remaining_host_orchestrator.py",
+    "sha256": "63488110818c29f27db0a44e0b5aaded8f315227bc5c4d830c01570d4cced8c3"
+  },
+  "identity": {
+    "gid": 1001,
+    "uid": 1001
+  },
+  "image": "experiment-host/openevo-scientific@sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "image_id": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "paths": {
+    "cache": "cache",
+    "data": "datasets/webshop-1000",
+    "models": "runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base",
+    "runs": "runs/q06-s2-gdr-r80-202610032022"
+  },
+  "prelaunch": {
+    "runtime_python": "python3"
+  },
+  "probe_guard": {
+    "path": "scripts/openevo_webshop/q06_s2_bounded_r120_probe_guard.py",
+    "sha256": "dc1a375781dc6898799ca39d979e3501e5028acf17e97bbe3f35807d5335d6a1"
+  },
+  "required_paths": [
+    {
+      "expected_type": "file",
+      "path": "maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-production-scorer-202610031200/execution-source-09d3bd89/scripts/openevo_webshop/q17_fixed_checkpoint_probe.py"
+    },
+    {
+      "expected_type": "file",
+      "path": "runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/on/round-079/sd-lora/bounded-state/adapter_model.safetensors"
+    }
+  ],
+  "run_id": "q06-s2-gdr-r80-202610032022",
+  "s2_prospective_contract": {
+    "path": "configs/experiment/advisor-questions/q06-s2-gdr-r80-202610032022-contract.json",
+    "sha256": "4f9f66ad602655a7cb39e8a10508c2e9212d2cc005324b92a68e6ec4aa271cd6"
+  },
+  "schema": "openevo.webshop.run-profile.v1",
+  "science_runtime_source": {
+    "path": "/workspace/maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-s2-bounded-r120-268fc8e3/execution-source-161126c2",
+    "repository": "https://github.com/mykcs/openevo-experiment.git",
+    "revision": "161126c258b6723ceb721e6387d956988cf22a62"
+  },
+  "source": {
+    "experiment": {
+      "path": "maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-production-scorer-202610031200/execution-source-09d3bd89",
+      "revision": "09d3bd89b815cf5abbc9c38e0ae97283084dbac8"
+    },
+    "openevo": {
+      "path": "control/openevo-core",
+      "revision": "a85f9a8dc5cc9870695a4301d8fc128a7ec38fb0"
+    }
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "group": "20261003-2022-q06-s2-gdr-r80",
+    "mode": "disabled",
+    "on_error": "fail",
+    "probe_epoch": "q06-s2-gdr-r80-202610032022",
+    "project": "openevo-webshop-experiments"
+  },
+  "workspace": "/workspace"
+}

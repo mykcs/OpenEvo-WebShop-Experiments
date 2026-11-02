@@ -1,0 +1,156 @@
+{
+  "captured_utc": "2026-09-10T19:01:29.623406+00:00",
+  "whoami": "root",
+  "namespace": "experiment-host; physical-host GPU PIDs are not fully visible",
+  "controller_sha": "5d1da3c1432df385f16f6542bf0dd5bd0c1c8f02",
+  "execution_sha": "ac130148ee08b6462d9728e482a858fe5f514047",
+  "run_root": "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct",
+  "state": {
+    "status": "RUNNING",
+    "next_round": 128,
+    "rollouts_consumed": 16384,
+    "sd_generation_count": 127,
+    "final_panel_access_count": 0,
+    "config_sha256": "328713d810744c50eca090648c2317be46ed1fd61f303727acf68687bc8eafe4"
+  },
+  "latest_seal": {
+    "path": "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct/round-127/ROUND_COMPLETE.json",
+    "sha256": "33df420e0ca76cc0a14266bdaf2a5271196cd5f5ed644d00e84ce3c769da824b",
+    "status": "PASS",
+    "round": 127,
+    "attempt_count": 128,
+    "mean_score": 0.7613529265873012,
+    "clean_exact_success_count": 68,
+    "engineering_invalid_count": 0
+  },
+  "gpus": {
+    "rc": 0,
+    "stdout": "0, GPU-00000000-0000-0000-0000-000000000000, 2 MiB, 32607 MiB, 0 %\n1, GPU-00000000-0000-0000-0000-000000000000, 23774 MiB, 32607 MiB, 0 %\n2, GPU-00000000-0000-0000-0000-000000000000, 23798 MiB, 32607 MiB, 0 %\n3, GPU-00000000-0000-0000-0000-000000000000, 2 MiB, 32607 MiB, 100 %\n4, GPU-00000000-0000-0000-0000-000000000000, 12841 MiB, 32607 MiB, 0 %\n5, GPU-00000000-0000-0000-0000-000000000000, 12841 MiB, 32607 MiB, 0 %\n6, GPU-00000000-0000-0000-0000-000000000000, 12841 MiB, 32607 MiB, 0 %\n7, GPU-00000000-0000-0000-0000-000000000000, 12841 MiB, 32607 MiB, 0 %\n",
+    "stderr": ""
+  },
+  "pool": {
+    "admission": {
+      "paused": false,
+      "reason": null,
+      "updated_at_epoch": 1789062928.313307
+    },
+    "config_sha256": "6dad2cb2b916c066a19d57854ed1fb4178afb2d99a5da2cf852d4cd0e04ed537",
+    "gpus": {
+      "4": {
+        "leases": [
+          {
+            "acquired": 1789066854.4286828,
+            "container": "openevo-q17-clean-q17-direct-apply-only-w2-202609082022-direct-r128-rollout-a0",
+            "gpus": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "lease_id": "q17-clean-q17-direct-apply-only-w2-202609082022-direct-r128-rollout-a0",
+            "placement_group_name": "ce1-5b432f19822503719fc4f39b",
+            "recovered_from_launching_reservation": false,
+            "reservation_id": "2a3312a337d51bc155b71e56",
+            "vram_request_mib_per_gpu": 12000,
+            "workload": "stage2_rollout_qwen3-1p7b"
+          }
+        ]
+      },
+      "5": {
+        "leases": [
+          {
+            "acquired": 1789066854.4286828,
+            "container": "openevo-q17-clean-q17-direct-apply-only-w2-202609082022-direct-r128-rollout-a0",
+            "gpus": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "lease_id": "q17-clean-q17-direct-apply-only-w2-202609082022-direct-r128-rollout-a0",
+            "placement_group_name": "ce1-5b432f19822503719fc4f39b",
+            "recovered_from_launching_reservation": false,
+            "reservation_id": "2a3312a337d51bc155b71e56",
+            "vram_request_mib_per_gpu": 12000,
+            "workload": "stage2_rollout_qwen3-1p7b"
+          }
+        ]
+      },
+      "6": {
+        "leases": [
+          {
+            "acquired": 1789066854.4286828,
+            "container": "openevo-q17-clean-q17-direct-apply-only-w2-202609082022-direct-r128-rollout-a0",
+            "gpus": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "lease_id": "q17-clean-q17-direct-apply-only-w2-202609082022-direct-r128-rollout-a0",
+            "placement_group_name": "ce1-5b432f19822503719fc4f39b",
+            "recovered_from_launching_reservation": false,
+            "reservation_id": "2a3312a337d51bc155b71e56",
+            "vram_request_mib_per_gpu": 12000,
+            "workload": "stage2_rollout_qwen3-1p7b"
+          }
+        ]
+      },
+      "7": {
+        "leases": [
+          {
+            "acquired": 1789066854.4286828,
+            "container": "openevo-q17-clean-q17-direct-apply-only-w2-202609082022-direct-r128-rollout-a0",
+            "gpus": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "lease_id": "q17-clean-q17-direct-apply-only-w2-202609082022-direct-r128-rollout-a0",
+            "placement_group_name": "ce1-5b432f19822503719fc4f39b",
+            "recovered_from_launching_reservation": false,
+            "reservation_id": "2a3312a337d51bc155b71e56",
+            "vram_request_mib_per_gpu": 12000,
+            "workload": "stage2_rollout_qwen3-1p7b"
+          }
+        ]
+      }
+    },
+    "reservations": {},
+    "schema": "openevo.ceiling1-ray-placement-state.202609042025",
+    "updated_at_epoch": 1789066856.0835412
+  },
+  "containers": [
+    {
+      "name": "/openevo-q17-clean-q17-direct-apply-only-w2-202609082022-direct-r128-rollout-a0",
+      "id": "f0ae252c70f6b7fbc9d38208a04eacb082fd1eeae3cb4aa61cbce7e0d4138b95",
+      "pid": 3573574,
+      "status": "running",
+      "device_requests": [
+        {
+          "Driver": "",
+          "Count": 0,
+          "DeviceIDs": [
+            "GPU-00000000-0000-0000-0000-000000000000",
+            "GPU-00000000-0000-0000-0000-000000000000",
+            "GPU-00000000-0000-0000-0000-000000000000",
+            "GPU-00000000-0000-0000-0000-000000000000",
+            "GPU-00000000-0000-0000-0000-000000000000",
+            "GPU-00000000-0000-0000-0000-000000000000",
+            "GPU-00000000-0000-0000-0000-000000000000",
+            "GPU-00000000-0000-0000-0000-000000000000"
+          ],
+          "Capabilities": [
+            [
+              "gpu"
+            ]
+          ],
+          "Options": {}
+        }
+      ],
+      "gpu_env": []
+    }
+  ],
+  "device_opener_status": "UNVERIFIED_FROM_CURRENT_NAMESPACE; no new GPU admission permitted"
+}

@@ -1,0 +1,28 @@
+{
+  "$id": "openevo.prelaunch-coordination-lease.202609281950",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenEVO prelaunch coordination lease",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "openevo.prelaunch-coordination-lease.202609281950"},
+    "status": {"const": "ACTIVE"},
+    "mechanism": {"const": "KERNEL_FLOCK_COORDINATION_ONLY"},
+    "reservation_claimed": {"const": false},
+    "run_id": {"type": "string", "minLength": 1},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "selected_gpu_uuids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^GPU-[A-Za-z0-9-]+$"}},
+    "runtime_candidate_uuids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^GPU-[A-Za-z0-9-]+$"}},
+    "controller_pid": {"type": "integer", "minimum": 1},
+    "readiness_receipt_sha256": {"type": ["string", "null"]},
+    "ttl_seconds": {"type": "integer", "minimum": 1},
+    "acquired_at_epoch": {"type": "number", "minimum": 0},
+    "expires_at_epoch": {"type": "number", "minimum": 0},
+    "formal_task_consumed": {"const": false},
+    "scientific_budget_consumed": {"const": 0},
+    "scientific_authority_granted": {"const": false},
+    "resource_authority_granted": {"const": false},
+    "receipt_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "required": ["schema","status","mechanism","reservation_claimed","run_id","campaign_id","selected_gpu_uuids","runtime_candidate_uuids","controller_pid","readiness_receipt_sha256","ttl_seconds","acquired_at_epoch","expires_at_epoch","formal_task_consumed","scientific_budget_consumed","scientific_authority_granted","resource_authority_granted","receipt_sha256"]
+}

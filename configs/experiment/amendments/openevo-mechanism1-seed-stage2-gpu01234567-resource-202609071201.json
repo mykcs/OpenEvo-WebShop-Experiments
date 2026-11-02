@@ -1,0 +1,62 @@
+{
+  "collision_guard": "Fail closed if any selected GPU has a foreign compute process or less than 30000 MiB free immediately before launch.",
+  "docker_safety": "Do not delete, prune, stop, rename, or mutate unrelated containers or images.",
+  "gpus": [
+    {
+      "index": 0,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 1,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 2,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 3,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 4,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 5,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 6,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 7,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "internal_seed_ray_owns_stage2_runtime": true,
+  "live_state_at_binding": {
+    "all_eight_free_mib": 32149,
+    "all_eight_used_mib": 2,
+    "all_eight_utilization_pct": 0
+  },
+  "n_gpus_per_node": 8,
+  "new_runtime_variant": "GPU0-7 eight-GPU public-default topology",
+  "no_mid_run_reshard": true,
+  "outer_host_ray_not_reused_for_internal_seed_workers": true,
+  "reason": "GPU4-7 became free before any SFT optimizer step or Stage2 episode, and the owner authorized GPU0-7; restore the public eight-GPU topology prospectively rather than resharding mid-run.",
+  "required_free_mib_each_at_launch": 30000,
+  "resource_execution_contract_changed": true,
+  "schema": "openevo.mechanism1-seed-stage2-resource-amendment.202609071201",
+  "scientific_algorithm_contract_changed": false,
+  "sft_global_batch_size": 8,
+  "sft_micro_batch_size_per_gpu": 1,
+  "stage2_group_size": 8,
+  "stage2_outer_updates": 160,
+  "stage2_train_data_size": 16,
+  "status": "PASS_PROSPECTIVE_NO_TRAINING_CONSUMED",
+  "successor_design": "configs/experiment/designs/openevo-mechanism1-seed-stage2-minimax-sft-successor-202609070053.json",
+  "successor_design_sha256": "38434dd91798243d251a105f6c84007dd27b8afd949d9a81db39a8831b8145ac",
+  "supersedes_resource_variant_only": "GPU0-3 four-GPU continuation"
+}

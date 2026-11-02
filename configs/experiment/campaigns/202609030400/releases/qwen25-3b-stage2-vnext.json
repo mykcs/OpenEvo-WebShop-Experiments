@@ -1,0 +1,163 @@
+{
+  "activation_authority": false,
+  "arm": "qwen25-3b",
+  "asset_contract": {
+    "consumes": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen25-3b--stage1g_closeout",
+        "role": "upstream-phase"
+      },
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen25-3b--stage2-activation-e73b1022",
+        "role": "scientific-activation"
+      }
+    ],
+    "produces": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen25-3b--stage2-vnext",
+        "provider": "server",
+        "provider_id": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2/3b/formal-vnext-v1",
+        "role": "stage2-run-state"
+      }
+    ],
+    "publication": [],
+    "recovery": [],
+    "registry_policy": "observation-first-canonical-if-proven",
+    "telemetry": []
+  },
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 20480,
+    "local_reflector_requests_max": 960,
+    "optimizer_steps_max": 40960
+  },
+  "completion": {
+    "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/STAGE2_SEALED_3b.json",
+    "required_equal": {
+      "arm": "3b",
+      "external_teacher_calls": 0,
+      "final_panel_access_count": 0,
+      "rollouts": 20480,
+      "rounds": 160,
+      "schema": "openevo.ceiling1-stage2-sealed.v1",
+      "status": "PASS"
+    }
+  },
+  "control_activation_state": "SCIENTIFIC_ACTIVATION_VALID_SHARED_RAY_EXTERNAL_EXECUTOR_CURRENT_MASTER_PLAN_EXECUTION_DISABLED",
+  "engineering_successor": {
+    "applies_to_both_arms": true,
+    "current_branch_governance_head": "b514e0ae505c700caf295fcd83eff6abacaeb434",
+    "current_runtime_authority": {
+      "execution_activation_authority": false,
+      "path": "configs/experiment/openevo-ceiling1-stage2-runtime-authority-202609042025.json",
+      "schema": "openevo.ceiling1-stage2-runtime-authority.202609042025",
+      "sha256": "5c02fb25fbefdd271a060bf997d80638cd5ea81c3c3eb45e2c5073931c6f1f13",
+      "status": "READY_FOR_AUDITED_NATURAL_MIGRATION"
+    },
+    "interface_owned_action_opener": true,
+    "resource_continuation_receipt_sha256": "e1744035504318712a847fc464a960b0a2fa39c755e972e74fc18ab5143bb104",
+    "runtime_path": "scripts/openevo_webshop/ceiling1_stage2_format_hard_runtime.py",
+    "science_semantics_changed": false,
+    "shared_action_envelope_sha256": "d15356e7a1e1843219c1a2753bb6bef2714011dc61b21fb9e41ef7c4a01b8335",
+    "shared_ray_execution_sha": "4915dbdd75678da9a5752f991e70685c67dd497b"
+  },
+  "execution_source": {
+    "checkout": "/workspace/control/openevo-experiment-ray-3b-final-exec-4915dbdd",
+    "execution_sha": "4915dbdd75678da9a5752f991e70685c67dd497b"
+  },
+  "external_executor": {
+    "executor_role": "current_unique_per_arm_shared_ray_successor",
+    "missing_reason": "current shared-Ray execution-state disappeared; do not infer completion or relaunch without live reconciliation",
+    "missing_state": "MANUAL_REVIEW_REQUIRED",
+    "read_only_adoption": true,
+    "required_equal": {
+      "arm": "3b",
+      "config_sha256": "328713d810744c50eca090648c2317be46ed1fd61f303727acf68687bc8eafe4",
+      "harness_profile": "201.1",
+      "schema": "openevo.ceiling1-stage2-execution-state.v1",
+      "stage2_activation_sha256": "1ed6908ec768ddefe3817d2f64db381010d76a10da2b82ca6b56b44470c5228a",
+      "step_seed_amendment_sha256": "020b6b2fccaf3e924f3e22299c45467cf0544f3f5e8d9cbd5df6f7ab839003d7"
+    },
+    "run_root": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2/3b/formal-vnext-v1",
+    "state_path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2/3b/formal-vnext-v1/execution-state.json",
+    "status_map": {
+      "BLOCKED": "PAUSED",
+      "RUNNING": "RUNNING",
+      "STAGE2_SEALED": "COMPLETE"
+    }
+  },
+  "inputs": [
+    {
+      "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/PRE_STAGE2_READY_qwen25-3b.json",
+      "required_equal": {
+        "arm": "qwen25-3b",
+        "schema": "openevo.shared-prestage2.ready.v1",
+        "stage2_authorized": false,
+        "status": "PASS"
+      },
+      "sha256": "c66d45bb3d2959a4fa6ec73ed1f2c6fc99e95b9fcee7c8d8c95600c7f41b4e7d"
+    },
+    {
+      "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-activations/THREEB_STAGE2_VNEXT_ACTIVATION_E73B1022.json",
+      "required_equal": {
+        "activation_governance_source_sha": "b514e0ae505c700caf295fcd83eff6abacaeb434",
+        "authorized_arms": [
+          "3b"
+        ],
+        "final_panel_access_count_at_activation": 0,
+        "formal_stage2_rollouts_consumed_at_activation": 0,
+        "schema": "openevo.ceiling1-stage2-activation.v1",
+        "status": "authorized",
+        "vnext_execution_git_sha": "e73b1022b76b23875a40bffc9b7975feda57816e"
+      },
+      "sha256": "1ed6908ec768ddefe3817d2f64db381010d76a10da2b82ca6b56b44470c5228a"
+    },
+    {
+      "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2/3b/current-202609030400-df2cf218/PREMATURE_LINEAGE_NO_RESUME_20260904.json",
+      "required_equal": {
+        "accepted_rollouts": 0,
+        "resume_authorized": false,
+        "round_complete": false,
+        "schema": "openevo.ceiling1-premature-stage2-hold.v1",
+        "status": "PREMATURE_LINEAGE_NO_RESUME"
+      },
+      "sha256": "8ed1ae67a54d356a44be032b61a082bd299a1f1bcd294cb1a1234bee69bed115"
+    },
+    {
+      "path": "docs/evidence/server-audits/2026-09-04/master-plan-ray-authority-reconciliation/RAY_CONTINUATION_3B_20260904.json",
+      "required_equal": {
+        "accounting.external_teacher_calls_delta": 0,
+        "accounting.final_panel_access_delta": 0,
+        "accounting.formal_rollout_replay": 0,
+        "accounting.scientific_semantics_changed": false,
+        "arm": "3b",
+        "ray_backend_config_sha256": "447addba168b2dc976c781b8a9c2d3092de9988a0ab24db73afe8f3fdbe39c05",
+        "ray_pool_ready_sha256": "4a5961a5e92cddd5e624398890615ae5c0b851234b7de256cf73d73f36a572e9",
+        "status": "AUTHORIZED",
+        "successor_execution_git_sha": "4915dbdd75678da9a5752f991e70685c67dd497b"
+      },
+      "sha256": "e1744035504318712a847fc464a960b0a2fa39c755e972e74fc18ab5143bb104"
+    }
+  ],
+  "phase": "stage2_vnext",
+  "release_mode": "execution",
+  "retry": {
+    "exact_resume": true,
+    "reason": "current shared-Ray executor owns exact resume; Master Plan remains read-only and must not duplicate launch while this executor is live"
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "configs/experiment/openevo-ceiling-1.0-stage2-final-v1.json",
+    "required_equal": {
+      "external_teacher_calls": 0,
+      "round_rollouts": 128,
+      "rounds": 160,
+      "schema": "openevo.ceiling1-stage2-final-protocol.v1",
+      "status": "frozen-before-stage2-consumption",
+      "total_rollouts": 20480
+    },
+    "sha256": "328713d810744c50eca090648c2317be46ed1fd61f303727acf68687bc8eafe4"
+  },
+  "status": "SHARED_RAY_EXTERNAL_EXECUTOR_ADOPTED_MASTER_PLAN_EXECUTION_DISABLED"
+}

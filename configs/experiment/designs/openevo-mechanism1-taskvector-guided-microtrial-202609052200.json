@@ -1,0 +1,60 @@
+{
+  "arms": [
+    "baseline current OpenEvo update",
+    "guided update",
+    "norm-matched random-guidance control"
+  ],
+  "benchmark": "WebShop",
+  "budget": {
+    "arms": 3,
+    "rollouts_per_arm": 512,
+    "total_rollouts": 1536
+  },
+  "engineering_platform_authority": "docs/experiment-tracking/OPEN_EVO_CEILING_1.0_END_TO_END_MASTER_PLAN.md §2.3",
+  "experiment_id": "M1-C-TASKVECTOR-GUIDED-MICROTRIAL",
+  "external_teacher_calls": 0,
+  "final_panel_access": 0,
+  "forbidden": [
+    "using any Ceiling final-panel task",
+    "changing guidance strength after seeing microtrial outcomes",
+    "changing rollout budget by arm",
+    "claiming top-line Ceiling improvement"
+  ],
+  "go_gate_priority": [
+    "Use M1-A tau_late only if +tau_late beats the median of all three norm-matched random controls by >=1.0 mean task-score point and does not reduce exact-success count versus theta_50pct baseline.",
+    "Otherwise use M1-B Theme 1 only if its knockout hurts mean task score by >=1.0 point more than every random knockout and does not increase exact-success count.",
+    "Otherwise DO_NOT_EXECUTE M1-C; record NO_DIRECTION_SPECIFIC_SIGNAL."
+  ],
+  "guidance_rule": "add a 10%-of-candidate-Gram-norm angular nudge toward the preregistered beneficial unit direction, then rescale to the original candidate Gram norm; zero candidate delta remains a no-op",
+  "model": {
+    "id": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+  },
+  "primary_endpoints": [
+    "mean task_score*100 across 512 rollouts",
+    "exact success count across 512 rollouts"
+  ],
+  "process_endpoints": [
+    "accepted candidate-state count",
+    "candidate rejection count",
+    "parameter-direction alignment over rounds"
+  ],
+  "program_id": "openevo-mechanism-1.0-202609052200",
+  "question": "Can a direction discovered from the completed OpenEvo history improve subsequent self-improvement efficiency on a new non-final task stream without increasing update norm or rollout budget?",
+  "ray_workloads": [
+    "mechanism1_guided_rollout_q17",
+    "mechanism1_guided_update_q17"
+  ],
+  "result_dependent_stopping": false,
+  "schema": "openevo.mechanism1-taskvector-guided-microtrial.202609052200",
+  "scientific_role": "prospective intervention into future self-improvement",
+  "start_state": "terminal sealed qwen3-1p7b Ceiling-1.0 state",
+  "status": "PREREGISTERED_CONDITIONAL_GO",
+  "task_stream": {
+    "new_non_final_tasks": 64,
+    "rollouts_per_task": 8,
+    "rounds_per_arm": 4,
+    "same_tasks_and_generation_seeds_across_arms": true,
+    "tasks_per_round": 16
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "schema": "seed3090.webshop-h1.23-task-family-heterogeneity-prereg.v1",
+  "campaign_id": "20260815-1120-h123-task-family-heterogeneity",
+  "title": "H1.23 exploratory task-family heterogeneity audit",
+  "status": "preregistered-queued",
+  "objective": "After H1.18-H1.21 negative recovery, carrier, horizon, and action-admissibility diagnostics and H1.22 task-level clustering, test whether frozen BASE-30 capability differs descriptively between held-out mens_fashion and womens_fashion task families.",
+  "scientific_question": "Under the frozen base agent and interface, do held-out simple fashion tasks show family-level heterogeneity in closed-loop behavior?",
+  "hypothesis": "The mens_fashion family may differ descriptively from womens_fashion; this is an exploratory heterogeneity hypothesis, not a claim about learning or OpenEvo efficacy.",
+  "claim_boundary": "This group is BASE-30 only, has no training, memory, adapter, teacher, retrieval, or outcome-conditioned selection, and cannot open Q3, H2, D0, retention, transfer, or SEED.",
+  "independent_variable": "task_family",
+  "arms": [
+    "BASE-30"
+  ],
+  "planned_matrix": {
+    "families": {
+      "mens_fashion": [
+        2858,
+        4863,
+        6459,
+        6469
+      ],
+      "womens_fashion": [
+        519,
+        1888,
+        5013,
+        6262
+      ]
+    },
+    "partitions": {
+      "P1": [
+        2858,
+        519
+      ],
+      "P2": [
+        4863,
+        1888
+      ],
+      "P3": [
+        6459,
+        5013
+      ],
+      "P4": [
+        6469,
+        6262
+      ]
+    },
+    "rollout_seeds": [
+      2026083600,
+      2026083601,
+      2026083602,
+      2026083603
+    ],
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "temperature": 0,
+    "attempts": 32
+  },
+  "metrics": {
+    "primary": [
+      "qualified_positive_rate_by_family",
+      "mean_task_score_by_family"
+    ],
+    "diagnostic": [
+      "buy_action_rate",
+      "valid_action_rate",
+      "parser_or_fallback_invalid",
+      "episode_steps",
+      "first_buy_step",
+      "search_next_backtrack_repetition_counts"
+    ]
+  },
+  "validity_rule": "identity_ok && error == null && trace_complete && !parser_or_fallback_failure",
+  "contamination_check": {
+    "training": false,
+    "teacher_assistance": false,
+    "evaluation_outcomes_used_for_labels": false,
+    "held_out_tasks_disjoint_from_completed_panels": true,
+    "excluded_goal_count": 68
+  },
+  "stop_rules": [
+    "Stop after 32 preregistered formal attempts.",
+    "Do not retry valid completions or change task identities, seeds, prompt, parser, horizon, denominator, or family definitions after launch.",
+    "Report family differences as exploratory descriptive heterogeneity only; if both families are zero or invalid, release GPUs and do not start another micro-variant."
+  ],
+  "provenance": {
+    "task_manifest": "docs/evidence/remote-runs/2026-08-15/h1.23/H1.23_TASK_MANIFEST.json",
+    "task_manifest_sha256": "44015cc5bd412913e651553b9cd6aa6c89256c41944b4c02473cbcd6a4c48e3e",
+    "official_open_evo_stable": "796e6248a61112a61c880885844dd3b0420c0b6ae",
+    "experiment_git_sha": "4e820c8501ccbd7494e410a0f3f8e17b49d517f8",
+    "runtime_fingerprint": "154c64d5c73e39ccd8b87fc90ac6967d237d233cd6a62a66d25753e9d2075f8f",
+    "image_digest": "sha256:7a4cdaa8678181a55303acbee899dd2be2c0d94cd04266523bce31a2f4e6d5a4"
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "project": "openevo-webshop-experiments",
+    "group": "20260815-1120-h123-task-family-heterogeneity",
+    "default_mode": "online",
+    "offline_fallback": "only after online initialization/upload failure with exact error and spool hash"
+  },
+  "gpu_policy": {
+    "gpu_cells": 8,
+    "one_task_pair_per_cell": true,
+    "require_all_eight_verified_idle_uuids": true,
+    "no_external_workload_interference": true
+  }
+}

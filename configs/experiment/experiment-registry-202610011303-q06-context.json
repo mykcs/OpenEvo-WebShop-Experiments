@@ -1,0 +1,141 @@
+{
+  "entries": [
+    {
+      "aliases": [
+        "qwen3-1p7b-directapply-no-gdr",
+        "Q17-DIRECT-APPLY-ONLY-W2-202609082022"
+      ],
+      "display_name": "Qwen3-1.7B DirectApply / No-GDR",
+      "experiment_id": "202609082022-q17-directapply-no-gdr",
+      "latest_authority_paths": [
+        "docs/operations/reproduction/Q17_DIRECTAPPLY_PORTABLE_REPRODUCTION_ROUTER_202609111537.md",
+        "docs/evidence/remote-runs/2026-09-11/Q17_TEXT_MEMORY_NOOP_MAIN_INTEGRATION_NOTE_202609111249.md",
+        "docs/evidence/remote-runs/2026-09-10/q17-gpu0456-recovery-closeout/README.md",
+        "configs/experiment/reproduction/q17-directapply-portable-router-202609111537.json",
+        "docs/evidence/experiment-passports/202609121011/Q17_RECOVERY_OBSERVATION_202609121011.json",
+        "docs/evidence/completed-1p7b-publication-20260918/Q17_PUBLIC_PRIVATE_RECOVERY_LEDGER.json",
+        "docs/evidence/completed-1p7b-publication-20260918/Q17_FRESH_RESTORE_VERIFY.json",
+        "docs/evidence/completed-1p7b-publication-20260918/COMPLETED_1P7B_ASSET_LEDGER.json"
+      ],
+      "lifecycle_class": "COMPLETE_SEALED",
+      "lineage_parent": null,
+      "passport_path": "configs/experiment/passports/202609082022-q17-directapply-no-gdr/passport.json",
+      "passport_sha256": "155e8885d2af2d4ee8b281f75cfec5c8b3af18b2c42b63f440da2af3e00805b6",
+      "state_source": {
+        "path": "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct/execution-state.json",
+        "release_path": null,
+        "required_equal": {
+          "arm": "qwen3-1p7b",
+          "twin_design_id": "Q17-DIRECT-APPLY-ONLY-W2-202609082022"
+        },
+        "type": "server_json"
+      }
+    },
+    {
+      "aliases": [
+        "bounded-effective-state-gdr",
+        "qwen3-1p7b-bounded-effective-state-gdr"
+      ],
+      "display_name": "Qwen3-1.7B Bounded OFF vs Effective-State GDR",
+      "experiment_id": "202609160255-bounded-effective-state-gdr",
+      "latest_authority_paths": [
+        "configs/experiment/campaigns/202609160255/authority-snapshots/INDEX.json",
+        "docs/evidence/bounded-effective-state-final-closeout-20260918/FINAL_CLOSEOUT.json",
+        "docs/evidence/completed-1p7b-publication-20260918/PASSPORT_PROVIDER_RECONCILIATION.json",
+        "docs/evidence/completed-1p7b-publication-20260918/COMPLETED_1P7B_ASSET_LEDGER.json"
+      ],
+      "lifecycle_class": "COMPLETE_SEALED",
+      "lineage_parent": null,
+      "passport_path": "docs/evidence/experiment-passports/202609160255-bounded-effective-state-gdr/FROZEN_PASSPORT_ORIGINAL.json",
+      "passport_sha256": "5d9adea0312ea93f4a12fa561fae5fa5fa8bd8f0f5cbff7d86c7db51371b5e42",
+      "state_source": {
+        "path": null,
+        "release_path": null,
+        "required_equal": {},
+        "type": "static"
+      }
+    },
+    {
+      "aliases": [
+        "post-advisor-e1-beta-direction"
+      ],
+      "display_name": "Post-advisor E1 direction-preserving beta gate",
+      "experiment_id": "202609282338-post-advisor-e1-beta-direction",
+      "latest_authority_paths": [
+        "configs/experiment/passports/202609282338-post-advisor-e1-beta-direction/passport.json",
+        "configs/experiment/activations/post-advisor-e1-beta-direction-authority-202609282338.json",
+        "configs/experiment/preregistrations/post-advisor-e1-beta-direction-preregistration-202609282338.json",
+        "configs/experiment/path-contracts/post-advisor-e1-beta-direction-path-contract-202609282338.json",
+        "configs/experiment/profiles/post-advisor-e1-beta-direction-profile-202609282338.json"
+      ],
+      "lifecycle_class": "ACTIVE_FORMAL",
+      "lineage_parent": null,
+      "passport_path": "configs/experiment/passports/202609282338-post-advisor-e1-beta-direction/passport.json",
+      "passport_sha256": "96b13db2fc07c74e9fd2295ae6991df209f6407d83576514b0414894683106ed",
+      "state_source": {
+        "path": "/workspace/runs/post-advisor-unanswered-20260928/e1-beta-direction-formal-a6-6b4ff450/execution-state.json",
+        "release_path": null,
+        "required_equal": {
+          "bounded_state_rank": 128,
+          "bounded_treatment_mode": "MAGNITUDE_SCALAR_GATE_V1",
+          "final_panel_access_count": 0,
+          "post_advisor_fork_origin": "R151_AFTER",
+          "post_advisor_short_fork_authority_sha256": "302f4cb0e8c7cd5c6bcbd01a69120454163326d93baa865802a9b76303679704",
+          "post_advisor_source_state_id": "afb7ff3a3e91536576d2661091c0af04411c834b33c9cb7dc4fbaa1eac1bd3e6"
+        },
+        "type": "server_json"
+      }
+    },
+    {
+      "aliases": [
+        "post-advisor-e3-rank-capacity"
+      ],
+      "display_name": "Post-advisor E3 persistent-state rank capacity",
+      "experiment_id": "202609300248-post-advisor-e3-rank-capacity",
+      "latest_authority_paths": [
+        "configs/experiment/passports/202609300248-post-advisor-e3-rank-capacity/passport.json",
+        "configs/experiment/preregistrations/post-advisor-e3-rank-capacity-preregistration-202609300248.json",
+        "configs/experiment/activations/post-advisor-e3-rank-capacity-authority-202609300248.json",
+        "configs/experiment/path-contracts/post-advisor-e3-rank-capacity-path-contract-202609300248.json"
+      ],
+      "lifecycle_class": "PAUSED_MANUAL_REVIEW",
+      "lineage_parent": null,
+      "passport_path": "configs/experiment/passports/202609300248-post-advisor-e3-rank-capacity/passport.json",
+      "passport_sha256": "d0872644b88f3d29e06a108a76a71630dff89d392d794a6b33fc1b8d6db3aff2",
+      "state_source": {
+        "path": null,
+        "release_path": null,
+        "required_equal": {},
+        "type": "static"
+      }
+    },
+    {
+      "aliases": [
+        "q06-historical-gdr-context"
+      ],
+      "display_name": "Q06 historical GDR ON R159 mechanism-family context",
+      "experiment_id": "202610011303-q06-gdr-context",
+      "latest_authority_paths": [
+        "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_GDR_CONTEXT_PROBE_MANIFEST.json",
+        "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_GDR_CONTEXT_IDENTITIES.json",
+        "configs/experiment/preregistrations/q06-gdr-context-preregistration-202610011303.json",
+        "configs/experiment/profiles/q06-gdr-context-202610011303-profile.json",
+        "configs/experiment/path-contracts/q06-gdr-context-202610011303-path-contract.json",
+        "scripts/openevo_webshop/q06_context_host_orchestrator.py",
+        "configs/experiment/activations/q06-gdr-context-202610011303-preparation.json"
+      ],
+      "lifecycle_class": "DIAGNOSTIC_ONLY",
+      "lineage_parent": null,
+      "passport_path": "configs/experiment/passports/202610011303-q06-gdr-context/passport.json",
+      "passport_sha256": "5dae3de216d827b2a335dcc660c67b7a2c1464ccd374ca70976eeced5cb76568",
+      "state_source": {
+        "path": null,
+        "release_path": null,
+        "required_equal": {},
+        "type": "static"
+      }
+    }
+  ],
+  "role": "identity-routing-only; never live state or execution authority",
+  "schema": "openevo.experiment-registry.202609112120"
+}

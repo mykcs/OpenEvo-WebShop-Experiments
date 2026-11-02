@@ -1,0 +1,100 @@
+{
+  "carriers": {
+    "agent_system": {
+      "check_every_round": true,
+      "otherwise": "NOOP",
+      "primary_calls_max": 1,
+      "repair_calls_max": 1,
+      "require_current_round_support": true,
+      "supporting_task_identities_min": 3
+    },
+    "parametric_sd_lora": {
+      "check_every_round": true,
+      "dtype": "bfloat16",
+      "epochs": 1,
+      "learning_rate": 0.0002,
+      "max_length": 2048,
+      "max_records": 256,
+      "minimum_clean_exact_success_tasks": 1,
+      "no_cross_round_raw_training_buffer": true,
+      "per_task_selection": "earliest clean exact success",
+      "rank": 8,
+      "replay_capacity": 64,
+      "seed": 1993,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ]
+    },
+    "skill_bundle": {
+      "check_every_round": true,
+      "otherwise": "NOOP",
+      "primary_calls_max": 1,
+      "repair_calls_max": 1,
+      "require_current_round_support": true,
+      "supporting_task_identities_min": 2
+    },
+    "text_memory": {
+      "check_every_round": true,
+      "gate": "clean success OR within-task raw-score contrast OR trace-verifiable repeated failure pattern; otherwise NOOP",
+      "primary_calls_max": 1,
+      "repair_calls_max": 1
+    }
+  },
+  "external_teacher_calls": 0,
+  "final_eval": {
+    "only_after_stage2_sealed": true,
+    "panel_size": 128,
+    "primary_access_count": 1
+  },
+  "forbidden": [
+    "old_7_vs_8_gate",
+    "16-success-gate",
+    "256-rollout-parametric-cadence",
+    "stage2_minimax",
+    "stage2_opsd",
+    "final_panel_before_stage2_seal"
+  ],
+  "opsd_stage2": "disabled-no-privileged-teacher",
+  "rollouts_per_task": 8,
+  "round_rollouts": 128,
+  "rounds": 160,
+  "sampling": {
+    "do_sample": true,
+    "generation_seed_base": 148000000,
+    "generation_seed_policy": "generation_seed_base + schedule_position; per-step + step_index",
+    "max_new_tokens": 512,
+    "max_steps": 15,
+    "repetition_penalty": 1.0,
+    "temperature": 1.0,
+    "top_k": 0,
+    "top_p": 1.0
+  },
+  "schedule": {
+    "path": "configs/experiment/manifests/h1.44-on-3b-training-schedule-v1.json",
+    "positions": "1441..21920",
+    "sha256": "1b3ac4252cda4d25d9542713e68e2fa4aacd90ceb377e5c03c8c1ad7c6878428"
+  },
+  "schema": "openevo.ceiling1-stage2-final-protocol.v1",
+  "status": "frozen-before-stage2-consumption",
+  "supersedes": [
+    "configs/experiment/openevo-ceiling-1.0-stage2-multicarrier-v1.json"
+  ],
+  "task_vector": {
+    "modify_next_round": false,
+    "modify_training": false,
+    "online_use": "diagnostic-only"
+  },
+  "tasks_per_round": 16,
+  "total_rollouts": 20480,
+  "within_round_execution_order": [
+    "text_memory",
+    "parametric_sd_lora",
+    "skill_bundle",
+    "agent_system",
+    "compose"
+  ],
+  "within_round_update_semantics": "All four carrier decisions consume the same sealed 128-rollout dataset and prior State_k. Their successor outputs do not feed other same-round carrier updates; compose exactly once after all four terminal receipts to create State_{k+1}."
+}

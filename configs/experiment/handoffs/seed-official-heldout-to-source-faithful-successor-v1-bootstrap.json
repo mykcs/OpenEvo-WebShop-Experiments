@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "kind": "identity",
+      "role": "base_model_identity",
+      "status": "REUSE"
+    },
+    {
+      "kind": "identity",
+      "role": "open_evo_sd_lora_identity",
+      "status": "REUSE"
+    },
+    {
+      "kind": "identity",
+      "role": "parser_compatible_interface_identity",
+      "status": "REUSE"
+    },
+    {
+      "kind": "identity",
+      "role": "generation_seed_schedule_identity",
+      "status": "REUSE"
+    },
+    {
+      "kind": "file",
+      "path": "configs/experiment/webshop-seed-official-heldout-comparison-v1.json",
+      "role": "predecessor_campaign_config",
+      "status": "REUSE"
+    },
+    {
+      "kind": "file",
+      "path": "configs/experiment/manifests/webshop-seed-official-heldout-comparison-v1-heldout-panel-v1.json",
+      "role": "predecessor_historical_panel_manifest",
+      "status": "REUSE"
+    }
+  ],
+  "failures": [],
+  "formal_task_consumption_allowed": false,
+  "gpu_allocation_allowed": false,
+  "handoff_path": "/workspace/openevo-experiment/.claude/worktrees/exciting-bohr-24ac4e/configs/experiment/handoffs/seed-official-heldout-to-source-faithful-successor-v1-handoff.json",
+  "handoff_sha256": "sha256:711077d2e052e8ae89dbc9560397dfdb57dc4e4f3681b8e8e8355d5d9cfacd5f",
+  "next_step": "continue successor PREPARE; invoke canonical runtime qualification for any CACHE_CANDIDATE before execution readiness",
+  "predecessor": {
+    "campaign_id": "20260825-0624-webshop-seed-official-heldout-comparison",
+    "description": "Frozen paired BASE-vs-OpenEvo SD-LoRA evaluation on the historical SEED-compatible official-held-out panel (shared env.seed=0 ordering). Provides immutable model, adapter, prompt/parser, and generation-seed identities for the source-faithful successor.",
+    "phase": "SEED-HELDOUT-COMPARISON",
+    "status": "closed-or-closing"
+  },
+  "reused_roles": [
+    "base_model_identity",
+    "generation_seed_schedule_identity",
+    "open_evo_sd_lora_identity",
+    "parser_compatible_interface_identity",
+    "predecessor_campaign_config",
+    "predecessor_historical_panel_manifest"
+  ],
+  "runtime_qualification_cache_candidates": [],
+  "schema": "openevo.successor-bootstrap.v1",
+  "status": "READY_FOR_SUCCESSOR_PREP",
+  "successor": {
+    "campaign_id": "20260826-0638-webshop-seed-source-faithful-reproduction",
+    "description": "Re-answer the BASE-vs-OpenEvo held-out question on a source-faithful first-validation semantic panel derived from pinned public SEED code, without retraining either arm.",
+    "phase": "SEED-SOURCE-FAITHFUL-REPRODUCTION",
+    "semantic_panel_digest": "a6c714043cf292672e83329c9cf38fb88a0d0e7dd70871896dcfe2695e4ff3e7"
+  }
+}

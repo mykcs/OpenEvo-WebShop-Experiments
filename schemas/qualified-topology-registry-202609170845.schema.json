@@ -1,0 +1,53 @@
+{
+  "$id": "openevo.qualified-topology-registry.202609170845",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "base_config_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "entries": {
+      "items": {
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "formal_activation_granted": {
+      "const": false
+    },
+    "profile_registry_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "registry_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "openevo.qualified-topology-registry.202609170845"
+    },
+    "scientific_authority_granted": {
+      "const": false
+    },
+    "status": {
+      "const": "PROSPECTIVE_IDENTITY_PRESERVATION_ONLY"
+    }
+  },
+  "required": [
+    "schema",
+    "registry_id",
+    "status",
+    "base_config_sha256",
+    "profile_registry_sha256",
+    "entries",
+    "scientific_authority_granted",
+    "formal_activation_granted"
+  ],
+  "title": "OpenEVO qualified topology registry",
+  "type": "object"
+}

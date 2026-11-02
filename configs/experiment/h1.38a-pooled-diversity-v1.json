@@ -1,0 +1,95 @@
+{
+  "schema": "openevo.experiment-h1.38a-pooled-diversity.v1",
+  "campaign_id": "20260819-0015-h138a-pooled-diversity",
+  "phase": "H1.38A",
+  "status": "launch-authorized",
+  "formal_task_consumption_allowed": true,
+  "scientific_question": "At a fixed 16-record pure-endogenous Qwen2.5-7B WebShop training budget, does 4 versus 8 versus 16 task identities change fresh-task transfer under the same validated pooled SD-LoRA route?",
+  "protocol_class": "pooled_endogenous_task_identity_diversity",
+  "upstream_v16_equivalent": false,
+  "upstream_audit": {
+    "audited_at_utc": "2026-08-18T15:31:00Z",
+    "stable_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "issue_296": {"state": "open", "updated_at": "2026-08-14T17:35:26Z"},
+    "pr_297": {"state": "open", "draft": true, "head_sha": "07ac370a579571e41a338376267fca871eb92f37", "paired_repeated_final_adapter_completed": false},
+    "design_implication": "No upstream result changes the selected C-D branch. Keep the WebShop runtime pinned and do not represent this pooled comparison as the upstream IID continual protocol."
+  },
+  "source_reservoir": {
+    "campaign_id": "20260818-2345-h138-endogenous-reservoir-v2",
+    "analysis": "docs/evidence/remote-runs/2026-08-18/h1.38-reservoir/evidence/h1.38-endogenous-reservoir-analysis.json",
+    "analysis_sha256": "d433992f243ab80304caa8bf615185d1d300a080f82218de9d2932eb0f8d4b40",
+    "selector": "docs/evidence/remote-runs/2026-08-18/h1.38-reservoir/evidence/h1.38-selector.json",
+    "selector_branch": "C-D",
+    "raw_harvest_root": "/workspace/runs/phase-h1.38-endogenous-reservoir-v2-20260818"
+  },
+  "frozen_contract": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "model_local_dir": "/workspace/models/qwen2.5-7b-instruct",
+    "trainer_base_model_argument": "Qwen/Qwen2.5-7B-Instruct",
+    "model_content_pin": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+    "upstream_open_evo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "image_digest": "sha256:ce92e587e7c934827025c001fd9b70ec4cb6de2deacfdf9f0cc0777d3ab928f1",
+    "python_runtime_fingerprint": "e3cb53bced07b519157ceca2698935bf0be45a58d08465c87c618ef62c31ee18",
+    "trainer": "official OpenEvo SD-LoRA through run_parametric_smoke_tracked.py",
+    "trainer_seed": 1993,
+    "rank": 4,
+    "target_modules": ["q_proj", "v_proj"],
+    "learning_rate": 0.0002,
+    "coefficient_learning_rate": 0.01,
+    "epochs": 1,
+    "max_steps": 16,
+    "max_records": 16,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 1,
+    "evaluation_environment_seed": 2026,
+    "evaluation_temperature": 0.0,
+    "evaluation_max_steps": 30,
+    "evaluation_max_new_tokens": 512,
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v3-action-command",
+    "evaluator": "WebShop task_score/won"
+  },
+  "dataset_selection": {
+    "builder": "scripts/openevo_webshop/build_h138a_diversity_inputs.py",
+    "builder_sha256": "61379a0fbefd881b7598890b26b2033f0e2dd771a7b2702499da6a6a287b443d",
+    "identity_order": "sha256('h138a-identity-v1:' + task_id), ascending",
+    "within_identity_order": "canonical full reservoir-record sha256, ascending",
+    "qualification": "identity_ok && trace_complete && !parser_or_fallback_failure && error == null && final_task_score > 0",
+    "arms": {
+      "diversity-4": {"record_count": 16, "identity_count": 4, "records_per_identity": 4},
+      "diversity-8": {"record_count": 16, "identity_count": 8, "records_per_identity": 2},
+      "diversity-16": {"record_count": 16, "identity_count": 16, "records_per_identity": 1}
+    },
+    "required_validation": "Reconstruct every selected record from raw reservoir attempts and reject any hash, task, seed, trace, or qualification mismatch before training. Report exact record/identity/trace and token counts for each arm; do not substitute records to balance them."
+  },
+  "evaluation": {
+    "task_count": 48,
+    "selection_seed": 20260818138,
+    "rollout_seeds": [2026090500, 2026090501, 2026090502, 2026090503],
+    "arms": ["base", "diversity-4", "diversity-8", "diversity-16"],
+    "attempts": 768,
+    "prior_identity_exclusion_count": 445,
+    "prior_identity_exclusion_sha256": "48d59ea7a8f3aeee8e760e26a6650c3036ba052bc0016fdb54719c7eb3526fdc",
+    "freshness_policy": "Exclude all previously committed task identities, all reservoir-v2 train-only identities, and all 64 identities in the aborted pre-protocol reservoir ledger. Build and seal the new evaluation manifest before loading any adapter."
+  },
+  "analysis": {
+    "primary": "Each diversity arm minus BASE, task-weighted across complete-valid paired task clusters; 10,000 fixed-seed task-cluster bootstrap CIs and task-level sign-flip tests.",
+    "secondary": "Ordered diversity trend across 4/8/16 arms, attempt-weighted ITT-style robustness, parser/fallback taxonomy, and positive/tie/negative task counts.",
+    "interpretation": "A monotonic trend supports identity diversity under pooled SD-LoRA only. A null-like result lowers the priority of simple identity-count diversity and elevates the method/content control; neither outcome validates or falsifies the upstream continual protocol."
+  },
+  "budget": {
+    "maximum_training_runs": 3,
+    "maximum_evaluation_attempts": 768,
+    "gpu_hours_cap": 3.0,
+    "first_gate": "Build all three datasets, validate exact selection hashes, train diversity-4 only, reload it for one 4-seed fresh held-out BASE/diversity-4 task pair, then proceed only if all gate rows are complete-valid.",
+    "extension_allowed": false,
+    "gpu_policy": "Only currently live-idle UUIDs explicitly authorized by the root-first server policy; never preempt, kill, reset, or attribute unresolved external occupancy."
+  },
+  "hard_boundaries": [
+    "No teacher, oracle, SEED, retrieval, or external trajectories.",
+    "No record/task replacement, adaptive selection, or additional training/evaluation cells.",
+    "No raw reservoir traces committed to Git.",
+    "No launch before this config and its code are committed and pushed on the dedicated H1.38A branch."
+  ],
+  "tracking": {"entity": "example-entity", "project": "openevo-webshop-experiments", "group": "20260819-0015-h138a-pooled-diversity", "default_mode": "online", "offline_fallback": "only after a recorded online-probe failure and spool hash"}
+}

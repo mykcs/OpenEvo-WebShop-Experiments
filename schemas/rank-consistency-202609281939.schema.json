@@ -1,0 +1,44 @@
+{
+  "$id": "openevo.rank-consistency.202609281939",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenEVO rank-consistency receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "openevo.rank-consistency.202609281939"},
+    "status": {"enum": ["PASS", "FAIL"]},
+    "expected_rank": {"type": "integer", "minimum": 1},
+    "required_roles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["config", "controller", "state", "checkpoint"]}
+    },
+    "observed_roles": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["config", "controller", "state", "checkpoint"]}
+    },
+    "observations": {"type": "array", "items": {"type": "object"}},
+    "failures": {"type": "array", "items": {"type": "string"}},
+    "formal_task_consumed": {"const": false},
+    "gpu_requests": {"const": 0},
+    "scientific_state_mutated": {"const": false},
+    "scientific_authority_granted": {"const": false},
+    "receipt_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "required": [
+    "schema",
+    "status",
+    "expected_rank",
+    "required_roles",
+    "observed_roles",
+    "observations",
+    "failures",
+    "formal_task_consumed",
+    "gpu_requests",
+    "scientific_state_mutated",
+    "scientific_authority_granted",
+    "receipt_sha256"
+  ]
+}

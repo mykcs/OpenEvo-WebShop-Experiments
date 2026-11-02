@@ -1,0 +1,157 @@
+{
+  "schema": "openevo.webshop-seed-official-heldout-comparison.v1",
+  "campaign_id": "20260825-0624-webshop-seed-official-heldout-comparison",
+  "phase": "SEED-HELDOUT-COMPARISON",
+  "status": "executing",
+  "title": "SEED official held-out WebShop comparison: frozen OpenEvo SD-LoRA vs BASE vs SEED paper-reported reference",
+  "objective": "Produce one credible, auditable local estimate of the frozen, reproduced OpenEvo Qwen2.5-7B policy on SEED's official held-out WebShop task space, placed next to the SEED paper-reported reference, without any SEED training or OpenEvo retraining.",
+  "scientific_question": "On SEED's official held-out WebShop task space (env.seed=0, goal_idx 0-499), how does our strongest frozen reproduced OpenEvo policy perform on raw task_score and exact success, and how far is it from the SEED paper-reported result (89.7 score / 78.1% success)?",
+  "benchmark": {
+    "name": "WebShop small (official held-out)",
+    "environment": "WebAgentTextEnv-v0",
+    "canonical_standard_source": "mykcs/basemodel docs/agents/current/seed-webshop-environment-audit.md",
+    "seed_public_repo": "github.com/jinyangwu/SEED",
+    "seed_public_commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+    "data_files": ["items_shuffle_1000.json", "items_ins_v2_1000.json"],
+    "human_goals": false,
+    "goals_total": 6910,
+    "held_out_pool": [0, 499],
+    "train_pool_start": 500,
+    "environment_seed": 0,
+    "goal_ordering": "seed-dependent; SimServer random.seed(env_seed)+shuffle at construction; reset(session=goal_idx) selects goals[goal_idx]"
+  },
+  "frozen_artifact": {
+    "arm": "OPEN_EVO_SD",
+    "base_model": "Qwen/Qwen2.5-7B-Instruct",
+    "base_model_content_pin": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+    "adapter_kind": "H1.38B final SD-LoRA",
+    "adapter_file_sha256": "47e63d417f85cb2defed5ff1ee934128b96e6a4f78a8f410fa052957d919190c",
+    "adapter_config_sha256": "ed48aae286e03ae63fe0f70c5e75dddd650f098e6d5cba55efb11106523c5261",
+    "loaded_tensor_digest": "eedc36232f04a8a7d6e8fc6a38b935758db65206f4945a6cfa35c4ab666a48f9",
+    "source_campaign": "20260820-0129-h138b-method-control",
+    "substitution_allowed": false,
+    "reverify_on_server_before_execution": true
+  },
+  "seed_paper_reference": {
+    "role": "paper-reported reference ONLY; not locally reproduced",
+    "source": "SEED paper Table 1, Qwen2.5-7B-Instruct",
+    "grpo": {"score": 80.9, "success": 72.6},
+    "seed": {"score": 89.7, "success": 78.1},
+    "must_be_labeled": "SEED paper-reported / reported by SEED Table 1",
+    "training_or_checkpoint_reproduced": false,
+    "gap_is_paired_contrast": false
+  },
+  "frozen_evaluation_contract": {
+    "primary": {
+      "name": "SEED-strict public-code inference contract (identical for both arms)",
+      "prompt_contract": "seed.webshop-public-eval-prompt.v1",
+      "action_contract": "seed.webshop-public-eval-projection.v1",
+      "prompt_source": "byte-exact SEED @2cf2fad WEBSHOP_TEMPLATE / WEBSHOP_TEMPLATE_NO_HIS; history_length=valid_len; >20000 chars -> NO_HIS",
+      "history": "SimpleMemory format [Observation n: 'obs', Action n: 'act']; records are (pre-step reformatted obs, projected action); history_length=2",
+      "parser": "webshop_projection verbatim; PASS-THROUGH (invalid projected action sent to env, no substitution/repair)",
+      "temperature": 0.4,
+      "do_sample": true,
+      "top_p": 1.0,
+      "top_k": "disabled (HF neutralized to vocab_size 151936 to match vLLM top_k=-1)",
+      "max_steps": 15,
+      "max_new_tokens": 512,
+      "environment_seed": 0,
+      "rollouts_per_task": 1,
+      "generation_seed": "2026082500 + panel_ordinal (frozen, identical across arms for the same task); per-step + step_index",
+      "evaluator": "WebShop raw task_score (continuous, terminal) + exact success (won == done and task_score==1.0), saved separately",
+      "invalid_taxonomy": ["invalid_action_step", "runtime", "identity", "incomplete_trace", "adapter_load_unverified", "base_fallback"]
+    },
+    "diagnostic": {
+      "name": "OpenEvo-native inference contract (secondary; does NOT enter the comparison table)",
+      "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+      "parser_contract": "seed3090.webshop-action-parser.v3-action-command",
+      "temperature": 0.0,
+      "max_steps": 30,
+      "max_new_tokens": 512,
+      "environment_seed": 0,
+      "task_identities": "identical 128 held-out goal_idx as primary",
+      "role": "near-zero-cost pre-registered diagnostic; decided before results"
+    }
+  },
+  "arms": {
+    "BASE": {"adapter": "none", "model": "Qwen/Qwen2.5-7B-Instruct"},
+    "OPEN_EVO_SD": {"adapter_sha256": "47e63d417f85cb2defed5ff1ee934128b96e6a4f78a8f410fa052957d919190c", "source_campaign": "20260820-0129-h138b-method-control"}
+  },
+  "task_selection": {
+    "builder": "scripts/openevo_webshop/build_seed_heldout_panel.py",
+    "priority": "Priority-2 outcome-blind deterministic (Priority-1 exact paper identities unrecoverable: validation RandomState advances per call)",
+    "method": "numpy.random.RandomState(1000).choice(arange(500), size=128, replace=False)",
+    "selection_seed": 1000,
+    "selection_basis": "SEED first-validation draw (env.seed+1000); draw order preserved as panel order",
+    "environment_seed": 0,
+    "held_out_only": true,
+    "minimum_goal_index": 0,
+    "maximum_goal_index": 499,
+    "train_pool_forbidden_for_formal_eval": true,
+    "task_count": 128,
+    "label": "SEED-compatible official-held-out 128-task panel",
+    "not_exact_paper_denominator": true,
+    "manual_replacement_allowed": false,
+    "selection_outcomes_blind": true,
+    "materialized_panel": {
+      "manifest_path": "configs/experiment/manifests/webshop-seed-official-heldout-comparison-v1-heldout-panel-v1.json",
+      "manifest_file_sha256": "fe902f9610f4f43d7d183c6c57a96084bcb5bf07efacfe5df77942da97eb7635",
+      "manifest_content_sha256": "7a2738bd9de3dc298cf2345499623664a8e743bcd7ea20b05eb91cd00784bb32",
+      "selected_panel_digest": "29d93cac4fa084e28ddad7747ca2e83623bc20af1129b44ebac8ef591ec96db3",
+      "goals_list_digest": "6257c56d133e465c4e8381e6651d5027fa840b011586d890d15bcc3926c446ed",
+      "task_count": 128
+    }
+  },
+  "matrix": {
+    "primary": {"tasks": 128, "arms": 2, "rollout_seeds": 1, "episodes": 256},
+    "diagnostic": {"tasks": 128, "arms": 2, "rollout_seeds": 1, "episodes": 256},
+    "total_episodes": 512,
+    "label": "local report-oriented official-heldout estimate",
+    "post_hoc_seeds_allowed": false
+  },
+  "qualification": {
+    "builder": "scripts/openevo_webshop/qualify_seed_heldout.py",
+    "fail_closed": true,
+    "held_out_consumed_in_qualification": false,
+    "qualification_pool": "synthetic bounded generation OR train-pool goal_idx 5500 and 6500 (frozen, >=500)",
+    "checks": ["git SHA/clean", "base model pin", "adapter SHA+load", "no base fallback", "WebShop small files present+hashed", "human_goals=False", "len(goals)==6910", "env seed=0 deterministic goal ordering", "reward wrapper raw task_score + exact success retained", "prompt contract", "parser contract", "JSON numeric serialization", "output isolation", "no partial outputs", "task identity replay", "evaluator produces score+success"],
+    "receipt_hash_binds": ["campaign config", "panel manifest", "model", "adapter", "evaluator contract"],
+    "formal_task_consumption_allowed_on_pass": true,
+    "status": "pass"
+  },
+  "analysis": {
+    "primary_estimand": "OPEN_EVO_SD minus BASE paired contrast on identical held-out task identities",
+    "task_weighted_paired_mean": true,
+    "bootstrap_rounds": 10000,
+    "bootstrap_seed": 2026082501,
+    "paired_counts": ["positive", "tie", "negative"],
+    "estimands_reported": ["valid-only", "ITT/all-scheduled"],
+    "never_drop_parser_invalid_silently": true,
+    "seed_paper_gap": "numerical gap only; NOT a paired statistical contrast; no paired bootstrap vs paper",
+    "aggregates": ["mean raw task_score", "mean task_score x100", "exact success rate", "valid/total", "invalid rate + taxonomy"]
+  },
+  "resources": {
+    "gpu_model": "single GPU per arm; the two arms may run in parallel on two authorized live-idle GPUs (Amendment 2026-08-25, user directive \"必须用6+7两块\"). Default is one GPU sequential. Scientific contract is GPU-count-agnostic.",
+    "resource_assignment_mode": "dynamic-live-idle",
+    "authorized_gpu_uuids_source": "parent experiment-execution-policy.md standing RTX 5090 pool intersected with immediate live-idle at launch",
+    "authorized_gpu_uuids": [
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ],
+    "parallel_execution_amendment_20260825": "Explicit user directive \"必须用6+7两块\" authorizes running BASE on GPU-461c7a33 (index 6) and OPEN_EVO_SD on GPU-fb620174 (index 7) concurrently, each GPU running primary then diagnostic for its arm. GPU 7 was verified free (2 MiB / 0% util, no compute apps, no container bound to its UUID) before authorization. Episodes are independent and deterministic (frozen per-task generation_seed), so parallel execution does not change any measurement; total GPU-hours are unchanged and per-attempt UUID is recorded.",
+    "live_idle_required_immediately_before_launch": true,
+    "kill_reset_preempt_allowed": false,
+    "assume_zero_util_means_free": false,
+    "assume_invisible_pid_means_orphaned": false,
+    "record_per_attempt": ["gpu_uuid", "start/end timestamps", "wall time", "gpu count", "gpu-hours", "exit code", "post-run release state"]
+  },
+  "tracking": {"entity": "example-entity", "project": "openevo-webshop-experiments", "group": "20260825-0624-webshop-seed-official-heldout-comparison", "default_mode": "online", "offline_fallback": "only after saved online probe failure and final spool hash"},
+  "forbidden_changes": ["SEED training", "OpenEvo retraining", "adapter tuning", "rank/LR/prompt/horizon/parser sweep", "task cherry-picking", "post-hoc new seeds", "replacing failed/parser-failure/hard tasks", "opportunistic extra arms", "using goal_idx>=500 as official evaluation", "silently reverting environment_seed to 2026", "silently using H1.39 internal-fresh panel", "killing/resetting/preempting GPU workloads", "reporting global_step_1 SEED smoke checkpoint as SEED result", "substituting another adapter (e.g. H1.40/H1.41)"],
+  "claim_boundary": "Maximum supportable claim: On our frozen SEED-compatible official-held-out WebShop panel, the frozen OpenEvo Qwen2.5-7B policy obtains X task score and Y% exact success, compared with the SEED paper-reported reference of 89.7 score and 78.1% success. Because the exact paper evaluation denominator is unproven, must add: SEED value is paper-reported; SEED training/checkpoint was not locally reproduced. Forbidden claims: we reproduced SEED 89.7; exact apples-to-apples reproduction; OpenEvo universally worse/better; causal method difference from the cross-source gap.",
+  "next_gate": "Qualify (zero held-out consumption) -> formal 256 primary + 256 diagnostic episodes -> reconcile/analyze -> closeout. If no authorized live-idle GPU, keep preregistered and stop with a resumable command."
+}

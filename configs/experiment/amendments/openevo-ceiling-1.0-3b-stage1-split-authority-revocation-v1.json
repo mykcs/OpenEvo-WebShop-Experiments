@@ -1,0 +1,45 @@
+{
+  "arm": "3b",
+  "authority": {
+    "decision": "The frozen 20-record unit may not be reduced to 10+10. Neither the A2 Text Memory split nor the Agent System splits have user scientific authorization.",
+    "source_thread_id": "01a0556c-0eab-7a33-80bf-ee56d2005527"
+  },
+  "bound_evidence": {
+    "agent_system_complete_sha256": "42e4dc78bab42bce12e4e0dbb970e05b3efc5ab7aebfc5f02f70ed95ee8b4757",
+    "skill_bundle_complete_sha256": "d5fa90b4fec1d02a45ca67e0981d022fc616aa31df8d74fbdcf1f1b978beefce",
+    "stage1_complete_sha256": "61b0fb242f6f4c021f30663983c43ce7aba162e8cdaa5d2f574e5ec29a2397bd",
+    "text_memory_complete_sha256": "8ee2fdb036e32d0af5897ff05db07579090143084a989c8d48affdb02e140d64"
+  },
+  "campaign_id": "20260830-openevo-ceiling-1.0-webshop",
+  "observed_unapproved_splits": {
+    "agent_system": 17,
+    "skill_bundle": 0,
+    "text_memory": 1
+  },
+  "prohibited_until_new_user_scientific_authority": [
+    "3B Stage2 runtime preflight",
+    "3B Stage2 controller launch",
+    "3B formal Stage2 task consumption",
+    "using the A2 or split Agent System artifacts as a Stage2 seal"
+  ],
+  "required_live_state": {
+    "final_panel_access_count": 0,
+    "formal_stage2_rollouts_consumed": 0,
+    "stage": "STAGE1",
+    "stage2_authorized": false,
+    "status": "BLOCKED"
+  },
+  "schema": "openevo.ceiling1-stage1-split-authority-revocation.v1",
+  "seven_b_unaffected": true,
+  "status": "FAIL_CLOSED",
+  "superseded_by_later_authority": {
+    "authority_recorded_at": "2026-08-31T10:20:00+08:00",
+    "current_202609030400_interpretation": "Do not treat this earlier revocation as current authority.",
+    "decision": "symmetric reward-blind bounded capacity recovery approved for both arms",
+    "path": "configs/experiment/amendments/openevo-ceiling-1.0-stage1-capacity-recovery-v1.json"
+  },
+  "supersedes_erroneous_authority_record": {
+    "path": "configs/experiment/amendments/openevo-ceiling-1.0-3b-stage1-a2-authority-v1.json",
+    "sha256": "a5db85b7aef068bcd885ff44ff1aeab84b979f441939bd4bec9521462b89661c"
+  }
+}

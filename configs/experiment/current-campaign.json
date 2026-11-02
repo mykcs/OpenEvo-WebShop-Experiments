@@ -1,0 +1,103 @@
+{
+  "already_consumed_e1_rollouts": 1024,
+  "authorized_gpu_uuids": [
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000"
+  ],
+  "benchmark": "webshop",
+  "campaign_id": "20260928-2338-post-advisor-unanswered",
+  "design": "configs/experiment/designs/post-advisor-unanswered-202609282338.json",
+  "engineering_recovery": {
+    "path": "configs/experiment/activations/post-advisor-e1-a11-terminal-seal-authority-detail-202609302100.json",
+    "sha256": "6f3ba4f350457934fae020b618b3ebbe799be3e2131ccca2ffbbd0d8b82cf328"
+  },
+  "experiment_identity": {
+    "experiment_id": "202609282338-post-advisor-e1-beta-direction",
+    "passport_sha256": "96b13db2fc07c74e9fd2295ae6991df209f6407d83576514b0414894683106ed"
+  },
+  "final_panel_access_allowed": false,
+  "final_pool_consumed": false,
+  "final_test_status": "locked",
+  "final_unlock_allowed": false,
+  "formal_task_consumption_allowed": false,
+  "gpu_allocation_allowed": false,
+  "gpu_scope": "E1 execution sealed; no further E1 GPU allocation or task-bearing calls",
+  "hard_boundaries": [
+    "Do not access or unlock the final panel.",
+    "Do not rerun already-answered SFT-vs-OPSD, SFT-budget, Q17-plateau, rank32, or historical rank128 arms.",
+    "Do not preempt external or owner-unresolved workloads.",
+    "Do not delete/move unrelated assets to make space.",
+    "Do not consume task-bearing work until exact execution identity/runtime/resource/storage qualification is committed and activation status is PASS."
+  ],
+  "latest_event": {
+    "already_consumed_rollouts": 1024,
+    "classification": "POST_ADVISOR_E1_POSTSEAL_EVIDENCE_RECONCILED",
+    "external_teacher_calls": 0,
+    "final_panel_access": 0,
+    "final_pool_consumed": false,
+    "final_unlock_allowed": false,
+    "formal_rollout_replay": 0,
+    "formal_task_consumption_allowed": false,
+    "gpu_allocation_allowed": false,
+    "next_round": 160,
+    "pause_receipt_sha256": "600eca8272bfafaf946936699b6ffd91ab0233a17e5dd681e2bf0c1d1afb04a1",
+    "postseal_execution_state_sha256": "9a489bbac03eb72559989e4958bade00d203f96a8587d06b678844569d43e381",
+    "r159_carrier_health_status": "FAIL_DIAGNOSTIC_RESOLVED",
+    "reconciliation_sha256": "11abe12cab607d40bf05a54cd243bd1bcd1eeacd37d8475016aeac8120a364a8",
+    "remaining_rollout_budget": 0,
+    "resolution_receipt_sha256": "6e158d14548b3592831166c2bb2596e865c8cf0ced12e94e8fd68404446cd250",
+    "round_complete_sha256": "556e65c0400d943be450686fe90195ed5d01ede694bf7bb3f9ff1c924407e2b5",
+    "seal_sha256": "b03d0cbcb9e5fc89a8d8974952222aa5d35ffb083bc6a47239cfa30b2b893725",
+    "successor_execution_git_sha": "32174473fc10b05756f680b4074f8cb9cda17883",
+    "through_round": 159
+  },
+  "next_gate": "Read-only E1 beta/direction and matched-baseline result analysis under the frozen contract; E2/E3 require their own exact authority.",
+  "objective": "Answer the remaining concrete experimental questions from the 2026-09-22 liaochang meeting without rerunning already-answered arms.",
+  "phase": "POST-ADVISOR-E1-EXECUTION-SEALED",
+  "plan": "docs/science/webshop/program/POST_ADVISOR_UNANSWERED_EXPERIMENTS_202609282338.md",
+  "predecessor_current_campaign": {
+    "campaign_id": "20260821-2341-wb1-seed-aligned-webshop-benchmark",
+    "disposition": "preserved frozen on main; not resumed or mutated by this workline"
+  },
+  "preregistration": "configs/experiment/preregistrations/post-advisor-e1-beta-direction-preregistration-202609282338.json",
+  "protocol_status": "post-advisor-e1-execution-sealed-analysis-pending",
+  "reconciliation": {
+    "path": "docs/evidence/post-advisor-unanswered-20260928/E1_POSTSEAL_RECONCILIATION_20260930.json",
+    "sha256": "11abe12cab607d40bf05a54cd243bd1bcd1eeacd37d8475016aeac8120a364a8"
+  },
+  "release": {
+    "path": "configs/experiment/activations/post-advisor-e1-a11-terminal-seal-release-202609302100.json",
+    "sha256": "3eac9758b9f3ac8bf141bdfc611ef80cf31d93ca2010744141a0a68f4a2affde"
+  },
+  "release_receipt": "configs/experiment/activations/post-advisor-e1-a11-terminal-seal-release-202609302100.json",
+  "release_receipt_sha256": "3eac9758b9f3ac8bf141bdfc611ef80cf31d93ca2010744141a0a68f4a2affde",
+  "remaining_e1_rollout_budget": 0,
+  "resource_authorization": "Owner explicitly authorized all eight established RTX 5090 GPUs for this post-advisor experiment closure. External/owner-unresolved work remains non-preemptible.",
+  "scientific_question": "Do the preregistered direction-preserving gate, token/click entropy diagnostics, rank-capacity sweep, Task Vector counterfactuals, and full SEED-style Stage2 answer the remaining advisor-identified WebShop questions under the frozen, final-panel-locked protocols?",
+  "standard_core": "v1",
+  "standard_profile": "vNext",
+  "status": "execution-sealed",
+  "storage_state": {
+    "cleanup_authority": false,
+    "dev_shm_free_gb_approx": 256,
+    "galaxyfs_free_gb_approx": 19,
+    "observed_date": "2026-09-29",
+    "policy": "Use /dev/shm only for campaign scratch with an explicit recovery/retention plan; persist compact evidence and preregistered required states. Storage pressure never authorizes deletion.",
+    "root_overlay": "FULL (0 GB available)"
+  },
+  "task_bearing_train_dev_allowed": false,
+  "title": "Post-advisor unresolved WebShop experiment closure",
+  "track": "Post-advisor unanswered experiment closure",
+  "tracking": {
+    "default_mode": "online",
+    "entity": "example-entity",
+    "group": "20260928-2338-post-advisor-unanswered",
+    "project": "openevo-webshop-experiments"
+  }
+}

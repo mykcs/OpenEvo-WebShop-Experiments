@@ -1,0 +1,169 @@
+{
+  "schema": "openevo.post-advisor-successor-plan.v2",
+  "proposal_origin_date": "2026-09-29",
+  "status": "PLANNING_ONLY_NOT_EXECUTION_AUTHORITY",
+  "scientific_question": "Which affordable advisor-derived evidence identifies the next major OpenEVO research phase and a reproducible WebShop substrate?",
+  "final_panel_access": 0,
+  "boundaries": {
+    "planning_only": true,
+    "gpu_authority": false,
+    "formal_task_consumption_allowed": false,
+    "final_panel_access": 0,
+    "reuse_historical_controls_when_exact": true,
+    "prefer_offline_state_surgery": true,
+    "no_score_based_early_stop": true
+  },
+  "plan": "docs/science/webshop/program/POST_ADVISOR_SUCCESSOR_EXPERIMENTS_20260929.md",
+  "handoff": "docs/agents/handoffs/POST_ADVISOR_LUNA_HANDOFF_20261001.md",
+  "nodes": [
+    {
+      "question_id": "Q02",
+      "owner_pr": 629,
+      "package": "configs/experiment/advisor-questions/q02-work-package.v1.json",
+      "owner_url": "https://github.com/mykcs/openevo-experiment/pull/629"
+    },
+    {
+      "question_id": "Q03",
+      "owner_pr": 630,
+      "package": "configs/experiment/advisor-questions/q03-work-package-202610041457.json",
+      "owner_url": "https://github.com/mykcs/openevo-experiment/pull/630"
+    },
+    {
+      "question_id": "Q04",
+      "owner_pr": 631,
+      "package": "configs/experiment/advisor-questions/q04-work-package.v1.json",
+      "owner_url": "https://github.com/mykcs/openevo-experiment/pull/631"
+    },
+    {
+      "question_id": "Q05",
+      "owner_pr": 632,
+      "package": "configs/experiment/advisor-questions/q05-work-package.v1.json",
+      "owner_url": "https://github.com/mykcs/openevo-experiment/pull/632"
+    },
+    {
+      "question_id": "Q06",
+      "owner_pr": 633,
+      "package": "configs/experiment/advisor-questions/q06-work-package.v1.json",
+      "owner_url": "https://github.com/mykcs/openevo-experiment/pull/633"
+    },
+    {
+      "question_id": "Q08",
+      "owner_pr": 635,
+      "package": "configs/experiment/advisor-questions/q08-work-package.v1.json",
+      "owner_url": "https://github.com/mykcs/openevo-experiment/pull/635"
+    },
+    {
+      "question_id": "Q09",
+      "owner_pr": 636,
+      "package": "configs/experiment/advisor-questions/q09-work-package.v1.json",
+      "owner_url": "https://github.com/mykcs/openevo-experiment/pull/636"
+    },
+    {
+      "question_id": "Q10",
+      "owner_pr": 637,
+      "package": "configs/experiment/advisor-questions/q10-work-package.v1.json",
+      "owner_url": "https://github.com/mykcs/openevo-experiment/pull/637"
+    }
+  ],
+  "scientific_order": {
+    "initial_audits": [
+      "Q08",
+      "Q06",
+      "Q04",
+      "Q05",
+      "Q03"
+    ],
+    "independent_offline_primary": [
+      "Q02"
+    ],
+    "recipe_confirmation": "Q10",
+    "note": "Order is information priority, not execution permission. Existing E5 gates require their own prospective amendments."
+  },
+  "candidate_pool": [
+    {
+      "id": "LEARNING_SIGNAL_DATA",
+      "trigger": "Reproducible objective or matched Stage2 capability effects",
+      "question": "Which learning signal or teacher/data representation causes the capability gap?"
+    },
+    {
+      "id": "FINITE_HISTORY",
+      "trigger": "Confirmed capability-preserving capacity/cost tradeoff",
+      "question": "What history must a finite persistent state preserve?"
+    },
+    {
+      "id": "RETENTION_CARRIER_INTERACTION",
+      "trigger": "Verified acquisition followed by retention loss, or reproducible carrier effects",
+      "question": "Does knowledge interference or parametric/text interaction explain the remaining gap?"
+    },
+    {
+      "id": "STABLE_UPDATE_SIGNALS",
+      "trigger": "Direction/magnitude disambiguation or independent predictive gain",
+      "question": "Can a frozen pre-update signal improve capability stability over simple shrinkage?"
+    }
+  ],
+  "conditional_research_recipes": [
+    {
+      "id": "S1A",
+      "name": "offline history representation replay",
+      "new_formal_rollouts": 0,
+      "arms": [
+        "FULL_EXPLICIT",
+        "RECENT_WINDOW_K",
+        "SINK_PLUS_WINDOW",
+        "BOUNDED_R",
+        "SINGLE_MERGE_R"
+      ]
+    },
+    {
+      "id": "S1B",
+      "name": "prospective long-horizon history representation confirmation",
+      "preferred_fork": "MUST_BE_FROZEN_FOR_SELECTED_MECHANISM",
+      "window": "MUST_BE_FROZEN_FROM_MECHANISM_SPECIFIC_EVIDENCE",
+      "historical_proposal_window": "R121-R159",
+      "planning_dependency": "S1A",
+      "horizon_basis": "Q01 mechanism-specific capability evidence; ordinary plateau is not a universal budget"
+    },
+    {
+      "id": "S2",
+      "name": "direction x magnitude decomposition",
+      "historical_dependency": "E1+E4",
+      "current_owner_trigger": "Q05 evidence isolates a practical direction/magnitude or policy effect; freeze a new exact contract",
+      "requires_new_disjoint_confirmation_stream": true
+    },
+    {
+      "id": "S3",
+      "name": "entropy predictive confirmation",
+      "historical_dependency": "E2",
+      "current_owner_trigger": "Q06 confirms independent practical prediction; freeze a new exact contract",
+      "adaptive_entropy_gate_authorized": false
+    },
+    {
+      "id": "S4",
+      "name": "SEED vs OpenEVO learning-signal decomposition",
+      "historical_dependency": "E5",
+      "current_owner_trigger": "Q03 unifies source/start/evaluator and identifies an unresolved learning-signal mechanism; freeze a new exact contract",
+      "conditional": true
+    },
+    {
+      "id": "S5",
+      "name": "two-arm full-horizon confirmation",
+      "planning_dependency": "mechanism winner frozen",
+      "search_arms": 0
+    }
+  ],
+  "decision_requirements": {
+    "candidate_count_min": 2,
+    "candidate_count_max": 4,
+    "primary_count": 1,
+    "selection_requires_scientific_evidence": true,
+    "baseline_instability_precedes_new_complexity": true,
+    "allowed_question_statuses": [
+      "CLOSED_WITH_STRONG_EVIDENCE",
+      "CLOSED_WITH_NULL_NEGATIVE_RESULT",
+      "PARTIAL",
+      "BLOCKED"
+    ],
+    "preparation_is_scientific_completion": false
+  },
+  "integration_note": "The node package lives in its existing owner PR. Unmerged packages are expected on main; do not create duplicate owner PRs or activation routers."
+}

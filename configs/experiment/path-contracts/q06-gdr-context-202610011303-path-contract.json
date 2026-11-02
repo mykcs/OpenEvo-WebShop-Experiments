@@ -1,0 +1,64 @@
+{
+  "campaign_id": "20260928-2338-post-advisor-unanswered",
+  "container_root": "/workspace",
+  "host_root": "/workspace",
+  "paths": {
+    "authority": {
+      "access": "ro",
+      "container_path": "/workspace/control/q06-gdr-context-preparation-20261001",
+      "expected_type": "dir",
+      "host_path": "/workspace/control/q06-gdr-context-preparation-20261001"
+    },
+    "cache": {
+      "access": "rw",
+      "container_path": "/workspace/cache",
+      "expected_type": "dir",
+      "host_path": "/workspace/cache",
+      "writable": true
+    },
+    "dataset": {
+      "access": "ro",
+      "container_path": "/workspace/data",
+      "expected_type": "dir",
+      "host_path": "/workspace/datasets/webshop-1000"
+    },
+    "experiment": {
+      "access": "ro",
+      "container_path": "/workspace/src/openevo-experiment",
+      "expected_type": "dir",
+      "host_path": "/workspace/control/post-advisor-e1-a11-authority-20260930"
+    },
+    "model": {
+      "access": "ro",
+      "container_path": "/workspace/models/qwen3-1p7b",
+      "expected_type": "dir",
+      "host_path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b"
+    },
+    "openevo": {
+      "access": "ro",
+      "container_path": "/workspace/src/openevo-core",
+      "expected_type": "dir",
+      "host_path": "/workspace/control/openevo-core"
+    },
+    "run_root": {
+      "access": "rw",
+      "container_path": "/workspace/runs",
+      "expected_type": "dir",
+      "host_path": "/workspace/runs/post-advisor-unanswered-20260928/q06-gdr-context-202610011303",
+      "writable": true
+    },
+    "seed_root": {
+      "access": "ro",
+      "container_path": "/workspace/runs/phase-h1.20-action-admissibility-diagnostic-v1-20260815/seed-roots/base-P1/agent_system/environments/env_package/webshop/webshop/data",
+      "expected_type": "dir",
+      "host_path": "/workspace/runs/phase-h1.20-action-admissibility-diagnostic-v1-20260815/seed-roots/base-P1/agent_system/environments/env_package/webshop/webshop/data"
+    }
+  },
+  "requirements": {
+    "clean_core_must_remain_immutable": true,
+    "container_visible_read_write_probe_required": true,
+    "cpu_no_gpu_probe_before_allocation": true,
+    "exact_host_container_mapping": true
+  },
+  "schema": "openevo.q06.context-probe-path-contract.202610011303"
+}

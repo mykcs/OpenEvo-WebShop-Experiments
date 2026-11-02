@@ -1,0 +1,42 @@
+{
+  "activation_authority": false,
+  "arm": "qwen3-1p7b",
+  "compression": {
+    "active": false,
+    "rule": "compression/rank reduction requires a separate future amendment"
+  },
+  "effective_rank_limit": 4096,
+  "independent_component_stop": null,
+  "isolated_trainer_source": {
+    "legacy_installed_package_fallback_forbidden": true,
+    "python_isolated_mode_required": true,
+    "shared_engineering_evidence": {
+      "arm": "7b",
+      "claim_boundary": "shared OpenEvo trainer engineering evidence only; does not transfer 7B scientific activation to Qwen3-1.7B",
+      "qualification_path": "/workspace/runs/20260830-openevo-ceiling-1.0-stage1-analysis-v1/stage2-capacity-qualification/7b/comp65-trainer-source-recovery-v1/QUALIFICATION_PASS.json",
+      "qualification_sha256": "38f136eecba08171d2a8feb111dd202d314de4cca855eddf202da9b324980409",
+      "transition": "64->65 components / effective rank 512->520"
+    },
+    "source_binding": "exact-detached-trainer-service-source-bootstrap"
+  },
+  "openevo_core": {
+    "checkout_path": "/workspace/control/openevo-core-ceiling1-effective-rank-exec-0ef8b0eb",
+    "execution_sha": "0ef8b0ebdf8c6d50d67bdfd0e60c8ac04a3f3ed0",
+    "upstream_base_sha": "796e6248a61112a61c880885844d3b0420c0b6ae"
+  },
+  "rank": 8,
+  "replay_capacity": 64,
+  "schema": "openevo.ceiling1-harness201-3b-successor-capacity-policy.v1",
+  "scientific_role": "Qwen3-1.7B Stage2-vNext capacity binding; algorithm identical to shared small-model effective-rank contract; no independent activation authority",
+  "status": "PREREGISTERED_NO_ACTIVATION_AUTHORITY",
+  "unchanged": {
+    "final_panel_locked_until_stage2_seal": true,
+    "model_specific_strategy_changes": false,
+    "rank": 8,
+    "rollouts_per_round": 128,
+    "rounds": 160,
+    "task_vector_online_control": false,
+    "teacher_calls": 0,
+    "total_rollouts": 20480
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "schema": "openevo.webshop-h1.31-teacher-bootstrap-preregistration.v1",
+  "standard_core": "v1",
+  "standard_profile": "vNext",
+  "experiment": "H1.31-teacher-assisted-openevo-bootstrap",
+  "campaign_id": "20260817-0000-h131-teacher-bootstrap",
+  "status": "closed-negative-teacher-bootstrap",
+  "formal_task_consumption_allowed": false,
+  "scientific_question": "Can a separately sourced stronger teacher provide a bounded bootstrap signal that enables Qwen2.5-3B OpenEvo adaptation, while evaluation remains teacher-free?",
+  "decision_basis": {
+    "h1.29_execution": "Capability gate passed with 8 qualified self-generated episodes from 2 task identities, but 64 evaluation attempts produced mean valid task_score 0.0 for BASE and SELF-EVOLUTION and paired delta 0.0.",
+    "interpretation": "Qwen2.5-3B is not incapable of producing WebShop successes on the observed train panel; the negative result is fresh-task transfer failure, not proof that native data are absent.",
+    "teacher_trigger": "Teacher route is a separately registered fallback/diagnostic after the negative transfer result; it is not a relabeling of H1.29 and does not enter H1.29 denominators."
+  },
+  "arms": {
+    "BASE": "frozen Qwen2.5-3B-Instruct with no teacher data and no adapter",
+    "TEACHER_BOOTSTRAP": "Qwen2.5-3B-Instruct adapted using only the frozen, audited teacher trajectory manifest; teacher is absent during evaluation",
+    "PURE_SELF_EVOLUTION_REFERENCE": "H1.29 negative result, referenced for decision context only and not rerun in this campaign"
+  },
+  "teacher_contract": {
+    "allowed_sources": ["GPT API", "audited stronger local model"],
+    "required_identity": ["provider_or_model", "model_revision_or_endpoint", "prompt_sha256", "trajectory_manifest_sha256", "teacher_evidence_sha256"],
+    "required_quality": ["task_score==1.0 or explicit accepted-success rule", "fallback_free", "parser_valid", "complete_trace", "independent correctness audit"],
+    "training_only": true,
+    "evaluation_teacher_access": false,
+    "api_cost_recorded": true,
+    "teacher_outputs_must_not_enter_h1_29": true,
+    "existing_qwen14b_artifact_eligible": false,
+    "existing_qwen14b_exclusion_reason": "The historical artifact is marked training-data oracle only and evaluation_use=false; it is not a ready teacher trajectory manifest for this campaign."
+  },
+  "teacher_manifest": {
+    "status": "audited-train-only-used",
+    "path": "docs/evidence/remote-runs/2026-08-17/h1.31/manifests/h1.31-teacher-bootstrap-manifest-draft.json",
+    "manifest_sha256": "0bc87b9a85fc894369a1122f62356ebea339eee329d400728ba9c65917d74a99",
+    "file_sha256": "07430fb3fd86ea269ecfe4e4f0f8c4bbe6cc2581b8c6058eb3479f0fdf7ba2c1",
+    "train_count": 16,
+    "evaluation_count": 8,
+    "train_evaluation_disjoint": true,
+    "teacher_evaluation_access": false
+  },
+  "teacher_rollout_audit": {
+    "server_path": "/workspace/runs/phase-h1.30-seed-comparison-v1-20260817/h1.31/teacher-full",
+    "tree_sha256": "8013a9ca14409aad3bbdddadd71f310c15574f50dc25ab18a08f6675500f44ee",
+    "attempt_count": 64,
+    "valid_count": 64,
+    "runtime_error_count": 0,
+    "qualified_positive_count": 8,
+    "independent_positive_count": 8,
+    "positive_task_identities": ["webshop_002244", "webshop_006583"],
+    "teacher_evaluation_access": false,
+    "post_run_gpu_idle_verified_utc": "2026-08-17T03:42:36Z",
+    "post_run_gpu_memory_mib": 2,
+    "post_run_gpu_utilization_percent": 0,
+    "raw_after_receipt_note": "Per-slot gpu-after snapshots captured a transient common python3 process; a later host-level snapshot showed no compute apps and 2 MiB on all eight UUIDs.",
+    "wandb": "not invoked; local JSON evidence is canonical for this train-only rollout"
+  },
+  "student_fit": {
+    "server_path": "/workspace/runs/phase-h1.30-seed-comparison-v1-20260817/h1.31/student-bootstrap-fit-gpu0-v1",
+    "dataset_manifest_sha256": "6d44bfd59eb45667aefdcc7c71c9ffec2cfb1c2113e0b5610fe1cd62f520e228",
+    "dataset_records_sha256": "5f280e96cf512ed7bcb4e78e87eae29de4b006c84300c5f7a0cc61dc2622d711",
+    "record_count": 8,
+    "trace_count": 24,
+    "optimizer_steps": 8,
+    "training_loss": 1.5267461985349655,
+    "adapter_model_sha256": "e3b0a9ce7caefe8cbe1c10562761d8afffb4c19f96bba19f30f275e6fb180eed",
+    "adapter_config_sha256": "55ba5d248073e5517e8f95f4bcef80acbb5bb2fdaac76f995d70b6c48a5edd6b",
+    "reload_check": "pass",
+    "wandb": "online initialization failed because no API key was available; offline spool preserved with fallback receipt"
+  },
+  "matched_evaluation": {
+    "evaluation_manifest_sha256": "01941d8d3a6a17c59a162c7d5368aaa36ca1278d8b00b7eaf77c652c81356ba3",
+    "teacher_server_path": "/workspace/runs/phase-h1.30-seed-comparison-v1-20260817/h1.31/evaluation/teacher-bootstrap-v4-gpu-*",
+    "base_server_path": "/workspace/runs/phase-h1.30-seed-comparison-v1-20260817/h1.31/evaluation/base-v1-gpu-*",
+    "teacher_tree_sha256": "97877cb645100eea548d8fc4b5fd6857fe9cfe4c11286de82eb742fa2fdf46c3",
+    "base_tree_sha256": "817db0ca7c195c1409a7d54a3276a052581ce51382e62216101ddb41f77cd4c6",
+    "attempts_per_arm": 32,
+    "valid_per_arm": 32,
+    "runtime_errors_per_arm": 0,
+    "base_mean_task_score": 0.053625,
+    "teacher_bootstrap_mean_task_score": 0.0,
+    "paired_teacher_minus_base_mean": -0.053625,
+    "base_partial_positive_count": 4,
+    "teacher_bootstrap_positive_count": 0,
+    "base_win_rate": 0.0,
+    "teacher_bootstrap_win_rate": 0.0,
+    "decision": "negative; close H1.31 and do not sweep teacher/bootstrap variants"
+  },
+  "frozen_student_contract": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "catalog": "indexes_1k",
+    "environment_seed": 2026,
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "temperature": 0.0,
+    "evaluation_rollout_seeds": [2026110100, 2026110101, 2026110102, 2026110103],
+    "evaluation_teacher_access": false
+  },
+  "required_inputs_before_gpu": [
+    "teacher source and prompt identity are frozen",
+    "teacher trajectory manifest has exact task, trace, score, parser and correctness hashes",
+    "teacher and student task splits are disjoint from evaluation",
+    "student adapter artifact has exact lineage and reload digest",
+    "H1.31 matched evaluation manifest is verified",
+    "CPU CI, doctor, W&B online probe, and single-card smoke are green",
+    "authorized GPU UUID gate is green"
+  ],
+  "metrics": {
+    "primary": ["mean valid task_score", "valid win rate", "paired TEACHER_BOOTSTRAP minus BASE score"],
+    "efficiency": ["teacher tokens", "teacher API cost", "student training GPU seconds", "rollouts to first valid success"],
+    "quality": ["valid-action rate", "parser/fallback rate", "failure taxonomy", "task-level positive coverage"],
+    "claim_boundary": "A positive result supports only a teacher-assisted bootstrap candidate; it does not prove pure self-evolution, GPT generalization, or OpenEvo superiority over SEED."
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "project": "openevo-webshop-experiments",
+    "default_mode": "online",
+    "offline_fallback": "only after exact online initialization/upload failure is saved with spool hash"
+  },
+  "next_action": "Keep H1.31 closed negative; do not sweep. Return to the separately gated H1.30 matched OpenEvo-versus-SEED execution path, still without consuming formal tasks until its final launch receipt is green."
+}

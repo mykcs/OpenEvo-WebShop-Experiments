@@ -1,0 +1,59 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.6-heldout-state-distribution-v1",
+  "phase": "H1.6",
+  "status": "complete-contract-only-no-heldout-reward",
+  "scientific_question": "Does compact-v2 SUCCESS rescue transfer from the four H0 tasks to unseen tasks, or is the remaining gap a state-distribution problem?",
+  "hypothesis": "If compact-v2 fixes only output formatting, held-out tasks should become valid but remain near-zero reward; non-zero held-out reward would support broader policy rescue.",
+  "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+  "task_panel": {
+    "manifest": "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814/task-manifest.json",
+    "manifest_sha256": "a4e5e6927e6589ad035e650ff4cc0075fabe797e96945077b3a4bbd31cbfb29f",
+    "manifest_content_sha256": "86d04965b6bf5208e7e0958f6a7d1ba89ec70e580c95ce37a0946ecb3109a16c",
+    "goal_indices": [694, 2747, 3098, 3396, 4666, 4676, 4724, 6199],
+    "partitions": {"A": [694, 2747, 3098, 3396], "B": [4666, 4676, 4724, 6199]},
+    "split": "held-out-h1.6",
+    "rollout_seeds": [2026081600, 2026081601, 2026081602, 2026081603]
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_new_tokens": 512,
+    "max_steps": 15,
+    "evaluator": "WebShop task_score/won",
+    "runtime": "pinned JDK/HF cache and one UUID-bound process per cell"
+  },
+  "cell_design": "3 arms x 2 held-out partitions = 6 cells; 4 tasks x 4 fresh seeds = 16 attempts per cell; 96 total",
+  "primary_metrics": ["fallback-free valid rate", "qualified positive rate", "mean task_score among valid", "SUCCESS held-out reward versus BASE/FAILURE"],
+  "diagnostic_metrics": ["first action and action distribution", "search depth and click depth", "trajectory length/termination", "generation length", "parser/fallback rate", "task-level heterogeneity"],
+  "stop_branch": {
+    "heldout_rescue": "SUCCESS >=12/16 valid in each partition and >=2 qualified positives overall: proceed to held-out residual/state test; D0 remains closed",
+    "valid_only": "SUCCESS valid >=12/16 but qualified positives <2: classify as contract-only rescue and diagnose state distribution",
+    "no_transfer": "SUCCESS valid <12/16: preserve negative transfer evidence; do not change adapter rank/LR/epochs",
+    "runtime_failure": "exclude artifacts and open a separate repair group"
+  },
+  "baseline_reference": "/workspace/workspace/runs/phase-h1.5-compact-recovery-action-calibration-v1-20260814/evidence/h1.5-reconciliation-v1.json",
+  "code_sha": "887bbb72979f7983557012dd1e17392efc81015f",
+  "claim_boundary": "Held-out transfer/state-distribution diagnostic; no benchmark claim, no D0 opening, no SEED comparison.",
+  "result": {
+    "run_root": "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814",
+    "prelaunch_manifest_sha256": "8e0dd57bf2183ca8faf635abcff927a9100de3547246ea90df30b3e24b61f14a",
+    "reconciliation_sha256": "8a3ee8fcc2e6327e0b34442453ba99781d0ed4eba1bbea2221d1b871735592c4",
+    "final_manifest_sha256": "cb469a91b02bf4481763cb2226094b4691dee7e801f6adc030b779233fbd5fd2",
+    "binding_verification_sha256": "0a2f955876c12f02ec4b3105e6ddd0148150c51574d1f008889fb03228759bb9",
+    "binding_status": "pass",
+    "cells": "6/6",
+    "attempts": 96,
+    "valid": 88,
+    "qualified_positive": 0,
+    "runtime_errors": 0,
+    "parser_fallback_failures": 8,
+    "gpu_hours": 0.518998,
+    "classification": "contract-only rescue; no held-out reward transfer"
+  }
+}

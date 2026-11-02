@@ -1,0 +1,81 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.8-state-aware-action-selection-v1",
+  "phase": "H1.8",
+  "status": "complete-selective-heldout-rescue-task-specific",
+  "scientific_question": "Can a minimal state-aware action cue convert compact-v2 held-out over-navigation into reward, and does the effect differ between BASE and SUCCESS-SD-LORA?",
+  "hypothesis": "If H1.7 identified an action-selection bottleneck, state-aware-v3 should reduce repeated next-page actions and increase product/buy-now transitions on the frozen H1.6 held-out panel; a prompt-only gain is not evidence of adapter learning.",
+  "arms": [
+    "BASE-compact-v2",
+    "SUCCESS-compact-v2",
+    "BASE-state-aware-v3",
+    "SUCCESS-state-aware-v3"
+  ],
+  "controls": {
+    "model_factor": "BASE versus SUCCESS-SD-LORA",
+    "prompt_factor": "compact-v2 versus state-aware-v3",
+    "task_panel": "identical frozen H1.6 held-out manifest; no evaluation task is used for training",
+    "comparison": "2 model arms x 2 prompt contracts x 2 held-out partitions"
+  },
+  "task_panel": {
+    "manifest": "/workspace/workspace/runs/phase-h1.6-heldout-state-distribution-v1-20260814/task-manifest.json",
+    "manifest_sha256": "a4e5e6927e6589ad035e650ff4cc0075fabe797e96945077b3a4bbd31cbfb29f",
+    "partitions": {"A": [694, 2747, 3098, 3396], "B": [4666, 4676, 4724, 6199]},
+    "split": "held-out-h1.6; frozen and never used for training",
+    "rollout_seeds": [2026081700, 2026081701, 2026081702, 2026081703]
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_steps": 15,
+    "max_new_tokens": 512,
+    "evaluator": "WebShop task_score/won",
+    "runtime": "pinned JDK/HF cache and one UUID-bound process per cell",
+    "adapter_budget": "BASE none; SUCCESS frozen H1 success adapter; no retraining"
+  },
+  "prompt_intervention": {
+    "control": "seed3090.webshop-compact-action-prompt.v2",
+    "treatment": "seed3090.webshop-state-aware-action-prompt.v3",
+    "treatment_policy": [
+      "search once when Search is admissible",
+      "on results pages prefer a plausible product link before Next >",
+      "use Next > only when no plausible product is shown, with at most two consecutive page advances",
+      "on product pages select required options, then click buy now",
+      "do not repeat an identical action unless no other admissible action exists"
+    ],
+    "parser_and_evaluator": "unchanged from compact-v2"
+  },
+  "cell_design": "2 model arms x 2 prompt contracts x 2 held-out partitions = 8 cells; 4 tasks x 4 fresh seeds = 16 attempts per cell; 128 total",
+  "gpu_plan": "one independent cell per authorized GPU UUID; no DDP, no duplicate deterministic cell",
+  "primary_metrics": ["fallback-free valid rate", "qualified positive rate", "mean task_score all/valid", "prompt and model-factor reward deltas"],
+  "diagnostic_metrics": ["search/click/product/buy-now action counts", "next-page count", "trajectory length", "generation words", "parser/fallback rate", "task heterogeneity"],
+  "stop_branch": {
+    "positive_transfer": "state-aware-v3 produces >=2 qualified positives overall and improves SUCCESS versus its compact-v2 control: continue held-out learning analysis; D0 remains closed",
+    "prompt_only": "state-aware-v3 improves BASE and SUCCESS similarly without selective SUCCESS gain: classify protocol rescue, no learning claim",
+    "diagnostic_only": "next-page count falls but reward remains zero: action cue changes trajectory without task completion; do not open D0",
+    "null": "no meaningful action or reward change: preserve negative evidence and stop prompt tweaking",
+    "runtime_failure": "exclude invalid cells and open a separate repair group"
+  },
+  "claim_boundary": "New prompt-intervention test on a frozen held-out panel; no benchmark claim, no broad generalization claim, no D0 opening without confirmation, and no SEED comparison.",
+  "result": {
+    "reconciliation_script": "scripts/openevo_webshop/h1_8_reconcile.py",
+    "reconciliation_script_sha256": "ec46ee6de63cfcc2e67f9b1c41bcdfee27b1b7442287685a5130379459591cb2",
+    "run_root": "/workspace/workspace/runs/phase-h1.8-state-aware-action-selection-v1-20260814",
+    "prelaunch_manifest_sha256": "e23afdd804a3184ab3ead316e032fe14dce97a60e74e619a924126e2b474f726",
+    "reconciliation_sha256": "6b117639ab536cc1426a55ae17c4d0300fa89a5dfc7953d5ab3b0e8e48e64fa9",
+    "wandb_postmortem_sha256": "9a249a52da5356a67e959cbf3155dc5dce2e13b7ca72979b1e96a165f0611945",
+    "attempts": 128,
+    "valid": 120,
+    "qualified_positive": 4,
+    "runtime_errors": 0,
+    "gpu_hours": 0.7308,
+    "binding": "8/8 UUID-bound cells passed; final compute apps empty",
+    "cell_result": "state-aware-v3 SUCCESS partition A 4/16 qualified positives; all other cells 0/16",
+    "positive_task": "goal 3396 on all four state-aware-v3 SUCCESS A seeds; each trace search -> product -> buy now",
+    "classification": "selective state-aware held-out rescue with task heterogeneity; fresh-seed confirmation required before D0"
+  }
+}

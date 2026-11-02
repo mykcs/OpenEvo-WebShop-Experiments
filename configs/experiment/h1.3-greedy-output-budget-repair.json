@@ -1,0 +1,50 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.3-greedy-output-budget-repair-v1",
+  "phase": "H1.3-repair",
+  "status": "pre-registered",
+  "repair_of": "H1.3-greedy-output-budget-v1",
+  "scientific_question": "After correcting UUID-to-CUDA binding, does max_new_tokens=512 restore fallback-free greedy action-contract validity for the frozen H1 adapters?",
+  "hypothesis": "The original H1.3 run is runtime-invalid because every process used logical cuda:0; with one UUID in CUDA_VISIBLE_DEVICES per process, the 256-vs-512 output-budget comparison becomes interpretable.",
+  "protocol_change": "None to scientific factors; this group repairs the GPU-binding implementation and repeats the exact pre-registered H1.3 matrix.",
+  "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+  "decoding": {"temperature": 0.0, "do_sample": false, "budgets": [256, 512]},
+  "task_panel": {
+    "task_manifest": "/workspace/workspace/runs/phase-h0-natural-success-search-v1-20260814-rerun-rng-fix/task-manifest.json",
+    "task_manifest_sha256": "fec3203f8abfad571048d27dfac1dd7c6fd62ad784d452939b09de1bb9f4e077",
+    "task_indices": [2822, 5135, 5294, 6769],
+    "partitions": {"A": [2822, 5135], "B": [5294, 6769]},
+    "rollout_seeds": [2026081450, 2026081451, 2026081452, 2026081453]
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "environment_seed": 2026,
+    "max_steps": 15,
+    "prompt_contract": "seed3090.webshop-shared-prompt.v1",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "parser_retry_seed_offset": 900000,
+    "evaluator": "WebShop task_score/won",
+    "adapters": {
+      "failure": "/workspace/workspace/runs/phase-h1-successful-supervision-train-fit-v1-20260814/manifests/training-failure-v3.json",
+      "success": "/workspace/workspace/runs/phase-h1-successful-supervision-train-fit-v1-20260814/manifests/training-success-v3.json"
+    }
+  },
+  "runtime_repair": {
+    "runner_contract": "CUDA_VISIBLE_DEVICES must contain exactly the selected GPU UUID",
+    "logical_device": "cuda:0 after UUID namespace binding",
+    "launcher_requirement": "set CUDA_VISIBLE_DEVICES=<gpu_uuid> for every subprocess and record it in the ledger"
+  },
+  "primary_metrics": ["fallback-free valid rate", "qualified positive rate among valid", "mean task_score among valid", "paired 512-minus-256 reward/validity deltas"],
+  "diagnostic_metrics": ["closing think/action tag rate", "first parser failure step", "generation length", "GPU UUID/process mapping", "latency and peak VRAM"],
+  "cell_factors": "3 arms x 2 budgets x 2 partitions = 12 cells; 8 attempts per cell",
+  "stop_branch": {
+    "binding_verified": "require every cell GPU-before/after and process mapping to show the requested UUID; otherwise invalidate without scientific analysis",
+    "contract_restored": "if SUCCESS at 512 has >=12/16 valid and >=2 qualified positives, queue recovery/action-calibration; D0 remains closed",
+    "no_reward_rescue": "retain contract-only or negative evidence and diagnose state distribution",
+    "runtime_failure": "preserve raw artifacts and open a new repair group; never reclassify as algorithm failure"
+  },
+  "code_sha": "pending-repair-commit",
+  "claim_boundary": "Operational repair repeat of H1.3; no benchmark claim and no D0 opening."
+}

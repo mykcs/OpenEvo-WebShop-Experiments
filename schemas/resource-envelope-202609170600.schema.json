@@ -1,0 +1,98 @@
+{
+  "$id": "openevo.resource-envelope.202609170600",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accounting": {
+      "additionalProperties": false,
+      "properties": {
+        "gpu_capacity_is_per_physical_gpu": {
+          "const": true
+        },
+        "host_capacity_counted_once_per_host": {
+          "const": true
+        }
+      },
+      "required": [
+        "gpu_capacity_is_per_physical_gpu",
+        "host_capacity_counted_once_per_host"
+      ],
+      "type": "object"
+    },
+    "envelope_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "gpu_scope": {
+      "additionalProperties": false,
+      "properties": {
+        "compute_share_advisory": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "gpu_count": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "process_slots_per_gpu": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "vram_mib_per_gpu": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "gpu_count",
+        "vram_mib_per_gpu",
+        "process_slots_per_gpu",
+        "compute_share_advisory"
+      ],
+      "type": "object"
+    },
+    "host_scope": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu_slots": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "disk_io_class": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "ram_mib": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "ram_mib",
+        "cpu_slots",
+        "disk_io_class"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "openevo.resource-envelope.202609170600"
+    },
+    "scope_model": {
+      "const": "PER_GPU_PLUS_HOST_GLOBAL"
+    }
+  },
+  "required": [
+    "schema",
+    "envelope_id",
+    "scope_model",
+    "gpu_scope",
+    "host_scope",
+    "accounting"
+  ],
+  "title": "OpenEVO typed resource envelope",
+  "type": "object"
+}

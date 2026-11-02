@@ -1,0 +1,12 @@
+diff --git a/verl/utils/vllm_utils.py b/verl/utils/vllm_utils.py
+--- a/verl/utils/vllm_utils.py
++++ b/verl/utils/vllm_utils.py
+@@ -69,7 +69,7 @@
+ 
+ from msgspec import field
+ from packaging import version as vs
+-from vllm.lora.models import LoRAModel
++from vllm.lora.lora_model import LoRAModel
+ from vllm.lora.request import LoRARequest
+ from vllm.lora.utils import get_adapter_absolute_path
+ from vllm.lora.worker_manager import LRUCacheWorkerLoRAManager

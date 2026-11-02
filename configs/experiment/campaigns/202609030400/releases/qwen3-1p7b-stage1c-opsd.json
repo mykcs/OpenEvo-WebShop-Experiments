@@ -1,0 +1,65 @@
+{
+  "activation_authority": false,
+  "arm": "qwen3-1p7b",
+  "asset_contract": {
+    "consumes": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen3-1p7b--stage1b_teacher_evidence",
+        "role": "upstream-phase"
+      }
+    ],
+    "produces": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen3-1p7b--stage1c_opsd",
+        "provider": "server",
+        "provider_id": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/OPSD_COMPLETE_qwen3-1p7b.json",
+        "role": "phase-receipt"
+      }
+    ],
+    "publication": [],
+    "recovery": [],
+    "registry_policy": "observation-first-canonical-if-proven",
+    "telemetry": []
+  },
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 0,
+    "local_reflector_requests_max": 0,
+    "optimizer_steps_max": 11198
+  },
+  "completion": {
+    "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/OPSD_COMPLETE_qwen3-1p7b.json",
+    "required_equal": {
+      "arm": "qwen3-1p7b",
+      "optimizer_steps_total": 11198,
+      "records_total": 11198,
+      "status": "PASS"
+    },
+    "sha256": "3eeb5dcb73ae7cde8ceea28ed226c034510540b2bea3f8a93d7bf65f6c850c53"
+  },
+  "historical_execution_provenance": {
+    "rule": "do not infer missing producer identity from names or timestamps",
+    "status": "PARTIAL_UNKNOWN_NOT_UPGRADED"
+  },
+  "model_compat": {
+    "enable_thinking": false
+  },
+  "phase": "stage1c_opsd",
+  "release_mode": "adoption",
+  "retry": {
+    "exact_resume": false,
+    "reason": "immutable completion adopted into current control plane; no execution is authorized by this release"
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "configs/experiment/campaigns/202609030400/authority-snapshots/a5bda531c0eabe307f9c16af219d7ebc5fb53bb8649425c857383f43440c88f1.json",
+    "required_equal": {
+      "freeze_id": "202609030400",
+      "schema": "openevo.shared-prestage2.v1",
+      "status": "FROZEN_METHOD"
+    },
+    "sha256": "a5bda531c0eabe307f9c16af219d7ebc5fb53bb8649425c857383f43440c88f1"
+  },
+  "status": "ADOPTED_IMMUTABLE_COMPLETION"
+}

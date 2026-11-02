@@ -1,0 +1,155 @@
+{
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/execution-runtime-prospective-adoption-202609171752.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "blocker_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "campaign_class": {
+      "enum": [
+        "ZERO_FORMAL_ENGINEERING_CANARY",
+        "PROSPECTIVE_FORMAL_CAMPAIGN"
+      ],
+      "type": "string"
+    },
+    "closure_gates": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "exact_consumer_validation_receipt_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "exact_consumer_validation_required_before_first_formal_task": {
+      "const": true
+    },
+    "execution_generation_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "existing_formal_lineage_migration_allowed": {
+      "const": false
+    },
+    "final_panel_authority": {
+      "const": false
+    },
+    "formal_launch_authority": {
+      "const": false
+    },
+    "hot_migration_allowed": {
+      "const": false
+    },
+    "implementation_contract_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "live_adoption": {
+      "const": false
+    },
+    "predecessor_controller_retained": {
+      "const": true
+    },
+    "predecessor_retention_until_closure": {
+      "const": true
+    },
+    "production_runtime_package_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reference_controller_git_sha": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "release_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "repair_semantics_authority": {
+      "const": false
+    },
+    "resource_canary_receipt_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "resource_topology_authority": {
+      "const": false
+    },
+    "reuse_authority": {
+      "const": false
+    },
+    "schema": {
+      "const": "openevo.execution-runtime-prospective-adoption.202609171752"
+    },
+    "scientific_authority": {
+      "const": false
+    },
+    "status": {
+      "enum": [
+        "BLOCKED_ENGINEERING",
+        "READY_FOR_ADOPTION_VALIDATION"
+      ],
+      "type": "string"
+    },
+    "target_campaign_formal_rows_consumed": {
+      "const": 0
+    },
+    "target_campaign_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "target_campaign_is_new": {
+      "const": true
+    }
+  },
+  "required": [
+    "schema",
+    "release_id",
+    "target_campaign_id",
+    "campaign_class",
+    "status",
+    "blocker_reason",
+    "implementation_contract_sha256",
+    "production_runtime_package_identity",
+    "execution_generation_id",
+    "resource_canary_receipt_identity",
+    "exact_consumer_validation_receipt_identity",
+    "reference_controller_git_sha",
+    "predecessor_controller_retained",
+    "predecessor_retention_until_closure",
+    "exact_consumer_validation_required_before_first_formal_task",
+    "target_campaign_is_new",
+    "target_campaign_formal_rows_consumed",
+    "existing_formal_lineage_migration_allowed",
+    "hot_migration_allowed",
+    "live_adoption",
+    "formal_launch_authority",
+    "scientific_authority",
+    "resource_topology_authority",
+    "repair_semantics_authority",
+    "reuse_authority",
+    "final_panel_authority",
+    "closure_gates"
+  ],
+  "title": "Execution Runtime prospective next-campaign adoption release",
+  "type": "object"
+}

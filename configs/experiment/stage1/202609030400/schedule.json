@@ -1,0 +1,5 @@
+{
+  "schema": "openevo.stage1.schedule-ref.v1",
+  "source_path": "configs/experiment/manifests/h1.44-on-3b-training-schedule-v1.json",
+  "source_sha256": "1b3ac4252cda4d25d9542713e68e2fa4aacd90ceb377e5c03c8c1ad7c6878428"
+}

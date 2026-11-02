@@ -1,0 +1,126 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.18-reachability-filtered-recovery-diagnostic-v1",
+  "phase": "H1.18",
+  "status": "recovery-dataset-materialized-awaiting-success-state-control",
+  "scientific_question": "On a task-reachability-filtered train panel, does matched supervision from student-visited recovery states transfer better than matched supervision from successful oracle states?",
+  "hypothesis": "H1.11-H1.13 fit successful targets without fresh-task transfer, while H1.14 captured student recovery states. If source-state distribution is causal, STUDENT-RECOVERY should selectively outperform SUCCESS-STATE and BASE on fresh tasks under matched teacher, target, and optimizer budgets.",
+  "independent_variable": "training source-state distribution only: successful oracle states versus student-visited recovery states",
+  "arms": {
+    "BASE": "frozen Qwen2.5-3B-Instruct with no new adapter",
+    "SUCCESS-STATE": "rank-4 SD-LoRA trained on Qwen2.5-14B labels from deterministic-oracle successful states on the six reachable H1.14 train tasks",
+    "STUDENT-RECOVERY": "rank-4 SD-LoRA trained on the existing Qwen2.5-14B labels from student-visited recovery states on the same six reachable H1.14 train tasks"
+  },
+  "training_panel": {
+    "task_ids": [3420, 6624, 5216, 2655, 5457, 3768],
+    "excluded_unreachable_task_ids": [4513, 1657],
+    "task_reachability_evidence_sha256": "0e180dc53f5406766171e04b24a48479596516bbc89f89da569ed2808de9f439",
+    "recovery_label_source_sha256": "58c7ea73b46298eac176a0703c46ecc52c6a93b1d8ca173d967cbfe913603061",
+    "records_per_arm": 96,
+    "records_per_task": 16,
+    "oracle_acquisition_seeds": [2026082600, 2026082601, 2026082602, 2026082603],
+    "oracle_states_per_task_per_seed": 4,
+    "oracle_state_selection": "first four admissible deterministic-oracle states per acquisition seed, including search/target/options states and excluding post-buy states",
+    "success_state_materialization": "deterministic oracle path states, then the same frozen Qwen2.5-14B teacher labels the next action; no evaluation task or outcome is visible",
+    "recovery_state_materialization": "existing H1.14 parser-valid student states and Qwen2.5-14B recovery labels, filtered to the six reachable training tasks",
+    "recovery_dataset": {
+      "manifest_path": "/workspace/workspace/runs/phase-h1.18-reachability-filtered-recovery-diagnostic-v1-20260815/datasets/student-recovery-v2/manifest.json",
+      "manifest_sha256": "2aec8372a741efaadf0de6ad556c72392ee5007f38c295b056123fd403f3c6ce",
+      "records_sha256": "408fc3b09ff3b1f8403b049356692ff2e96b0de39d751f008ed0a7fda361d437",
+      "label_file_sha256": "20ba8cb2b0d57267d6c47e168b425e4ddd7bf187327de30d5ecbf76e4853eae9",
+      "record_count": 96,
+      "teacher_identity": "Qwen/Qwen2.5-14B-Instruct-local"
+    },
+    "success_state_oracle_materialization": {
+      "states_path": "/workspace/workspace/runs/phase-h1.18-reachability-filtered-recovery-diagnostic-v1-20260815/datasets/h1.18-oracle-success-states.jsonl",
+      "states_sha256": "6e1d4c509c0dd1bbc1aebfc8b985976af228394ae9a39f1f3b41bb796c57eea3",
+      "summary_path": "/workspace/workspace/runs/phase-h1.18-reachability-filtered-recovery-diagnostic-v1-20260815/datasets/h1.18-oracle-success-states-summary.json",
+      "summary_sha256": "1c202526f1e23e576acd4efa5d9b8e7a0295a1f6e37ea833147092876946f6fc",
+      "record_count": 96,
+      "model_inference_used": false,
+      "source_state": "deterministic-oracle-success-path",
+      "teacher_labels_pending": true
+    },
+    "latest_gpu_resource_gate": {
+      "path": "/workspace/workspace/runs/phase-h1.18-reachability-filtered-recovery-diagnostic-v1-20260815/evidence/h1.18-gpu-resource-gate-20260814T202538Z.json",
+      "sha256": "30586b16e9eb84a82c67318e142ff94ef3f00c4664b6ac55407e0f0f9009203e",
+      "all_eligible": false,
+      "cards_checked": 8,
+      "memory_used_mib_range": [22382, 22386],
+      "compute_app_count": 0,
+      "ordinary_user": "experiment-host",
+      "server": "experiment-host",
+      "cross_container_owner_visibility": "now_verified_read_only_via_root_control_plane",
+      "owner_audit": {
+        "observed_at_utc": "2026-08-14T20:29:33Z",
+        "container": "dev-guozy",
+        "container_label_username": "guozy",
+        "image": "private-dev-snapshots:guozy-20260813144822",
+        "gpu_request": "all",
+        "service": "eight independent vLLM Qwen3.5-9B services with CUDA_VISIBLE_DEVICES=0..7",
+        "allocation": "external workload occupies all eight GPUs; do not interfere"
+      }
+    },
+    "invalid_materialization_attempt": {
+      "path": "/workspace/workspace/runs/phase-h1.18-reachability-filtered-recovery-diagnostic-v1-20260815/datasets/h1.18-recovery-labels.jsonl",
+      "classification": "serialization failure; excluded from all denominators",
+      "replacement": "student-recovery-v2"
+    }
+  },
+  "evaluation_manifest": {
+    "path": "/workspace/workspace/runs/phase-h1.18-reachability-filtered-recovery-diagnostic-v1-20260815/manifests/h1.18-task-manifest.json",
+    "internal_manifest_sha256": "ed2c27d1ecbc7e4f7b36401b41a18c314d37127a98c2332d5cae322cb79e68d4",
+    "file_sha256": "9899dd431fd42f55d5fdd255ff6d876f493b0d0ad5dfc99d7d75ed939fc88d6ce"
+  },
+  "evaluation_panel": {
+    "manifest_builder": "scripts/openevo_webshop/build_h1_18_manifest.py",
+    "selection_seed": 20260827,
+    "task_ids": [744, 1263, 1623, 3020, 3848, 4415, 5593, 6091],
+    "partitions": {"P1": [744, 1263], "P2": [1623, 3020], "P3": [3848, 4415], "P4": [5593, 6091]},
+    "evaluation_seeds": [2026082700, 2026082701, 2026082702, 2026082703],
+    "attempts": 96,
+    "task_role": "fresh held-out evaluation only; no outcome or trace flows to either training dataset"
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "tokenizer_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "teacher_model": "Qwen/Qwen2.5-14B-Instruct-local",
+    "teacher_payload_sha256": "c8088f27057871992a2bf885fce0f5b3f5db56e1549cd60de9add5f434a89c9f",
+    "teacher_evidence_sha256": "30c28c9c52afe441dac0bd683d374713c3f0b7e2110d9cb8bb2477b297011152",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "training_budget": "rank 4 q_proj/v_proj; one epoch; four optimizer steps; bfloat16; equal 96-record source budgets",
+    "evaluation": "frozen artifact alone; no teacher, memory carrier, prompt rescue, or action post-processing"
+  },
+  "primary_metrics": ["qualified-positive rate", "final task_score", "STUDENT-RECOVERY minus SUCCESS-STATE paired reward", "valid rate"],
+  "diagnostic_metrics": ["teacher-forced source-state likelihood", "recovery-state coverage", "Next/backtrack/repeated-navigation counts", "buy-now transition rate", "episode length", "parser/runtime failure rate"],
+  "contamination_check": {
+    "required": ["six training task IDs disjoint from eight evaluation task IDs", "evaluation seeds disjoint from acquisition seeds", "same teacher identity and labeling contract for both training arms", "unreachable tasks excluded before label matching", "all artifacts carry task/seed/source-state provenance"],
+    "fail_closed": "missing control labels, task overlap, teacher mismatch, or source-state identity mismatch invalidates the group and prevents GPU launch"
+  },
+  "resource_budget": {
+    "planned_cells": 12,
+    "planned_gpus": 8,
+    "cell_design": "3 arms x 4 partitions x 8 attempts = 96 attempts; UUID-bound independent cells, first wave uses eight authorized GPUs",
+    "expected_gpu_hours": "bounded two-adapter four-step fit plus 96 evaluation attempts; record actual per-cell wall time and UUID ledger",
+    "launch_gate": "do not launch until both 96-record datasets, their manifests/hashes, the fresh evaluation manifest, and eight genuinely idle authorized UUIDs are verified"
+  },
+  "stop_rule": "one reachability-filtered source-state diagnostic; no rank/LR/epoch sweep, no post-test task removal, no prompt rescue, and no Q3 claim from fit alone",
+  "branch_rule": {
+    "selective_recovery_positive": "independent new-task/new-seed confirmation before Q3; keep H2/D0 closed",
+    "negative_or_task_specific": "do not stack parametric micro-variants; retain interface/task-family diagnosis and keep Q3/H2/D0/retention/transfer/SEED closed",
+    "invalid": "repair provenance/materialization only without changing source-state semantics"
+  },
+  "upstream_audit": {
+    "stable_sha_checked": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "relevant_open_work_checked": ["OpenEvo#296", "OpenEvo#297 SD-LoRA-RR", "OpenEvo#238 textual memory", "OpenEvo#298 MemEvolve validation", "OpenEvo#293 AgentSquare on-policy"],
+    "decision": "retain pinned upstream; use official SD-LoRA semantics and do not import unrelated agent-system evolution"
+  },
+  "claim_boundary": "Reachability-filtered source-state diagnosis only; no Q3 opening, H2, D0, retention/transfer, or SEED claim before independent confirmation."
+}

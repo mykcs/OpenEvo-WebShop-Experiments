@@ -1,0 +1,87 @@
+{
+  "schema": "openevo.successor-handoff-spec.v1",
+  "predecessor": {
+    "campaign_id": "20260825-0624-webshop-seed-official-heldout-comparison",
+    "phase": "SEED-HELDOUT-COMPARISON",
+    "status": "closed-or-closing",
+    "description": "Frozen paired BASE-vs-OpenEvo SD-LoRA evaluation on the historical SEED-compatible official-held-out panel (shared env.seed=0 ordering). Provides immutable model, adapter, prompt/parser, and generation-seed identities for the source-faithful successor."
+  },
+  "successor": {
+    "campaign_id": "20260826-0638-webshop-seed-source-faithful-reproduction",
+    "phase": "SEED-SOURCE-FAITHFUL-REPRODUCTION",
+    "description": "Re-answer the BASE-vs-OpenEvo held-out question on a source-faithful first-validation semantic panel derived from pinned public SEED code, without retraining either arm.",
+    "semantic_panel_digest": "a6c714043cf292672e83329c9cf38fb88a0d0e7dd70871896dcfe2695e4ff3e7"
+  },
+  "facts": [
+    {
+      "role": "base_model_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "model_id": "Qwen/Qwen2.5-7B-Instruct",
+        "model_content_pin": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+        "role_in_successor": "paired control arm"
+      }
+    },
+    {
+      "role": "open_evo_sd_lora_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "adapter_kind": "H1.38B final SD-LoRA",
+        "adapter_file_sha256": "47e63d417f85cb2defed5ff1ee934128b96e6a4f78a8f410fa052957d919190c",
+        "adapter_config_sha256": "ed48aae286e03ae63fe0f70c5e75dddd650f098e6d5cba55efb11106523c5261",
+        "loaded_tensor_digest": "eedc36232f04a8a7d6e8fc6a38b935758db65206f4945a6cfa35c4ab666a48f9",
+        "source_campaign": "20260820-0129-h138b-method-control",
+        "role_in_successor": "paired treatment arm"
+      }
+    },
+    {
+      "role": "parser_compatible_interface_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "prompt_contract": "seed3090.webshop-shared-prompt.v1",
+        "action_contract": "seed3090.webshop-action-parser.v3-action-command",
+        "history": "SimpleMemory format [Observation n: 'obs', Action n: 'act']; records are (pre-step reformatted obs, projected action); history_length=2",
+        "parser": "v3 action-command recovery: strict parse first; if it fails, recover the first well-formed (search|click|select|buy)[...] command after </think> and re-wrap as <think>...</think>\\n<action>cmd</action> so strict re-parse succeeds. Invalid/unparseable actions are passed through to the environment (no substitution/repair), identical across BASE and OPEN_EVO_SD.",
+        "temperature": 0.4,
+        "do_sample": true,
+        "top_p": 1.0,
+        "top_k": "disabled (HF neutralized to vocab_size 151936 to match vLLM top_k=-1)",
+        "max_steps": 15,
+        "max_new_tokens": 512,
+        "rollouts_per_task": 1,
+        "role_in_successor": "identical parser-compatible measurement interface applied to both arms",
+        "implementation_files": {
+          "vendor/openevo-webshop/src/openevo_webshop/comparison_contract.py": "sha256:e34adb6eade4746d7537d2cd0869d4f6d908dff5e1362fd7b9bb87ca09b93c07",
+          "vendor/openevo-webshop/src/openevo_webshop/prompts.py": "sha256:a5f13046cec24ab4b98b49fa1eb437940dc7127182c1bc0c150f2bccef152d7f",
+          "scripts/openevo_webshop/webshop_comparison_contract.py": "sha256:3fdb76559adb5c950da509db7da93e767197c1f1032e86622e56f8a7618cf882"
+        }
+      }
+    },
+    {
+      "role": "generation_seed_schedule_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "generation_seed_base": 2026082500,
+        "per_episode_seed": "generation_seed_base + panel_ordinal",
+        "per_step_seed": "per_episode_seed + step_index",
+        "role_in_successor": "frozen per-slot generation-seed schedule, identical across arms"
+      }
+    },
+    {
+      "role": "predecessor_campaign_config",
+      "kind": "file",
+      "lifetime": "immutable",
+      "path": "configs/experiment/webshop-seed-official-heldout-comparison-v1.json"
+    },
+    {
+      "role": "predecessor_historical_panel_manifest",
+      "kind": "file",
+      "lifetime": "immutable",
+      "path": "configs/experiment/manifests/webshop-seed-official-heldout-comparison-v1-heldout-panel-v1.json"
+    }
+  ]
+}

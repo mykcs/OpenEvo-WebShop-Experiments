@@ -1,0 +1,957 @@
+{
+  "reference": {
+    "checkpoint": {
+      "private_locator_sha256": "22b9c97f3d85b19e2d889eec1af082437a0721e92dd7dd33462d7c1e542b0fe3",
+      "sha256": "7b418f1acbc2d1bafb7c2ad84c82a50cd1dc574f7415c088aa454f442b33a49c"
+    },
+    "generation_and_scoring_code": {
+      "scripts/openevo_webshop/ceiling1_harness2011_prompt.py": "6c5114859d0a5e92754f23b460c6d68a1f438296d912b4803f72c622355b4aa6",
+      "scripts/openevo_webshop/ceiling1_harness2011_runtime.py": "b5df331a51117eef216da8e45270dcd06920570db2035e1ea32a1bc438413fd0",
+      "scripts/openevo_webshop/ceiling1_harness2011_runtime_qwen3.py": "0f3fc7819b4f669a7c9acac7d47bd8ad8a2aa44e384ff9fd0ee7c4d45742ad55",
+      "scripts/openevo_webshop/ceiling1_stage1_harness2011_interface_runtime.py": "27885f4bc192fc9e9f704b031ded17759c79248d5b356d96e7285acd0769028a",
+      "scripts/openevo_webshop/ceiling1_stage2_format_hard_runtime.py": "d15356e7a1e1843219c1a2753bb6bef2714011dc61b21fb9e41ef7c4a01b8335",
+      "scripts/openevo_webshop/ceiling1_stage2_rollout_worker.py": "89302bb3060f6c1fe6284021aa8398ceb6263ee3530856a73628e791f189cb24",
+      "scripts/openevo_webshop/ceiling1_stage2_rollout_worker_qwen3.py": "04632d5c6f525fd83fcbe2b39e8ff5c3ed3a68389ed912f38c7ea404b0fcf096",
+      "scripts/openevo_webshop/parametric_rnd.py": "8d11f4622bd85cc37f58734f596d23341380ca908c52f9e6f7842915a1470715",
+      "scripts/openevo_webshop/q25_stage1_sampling_pilot_runtime.py": "dcd480bf72750dcbeb13cce4ce408f4b082bdaaeffc0dee1168b47f1d5b44260",
+      "scripts/openevo_webshop/shared_stage1_min_deliberation_runtime.py": "4aae6f32d3882b07d2811307e0864af9d59db92fa6c72f36eb1fb949dd5f2ca1",
+      "vendor/openevo-webshop/src/openevo_webshop/comparison_contract.py": "e34adb6eade4746d7537d2cd0869d4f6d908dff5e1362fd7b9bb87ca09b93c07",
+      "vendor/openevo-webshop/src/openevo_webshop/env_compat.py": "61c0e764a011baeda2006a4ac9f6493351f211288cb4b8dcd6b9f0ead0d1be17"
+    },
+    "independent_observation_count": 64,
+    "logical_endpoint": "q09-a-bounded-active-stream1-development-20",
+    "new_observations": 0,
+    "physical_observations": 64,
+    "producer_provenance": "Current original producer is byte-for-byte staged; old run identity did not record producer self-hash. This historical provenance gap is preserved, not retroactively repaired.",
+    "raw_endpoint": "q09-a-bounded-frozen-stream1-development-20",
+    "raw_labels_unchanged": true,
+    "source_qualified_head": "798ed266b46401e4f44d65982a1ff70a38fe8a5a",
+    "state_id": "65ac822b6c3b30339ec5af652f42d2a87a8a3ab297751d3d978895af6dedf9f2",
+    "status": "PASS_REFERENCE_ONLY",
+    "summary": {
+      "private_locator_sha256": "c14b6f4d1484faa56b2f529d363e21613084531fb44177cf6f7196f1c1cf046e",
+      "sha256": "9a46aa9aff7a489177743b6b6330f1e1aebc186db2936772675602a2656deb24"
+    }
+  },
+  "summary": {
+    "attempt_count": 64,
+    "automatic_retries": 0,
+    "backbone": "SIMPLE_BOUNDED",
+    "completed_valid_count": 64,
+    "endpoint_config_sha256": "48a96b1571a4de76663fc316bc8e814da917626dd5f078645987064d46ae29a8",
+    "endpoint_id": "q09-a-bounded-frozen-stream1-development-20",
+    "engineering_invalid_count": 0,
+    "episode_budget": 64,
+    "evaluation_stage": "development-20",
+    "exact_success_count": 22,
+    "failure": null,
+    "final_panel_access": 0,
+    "mean_task_score": 0.6637961647727272,
+    "panel_sha256": "269a07c8f3f4700df8a6d139894c867d4c4ecfdba2e1d957a380d836244448b6",
+    "schema": "openevo.advisor.q09.stage-a-confirmation-endpoint-summary.v1",
+    "state_id": "65ac822b6c3b30339ec5af652f42d2a87a8a3ab297751d3d978895af6dedf9f2",
+    "status": "PASS",
+    "stream_id": "q09-stream-1",
+    "treatment": "FROZEN",
+    "wall_time_seconds": 541.5079228878021
+  },
+  "rows": [
+    {
+      "file": "episode-000.json",
+      "sha256": "9b494d7d81fd61808454528231b898b079a34b723d2577adf4e91b8bf3303839",
+      "values": {
+        "probe_ordinal": 0,
+        "task_identity": "8bedd4456334b3f51004ccf002cc793f1304ca45fec4584b8d4e8e8d7a53d64c",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600000
+      }
+    },
+    {
+      "file": "episode-001.json",
+      "sha256": "70f64e7dc38f98c2d66a8a0efa9dd431dc64311f86a38e4625fd2b46c068e3ac",
+      "values": {
+        "probe_ordinal": 1,
+        "task_identity": "3eac3887616fc969b94a8f9ba52c92fdff63219619daad3c989017c844bce481",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600001
+      }
+    },
+    {
+      "file": "episode-002.json",
+      "sha256": "52165e91db333b05c95418cd6b113c345b26508f7a0ac017b9c1d3526a7f1889",
+      "values": {
+        "probe_ordinal": 2,
+        "task_identity": "246fb3d047d43f624e63f3eda0d2564bcf4f99137dae9be7a623172c99095dc7",
+        "task_score": 0.0625,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600002
+      }
+    },
+    {
+      "file": "episode-003.json",
+      "sha256": "e3989bd773080ac61a2d1a5b7faac0fd56d359bf252fb10451041127a94d1689",
+      "values": {
+        "probe_ordinal": 3,
+        "task_identity": "f920e3f55616dfc939a5b3b25b2e6924e3669a60bbd6e845413fc08f0e8b6df9",
+        "task_score": 0.6666666666666666,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600003
+      }
+    },
+    {
+      "file": "episode-004.json",
+      "sha256": "ff0db0ae80411f68f5016a8d81382e24f98db8d9c3ec46088e713a1de390fd12",
+      "values": {
+        "probe_ordinal": 4,
+        "task_identity": "f99c47d10c9825ddebe6139e0bc73180d8c53be87191e7a702ceb24ba96c453b",
+        "task_score": 0.7142857142857143,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600004
+      }
+    },
+    {
+      "file": "episode-005.json",
+      "sha256": "6bf9b9a6adddebff78d193cb9cd40d10f21d4a169ebe159baa0087fb8218a07e",
+      "values": {
+        "probe_ordinal": 5,
+        "task_identity": "482b1fb48dbefb6913b160cfa104f7fc8c118d4244e668136560b030fcf0557e",
+        "task_score": 0.42857142857142855,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600005
+      }
+    },
+    {
+      "file": "episode-006.json",
+      "sha256": "6334103f234337fddf307864a71a2625740df83c1bd72eb7bfcd4eaa1d5948e5",
+      "values": {
+        "probe_ordinal": 6,
+        "task_identity": "5873429e33383016813dd2d5d05c255b702a7ad0387957ffea778242fc5b75eb",
+        "task_score": 0.8571428571428571,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600006
+      }
+    },
+    {
+      "file": "episode-007.json",
+      "sha256": "92cafebb7aa45fcfcc5b67876b7e686ec8a4bfd78b1b724857e5162b75d4fba2",
+      "values": {
+        "probe_ordinal": 7,
+        "task_identity": "649b22099a9eda3c1f7a5bfc0f1715e5c3087c37a78902ab9ac5ee0e89b79bcb",
+        "task_score": 0,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600007
+      }
+    },
+    {
+      "file": "episode-008.json",
+      "sha256": "cea20d31fe1eafd85ae8663592a9746c6ac4444900f0b3418b6fe74f2ff36d70",
+      "values": {
+        "probe_ordinal": 8,
+        "task_identity": "d4ec63eab876bc7aa855a88f86c74cbc37d247b25c93192cb04286b3a457afd5",
+        "task_score": 0.8,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600008
+      }
+    },
+    {
+      "file": "episode-009.json",
+      "sha256": "509e76d066e9ede0da52182370ef71fb62ae2f1532cdb494b67bcac1bf704031",
+      "values": {
+        "probe_ordinal": 9,
+        "task_identity": "d65faf4617470fe8d3e830b09089e097656e8db27c60e2546586e2ae6def2669",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600009
+      }
+    },
+    {
+      "file": "episode-010.json",
+      "sha256": "96b018cb9fa0a3e3d307976d1d65739744a47ee9323ef003b0d987765a726e58",
+      "values": {
+        "probe_ordinal": 10,
+        "task_identity": "af3a945ff2bfd4602cf1435a8cdf3ca4de5ce143f160925c26104bc687f8c60a",
+        "task_score": 0.7272727272727273,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600010
+      }
+    },
+    {
+      "file": "episode-011.json",
+      "sha256": "f9d746015a9b73748c8f46bdfe849e996b08a467ddd1645c39d288856920ce02",
+      "values": {
+        "probe_ordinal": 11,
+        "task_identity": "937896604e8d4daa48e6b0a1d56ed9b3d672a1a59c83e31d2a41abf27a149c90",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600011
+      }
+    },
+    {
+      "file": "episode-012.json",
+      "sha256": "4c1aee68e9e0955af7448e46eebf6622b2ba241f8ea1ba235a5a115672e9e016",
+      "values": {
+        "probe_ordinal": 12,
+        "task_identity": "df0107b301d6d006f9bddfa904aa415108ffa8ddd697f6b99712933125a75398",
+        "task_score": 0,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600012
+      }
+    },
+    {
+      "file": "episode-013.json",
+      "sha256": "bd2d6cdba9baf7c48f88f586b995df53a565104420da2df69f8e3aa8300377e1",
+      "values": {
+        "probe_ordinal": 13,
+        "task_identity": "31fc49ce07b58c4008e93a19bc5e3c8de4c01c9b818bb8251b82d8b57fd256e9",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600013
+      }
+    },
+    {
+      "file": "episode-014.json",
+      "sha256": "da0b39725e0d2dc29774b480978422092db06361f0a43a1f45defd90b2476642",
+      "values": {
+        "probe_ordinal": 14,
+        "task_identity": "f3a721f640ee54901393f19bbd3257299e13f36674cdd5fcb63ac31aed8db45f",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600014
+      }
+    },
+    {
+      "file": "episode-015.json",
+      "sha256": "e77b06ab4bae1b4a4cfff30148f1a181f90582993ed4942b82a82f94d2275972",
+      "values": {
+        "probe_ordinal": 15,
+        "task_identity": "5159579e73ef81fcd17c0753bc9bfb8b58a3b12a4f3a9f9802d38010791f1a51",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600015
+      }
+    },
+    {
+      "file": "episode-016.json",
+      "sha256": "f7e25c8c636196af707f6eea6e47229bb530f68be8008c7d036419ccad5ba6f8",
+      "values": {
+        "probe_ordinal": 16,
+        "task_identity": "4f7c9fe56e7b5183d01ae833f2c80a0385153243b8bbd80f203599eb55c5ac79",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600016
+      }
+    },
+    {
+      "file": "episode-017.json",
+      "sha256": "cf0742bb786b8bab9120e0cb56cc74861c7e136c684f55eea793bc558e02e311",
+      "values": {
+        "probe_ordinal": 17,
+        "task_identity": "e5d68a4ab573ea977cb7dbd521293f8b309947c7f78dbd8c3e02dbe1a6f9dcd6",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600017
+      }
+    },
+    {
+      "file": "episode-018.json",
+      "sha256": "694629c9af37607d759ab034b2ce8649f7ccbe138fa468989ec8ff01fcab3826",
+      "values": {
+        "probe_ordinal": 18,
+        "task_identity": "2eec6d0d6e67a405c0820f8421fb99ee95b0f7e16e44d6e29508f4695b314d25",
+        "task_score": 0.5714285714285714,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600018
+      }
+    },
+    {
+      "file": "episode-019.json",
+      "sha256": "4aa77e26988b8a467cfaed7a947c6ab7c35f136ff6dd90fde651b55f2cba1648",
+      "values": {
+        "probe_ordinal": 19,
+        "task_identity": "a78b9fd6d1e574081146bde2c5ba41a2a091881b3aab2a962d6faebba121cc03",
+        "task_score": 0,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600019
+      }
+    },
+    {
+      "file": "episode-020.json",
+      "sha256": "6bca80cd154ad2eff5b4bc3a80ac8b3c964782b2736ee46687f3667102df5ab1",
+      "values": {
+        "probe_ordinal": 20,
+        "task_identity": "3dcdcd5c1145717d1ae305070333169cfd7fb3796ceeca08f65b5dd3ad6a5be4",
+        "task_score": 0,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600020
+      }
+    },
+    {
+      "file": "episode-021.json",
+      "sha256": "9a80b18fd6fd7669b2cd6e7b9f8eeeb4093e7f21566b85e0fd1b7d3ba2c3ff77",
+      "values": {
+        "probe_ordinal": 21,
+        "task_identity": "3878fdfaefc4ea08b7b1605974b85dedde4e118554a61ce2688a2e20abf16764",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600021
+      }
+    },
+    {
+      "file": "episode-022.json",
+      "sha256": "37967c73eaea411732e146bcbc77daa96534aa962e11f1e957bb0f06269d4f64",
+      "values": {
+        "probe_ordinal": 22,
+        "task_identity": "5d7eea33a2d30ed57e2347b34db12129810da62e8064d55a88246bbdc25930fb",
+        "task_score": 0.8,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600022
+      }
+    },
+    {
+      "file": "episode-023.json",
+      "sha256": "05afeeb090cdc682d5a972c698627574b8e563275f715ea2f15c873d81d1538e",
+      "values": {
+        "probe_ordinal": 23,
+        "task_identity": "f39c79dcec0961aa84cbe9ee237d7251106a00f3bef15ed2f8596b3cd3d6c6b3",
+        "task_score": 0.5714285714285714,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600023
+      }
+    },
+    {
+      "file": "episode-024.json",
+      "sha256": "8a4c5c6dc14fab68678955fe1a774d6559aeb5c2b5293d856da195d1cde4583f",
+      "values": {
+        "probe_ordinal": 24,
+        "task_identity": "5f7f238d9ebbce394b04e3a9f07000b9ddf0bd4f3c9f0f048be311e3bc4667c2",
+        "task_score": 0,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600024
+      }
+    },
+    {
+      "file": "episode-025.json",
+      "sha256": "33399b8ecada97fea12eca51c399e81cb45a2d015b7b6a246c9732de58ac0ae2",
+      "values": {
+        "probe_ordinal": 25,
+        "task_identity": "37c7858df73893a94c102811ae6d37686d89475d8ca478e3a5656d700ff2aa37",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600025
+      }
+    },
+    {
+      "file": "episode-026.json",
+      "sha256": "29124ed236c3c11fd718b48ca3ad717ba6cce2129259f56a43f65602f4ce18ee",
+      "values": {
+        "probe_ordinal": 26,
+        "task_identity": "2b9c69e88dcc6827fe46878b989e713c4490fccc780c10c47de0dbe28aab3a85",
+        "task_score": 0.9,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600026
+      }
+    },
+    {
+      "file": "episode-027.json",
+      "sha256": "f33248f7f1b7ab3e5a88b7593060c001f7dc61bccbbadb2ffb4f041cfcd24f7a",
+      "values": {
+        "probe_ordinal": 27,
+        "task_identity": "8c4bf91c8d2a306a0c9095b52cae5c350ea08b31c2ed4fc83ca3e82d1d83c63b",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600027
+      }
+    },
+    {
+      "file": "episode-028.json",
+      "sha256": "e5b8e3c9716bcfd294c9173fbf6c0e2d37c4d382a7672a6f9b5020e941f897ea",
+      "values": {
+        "probe_ordinal": 28,
+        "task_identity": "e0f26778414b1578de0b0f47a6a0eb8cebcecb466769e6d89960dbec626916af",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600028
+      }
+    },
+    {
+      "file": "episode-029.json",
+      "sha256": "a69973f95c72dc51dc012b4bcd58f689c7048ad1702377033da1932fb9a08492",
+      "values": {
+        "probe_ordinal": 29,
+        "task_identity": "f2ef135b8dbcc1093143b9d7be90caab94f979a93d5923469ba76613f90800cd",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600029
+      }
+    },
+    {
+      "file": "episode-030.json",
+      "sha256": "dc989c1a5d9fd5738ff307d1a741d51d503c0389b3602c859684cb0dd665e168",
+      "values": {
+        "probe_ordinal": 30,
+        "task_identity": "39e0b98710de3918a5c0f0f896d1488a82d93c0dcfc46df565b380f94a0be6a8",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600030
+      }
+    },
+    {
+      "file": "episode-031.json",
+      "sha256": "44d5221c8cad568fb80054668edfb768c7066320a9f93fb73ff597af3acd94bc",
+      "values": {
+        "probe_ordinal": 31,
+        "task_identity": "81fe81de9247e73d048f363a29085e66c0bcce153d6e100ac02834cd0ff45cdc",
+        "task_score": 0.6666666666666666,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600031
+      }
+    },
+    {
+      "file": "episode-032.json",
+      "sha256": "e07b671478bcb683b67997aa25bcddfc738e7a2122a18e1636f8dd213652fb30",
+      "values": {
+        "probe_ordinal": 32,
+        "task_identity": "80ee10f96319d012856a7c51ae12a83f2eb136aa327b3a417b70444e07ee0ce7",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600032
+      }
+    },
+    {
+      "file": "episode-033.json",
+      "sha256": "ec7d079c60ca370fa846019d2151c478190c273313ce79463c5ceb666198a81e",
+      "values": {
+        "probe_ordinal": 33,
+        "task_identity": "646fc8cbac82da8860dcb3cd0ad39efe03899632dc43134f30ba32423e1a548a",
+        "task_score": 0.9090909090909091,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600033
+      }
+    },
+    {
+      "file": "episode-034.json",
+      "sha256": "c1b40777dfb560c68b04c00a5573f956f194c82effbbe57e1b68642501152b6f",
+      "values": {
+        "probe_ordinal": 34,
+        "task_identity": "6d8ce0ccd5b6930659a7eca6538f59b94df99465a8583b33fa4af89eecbce245",
+        "task_score": 0,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600034
+      }
+    },
+    {
+      "file": "episode-035.json",
+      "sha256": "56ac509401dd2bc0a76f1ab35d708c98c193516a3094c323f36e97e27cfe5355",
+      "values": {
+        "probe_ordinal": 35,
+        "task_identity": "957358f24ce198e64d8a3502ac87cba1713dc2db415bfc269ed4bdd84d284b0e",
+        "task_score": 0.7,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600035
+      }
+    },
+    {
+      "file": "episode-036.json",
+      "sha256": "725a67114f6af8c033c4a1748ef66f045230f0428e6f824743b8361ffc891501",
+      "values": {
+        "probe_ordinal": 36,
+        "task_identity": "74a27da4acfcb9d7bd0173309aa390fb2d0675fae5a99d5e54293876c5c0c8f1",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600036
+      }
+    },
+    {
+      "file": "episode-037.json",
+      "sha256": "723ff4721acc103405308a0a3ae5b224134bcff230f17a53eeea793b2e4c9e03",
+      "values": {
+        "probe_ordinal": 37,
+        "task_identity": "3797e300f005e75d8cdf07087cb4648fd1a3a17c956508117ddf189fcd14e996",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600037
+      }
+    },
+    {
+      "file": "episode-038.json",
+      "sha256": "f5a3af7f07a628af38b4570fb929996e20e5a66f06fee96f96a946a474ef7994",
+      "values": {
+        "probe_ordinal": 38,
+        "task_identity": "370f3a7f32986711e901db40f407c65eb2107aa9d406db32b52016bbe7f78e7c",
+        "task_score": 0.025,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600038
+      }
+    },
+    {
+      "file": "episode-039.json",
+      "sha256": "edf56f2400a5f2c7a20d264aa2fe55bfaf655bfb73c98c2f7e31a1b4e23144ba",
+      "values": {
+        "probe_ordinal": 39,
+        "task_identity": "059cad568ec7cbde900dbe0e7537603a7ed457968ba601bba2976d2aad73c3af",
+        "task_score": 0.5714285714285714,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600039
+      }
+    },
+    {
+      "file": "episode-040.json",
+      "sha256": "1e4ad4e9b9ca3a6f3d543389c8f74cb25160866b1c463be0a016b39ed1b405c2",
+      "values": {
+        "probe_ordinal": 40,
+        "task_identity": "96b3f11a0fe0c3904596d6d19d90dfd629a59fbfe77ebaaec2be446945095277",
+        "task_score": 0.8,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600040
+      }
+    },
+    {
+      "file": "episode-041.json",
+      "sha256": "e8146adb293154846a0e7e4ffd3529dcf5557ab00c85120ffeb98278e212f16c",
+      "values": {
+        "probe_ordinal": 41,
+        "task_identity": "e559d0bcc8a3af65a9b7dee40cc7a86e0d07d6b29951afc085b53ef349451e65",
+        "task_score": 0.25,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600041
+      }
+    },
+    {
+      "file": "episode-042.json",
+      "sha256": "f54e9f63225cdb744cc8ce0efbb42cca17a34a970a886b95c71820e892616ba1",
+      "values": {
+        "probe_ordinal": 42,
+        "task_identity": "a8c774a668a4f46abdef9428f733b4e8f2ea5fb87c1736b815923082432c2f74",
+        "task_score": 0.7,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600042
+      }
+    },
+    {
+      "file": "episode-043.json",
+      "sha256": "dd6167bc1d38d0cf525dbed4469de7f02e27d90f5fc7f2d5b56e536c78addbce",
+      "values": {
+        "probe_ordinal": 43,
+        "task_identity": "5b2e3e4a74ab3617fc7f154b0dc57febad5f7119171e16ee47cb19f454db332b",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600043
+      }
+    },
+    {
+      "file": "episode-044.json",
+      "sha256": "1956bdf9e8bb1af8285b0ce077eb73e30d1dfb56bc5372e4746681e373b7bd8a",
+      "values": {
+        "probe_ordinal": 44,
+        "task_identity": "a5024c98927330f82098aa02ba3726bc56ccd9465a8311380bcfec146b329db6",
+        "task_score": 0.42857142857142855,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600044
+      }
+    },
+    {
+      "file": "episode-045.json",
+      "sha256": "da5a2feb725620add963d4d88a47661051fb59d2f682d858c44e4eaae9dff186",
+      "values": {
+        "probe_ordinal": 45,
+        "task_identity": "a77022e4436138bde1afd83b73648b839ed7e5502760155f12a9ec668649222b",
+        "task_score": 0.8333333333333334,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600045
+      }
+    },
+    {
+      "file": "episode-046.json",
+      "sha256": "573b89adddfaa5397c6b7cfed611d273a65a995f2a83afde3c06b38825186803",
+      "values": {
+        "probe_ordinal": 46,
+        "task_identity": "05a6f49e597cd8b3eefb6a1a5a23c19366a57f9f5804f4c98ebc95e91c033552",
+        "task_score": 0.6363636363636364,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600046
+      }
+    },
+    {
+      "file": "episode-047.json",
+      "sha256": "59dd66f5dcd315380d67f5e1df5e8cc69ae90db48ecfe74d89324952225d5e59",
+      "values": {
+        "probe_ordinal": 47,
+        "task_identity": "7837a7dd61b21431803f9a0bb6b749a48cab375da6ff46d3bab35373fb1afdc2",
+        "task_score": 0,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600047
+      }
+    },
+    {
+      "file": "episode-048.json",
+      "sha256": "3908fc3cbabf28f464b2e95b319f3128ea5374e67c6f4435ff8d708c5b37a06f",
+      "values": {
+        "probe_ordinal": 48,
+        "task_identity": "5ca1f7e3a11ec79a4eea2fe617940874b7702043da2f39abcb0005f823525823",
+        "task_score": 0.6666666666666666,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600048
+      }
+    },
+    {
+      "file": "episode-049.json",
+      "sha256": "6d3646334ebcad0cc95e9cc53cc950319bd388e851bba052f6f9e8ae7b446c89",
+      "values": {
+        "probe_ordinal": 49,
+        "task_identity": "6142fd7802fa76fb85caf6f107d487c7b2a9e4c8a730a66470156ca917087454",
+        "task_score": 0.2727272727272727,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600049
+      }
+    },
+    {
+      "file": "episode-050.json",
+      "sha256": "da980cb136edb60e2ace4bb83aab03b51553bbcb04eb7742bfe88f874e3b8521",
+      "values": {
+        "probe_ordinal": 50,
+        "task_identity": "a3afc01dfc0dfd6bf1d81618d0f9e52fdba7f4f45e99fceded82723c70a0aeef",
+        "task_score": 0.8571428571428571,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600050
+      }
+    },
+    {
+      "file": "episode-051.json",
+      "sha256": "ebcbd6d13eee79f27a3295fbf7d6c63913a2bbf85615cc023b72061a514ab929",
+      "values": {
+        "probe_ordinal": 51,
+        "task_identity": "e0f8750b0261fc50dff0305d18f0eca9b3ffbda76539153e81db698b8c298529",
+        "task_score": 0.42857142857142855,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600051
+      }
+    },
+    {
+      "file": "episode-052.json",
+      "sha256": "7a6423bb601ed0b35299e1d68c645a208e6f2607f37fe929e3bc682723b4ff0f",
+      "values": {
+        "probe_ordinal": 52,
+        "task_identity": "4a54592dd6f400ec7e421b7e538a1b285ca90f10aeaa3860071d8523440ab8c1",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600052
+      }
+    },
+    {
+      "file": "episode-053.json",
+      "sha256": "336a2aad1f2784ed4679693e9786964191564f57a6bc688f926915cb97f7bac5",
+      "values": {
+        "probe_ordinal": 53,
+        "task_identity": "db8fff0bb6fcec5eb2a07717e996357525bb674e2cfc3f48bbb202860d81eff6",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600053
+      }
+    },
+    {
+      "file": "episode-054.json",
+      "sha256": "b330a5b06f1eef74bf63aa4603a88c00b00e272cdcf7ab6ba372a0cb5381f69e",
+      "values": {
+        "probe_ordinal": 54,
+        "task_identity": "a7b7010c2f759543f187525f2f558c6f0dc94fae9b623bf03cd25597f3d76d0a",
+        "task_score": 1,
+        "won": true,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600054
+      }
+    },
+    {
+      "file": "episode-055.json",
+      "sha256": "a53115a6dd96c9a5af8ebd09b8b32b60ee1105ff7e94d201341e93009e0ae00d",
+      "values": {
+        "probe_ordinal": 55,
+        "task_identity": "ab0dd6e8a446c220e3ce4923b8ab7ca1d4679922768d5dbb493836b8393bd447",
+        "task_score": 0,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600055
+      }
+    },
+    {
+      "file": "episode-056.json",
+      "sha256": "ffd40a80f3916aec5cfd0f7b9319c32d105c47e45239331ef8d9d5c1094e4e56",
+      "values": {
+        "probe_ordinal": 56,
+        "task_identity": "8968644daa1b176757e8b90aebd4cb56d1c9f0d5a67807634952021d43766e52",
+        "task_score": 0.8333333333333334,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600056
+      }
+    },
+    {
+      "file": "episode-057.json",
+      "sha256": "50ebac4e0b364d98cc297f9af3ead4552ce739d32fa3c44987683cfc6d2f4d51",
+      "values": {
+        "probe_ordinal": 57,
+        "task_identity": "4c2b64f2194a6be58d963d7a772eaad6aa3b2bd848b9de9a5769487fbd051f9b",
+        "task_score": 0.42857142857142855,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600057
+      }
+    },
+    {
+      "file": "episode-058.json",
+      "sha256": "67e6b91580d852a37f4973042480bf4c65f07213ec3201949067178d7a480b8e",
+      "values": {
+        "probe_ordinal": 58,
+        "task_identity": "c5c5f2599564b6706590e36db31909811454bcfa9e95ec89c493655cffba4ecd",
+        "task_score": 0.7142857142857143,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600058
+      }
+    },
+    {
+      "file": "episode-059.json",
+      "sha256": "19b94ccb3819c965d912471a2e6749db4f81e758551a014ac39c5aecfbf634cd",
+      "values": {
+        "probe_ordinal": 59,
+        "task_identity": "980ea001006cee20f86753341ae70f4f87823111ee2e0a8357c1b1caa8d7665c",
+        "task_score": 0.9,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600059
+      }
+    },
+    {
+      "file": "episode-060.json",
+      "sha256": "64eaa3c7fa36e469e9fd92978e0fd297169d38b53868aad3a664dac3facd85a1",
+      "values": {
+        "probe_ordinal": 60,
+        "task_identity": "06680866672b613f0bc9c581ff24f9a8d9401e8e3061b584fb39789add75e087",
+        "task_score": 0.42857142857142855,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600060
+      }
+    },
+    {
+      "file": "episode-061.json",
+      "sha256": "e8a61be2780a4ca520068991551c395a1fc5e7983dd72551d9a2a25a55e064c3",
+      "values": {
+        "probe_ordinal": 61,
+        "task_identity": "ac05d0e26522b269be6f5b196121b5a763efe401dfd0822eae92fab7fb368481",
+        "task_score": 0.6666666666666666,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600061
+      }
+    },
+    {
+      "file": "episode-062.json",
+      "sha256": "c267b62e5e8dc1a13852c1baf03f4d63d7a4a40f2057b6fb8706afbf1ccf61a4",
+      "values": {
+        "probe_ordinal": 62,
+        "task_identity": "124e86173febe6d16dc9b229a16d60cc503a6be6efe1c41e6fead564c3505692",
+        "task_score": 0.6666666666666666,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600062
+      }
+    },
+    {
+      "file": "episode-063.json",
+      "sha256": "576de943220885729db4de1d3684627cbf5ccb8732c986577f826d8857c70b3d",
+      "values": {
+        "probe_ordinal": 63,
+        "task_identity": "055ffc080343f0ace5893278b0bb58bc7126acb48069b0fa5ab3da025c5c42f4",
+        "task_score": 0,
+        "won": false,
+        "identity_ok": true,
+        "trace_complete": true,
+        "engineering_invalid": false,
+        "paired_generation_seed": 202609231600063
+      }
+    }
+  ],
+  "publication_note": "Read-only sanitized projection, not original artifact bytes. task_identity is SHA-256 of the original identity string; paired equality retained. Raw per-episode SHA-256 is preserved; task text, task IDs, resource identifiers and infrastructure locators omitted."
+}

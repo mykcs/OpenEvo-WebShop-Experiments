@@ -1,0 +1,56 @@
+{
+  "$id": "openevo.operation-intent.202609170352",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "admission_binding_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "execution_generation_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "idempotency_key": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "intent_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "operation_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "operation_type": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema": {
+      "const": "openevo.operation-intent.202609170352"
+    },
+    "side_effect_class": {
+      "enum": [
+        "PURE_ENGINEERING",
+        "DETERMINISTIC_COMPUTATION",
+        "STOCHASTIC_SCIENTIFIC_RESULT",
+        "FORMAL_ROLLOUT",
+        "MODEL_UPDATE",
+        "FINAL_EVALUATION"
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "intent_id",
+    "operation_digest",
+    "idempotency_key",
+    "execution_generation_id",
+    "operation_type",
+    "side_effect_class",
+    "admission_binding_identity"
+  ],
+  "title": "OpenEVO frozen operation intent",
+  "type": "object"
+}

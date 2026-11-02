@@ -1,0 +1,138 @@
+{
+  "campaign_id": "202609030400-ceiling1-autonomous-v1",
+  "definition_of_done": "All missing/conditional release slots must be hash-bound and black-box fault qualification must PASS before claiming one-Prompt full end-to-end autonomy.",
+  "reconciliation": {
+    "status": "CROSS_BRANCH_RECONCILIATION_REQUIRED_BEFORE_ACTIVATION",
+    "scientific_branch": "research/shared-stage1-min-deliberation-final-candidate-20260903",
+    "scientific_pr": 270,
+    "control_plane_branch": "research/ceiling1-autonomous-campaign-clean-20260903",
+    "control_plane_pr": 268,
+    "guide": "docs/operations/execution/CEILING1_CONTROL_PLANE_RECONCILIATION_2026-09-03.md",
+    "rule": "Do not infer current scientific completion from this matrix alone; import exact scientific receipts/releases before controller activation."
+  },
+  "phases": {
+    "d1_gdn_diagnostic": {
+      "activation": "CONDITIONAL_AFTER_STAGE2",
+      "control_plane": "READY",
+      "prereg": "FROZEN"
+    },
+    "final_analysis": {
+      "blockers": [
+        "final evaluation closeout"
+      ],
+      "control_plane": "READY",
+      "release": "MISSING"
+    },
+    "final_evaluation": {
+      "blockers": [
+        "own Stage2 seal",
+        "final-panel authority"
+      ],
+      "control_plane": "HARD_GATED",
+      "release": "MISSING"
+    },
+    "stage1a_collection": {
+      "blockers": [
+        "reconcile the exact current per-arm Stage1A seal/resume receipts from the scientific lineage before controller activation"
+      ],
+      "control_plane": "READY",
+      "current_lineage_adoption": "BOUND_PR270_SCIENTIFIC_LINEAGE_RECONCILIATION_REQUIRED",
+      "exact_resume": "MUST_USE_LINEAGE_EXACT_RESUME_RECEIPT_IF_NEEDED",
+      "formal_execution_sha": "362271d3cdc411581dd7f09d98d5ce69cfb1cb57",
+      "science_design": "FROZEN_202609030400_SHARED_HARNESS"
+    },
+    "stage1b_minimax": {
+      "blockers": [
+        "own arm Stage1A canonical PASS seal",
+        "own arm post-collection engineering/provenance audit PASS",
+        "own arm preregistered first-64 behavior replay non-inferiority gate PASS",
+        "own arm READY_FOR_MINIMAX receipt created by the frozen handoff",
+        "no reuse of incompatible 202609021800 MiniMax artifacts"
+      ],
+      "control_plane": "READY",
+      "current_lineage_adoption": "RECONCILE_FROM_PR270_SUCCESSOR",
+      "postcollection_pipeline": {
+        "base_analyzer_execution_sha": "c60419cad2e4ff0aad0b7e22177ac6e16475fe97",
+        "base_analyzer_file_sha256": "41c435a0311a510685dac44f5a4fb674c31555355d5353227be922c8e512fb70",
+        "approved_successor_change": "physical JSONL line iteration only; no prompt/API/retry/thinking semantic change; exact successor execution SHA must be bound by the concrete phase release",
+        "handoff_boundary": "MINIMAX_HANDOFF_PIPELINE_STOPS_AFTER_CANONICAL_CLOSEOUT; downstream continuation requires a separate Stage1C+ release and must not mutate the frozen handoff contract",
+        "first64_gate": "FROZEN_Q64_NON_INFERIORITY",
+        "formal_generation_sha": "362271d3cdc411581dd7f09d98d5ce69cfb1cb57",
+        "max_immutable_attempts_per_arm": 3
+      },
+      "science_design": "FROZEN_HANDOFF_WITH_SEPARATE_DOWNSTREAM_RELEASE_BOUNDARY"
+    },
+    "stage1c_opsd": {
+      "blockers": [
+        "own arm 202609030400 MiniMax close",
+        "bind the current scientific successor implementation by exact SHA",
+        "Qwen3 explicit enable_thinking=false in student and teacher views",
+        "workload-specific token-length and GPU qualification",
+        "phase activation release"
+      ],
+      "control_plane": "READY",
+      "implementation": "EXISTS_ON_SCIENTIFIC_SUCCESSOR_NEEDS_CONCRETE_CONTROL_PLANE_RELEASE",
+      "qwen3_thinking_false": "REQUIRED_AND_MUST_BE_EXACT_READBACK"
+    },
+    "stage1d_text_memory": {
+      "blockers": [
+        "bind current A2 authority by exact path/SHA: full-20 primary + same-20 repair; only double saturation may fixed-split 10+10; max depth 1"
+      ],
+      "control_plane": "READY",
+      "current_authority": "TEXT_MEMORY_A2_CONDITIONAL_FIXED_10_PLUS_10",
+      "rejected_successor": "A1.1 symmetric 4096 extended repair failed for both 3B and 1.7B",
+      "release": "MISSING"
+    },
+    "stage1e_skill_bundle": {
+      "blockers": [
+        "bind latest formal Skill authority and runtime readback",
+        "if a current corpus saturates the formal full-20 path, classify BLOCKED_SCIENCE until a new amendment; do not revive historical adaptive split automatically"
+      ],
+      "control_plane": "READY",
+      "current_authority": "FORMAL_NO_SPLIT_SPLIT_EVENTS_ZERO",
+      "release": "MISSING"
+    },
+    "stage1f_agent_system": {
+      "blockers": [
+        "bind latest capacity-only deterministic frozen-order bisection authority and runtime readback"
+      ],
+      "control_plane": "READY",
+      "current_authority": "CAPACITY_ONLY_BOUNDED_BISECTION_MAX_DEPTH_5",
+      "release": "MISSING"
+    },
+    "stage1g_closeout": {
+      "blockers": [
+        "all required same-arm Stage1 channels sealed",
+        "PRE_STAGE2_READY identity/readback receipt materialized into a concrete phase release"
+      ],
+      "control_plane": "READY",
+      "release": "MISSING"
+    },
+    "stage2_vnext_qwen25_3b": {
+      "blockers": [
+        "own current Stage1 closeout",
+        "formal activation release"
+      ],
+      "control_plane": "READY",
+      "design": "FROZEN_NO_ACTIVATION"
+    },
+    "stage2_vnext_qwen3_1p7b": {
+      "blockers": [
+        "PRE_STAGE2_READY_qwen3-1p7b PASS and hash-bound",
+        "first-class qwen3-1p7b controller/rollout/reflector implementation readback",
+        "exact Qwen3 model/revision/context/enable_thinking=false readback",
+        "current OPSD base merge PASS",
+        "workload-specific GPU lease qualification",
+        "round-0 non-formal first-write launch-readiness PASS",
+        "clean exact execution SHA",
+        "separate immutable Stage2 activation receipt"
+      ],
+      "control_plane": "READY",
+      "design": "FROZEN_PREREG_NEEDS_LAUNCH_READINESS",
+      "design_path_on_scientific_lineage": "configs/experiment/designs/openevo-ceiling1-stage2-vnext-qwen3-1p7b-v1.json",
+      "activation_authority": false
+    }
+  },
+  "schema": "openevo.autonomous-campaign-release-gap-matrix.v1",
+  "status": "CONTROL_PLANE_READY_SCIENTIFIC_RELEASES_PARTIAL_CROSS_BRANCH_RECONCILIATION_REQUIRED"
+}

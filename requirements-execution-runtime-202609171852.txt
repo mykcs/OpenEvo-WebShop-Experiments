@@ -1,0 +1,3 @@
+# Exact dependency pin for the prospective Execution Runtime production package.
+# This file does not install or activate Temporal by itself.
+temporalio==1.33.0

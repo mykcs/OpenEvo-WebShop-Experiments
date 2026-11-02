@@ -1,0 +1,28 @@
+{
+  "base_pool_state_is_not_rewritten": true,
+  "compatible_base_config_sha256": [
+    "869793ae8e3694f352fca579b2d5d3562c21201a18ec5210678f1101be22157e",
+    "6dad2cb2b916c066a19d57854ed1fb4178afb2d99a5da2cf852d4cd0e04ed537"
+  ],
+  "profiles": {
+    "bounded_off_rollout": {"arm":"bounded-off","slot_class":"3b_primary","target_gpus":4,"min_gpus":1,"max_gpus":4,"vram_request_mib":7000},
+    "bounded_on_rollout": {"arm":"bounded-on","slot_class":"q17_primary","target_gpus":4,"min_gpus":1,"max_gpus":4,"vram_request_mib":7000},
+    "bounded_off_text_memory": {"arm":"bounded-off","slot_class":"3b_primary","target_gpus":1,"min_gpus":1,"max_gpus":1,"vram_request_mib":7000},
+    "bounded_on_text_memory": {"arm":"bounded-on","slot_class":"q17_primary","target_gpus":1,"min_gpus":1,"max_gpus":1,"vram_request_mib":7000},
+    "bounded_off_sd_lora": {"arm":"bounded-off","slot_class":"3b_primary","target_gpus":1,"min_gpus":1,"max_gpus":1,"vram_request_mib":8000},
+    "bounded_on_sd_lora": {"arm":"bounded-on","slot_class":"q17_primary","target_gpus":1,"min_gpus":1,"max_gpus":1,"vram_request_mib":8000},
+    "bounded_off_skill_bundle": {"arm":"bounded-off","slot_class":"3b_primary","target_gpus":1,"min_gpus":1,"max_gpus":1,"vram_request_mib":7000},
+    "bounded_on_skill_bundle": {"arm":"bounded-on","slot_class":"q17_primary","target_gpus":1,"min_gpus":1,"max_gpus":1,"vram_request_mib":7000},
+    "bounded_off_agent_system": {"arm":"bounded-off","slot_class":"3b_primary","target_gpus":1,"min_gpus":1,"max_gpus":1,"vram_request_mib":7000},
+    "bounded_on_agent_system": {"arm":"bounded-on","slot_class":"q17_primary","target_gpus":1,"min_gpus":1,"max_gpus":1,"vram_request_mib":7000}
+  },
+  "registry_id": "bounded-effective-state-ray-capacity-20260916",
+  "schema": "openevo.ray-workload-profile-registry.202609052200",
+  "scientific_arm_separate_from_slot_class": true,
+  "slot_class_contract": {
+    "3b_primary": "resource lane reused only as OFF per-GPU single-arm slot; does not rename the scientific arm",
+    "q17_primary": "resource lane reused only as ON per-GPU single-arm slot; does not rename the scientific arm",
+    "no_base_profile_shadowing": true
+  },
+  "status": "ZERO_FORMAL_RESOURCE_PROFILES_ONLY"
+}

@@ -1,0 +1,68 @@
+{
+  "activation_authority": false,
+  "arm": "qwen25-3b",
+  "asset_contract": {
+    "consumes": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen25-3b--stage1d_text_memory",
+        "role": "upstream-phase"
+      }
+    ],
+    "produces": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen25-3b--stage1e_skill_bundle",
+        "provider": "server",
+        "provider_id": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/SKILL_BUNDLE_COMPLETE_qwen25-3b.json",
+        "role": "phase-receipt"
+      }
+    ],
+    "publication": [],
+    "recovery": [],
+    "registry_policy": "observation-first-canonical-if-proven",
+    "telemetry": []
+  },
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 0,
+    "local_reflector_requests_max": 61,
+    "optimizer_steps_max": 0
+  },
+  "completion": {
+    "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/SKILL_BUNDLE_COMPLETE_qwen25-3b.json",
+    "required_equal": {
+      "arm": "qwen25-3b",
+      "consumed_rows_total": 1440,
+      "schema": "openevo.ceiling1-skill-bundle-stage1.capacity-v1",
+      "status": "pass"
+    },
+    "sha256": "a0f1c475b48d19ed729a4789f73a600e7e42e8c0d37b080ef51ae76c0f775ef3"
+  },
+  "historical_execution_provenance": {
+    "original_checkout": "/workspace/control/openevo-experiment-q17-stage2-8c039ec0",
+    "original_execution_sha": "8c039ec0ef63f1e2f94e2c8f091d48f371e58c0f",
+    "rule": "do not infer missing producer identity from names or timestamps",
+    "status": "PROVEN"
+  },
+  "historical_execution_source": {
+    "checkout": "/workspace/control/openevo-experiment-q17-stage2-8c039ec0",
+    "execution_sha": "8c039ec0ef63f1e2f94e2c8f091d48f371e58c0f"
+  },
+  "path_equivalence_note": "qwen3-1p7b fixed20 PASS triggered zero fallback splits; later bounded capacity fallback does not require rerun",
+  "phase": "stage1e_skill_bundle",
+  "release_mode": "adoption",
+  "retry": {
+    "exact_resume": false,
+    "reason": "immutable completion adopted into current control plane; no execution is authorized by this release"
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "configs/experiment/amendments/openevo-ceiling-1.0-stage1-skill-capacity-recovery-20260903-v1.json",
+    "required_equal": {
+      "schema": "openevo.ceiling1-stage1-skill-capacity-recovery-amendment.v1",
+      "status": "FROZEN"
+    },
+    "sha256": "22c673282c0ed8a5c5d48ef074ad3a127307723e360bade02ac64d4c7b07a7e0"
+  },
+  "status": "ADOPTED_IMMUTABLE_COMPLETION"
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "openevo.q17-directapply-portable-reproduction-router.202609111537",
+  "status": "CURRENT_FUTURE_RERUN_ENTRYPOINT",
+  "scope": "future fresh reruns and handoff to another operator; not current live execution authority",
+  "recommended_control_ref": "q17-directapply-portable-202609111537",
+  "recommended_control_sha": "e6b4bc38d7dd518dca8fafcf97fc98bb8e7d88f3",
+  "experiment_repo": "mykcs/openevo-experiment",
+  "runtime_ref": "q17-directapply-runtime-202609111537",
+  "runtime_sha": "ac130148ee08b6462d9728e482a858fe5f514047",
+  "ray_ref": "q17-directapply-ray-202609111537",
+  "ray_sha": "ce02dbe96b7ad3a9c93aeac6cf95bed5874e6cef",
+  "core_repo": "mykcs/OpenEvo",
+  "core_ref": "q17-directapply-core-202609111537",
+  "core_sha": "59478929d884ca794cce2cb49cc6cc16103d6abe",
+  "docker_image_id": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "docker_distribution": "pull exact digest with authorized GHCR access, or transfer with docker save/load and verify image_id",
+  "fresh_run_contract_fail_noop_start_round": 0,
+  "portable_manifest_in_control_ref": "configs/experiment/reproduction/q17-directapply-portable-reproduction-202609111537.json",
+  "fresh_policy_in_control_ref": "configs/experiment/reproduction/q17-directapply-fresh-run-carrier-noop-202609111537.json",
+  "preflight_in_control_ref": "scripts/openevo_webshop/q17_reproduction_preflight_202609111537.py",
+  "observed_preflight": {
+    "status": "PASS",
+    "tests_ran": true,
+    "server_checkouts_matched_all_four_git_pins": true,
+    "docker_image_id_matched": true
+  },
+  "important_boundary": "This closes the repeated typed-contract-failure stoppage class for new runs. It does not promise that unrelated hardware, network, storage, dependency, credential, or model-download failures cannot occur."
+}

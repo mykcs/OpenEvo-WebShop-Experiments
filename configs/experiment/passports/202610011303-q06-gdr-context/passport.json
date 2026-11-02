@@ -1,0 +1,352 @@
+{
+  "artifact_policy": {
+    "assets": [],
+    "default_disclosure_state": "PRIVATE",
+    "default_recovery_state": "SERVER_ONLY",
+    "large_asset_provider": "Durable server artifact storage; publication or external export remains subject to the project asset policy.",
+    "state_model_policy": "docs/operations/publication/RESEARCH_ASSET_RECOVERY_AND_DISCLOSURE_POLICY.zh-CN.md",
+    "wandb_is_sole_backup": false
+  },
+  "authority_paths": [
+    "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_GDR_CONTEXT_PROBE_MANIFEST.json",
+    "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_GDR_CONTEXT_IDENTITIES.json",
+    "configs/experiment/preregistrations/q06-gdr-context-preregistration-202610011303.json",
+    "configs/experiment/profiles/q06-gdr-context-202610011303-profile.json",
+    "configs/experiment/path-contracts/q06-gdr-context-202610011303-path-contract.json",
+    "scripts/openevo_webshop/q06_context_host_orchestrator.py",
+    "configs/experiment/activations/q06-gdr-context-202610011303-preparation.json"
+  ],
+  "budget_contract": {
+    "accounting_rule": "One remaining historical context pass of 64 tasks; failures or partial consumption retain the pass. Existing two endpoints are reused.",
+    "external_teacher_call_limit": 0,
+    "final_panel_access_limit": 0,
+    "horizon": 15,
+    "optimizer_step_limit": 0,
+    "rollout_limit": 64,
+    "rollouts_per_round": 64,
+    "round_limit": 0,
+    "source": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/preregistrations/q06-gdr-context-preregistration-202610011303.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "f0f0f935d8ac13cf7978b1930dbe54dbbd05d37af742632385fb632db0ca1aa7"
+    }
+  },
+  "campaign_id": "20260928-2338-post-advisor-unanswered",
+  "created_at": "2026-10-01T13:03:15Z",
+  "experiment_id": "202610011303-q06-gdr-context",
+  "initial_execution_identity": {
+    "activation": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_GDR_CONTEXT_IDENTITIES.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "09fbbc8130602a216b166701f269165da4f0dfb4da8e460f6c4cfbdbb9b6ac0c"
+    },
+    "dependency_lock": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/assets/runtimes/h144-scientific-runtime-v1.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "f57f0d3255ebf5cdcc6d97dd4ac7fec6fd25e7e628aadc81ae24569c77f6d492"
+    },
+    "experiment_repository": "mykcs/openevo-experiment",
+    "frozen_science_sha": "0e1ea4bbb62215be71a68f206eabf442c0227f58",
+    "initial_experiment_sha": "0e1ea4bbb62215be71a68f206eabf442c0227f58",
+    "initial_ray_sha": "0e1ea4bbb62215be71a68f206eabf442c0227f58",
+    "initial_run_root": "/workspace/runs/post-advisor-unanswered-20260928/q06-gdr-context-202610011303",
+    "launcher": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/q06_context_host_orchestrator.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "c42b5a8fe37a26b64087f0116d8823a7ee21ebcceb5cc6cb1f83904265e96f59"
+    },
+    "python_version": "3.11.16",
+    "release": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/experiment/activations/q06-gdr-context-202610011303-preparation.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "01e81971b1b56b5fa8271cae29dd176c650111e882b10a4d33ec0ec594461898"
+    },
+    "runtime_asset_lock": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "configs/assets/runtimes/h144-scientific-runtime-v1.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "f57f0d3255ebf5cdcc6d97dd4ac7fec6fd25e7e628aadc81ae24569c77f6d492"
+    },
+    "runtime_digest_kind": "IMAGE_ID",
+    "runtime_fingerprint": "b76be30eef225f3847ae4aaf559ef26fb0cb4765753e9f63f283b6bafcd52701",
+    "runtime_image_digest": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+    "upstream_openevo_sha": "a85f9a8dc5cc9870695a4301d8fc128a7ec38fb0",
+    "upstream_repository": "mykcs/OpenEvo"
+  },
+  "parent_experiment_id": null,
+  "passport_payload_sha256": "5dae3de216d827b2a335dcc660c67b7a2c1464ccd374ca70976eeced5cb76568",
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_GDR_CONTEXT_PROBE_MANIFEST.json",
+      "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_GDR_CONTEXT_IDENTITIES.json",
+      "configs/experiment/preregistrations/q06-gdr-context-preregistration-202610011303.json"
+    ],
+    "parent_lineage_note": "Q06 remaining mechanism-family context; old E2 two-endpoint science remains unchanged. No plotted meeting-run identity asserted.",
+    "revision_naming_note": "Native identity projects the existing frozen Q06 contract. Preparation is inactive and grants no launch authority.",
+    "status": "NEW_DECLARATION",
+    "unknown_fields": []
+  },
+  "resume_policy": {
+    "automatic_gpu_start": false,
+    "policy": "MANUAL_REVIEW_ONLY",
+    "reason": "One exact 64-task pass; preserve any partial consumption. Engineering recovery requires exact consumption reconciliation.",
+    "requires_receipt_chain": true
+  },
+  "schema": "openevo.experiment-passport.202609111800",
+  "scientific_identity": {
+    "acceptance_policy": {
+      "candidate_rule": "Exactly one pass of the sealed historical GDR ON R159 context; existing Bounded/scalar-beta outputs are reused.",
+      "credit_assignment": "No model update, beta choice, adaptive rerun, reward-based selection or teacher call; entropy is descriptive only.",
+      "name": "Q06_FIXED_CONTEXT_OBSERVATIONAL_NO_SELECTION",
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/q06-gdr-context-preregistration-202610011303.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "f0f0f935d8ac13cf7978b1930dbe54dbbd05d37af742632385fb632db0ca1aa7"
+      }
+    },
+    "action_contract": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "scripts/openevo_webshop/ceiling1_harness2011_runtime.py",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "0e1ea4bbb62215be71a68f206eabf442c0227f58",
+      "sha256": "b5df331a51117eef216da8e45270dcd06920570db2035e1ea32a1bc438413fd0"
+    },
+    "benchmark": "WebShop",
+    "claim_boundary": "Task-paired descriptive context; diverging trajectories are not same-state causal contrasts. No plotted meeting-run identity claimed.",
+    "evaluator_contract": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "scripts/openevo_webshop/q17_fixed_checkpoint_probe.py",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "0e1ea4bbb62215be71a68f206eabf442c0227f58",
+      "sha256": "fdbe3b69296c39ff3d1a855398c4ea69ddcde97144f8a5efa9ce50c6e3808c05"
+    },
+    "external_teacher": {
+      "future_call_budget": 0,
+      "prior_analyses": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/q06-gdr-context-preregistration-202610011303.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "f0f0f935d8ac13cf7978b1930dbe54dbbd05d37af742632385fb632db0ca1aa7"
+      },
+      "role": "none in Q06"
+    },
+    "final_panel_policy": {
+      "future_access_limit": 0,
+      "policy": "LOCKED_ZERO_ACCESS_Q06",
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/q06-gdr-context-preregistration-202610011303.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "f0f0f935d8ac13cf7978b1930dbe54dbbd05d37af742632385fb632db0ca1aa7"
+      }
+    },
+    "harness": {
+      "profile": "201.1",
+      "source": {
+        "evidence_path": "docs/evidence/experiment-passports/202609111915/Q17_HARNESS_IDENTITY_20260911.json",
+        "kind": "server_file",
+        "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-readiness/qwen3-1p7b/harness201-final-v2-generic/finalize-receipt.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "6dc842cf9f95d216bedaeb709ed370570f63d7fcc34d565c909892498094c7fd"
+      },
+      "thinking": false
+    },
+    "human_intervention_policy": "No endpoint, task, retry, or metric selection after freeze; integrity failure preserves partial output and requires separate review.",
+    "hypothesis": "The two frozen endpoints may exhibit different action concentration at matched task identities.",
+    "model": {
+      "asset": {
+        "evidence_path": "docs/evidence/experiment-passports/202609111915/Q17_LIVE_BINDINGS_20260911.json",
+        "kind": "server_file",
+        "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b/verification-receipt.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "324ed4f5a6dd5d6a664ad8f4e1cb340e439394d3b7dd7dbe047f313d6815502b"
+      },
+      "dtype": "bfloat16",
+      "model_id": "Qwen/Qwen3-1.7B",
+      "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "tokenizer_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+    },
+    "optimizer": {
+      "batch_size": null,
+      "epochs": null,
+      "extra_settings": {},
+      "gradient_accumulation_steps": null,
+      "learning_rate": null,
+      "name": null
+    },
+    "parser_contract": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "scripts/openevo_webshop/q17_fixed_checkpoint_probe.py",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "0e1ea4bbb62215be71a68f206eabf442c0227f58",
+      "sha256": "fdbe3b69296c39ff3d1a855398c4ea69ddcde97144f8a5efa9ce50c6e3808c05"
+    },
+    "prompt_contract": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "scripts/openevo_webshop/ceiling1_harness2011_prompt.py",
+      "reason": null,
+      "repository": "mykcs/openevo-experiment",
+      "revision": "0e1ea4bbb62215be71a68f206eabf442c0227f58",
+      "sha256": "6c5114859d0a5e92754f23b460c6d68a1f438296d912b4803f72c622355b4aa6"
+    },
+    "protocol_fingerprint": "9efa7d2a14949d5210610ebf026df67ddede9f14e22c289a1242ed81911470e3",
+    "research_question": "How do token and legal-click choice uncertainty compare for the sealed historical GDR ON R159 mechanism-family context and the two already sealed Q06 endpoints?",
+    "sampling": {
+      "do_sample": true,
+      "extra_settings": {
+        "max_steps": 15,
+        "repetition_penalty": 1.0
+      },
+      "max_new_tokens": 512,
+      "temperature": 1.0,
+      "top_k": 0,
+      "top_p": 1.0
+    },
+    "sd_lora": {
+      "alpha": 128,
+      "effective_rank_cap": 128,
+      "extra_settings": {
+        "endpoint_adapter_sha256": {
+          "historical_gdr_r159_rank128": "1f789d86ff1a3ba96211eb950f78763f99ed6fb2f0545f11c869ec8e6de3da6c"
+        },
+        "mode": "fixed sealed context adapter; no updates"
+      },
+      "rank": 128,
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_GDR_CONTEXT_PROBE_MANIFEST.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "edcaaf2b216e3f8713574105e52037675ef3ea091b81892d557dda4af2f9c33c"
+      },
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ]
+    },
+    "seed_policy": {
+      "rng_contract": "Use each frozen panel paired_generation_seed; action step adds step_index*100000. GPU identity never changes seeds.",
+      "schedule": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "docs/evidence/q17-validation-curve-20260923/coarse-manifest-q17-directapply-validation-curve-202609231600.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "2d5d1620065a15840ae20fed324038312aec74b0895e13c9d283177928bf1a3b"
+      },
+      "schedule_id": "q17-frozen-64-paired-generation-seeds",
+      "seed_base": 202609231600000
+    },
+    "split": "held-out/development 64-task panel; final locked",
+    "stop_rule": {
+      "max_rollouts": 64,
+      "max_rounds": 0,
+      "source": {
+        "evidence_path": null,
+        "kind": "repository_file",
+        "path": "configs/experiment/preregistrations/q06-gdr-context-preregistration-202610011303.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "f0f0f935d8ac13cf7978b1930dbe54dbbd05d37af742632385fb632db0ca1aa7"
+      }
+    },
+    "task_manifest": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/q17-validation-curve-20260923/coarse-manifest-q17-directapply-validation-curve-202609231600.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "2d5d1620065a15840ae20fed324038312aec74b0895e13c9d283177928bf1a3b"
+    },
+    "training_data_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_GDR_CONTEXT_PROBE_MANIFEST.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "edcaaf2b216e3f8713574105e52037675ef3ea091b81892d557dda4af2f9c33c"
+    },
+    "treatment": "One fixed historical GDR ON R159 observational context pass; no parameter updates.",
+    "what_changed": [
+      "Evaluate only the one remaining historical GDR context endpoint on the frozen 64 tasks."
+    ],
+    "what_must_stay_fixed": [
+      "Exact rank128 adapter/state and common E2 carriers",
+      "Frozen model/runtime/panel/sampling and metric definitions",
+      "One 64-task pass; zero training, adaptive reruns, teacher calls and final access",
+      "Reuse already sealed Bounded and scalar-beta outputs"
+    ]
+  },
+  "status": "FROZEN",
+  "tracking_policy": {
+    "approved_artifact_roles": [
+      "passport",
+      "run-manifest",
+      "startup-receipt",
+      "closeout-receipt",
+      "evaluation-summary",
+      "bounded-table"
+    ],
+    "entity": null,
+    "mode_order": [
+      "online",
+      "offline",
+      "disabled"
+    ],
+    "project": null,
+    "role": "MIRROR_ONLY",
+    "scientific_authority": false
+  }
+}

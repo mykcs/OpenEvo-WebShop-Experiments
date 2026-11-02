@@ -1,0 +1,102 @@
+{
+  "arms": [
+    "g1",
+    "g2"
+  ],
+  "attempts": 64,
+  "benchmark": {
+    "catalog": "indexes_1k",
+    "environment_seed": 2026,
+    "evaluator": "WebShop task_score/won",
+    "max_new_tokens": 512,
+    "max_steps": 30,
+    "name": "webshop",
+    "parser_contract": "seed3090.webshop-action-parser.v3-action-command",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "temperature": 0.0
+  },
+  "campaign_id": "20260820-0140-h140-g2-multigeneration",
+  "cells": 16,
+  "exclusion_ledger_sha256": "3f9a17a6b140da7b300c5f6205aba832676adc9521c6cfda814cfe40088b72e8",
+  "experiment_git_sha": "f46f724",
+  "manifest_sha256": "0dac2d5aba03f5f738749ca0d8b1dc627cb417f6b91cd213eafebbebf7265ad9",
+  "manual_replacement_allowed": false,
+  "role": "prior-generation retention",
+  "rollout_seeds": [
+    2026104100,
+    2026104101,
+    2026104102,
+    2026104103
+  ],
+  "schema": "openevo.webshop-h1.40-g2-e1-retention.v1",
+  "selection_seed": 0,
+  "source": "H1.38B sealed D8 identity order",
+  "task_selection_outcome_blind": true,
+  "tasks": [
+    {
+      "goal_idx": 607,
+      "sample_index": 0,
+      "split": "h1.40-e1-retention",
+      "task_description": "Find me officially licensed men's t-shirts & tanks with needle sleeve, classic fit with color: heather grey, and fit type: men, and size: x-large, and price lower than 60.00 dollars",
+      "task_description_sha256": "2a6b91c50429544f4f16ac9fdcea733ede2c459f1df801e34611526ecc275632",
+      "task_id": "webshop_000607"
+    },
+    {
+      "goal_idx": 2192,
+      "sample_index": 1,
+      "split": "h1.40-e1-retention",
+      "task_description": "Find me men's shorts with drawstring closure, elastic waist for gym workout with color: #2 army green, and size: 30, and price lower than 30.00 dollars",
+      "task_description_sha256": "5ddb6c7440d4f67e9c46404fdc3b8b649e69647d704dd26c6c079f0827ceef33",
+      "task_id": "webshop_002192"
+    },
+    {
+      "goal_idx": 4238,
+      "sample_index": 2,
+      "split": "h1.40-e1-retention",
+      "task_description": "Find me quick release, hands free iphone accessories for wireless charging with color: freemount, and style: dash, and price lower than 60.00 dollars",
+      "task_description_sha256": "1bf7af437aab8644c7085aca390b2c9fc59d36447ec9ae44e1bade2690872d62",
+      "task_id": "webshop_004238"
+    },
+    {
+      "goal_idx": 4477,
+      "sample_index": 3,
+      "split": "h1.40-e1-retention",
+      "task_description": "Find me machine washable window coverings for living room with color: dark blue, and size: 52\"w x 54\"l, and price lower than 50.00 dollars",
+      "task_description_sha256": "26d9c8cf5910b3e08adaea287254f44f5d167fa8f8575a941c87b2d63980af1e",
+      "task_id": "webshop_004477"
+    },
+    {
+      "goal_idx": 4533,
+      "sample_index": 4,
+      "split": "h1.40-e1-retention",
+      "task_description": "Find me space saving, easy assemble living room sets for dining room with color: grey, and price lower than 330.00 dollars",
+      "task_description_sha256": "c398fd823d1bb2e36dc02f3b82c6d6f50eb86f0ef26f54f0654706c20c249948",
+      "task_id": "webshop_004533"
+    },
+    {
+      "goal_idx": 5753,
+      "sample_index": 5,
+      "split": "h1.40-e1-retention",
+      "task_description": "Find me ready hang wall art with solid wood for living room with color: fashion black woman, and size: 12x18 inch, and price lower than 50.00 dollars",
+      "task_description_sha256": "e7c8176d656fde25df3a96a472ce2f460cf60b4d74c85e8df9eb15a310754199",
+      "task_id": "webshop_005753"
+    },
+    {
+      "goal_idx": 5819,
+      "sample_index": 6,
+      "split": "h1.40-e1-retention",
+      "task_description": "Find me easy use, high performance soundbars for wireless bluetooth, and price lower than 140.00 dollars",
+      "task_description_sha256": "4d5c8e3f2e73242fcb6cefcd375dfd4ea3a0d28006772df2d60472b777959eb7",
+      "task_id": "webshop_005819"
+    },
+    {
+      "goal_idx": 6751,
+      "sample_index": 7,
+      "split": "h1.40-e1-retention",
+      "task_description": "Find me women's sweaters with relaxed fit, long sleeve with color: navy, and size: x-small, and price lower than 50.00 dollars",
+      "task_description_sha256": "1adc3c529da83b98e9efa6b171fb47b7f562f9e240e38d5685c66ef94b03c6d6",
+      "task_id": "webshop_006751"
+    }
+  ],
+  "training_identity_count": 8
+}

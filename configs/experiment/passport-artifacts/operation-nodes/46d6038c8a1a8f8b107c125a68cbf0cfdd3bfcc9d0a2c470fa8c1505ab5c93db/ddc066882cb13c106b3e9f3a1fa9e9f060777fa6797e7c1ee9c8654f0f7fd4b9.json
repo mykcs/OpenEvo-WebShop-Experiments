@@ -1,0 +1,94 @@
+{
+  "completed_at": "2026-09-26T11:32:12Z",
+  "created_at": "2026-09-26T11:32:12Z",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/experiment_artifact_dag.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "312ebfb54ba136ed0ccb94c0f2b25debe0eff71a0d4afd9fa6f50f431f5d7964"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_NONWEIGHT_PRIVATE_RECOVERY_BINDING.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "d07063fff774725c9465c94d2ad67cc3f2d20b97f912a46beb7680407e398318"
+    },
+    "contract_identities": [],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "provider-recovery-registration",
+      "original_materialization_randomness": "not reasserted"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "46d6038c8a1a8f8b107c125a68cbf0cfdd3bfcc9d0a2c470fa8c1505ab5c93db",
+  "operation_schema_version": "20260926",
+  "operation_type": "gated-delta-current-nonweight.register.private-recovery",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [],
+      "digest": "d07063fff774725c9465c94d2ad67cc3f2d20b97f912a46beb7680407e398318",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_NONWEIGHT_PRIVATE_RECOVERY_BINDING.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "d07063fff774725c9465c94d2ad67cc3f2d20b97f912a46beb7680407e398318"
+        }
+      ],
+      "logical_role": "gated-delta-current-nonweight-binding",
+      "size_bytes": 2160
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "gated-delta-current-nonweight-registration-20260926",
+    "created_at": "2026-09-26T11:32:12Z",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_NONWEIGHT_PRIVATE_RECOVERY_BINDING.json"
+    ],
+    "experiment_id": null,
+    "external_views": [
+      {
+        "evidence_path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_NONWEIGHT_PRIVATE_RECOVERY_BINDING.json",
+        "kind": "hf",
+        "path": "MANIFEST.json",
+        "reason": "private recovery observation; no automatic scientific reuse",
+        "repository": "kyo-myk/openevo-current-control-recovery-20260926",
+        "revision": "e0d41bfab6369c3241a9033c53942b7b7eeb4df0",
+        "sha256": "44f270e3615f2f77360b5d0c51ae24d15dd86d749da6774b793315dbb358cb27"
+      }
+    ],
+    "passport_sha256": null,
+    "producer_scope": "ENGINEERING_GLOBAL"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "ALLOWLISTED_ENGINEERING_ONLY",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Provider recovery registration is engineering evidence only; no automatic scientific reuse."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "PURE_ENGINEERING",
+  "status": "PASS",
+  "supersedes": []
+}

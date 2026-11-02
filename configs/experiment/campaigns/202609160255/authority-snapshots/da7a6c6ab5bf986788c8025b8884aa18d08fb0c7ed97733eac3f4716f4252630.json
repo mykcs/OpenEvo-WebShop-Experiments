@@ -1,0 +1,21 @@
+{
+  "activation_id_unchanged": true,
+  "allowed_recovery": "Pass the exact archived file as --panel while preserving activation, state, decoding, runtime and code identity.",
+  "canonical_authority_locator": "configs/experiment/manifests/q17-gdr-twin-post-audit-heldout-202609061643.json",
+  "execution_locator": "docs/evidence/q17-final-closeout-20260912/frozen-inputs/aea97afdd5b176126cf67f7ed315189c95fbf37b07263c84b947903cca69aa4d.json",
+  "model_calls_on_panel_before_recovery": 0,
+  "outcome_information_used_to_choose_resolution": false,
+  "panel_content_sha256_expected": "3529b94f97491434da01f9b2adc2faf1d0571545603a788d367561ae2b529d48",
+  "panel_file_sha256_expected": "aea97afdd5b176126cf67f7ed315189c95fbf37b07263c84b947903cca69aa4d",
+  "panel_file_sha256_observed": "aea97afdd5b176126cf67f7ed315189c95fbf37b07263c84b947903cca69aa4d",
+  "panel_identity_hash_reads_after_authority": 1,
+  "panel_rows_parsed_before_recovery": 0,
+  "reason": "The canonical historical locator is intentionally absent from the current executable config surface. The repository preserves exact bytes under the frozen-input archive.",
+  "runtime_code_git_sha_unchanged": "241109638cafb55c363090dd93b1d7a84e4ce611",
+  "schema": "openevo.bounded-effective-state.on-final-panel-locator-resolution.20260918",
+  "scientific_authority_sha256": "4fb4db415d06e7241d0b3e3164e2b6961dada53773d0e08e4a79750d72d907b0",
+  "scientific_inputs_changed": false,
+  "score_bearing_rows_before_recovery": 0,
+  "selected_panel_digest_expected": "cd531caff21d13d72df5c6fb013fadc10457393134d8bc3bcdc63fadf76bc453",
+  "status": "PASS_ENGINEERING_LOCATOR_RESOLUTION"
+}

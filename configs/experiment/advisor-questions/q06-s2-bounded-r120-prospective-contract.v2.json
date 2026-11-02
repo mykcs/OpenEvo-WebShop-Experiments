@@ -1,0 +1,155 @@
+{
+  "activation_rule": "This append-only successor authorizes exactly the frozen single Bounded-R120 S2 cell and no additional tasks, passes, training, optimizer updates, teacher calls, retries, GPU-hours, or final-panel access.",
+  "append_only": true,
+  "blocked_reasons": [],
+  "cell": {
+    "actual_parameter_update_events": 118,
+    "candidate": "S2 task-bearing successor; exact v1 frozen cell preserved",
+    "cell_id": "bounded-r120",
+    "checkpoint_id": "after_120_rounds",
+    "completed_stage2_rounds": 120,
+    "evaluation_panel_sha256": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+    "evaluation_tasks": 64,
+    "final_panel_access": 0,
+    "mechanism": "Bounded State",
+    "panel_role": "development_validation_only",
+    "pass_count": 1,
+    "source_summary_path": "/workspace/maintenance/ADVISOR-PLATEAU-COMPARE-20260930/results/off/after_120_rounds/summary.json",
+    "source_summary_sha256": "18b7212023b3c589294b66555d2d4a0d6444eb3e33a0706c14f5b4574a9964d9"
+  },
+  "contract_id": "q06-s2-bounded-r120-diagnostic-20261002-successor1",
+  "execution_constraints": {
+    "adaptive_reruns": 0,
+    "episodes": 64,
+    "final_panel_access_allowed": false,
+    "formal_task_consumption_allowed": true,
+    "gpu_allocation_allowed": true,
+    "max_generated_tokens": 491520,
+    "max_generation_calls": 960,
+    "max_gpu_hours": 2,
+    "max_persistent_output_bytes": 1073741824,
+    "max_scorer_forward_calls": 100000,
+    "max_scorer_input_tokens": 1000000,
+    "optimizer_updates": 0,
+    "passes": 1,
+    "retry_on_scientific_outcome": false,
+    "teacher_calls": 0,
+    "training_rollouts": 0
+  },
+  "gates": {
+    "canonical_executor_router": {
+      "path": "scripts/openevo_webshop/q06_s2_bounded_r120_host_orchestrator.py",
+      "sha256": "1464734a4c57d96fdecbd149a4d580b1a9136b621379c7a9b2637e8fa61877a9",
+      "source_execution_sha": "161126c258b6723ceb721e6387d956988cf22a62",
+      "status": "PASS"
+    },
+    "checkpoint_identity": {
+      "actual_parameter_update_events": 118,
+      "adapter_sha256": "c8ef26c3c96515495703d97148c1f4845c09814b686987f7150022099c67fd11",
+      "checkpoint_id": "after_120_rounds",
+      "source_summary_path": "/workspace/maintenance/ADVISOR-PLATEAU-COMPARE-20260930/results/off/after_120_rounds/summary.json",
+      "source_summary_sha256": "18b7212023b3c589294b66555d2d4a0d6444eb3e33a0706c14f5b4574a9964d9",
+      "status": "PASS_READ_ONLY_IDENTITY"
+    },
+    "launch_qualification": {
+      "reason": "The bound receipt proves model/adapter load on the selected GPU only; oe performs fresh readiness, live-idle admission, CUDA preflight and Formal Start before task consumption.",
+      "receipt": {
+        "file_sha256": "85818268906439ebd2b3c12e4be1ea0c2fcdefa756a9e0278aab107a99438f74",
+        "final_panel_access": 0,
+        "generate_calls": 0,
+        "gpu_uuid": "GPU-00000000-0000-0000-0000-000000000000",
+        "manifest_sha256": "6e7d86417d878529afabaa6d84c32ed810938e809d261a6aa2e81b8ed4585b0d",
+        "model_forwards": 0,
+        "optimizer_updates": 0,
+        "path": "/workspace/maintenance/ADVISOR-UNANSWERED-20260928/zero-formal/q06-s2-bounded-r120-268fc8e3/model-load-qualification-0002/model-load-qualification-receipt.json",
+        "receipt_sha256": "08e3899afe5b3f61727457781971432c188d2f1079ca9ae122520e85e76974cc",
+        "scope": "model-and-adapter-load-only",
+        "source_sha": "8f8db6880ef290dce23406d7017e61805f972240",
+        "task_bearing_calls": 0,
+        "training_calls": 0
+      },
+      "status": "PASS_MODEL_AND_ADAPTER_LOAD_ONLY"
+    },
+    "resource_qualification": {
+      "authorized_gpu_uuids": [
+        "GPU-00000000-0000-0000-0000-000000000000",
+        "GPU-00000000-0000-0000-0000-000000000000",
+        "GPU-00000000-0000-0000-0000-000000000000",
+        "GPU-00000000-0000-0000-0000-000000000000",
+        "GPU-00000000-0000-0000-0000-000000000000",
+        "GPU-00000000-0000-0000-0000-000000000000",
+        "GPU-00000000-0000-0000-0000-000000000000",
+        "GPU-00000000-0000-0000-0000-000000000000"
+      ],
+      "lease": "Canonical oe run-campaign live-idle admission and per-GPU lock at Formal Start.",
+      "owner_admission": "Owner authorized the frozen Q06 S2 64-task one-pass evaluation on the established LYG eight-GPU pool; existing workloads remain untouched.",
+      "preemption_allowed": false,
+      "selected_gpu_uuid": null,
+      "selection_policy": "oe run-campaign dynamically selects one authorized UUID after point-of-use live-idle qualification; an occupied or unresolved UUID remains unused; no preemption",
+      "standing_pool_reference": "configs/experiment/activations/q06-gdr-context-202610011303-release.json",
+      "status": "PASS"
+    },
+    "scorer_cost_source": {
+      "classification": "DERIVED_CPU_ONLY_NOT_OBSERVED_FORWARDS",
+      "largest_single_arm_forward_calls": 42073,
+      "largest_single_arm_input_tokens": 386471,
+      "path": "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_E2_CANDIDATE_SCORING_COST_RECEIPT.json",
+      "sha256": "62c69a1418d35dce9d0df13f57af599bbe043a352d9894daf131ee48925f25c7"
+    },
+    "scoring_cost_ceiling": {
+      "accounting": "64 tasks * 15 max steps * 512 max generated tokens. The hard scorer caps are 100000 model forwards and 1000000 input tokens, enforced before each scorer forward. They are approximately 2.38x and 2.59x the corresponding largest derived single-arm Q06 endpoint costs in the existing sealed cost receipt; the R120 output records actual counts. Exceeding either cap aborts the remaining episode work, seals a failed attempt, and does not authorize retry.",
+      "max_generated_tokens": 491520,
+      "max_generation_calls": 960,
+      "max_gpu_hours": 2,
+      "max_persistent_output_bytes": 1073741824,
+      "max_scorer_forward_calls": 100000,
+      "max_scorer_input_tokens": 1000000,
+      "status": "FROZEN"
+    },
+    "task_bearing_activation": {
+      "activation_scope": "exactly 64 tasks, one pass; 0 training/optimizer/teacher/retries; final panel 0",
+      "path": "configs/experiment/activations/q06-s2-bounded-r120-task-bearing-current-campaign-20261002.json",
+      "status": "PASS"
+    }
+  },
+  "known_shared_identity": {
+    "adapter": {
+      "adapter_sha256": "c8ef26c3c96515495703d97148c1f4845c09814b686987f7150022099c67fd11",
+      "candidate_checkpoint_id": "after_120_rounds",
+      "candidate_source_run": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off",
+      "relative_file": "round-119/sd-lora/bounded-state/adapter_model.safetensors",
+      "size_bytes": 205551528,
+      "status": "VERIFIED_READ_ONLY",
+      "verification": "read-only SSH stat and sha256sum; matched exact source payload"
+    },
+    "base_model": "Qwen/Qwen3-1.7B",
+    "base_model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "common_agent_system_sha256": "7a87fa050c526907b1999ba4c0ef9c127808e4983a1f36dc646a12c6ab75caf4",
+    "common_memory_sha256": "9a88356c084783e003d80db90a918be265d1ce481590d769453993d0e21dea6d",
+    "common_skill_sha256": "cef31b897dbe4796d61710c13ab11630f64f043bd7df651d1faa12980163b21a",
+    "sampling": {
+      "max_new_tokens": 512,
+      "max_steps": 15,
+      "repetition_penalty": 1.0,
+      "step_seed_policy": "paired_generation_seed + step_index * 100000",
+      "temperature": 1.0,
+      "top_k": 0,
+      "top_p": 1.0
+    }
+  },
+  "question_id": "Q06_TOKEN_CLICK_ENTROPY",
+  "schema": "openevo.q06.s2-prospective-cell-contract.v1",
+  "source_authority": {
+    "existing_s1_preregistration": "configs/experiment/preregistrations/q06-gdr-context-preregistration-202610011303.json",
+    "q01_bounded_analysis": "docs/evidence/advisor-q01-horizon-plateau-20261001/bounded-off-analysis.json",
+    "q01_checkpoint_evidence": "docs/evidence/advisor-q01-horizon-plateau-20261001/Q01_THREE_WAY_RESULT.json",
+    "standing_gpu_pool_reference": "configs/experiment/activations/q06-gdr-context-202610011303-release.json",
+    "work_package": "configs/experiment/advisor-questions/q06-work-package.v1.json"
+  },
+  "stage": "S2",
+  "status": "LAUNCH_AUTHORIZED",
+  "supersedes": {
+    "path": "configs/experiment/advisor-questions/q06-s2-bounded-r120-prospective-contract.v1.json",
+    "sha256": "e2ed5538f19ac8b09192b2f3400ad24613a8a15cf21e4f02f42de554b3fdcdad"
+  }
+}

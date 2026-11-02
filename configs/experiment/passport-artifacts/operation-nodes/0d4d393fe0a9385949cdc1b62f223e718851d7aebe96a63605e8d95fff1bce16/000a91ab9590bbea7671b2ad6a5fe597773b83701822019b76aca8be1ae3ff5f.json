@@ -1,0 +1,104 @@
+{
+  "completed_at": "2026-09-14T11:30:01Z",
+  "created_at": "2026-09-14T11:30:00Z",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/experiment_artifact_dag_pilot.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "ce3c48e5b745f497385669291ec9d3d1ddee721a7c4f65c0f514ae9e132661eb"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/experiment-passports/20260914-passport-dag-pilot/config.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "b5cc6bed058013d4dfbfe0ec3d860c6c11ff05acdbf1ffa52de497a4de2ab490"
+    },
+    "contract_identities": [],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "file",
+        "derived_from_digests": [],
+        "digest": "e49c81e2d2f84e259d40e2fb8192f3bcd198b355184845d76d8f58807d0d78ee",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/experiment-passports/20260914-passport-dag-pilot/input.txt",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "e49c81e2d2f84e259d40e2fb8192f3bcd198b355184845d76d8f58807d0d78ee"
+          }
+        ],
+        "logical_role": "pilot-input",
+        "size_bytes": 11
+      }
+    ],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "deterministic",
+      "randomness": "none"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "0d4d393fe0a9385949cdc1b62f223e718851d7aebe96a63605e8d95fff1bce16",
+  "operation_schema_version": "202609142055",
+  "operation_type": "passport.pilot.deterministic-file-summary.202609142055",
+  "outputs": [
+    {
+      "artifact_type": "file",
+      "derived_from_digests": [
+        "e49c81e2d2f84e259d40e2fb8192f3bcd198b355184845d76d8f58807d0d78ee"
+      ],
+      "digest": "d036cc32fcfff15539687f12938d3dfc455c233356d82443071c453f6b4fb588",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/experiment-passports/20260914-passport-dag-pilot/output.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "d036cc32fcfff15539687f12938d3dfc455c233356d82443071c453f6b4fb588"
+        }
+      ],
+      "logical_role": "pilot-report",
+      "size_bytes": 115
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "passport-dag-pilot-202609142055",
+    "created_at": "2026-09-14T11:30:00Z",
+    "execution_sha": null,
+    "source": "PILOT"
+  },
+  "provenance": {
+    "evidence_paths": [],
+    "experiment_id": null,
+    "external_views": [],
+    "passport_sha256": null,
+    "producer_scope": "ENGINEERING_GLOBAL"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "REVIEW_REQUIRED_DETERMINISM",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Deterministic CPU-only analysis; exact hit is a candidate, not execution authority."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609142055",
+  "side_effect_class": "DETERMINISTIC_COMPUTATION",
+  "status": "PASS",
+  "supersedes": []
+}

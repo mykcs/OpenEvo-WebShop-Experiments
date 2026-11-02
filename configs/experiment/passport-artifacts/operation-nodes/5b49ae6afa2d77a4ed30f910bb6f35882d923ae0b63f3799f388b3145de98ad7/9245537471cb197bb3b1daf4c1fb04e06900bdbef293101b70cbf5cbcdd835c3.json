@@ -1,0 +1,94 @@
+{
+  "completed_at": "2026-09-26T11:32:12Z",
+  "created_at": "2026-09-26T11:32:12Z",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/experiment_artifact_dag.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "312ebfb54ba136ed0ccb94c0f2b25debe0eff71a0d4afd9fa6f50f431f5d7964"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_GDR_TWIN_CURRENT_RECOVERY_BINDING.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "65833becd18cf17f45065947d5a9c192e0a0abda123ea5af393e0fb51170f5d5"
+    },
+    "contract_identities": [],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "provider-recovery-registration",
+      "original_materialization_randomness": "not reasserted"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "5b49ae6afa2d77a4ed30f910bb6f35882d923ae0b63f3799f388b3145de98ad7",
+  "operation_schema_version": "20260926",
+  "operation_type": "q17-gdr-twin-current-science.register.private-recovery",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [],
+      "digest": "65833becd18cf17f45065947d5a9c192e0a0abda123ea5af393e0fb51170f5d5",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_GDR_TWIN_CURRENT_RECOVERY_BINDING.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "65833becd18cf17f45065947d5a9c192e0a0abda123ea5af393e0fb51170f5d5"
+        }
+      ],
+      "logical_role": "q17-gdr-twin-current-science-binding",
+      "size_bytes": 2282
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "q17-gdr-twin-current-science-registration-20260926",
+    "created_at": "2026-09-26T11:32:12Z",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/recovery-disclosure-audit-20260926/Q17_GDR_TWIN_CURRENT_RECOVERY_BINDING.json"
+    ],
+    "experiment_id": null,
+    "external_views": [
+      {
+        "evidence_path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_GDR_TWIN_CURRENT_RECOVERY_BINDING.json",
+        "kind": "hf",
+        "path": "gdr_gate-round-002.tar.gz",
+        "reason": "private recovery observation; no automatic scientific reuse",
+        "repository": "openevo-recovery/q17-gdr-twin-det4-gpu4567-20260908030910-artifacts",
+        "revision": "4d89cbb8691f8cfec59ca7574ae8efaf8309d1a4",
+        "sha256": "80523e7e5e1363d43480372cebe2584acf8d8a0a14334fa0c098c94a0f953de3"
+      }
+    ],
+    "passport_sha256": null,
+    "producer_scope": "ENGINEERING_GLOBAL"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "ALLOWLISTED_ENGINEERING_ONLY",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Provider recovery registration is engineering evidence only; no automatic scientific reuse."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "PURE_ENGINEERING",
+  "status": "PASS",
+  "supersedes": []
+}

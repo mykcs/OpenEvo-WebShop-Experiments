@@ -1,0 +1,129 @@
+{
+  "schema": "openevo.q17.gpu67.metric-campaign-plan.v1",
+  "campaign_id": "20261012-gpu67-q17-r159-r129-frozen-dev-metrics",
+  "intent": "Q17 R159 vs R129 frozen 64-task DEVELOPMENT experiment, instrumented token entropy and click diagnostics; not original uninstrumented score, not formal or final panel",
+  "source_branch": "main",
+  "device_allowlist": [
+    {
+      "index": 6,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000",
+      "arm": "r159"
+    },
+    {
+      "index": 7,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000",
+      "arm": "r129"
+    }
+  ],
+  "budgets": {
+    "allowed_gpu_indices": [
+      6,
+      7
+    ],
+    "qualifications_per_gpu": 1,
+    "frozen_development_tasks_per_arm": 64,
+    "maximum_development_episode_steps": 15,
+    "maximum_new_development_rollouts": 128,
+    "formal_task_consumption": 0,
+    "final_panel_access": 0,
+    "training_updates": 0,
+    "minimum_free_working_disk_bytes": 68719476736,
+    "minimum_free_gpu_mib": 24576,
+    "maximum_idle_gpu_used_mib": 256
+  },
+  "image_id": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "science": {
+    "base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "runtime_execution_sha": "ac130148ee08b6462d9728e482a858fe5f514047",
+    "core_execution_sha": "59478929d884ca794cce2cb49cc6cc16103d6abe",
+    "frozen_panel_sha": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+    "frozen_manifest_file_sha256": "2d5d1620065a15840ae20fed324038312aec74b0895e13c9d283177928bf1a3b",
+    "science_probe_sha256": "2906ef13392f182d1cf4a644b69ff19cd8f177c74b35ffd18896459e77130070",
+    "load_qualifier_sha256": "84b967524c90bb9dea8397ac5fb1706cddbb94b80bf8fbc120a7079928a4f1b3",
+    "prompt_contract_sha256": "8efcba565fc11e485192f6ca85cb62119f7322662cff1a5e6597de0608d441b5",
+    "sampling": {
+      "temperature": 1,
+      "top_p": 1,
+      "top_k": 0,
+      "do_sample": true,
+      "max_new_tokens": 512,
+      "max_steps": 15,
+      "seed_policy": "paired_generation_seed + step_index * 100000"
+    },
+    "only_frozen_development_panel": true,
+    "no_new_formal_or_final_tasks": true,
+    "q06_context_capture": true,
+    "instrumentation": "on",
+    "claim_limit": "Q17 R159 vs R129 frozen 64-task DEVELOPMENT experiment, instrumented token entropy and click diagnostics; not original uninstrumented score, not formal or final panel"
+  },
+  "paths": {
+    "workspace": "/workspace",
+    "q17_root": "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct",
+    "runtime_source_root": "/workspace/maintenance/Q17-VALIDATION-CURVE-202609231600/runtime-ac130148",
+    "core_source_root": "/workspace/maintenance/Q17-VALIDATION-CURVE-202609231600/core-594789",
+    "seed_root": "/workspace/runs/phase-h1.20-action-admissibility-diagnostic-v1-20260815/seed-roots/base-P1",
+    "model_root": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b",
+    "output_root": "/workspace/maintenance/Q17-GPU67-METRIC-20261012",
+    "gpu_lock_root": "/workspace/.gpu-locks",
+    "frozen_panel_manifest_rel": "docs/evidence/q17-validation-curve-20260923/coarse-manifest-q17-directapply-validation-curve-202609231600.json",
+    "probe_script_rel": "scripts/openevo_webshop/q17_fixed_checkpoint_probe.py",
+    "qualifier_script_rel": "scripts/analysis/advisor_q07_load_qualifier_20261001.py"
+  },
+  "carriers": {
+    "memory": {
+      "round": 95,
+      "rel": "text-memory/memory.md",
+      "sha256": "c01c9ff77b66b5d99973e260deb6950bfdf5837179f8452620d6307dc273ddce"
+    },
+    "skill": {
+      "round": 0,
+      "rel": "skill-bundle/SKILL.md",
+      "sha256": "82280d2babae6c20c3d6055f7ecbc7951f1c3105143da8e0e6a648d27e408bb0"
+    },
+    "agent": {
+      "round": 115,
+      "rel": "agent-system/agent_system.md",
+      "sha256": "0435954573e68b3454faca4b9ff6bf2527c8b33dd56466302f461fa76e00442a"
+    }
+  },
+  "arms": {
+    "r159": {
+      "round": 159,
+      "completed_stage2_rounds": 160,
+      "checkpoint_id": "after_160_updates",
+      "adapter_sha256": "18032c5cabd135b2464d5cbb2a3949aeb6130046dcc9f33acb33aee38c1baf46",
+      "state_id": "07e85a93718e000fa2e8b87b5d62f9e8e20ea168c3a602b1bb89d3e8688d8811",
+      "adapter_rel": "sd-lora/artifacts/workers/sd-lora-a5e38d152da991e4310a2f47accdbf94/adapter"
+    },
+    "r129": {
+      "round": 129,
+      "completed_stage2_rounds": 130,
+      "checkpoint_id": "after_130_updates",
+      "adapter_sha256": "d467357c9100488d3c96c909b183717aa143c65044bcd274fbb0bda2650ef25c",
+      "state_id": "fb366ed10d8beb5d9bebfa48eadcfc61feaec0a8d17a4cb736732847635163f1",
+      "adapter_rel": "sd-lora/artifacts/workers/sd-lora-b41950fb77239970189d1145d68579fa/adapter"
+    }
+  },
+  "scientific_metrics": {
+    "implemented_in_first_gpu_window": [
+      "reasoning_token_entropy",
+      "action_token_entropy",
+      "chosen_token_nll",
+      "click_choice_entropy"
+    ],
+    "needs_separate_fixed_prefix_scorer": [
+      "fixed_prefix_action_flip_rate",
+      "frozen_prefix_policy_divergence"
+    ],
+    "needs_additional_preregistration": [
+      "frozen_prefix_policy_divergence",
+      "representation_drift_cka",
+      "behavioral_rank_retention_frontier",
+      "task_vector_causal",
+      "gradient_conflict",
+      "loss_interpolation_barrier",
+      "perturbed_task_robustness",
+      "repeat_pass_at_k"
+    ]
+  }
+}

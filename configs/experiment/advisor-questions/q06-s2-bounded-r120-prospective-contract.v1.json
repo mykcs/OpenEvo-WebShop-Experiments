@@ -1,0 +1,132 @@
+{
+  "schema": "openevo.q06.s2-prospective-cell-contract.v1",
+  "contract_id": "q06-s2-bounded-r120-diagnostic-20261002",
+  "question_id": "Q06_TOKEN_CLICK_ENTROPY",
+  "stage": "S2",
+  "status": "BLOCKED",
+  "append_only": true,
+  "supersedes": null,
+  "source_authority": {
+    "work_package": "configs/experiment/advisor-questions/q06-work-package.v1.json",
+    "existing_s1_preregistration": "configs/experiment/preregistrations/q06-gdr-context-preregistration-202610011303.json",
+    "q01_checkpoint_evidence": "docs/evidence/advisor-q01-horizon-plateau-20261001/Q01_THREE_WAY_RESULT.json",
+    "q01_bounded_analysis": "docs/evidence/advisor-q01-horizon-plateau-20261001/bounded-off-analysis.json",
+    "standing_gpu_pool_reference": "configs/experiment/activations/q06-gdr-context-202610011303-release.json"
+  },
+  "cell": {
+    "cell_id": "bounded-r120",
+    "mechanism": "Bounded State",
+    "checkpoint_id": "after_120_rounds",
+    "completed_stage2_rounds": 120,
+    "actual_parameter_update_events": 118,
+    "source_summary_sha256": "18b7212023b3c589294b66555d2d4a0d6444eb3e33a0706c14f5b4574a9964d9",
+    "evaluation_panel_sha256": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+    "source_summary_path": "/workspace/maintenance/ADVISOR-PLATEAU-COMPARE-20260930/results/off/after_120_rounds/summary.json",
+    "evaluation_tasks": 64,
+    "pass_count": 1,
+    "panel_role": "development_validation_only",
+    "final_panel_access": 0
+  },
+  "known_shared_identity": {
+    "base_model": "Qwen/Qwen3-1.7B",
+    "base_model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "common_agent_system_sha256": "7a87fa050c526907b1999ba4c0ef9c127808e4983a1f36dc646a12c6ab75caf4",
+    "common_skill_sha256": "cef31b897dbe4796d61710c13ab11630f64f043bd7df651d1faa12980163b21a",
+    "common_memory_sha256": "9a88356c084783e003d80db90a918be265d1ce481590d769453993d0e21dea6d",
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": 0,
+      "max_new_tokens": 512,
+      "max_steps": 15,
+      "repetition_penalty": 1.0,
+      "step_seed_policy": "paired_generation_seed + step_index * 100000"
+    },
+    "adapter": {
+      "candidate_checkpoint_id": "after_120_rounds",
+      "candidate_source_run": "/workspace/maintenance/ADVISOR-PLATEAU-COMPARE-20260930/results/off/after_120_rounds",
+      "relative_file": "round-119/sd-lora/bounded-state/adapter_model.safetensors",
+      "size_bytes": 205551528,
+      "adapter_sha256": "c8ef26c3c96515495703d97148c1f4845c09814b686987f7150022099c67fd11",
+      "verification": "read-only SSH stat and sha256sum; matched exact source payload",
+      "status": "VERIFIED_READ_ONLY"
+    }
+  },
+  "execution_constraints": {
+    "training_rollouts": 0,
+    "optimizer_updates": 0,
+    "teacher_calls": 0,
+    "adaptive_reruns": 0,
+    "retry_on_scientific_outcome": false,
+    "episodes": 64,
+    "passes": 1,
+    "max_generation_calls": 960,
+    "max_generated_tokens": 491520,
+    "max_scorer_forward_calls": 100000,
+    "max_scorer_input_tokens": 1000000,
+    "max_gpu_hours": 2,
+    "max_persistent_output_bytes": 1073741824,
+    "final_panel_access_allowed": false,
+    "formal_task_consumption_allowed": false,
+    "gpu_allocation_allowed": false
+  },
+  "gates": {
+    "checkpoint_identity": {
+      "status": "PASS_READ_ONLY_IDENTITY",
+      "checkpoint_id": "after_120_rounds",
+      "actual_parameter_update_events": 118,
+      "source_summary_path": "/workspace/maintenance/ADVISOR-PLATEAU-COMPARE-20260930/results/off/after_120_rounds/summary.json",
+      "source_summary_sha256": "18b7212023b3c589294b66555d2d4a0d6444eb3e33a0706c14f5b4574a9964d9",
+      "adapter_sha256": "c8ef26c3c96515495703d97148c1f4845c09814b686987f7150022099c67fd11"
+    },
+    "scoring_cost_ceiling": {
+      "status": "FROZEN",
+      "max_generation_calls": 960,
+      "max_generated_tokens": 491520,
+      "max_scorer_forward_calls": 100000,
+      "max_scorer_input_tokens": 1000000,
+      "max_gpu_hours": 2,
+      "max_persistent_output_bytes": 1073741824,
+      "accounting": "64 tasks * 15 max steps * 512 max generated tokens. The hard scorer caps are 100000 model forwards and 1000000 input tokens, enforced before each scorer forward. They are approximately 2.38x and 2.59x the corresponding largest derived single-arm Q06 endpoint costs in the existing sealed cost receipt; the R120 output records actual counts. Exceeding either cap aborts the remaining episode work, seals a failed attempt, and does not authorize retry."
+    },
+    "scorer_cost_source": {
+      "path": "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_E2_CANDIDATE_SCORING_COST_RECEIPT.json",
+      "sha256": "62c69a1418d35dce9d0df13f57af599bbe043a352d9894daf131ee48925f25c7",
+      "classification": "DERIVED_CPU_ONLY_NOT_OBSERVED_FORWARDS",
+      "largest_single_arm_forward_calls": 42073,
+      "largest_single_arm_input_tokens": 386471
+    },
+    "resource_qualification": {
+      "status": "BLOCKED",
+      "authorized_gpu_uuids": [],
+      "selected_gpu_uuid": null,
+      "standing_pool_reference": "configs/experiment/activations/q06-gdr-context-202610011303-release.json",
+      "selection_policy": "canonical owner dynamically selects one exact UUID from the established standing pool after point-of-use live-idle qualification; no co-residency is presumed without same-project evidence",
+      "preemption_allowed": false,
+      "owner_admission": null,
+      "lease": null,
+      "reason": "The canonical executor/router is not implemented and no S2-specific point-of-use admission, live-idle qualification, or lease is bound."
+    },
+    "canonical_executor_router": {
+      "status": "NOT_IMPLEMENTED",
+      "path": null,
+      "reason": "The S1 host orchestrator is not rebound as an S2 router; S2 requires its own canonical owner entrypoint."
+    },
+    "launch_qualification": {
+      "status": "NOT_RUN",
+      "receipt": null,
+      "reason": "No S2-specific prelaunch qualification has been performed."
+    },
+    "task_bearing_activation": {
+      "status": "NOT_CREATED",
+      "path": null,
+      "reason": "A zero-formal preflight activation exists separately; no distinct task-bearing S2 activation exists or authorizes formal consumption."
+    }
+  },
+  "activation_rule": "Create a distinct append-only successor contract and canonical activation only after every BLOCKED gate is resolved from authoritative evidence; never edit S1 authority or current-campaign activation to enable this cell.",
+  "blocked_reasons": [
+    "Canonical S2 executor/router implementation and launch qualification are not complete.",
+    "S2 point-of-use resource admission, live-idle qualification, and lease are not bound.",
+    "No S2 canonical activation exists."
+  ]
+}

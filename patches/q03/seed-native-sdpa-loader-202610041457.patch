@@ -1,0 +1,21 @@
+diff --git a/verl/workers/fsdp_workers.py b/verl/workers/fsdp_workers.py
+--- a/verl/workers/fsdp_workers.py
++++ b/verl/workers/fsdp_workers.py
+@@ -221,7 +221,16 @@
+             torch_dtype = PrecisionType.to_dtype(torch_dtype)
+ 
+         # override model kwargs
+-        actor_model_config = AutoConfig.from_pretrained(local_path, trust_remote_code=trust_remote_code, attn_implementation="flash_attention_2")
++        attention_backend = self.config.model.get("attn_implementation", "flash_attention_2")
++        if attention_backend not in ("flash_attention_2", "sdpa"):
++            raise ValueError("unsupported native actor/reference attention backend")
++        if attention_backend == "sdpa" and (
++            use_remove_padding or use_fused_kernels or self.ulysses_sequence_parallel_size != 1
++        ):
++            raise ValueError("native SDPA requires padded input, SP1 and no fused kernels")
++        actor_model_config = AutoConfig.from_pretrained(
++            local_path, trust_remote_code=trust_remote_code, attn_implementation=attention_backend
++        )
+                 
+         # patch for kimi-vl
+         if getattr(actor_model_config, "model_type", None) == "kimi_vl":

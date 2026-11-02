@@ -1,0 +1,100 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.11-new-positive-supervision-fit-v1",
+  "phase": "H1.11",
+  "status": "complete-fit-without-closed-loop-transfer",
+  "scientific_question": "Can newly verified positive WebShop trajectories from H1.10 be learned under matched positive/negative supervision and improve closed-loop reward on fresh tasks?",
+  "hypothesis": "SUCCESS supervision from four verified goal-5169 trajectories will fit the target and outperform matched FAILURE supervision and BASE on fresh tasks; if target fit does not transfer, the bottleneck remains state distribution or recovery.",
+  "arms": ["BASE", "FAILURE-NEW-SD-LORA", "SUCCESS-NEW-SD-LORA"],
+  "source_panel": {
+    "run_root": "/workspace/workspace/runs/phase-h1.10-new-task-state-aware-transfer-v1-20260814",
+    "source_manifest_sha256": "9fe12dd04dff86825f3100086f485f12f2497fb9a71bb9b0bd7917aa701a682f",
+    "selection_rule": "four positive and four paired valid non-positive traces from B__compact__success; pair by rollout seed; no fallback/parser/runtime error",
+    "positive": {
+      "cell": "B__compact__success",
+      "task": 5169,
+      "seeds": [2026081900, 2026081901, 2026081902, 2026081903],
+      "file_sha256": ["1b416c2252d42096d7acab148e0eb23f148f92f119d6dab55ce601db8997d857", "31e0d220091a7f2d0edb3c498c697826bd1dee571fdd0abec77b8891ca6face3", "64d242e90e442fc9e7d94d6c2164e977f23d2c41376f8bdb0182c52a17d98182", "6ffffd0441a44a92579bf45271c6326686a68f4e7d91048a4c9c234d7716599a"]
+    },
+    "negative": {
+      "cell": "B__compact__success",
+      "task": 6017,
+      "seeds": [2026081900, 2026081901, 2026081902, 2026081903],
+      "file_sha256": ["3a24e69bc14554f4c7bbfba2dc18340d3651cd41ed4c637cb4cb92dd003f1fd5", "58764e1dd82fbfbb700a324d9cb1f32df3737e3eed318fa90abdec16a2ea1bd4", "349f030bdb128c1f685705e4c4b4f29f7e433ee5f11d48dfd3e562e59dc1e1f9", "787126b805bb737ed43b21cfa65c48b096db094f3dccd7a3409c98355267decb"]
+    }
+  },
+  "evaluation_panel": {
+    "manifest": "/workspace/workspace/runs/phase-h1.11-new-positive-supervision-fit-v1-20260815/task-manifest.json",
+    "manifest_sha256": "0120266457887f2d27ee4fb741bda2bb18d533a192f14849fa0dee068d6705ec",
+    "manifest_file_sha256": "8fbd90042d681ddf89787e8e5b876b3fd8e4c73d58a5299d3323dd79b826a4f2",
+    "materializer_sha256": "0aa9931cf20acd847274f58be78f570d9c31f87cfc2c39a63b6931cdaaa32391",
+    "selection_seed": 20260820,
+    "goal_indices": [509, 714, 2709, 4111, 4170, 4849, 5678, 6602],
+    "partitions": {"A": [509, 714, 2709, 4111], "B": [4170, 4849, 5678, 6602]},
+    "exclusion_rule": "exclude Phase G, H0, H1.6, H1.8, H1.9, and all H1.10 task identities",
+    "split": "held-out-h1.11-new-supervision"
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "evaluation_seeds": [2026082000, 2026082001, 2026082002, 2026082003],
+    "temperature": 0.0,
+    "max_steps": 15,
+    "max_new_tokens": 512,
+    "evaluator": "WebShop task_score/won",
+    "training": "rank 4 q_proj/v_proj, one epoch, four optimizer steps, bfloat16; identical budget for FAILURE and SUCCESS"
+  },
+  "cell_design": "3 supervision arms x 2 fresh-task partitions = 6 cells; 16 attempts/cell; 96 total",
+  "primary_metrics": ["training loss and teacher-forced target log-probability", "fresh-task valid rate", "qualified positive rate", "SUCCESS minus FAILURE/BASE paired reward"],
+  "diagnostic_metrics": ["parser/fallback rate", "trajectory length", "Next > count", "buy-now transitions", "task heterogeneity", "source trace contamination checks"],
+  "result": {
+    "run_root": "/workspace/workspace/runs/phase-h1.11-new-positive-supervision-fit-v1-20260815",
+    "code_sha": "774d0531d38184fca8dfae650a5725439c6fbe34",
+    "reconciliation": "/workspace/workspace/runs/phase-h1.11-new-positive-supervision-fit-v1-20260815/evidence/h1.11-reconciliation-v1.json",
+    "reconciliation_sha256": "cad44737f8d1c792ec3ea1af39cd0967eab1910451452e9fb82bbc57d7441206",
+    "reconciliation_script": "scripts/openevo_webshop/h1_11_reconcile.py",
+    "reconciliation_script_sha256": "d8e2ef339aa8b6fd918e051f2b4084d7ccc87b0ea3f17bc920b500f167c9a401",
+    "postmortem": "/workspace/workspace/runs/phase-h1.11-new-positive-supervision-fit-v1-20260815/evidence/h1.11-postmortem-v1.json",
+    "postmortem_sha256": "480c8e07b06da218f8597fc8ecfc9269ca7e9946b63d66eefe163ce4a38bdce1",
+    "training": {
+      "success_loss": 0.4874048940837383,
+      "failure_loss": 0.9140076860785484,
+      "success_evidence_sha256": "4e9525ba17ece087b63d60b16ed5f3fa1416dd7631445220e6c62c365dfd46a3",
+      "failure_evidence_sha256": "a27bb3367f6245e99fbe3006c1dd9566a40da788f7d7d2d1f6369d25b216858d"
+    },
+    "teacher_forced": {
+      "base_mean_logprob": -0.26886156643824594,
+      "failure_mean_logprob": -0.26808957542528944,
+      "success_mean_logprob": -0.26112509955168806,
+      "token_count_per_arm": 2428
+    },
+    "closed_loop": {
+      "attempts": 96,
+      "valid": 84,
+      "qualified_positive": 20,
+      "runtime_errors": 0,
+      "cells": {
+        "base_A": {"valid": 16, "qualified_positive": 4, "mean_task_score": 0.16675},
+        "base_B": {"valid": 12, "qualified_positive": 4, "mean_task_score": 0.01875},
+        "failure_A": {"valid": 16, "qualified_positive": 4, "mean_task_score": 0.0125},
+        "failure_B": {"valid": 12, "qualified_positive": 4, "mean_task_score": 0.00625},
+        "success_A": {"valid": 16, "qualified_positive": 0, "mean_task_score": 0.0},
+        "success_B": {"valid": 12, "qualified_positive": 4, "mean_task_score": 0.01875}
+      },
+      "classification": "positive-supervision-closed-loop-not-supported"
+    },
+    "excluded_runtime_attempts": 80,
+    "claim_boundary": "Matched new-supervision fit and fresh-task closed-loop test only; no benchmark/generalization claim, no D0 opening."
+  },
+  "stop_branch": {
+    "closed_loop_gain": "SUCCESS-NEW exceeds BASE and FAILURE-NEW on both partitions: proceed to Q4 closed-loop confirmation; D0 remains closed",
+    "fit_without_transfer": "SUCCESS target fit improves but fresh-task reward does not: retain supervision/state-distribution mismatch and do not open D0",
+    "no_fit": "SUCCESS does not fit above matched FAILURE: inspect trainer/objective before any new method claim",
+    "runtime_failure": "exclude invalid cells and open a separate repair group"
+  },
+  "claim_boundary": "Matched new-supervision fit and fresh-task closed-loop test only; no benchmark/generalization claim, no D0 opening, no SEED comparison."
+}

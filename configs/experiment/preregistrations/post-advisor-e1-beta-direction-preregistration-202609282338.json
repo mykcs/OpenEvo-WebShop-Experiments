@@ -1,0 +1,50 @@
+{
+  "campaign_id": "20260928-2338-post-advisor-unanswered",
+  "experiment_id": "202609282338-post-advisor-e1-beta-direction",
+  "formal_task_consumption_allowed": false,
+  "frozen_scientific_contract": {
+    "beta_grid": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "beta_selection": "Minimum NLL on the same current+replay training batches used to fit the raw update; no reward or Task Score selection.",
+    "development_panel_task_count": 64,
+    "execution_sha": "6b4ff4503adc9494c949f654521f09ee52ec28b4",
+    "external_teacher_call_limit": 0,
+    "final_panel_access_limit": 0,
+    "fork_origin": "R151_AFTER",
+    "formal_rollout_limit": 1024,
+    "historical_rank128_control_rerun": false,
+    "max_steps": 15,
+    "persistent_state_rank": 128,
+    "question": "Does a direction-preserving magnitude gate improve Bounded WebShop behavior?",
+    "rollouts_per_round": 128,
+    "rounds": [
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159
+    ],
+    "treatment": "Normalize each nonzero raw LoRA delta by its Frobenius norm and apply positive beta times the delta; zero delta is no-op with undefined cosine."
+  },
+  "schema": "openevo.experiment-post-advisor-e1-beta-direction-preregistration.202609282338",
+  "source_artifacts": {
+    "design": "configs/experiment/designs/post-advisor-unanswered-202609282338.json",
+    "design_sha256": "65cebfddc2962488c95cc218820bedba704b65f611e927edaefa94f68524acd4",
+    "r151_adapter_model": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/round-151/sd-lora/bounded-state/adapter_model.safetensors",
+    "r151_adapter_model_sha256": "812e64cff1efc55d3eb7e293876c0ab8658734b42486898306e3a338335d784a",
+    "r151_health": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/round-151/carrier-health-boundary.json",
+    "r151_health_sha256": "e3aba5ad5136d080cd8168cecd21b0b3cc0ab927daab414cccc447c79ee2ecc9",
+    "r151_state": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/round-151/state-after.json",
+    "r151_state_sha256": "4303d03d3e58ec25807ed835d1c03b3554a8fb92f3f19d7cd00855b54088aba7",
+    "short_fork_authority": "configs/experiment/activations/post-advisor-e1-beta-direction-authority-202609282338.json",
+    "short_fork_authority_sha256": "302f4cb0e8c7cd5c6bcbd01a69120454163326d93baa865802a9b76303679704"
+  },
+  "status": "FROZEN_PRELAUNCH"
+}

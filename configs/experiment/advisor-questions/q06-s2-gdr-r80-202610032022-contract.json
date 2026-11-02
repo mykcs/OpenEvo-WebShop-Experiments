@@ -1,0 +1,92 @@
+{
+  "append_only": true,
+  "cell": {
+    "actual_parameter_update_events": 74,
+    "cell_id": "gdr-r80",
+    "checkpoint_id": "after_080_rounds",
+    "completed_stage2_rounds": 80,
+    "evaluation_panel_sha256": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+    "evaluation_tasks": 64,
+    "final_panel_access": 0,
+    "lineage_id": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/on",
+    "mechanism": "Effective-State GDR ON",
+    "panel_role": "development",
+    "pass_count": 1,
+    "source_summary_path": "/workspace/maintenance/ADVISOR-PLATEAU-COMPARE-20260930/results/on/after_080_rounds/summary.json",
+    "source_summary_sha256": "faaf33f3d55c28bfebc8cf737900084b01ac560977e23a3a98fe18c968606705"
+  },
+  "claim_boundary": "One remaining S2 fixed checkpoint evaluation; no independent prospective prediction confirmation or causal claim.",
+  "contract_id": "q06-s2-gdr-r80-202610032022",
+  "execution_constraints": {
+    "adaptive_reruns": 0,
+    "episodes": 64,
+    "final_panel_access_allowed": false,
+    "formal_task_consumption_allowed": true,
+    "gpu_allocation_allowed": true,
+    "max_generated_tokens": 491520,
+    "max_generation_calls": 960,
+    "max_persistent_output_bytes": 1073741824,
+    "max_scorer_forward_calls": 2000000,
+    "max_scorer_input_tokens": 20000000,
+    "optimizer_updates": 0,
+    "passes": 1,
+    "retry_on_scientific_outcome": false,
+    "teacher_calls": 0,
+    "training_rollouts": 0
+  },
+  "gates": {
+    "post_load_write_gate": "UID1001 write/fsync/rename before first model generation",
+    "runtime_qualification": "canonical oe exact runtime fingerprint and selected GPU preflight required at use",
+    "task_bearing_activation": {
+      "path": "configs/experiment/activations/q06-s2-gdr-r80-202610032022-current-campaign.json",
+      "status": "PASS_BOUND_EXACT_CONTRACT_ONLY"
+    }
+  },
+  "known_shared_identity": {
+    "adapter": {
+      "adapter_config_sha256": "cbd30da3262c20cd0df9542d7577d14568db14e7d9cbb69291c0182da96d4ee8",
+      "adapter_sha256": "5c84fb20bb51433bed520d0e4aa9a7b2d6169db4d89c850a94ecbc4bfa077957",
+      "candidate_checkpoint_id": "after_080_rounds",
+      "candidate_source_run": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/on",
+      "relative_file": "round-079/sd-lora/bounded-state/adapter_model.safetensors",
+      "size_bytes": 205551528,
+      "status": "VERIFIED_READ_ONLY"
+    },
+    "base_model": "Qwen/Qwen3-1.7B",
+    "base_model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "common_agent_system_sha256": "7a87fa050c526907b1999ba4c0ef9c127808e4983a1f36dc646a12c6ab75caf4",
+    "common_memory_sha256": "9a88356c084783e003d80db90a918be265d1ce481590d769453993d0e21dea6d",
+    "common_skill_sha256": "cef31b897dbe4796d61710c13ab11630f64f043bd7df651d1faa12980163b21a",
+    "sampling": {
+      "max_new_tokens": 512,
+      "max_steps": 15,
+      "repetition_penalty": 1.0,
+      "step_seed_policy": "paired_generation_seed + step_index * 100000",
+      "temperature": 1.0,
+      "top_k": 0,
+      "top_p": 1.0
+    }
+  },
+  "matrix_contract": {
+    "path": "configs/experiment/advisor-questions/q06-remaining-matrix-202610032022.json",
+    "sha256": "5178fe34066b196622e6b34762c60b2401539409e9001816c4b3bcc5bb4d2886"
+  },
+  "observation_contract": {
+    "action_context": "exact constrained-action input token IDs copied before action generation; no decoded reconstruction",
+    "event_order": "copy inputs before generate; uncertainty observed before env.step; no post-action feature inputs",
+    "producer_sha256": "2906ef13392f182d1cf4a644b69ff19cd8f177c74b35ffd18896459e77130070",
+    "schema": "openevo.q06.pre-action-state.v1",
+    "state_type_definition": "q06-available-actions-v1: has_search_bar => search; else clickables contain buy now or start with description/features => product; else results",
+    "token_counts": "exact independently tokenized prompt and rendered history, add_special_tokens=False"
+  },
+  "question_id": "Q06_TOKEN_CLICK_ENTROPY",
+  "resource_limit_provenance": {
+    "classification": "AGENT_PLANNING_ESTIMATE_NOT_TASK_STOP_AUTHORITY",
+    "protective_limits": "finite per-process forward/token/storage guards; engineering failure preserves raw output and returns to exact recovery without scientific outcome retry",
+    "source": "user continuing Q06 original work package plus current zju-server experiment-execution-policy.md sections 6.1/7/10; sample/pass/seed constraints from original Q06 matrix",
+    "wall_time_limit": null
+  },
+  "schema": "openevo.q06.s2-prospective-cell-contract.v1",
+  "stage": "S2",
+  "status": "LAUNCH_AUTHORIZED"
+}

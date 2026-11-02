@@ -1,0 +1,25 @@
+# Host runtime for OpenEvo x WebShop P0 on RTX6.
+# Python >=3.11 is required by OpenEvo and openevo-webshop.
+# vLLM 0.8.5 pins torch 2.6.0 and supports transformers >=4.51.1.
+# Keep this list intentionally narrower than the full interactive WebShop UI
+# requirements; contract tests / real env imports will reveal any additional
+# runtime-only dependency rather than pulling unrelated Gradio/browser tooling.
+
+vllm==0.8.5
+torch==2.6.0
+transformers==4.51.1
+numpy==1.26.4
+gym==0.24.0
+httpx>=0.27.0,<1
+pydantic==2.10.6
+pytest==8.3.5
+pyserini==0.17.0
+spacy==3.7.2
+PyYAML==6.0.2
+beautifulsoup4==4.11.1
+Flask==2.1.2
+requests==2.27.1
+rank_bm25==0.2.2
+thefuzz==0.19.0
+tqdm==4.64.0
+Werkzeug==2.1.0

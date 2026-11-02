@@ -1,0 +1,52 @@
+{
+  "campaign_id": "20260928-2338-post-advisor-unanswered",
+  "container_root": "/workspace",
+  "host_root": "/workspace",
+  "paths": {
+    "cache": {
+      "access": "rw",
+      "container_path": "/workspace/cache",
+      "expected_type": "dir",
+      "host_path": "/workspace/cache",
+      "writable": true
+    },
+    "dataset": {
+      "access": "ro",
+      "container_path": "/workspace/data",
+      "expected_type": "dir",
+      "host_path": "/workspace/datasets/webshop-1000"
+    },
+    "experiment": {
+      "access": "ro",
+      "container_path": "/workspace/src/openevo-experiment",
+      "expected_type": "dir",
+      "host_path": "/workspace/control/post-advisor-integration-202609300734"
+    },
+    "model": {
+      "access": "ro",
+      "container_path": "/workspace/models/qwen3-1.7b-seed-runtime-70d244",
+      "expected_type": "dir",
+      "host_path": "/workspace/models/qwen3-1.7b-seed-runtime-70d244"
+    },
+    "openevo": {
+      "access": "ro",
+      "container_path": "/workspace/src/openevo-core",
+      "expected_type": "dir",
+      "host_path": "/workspace/control/openevo-core"
+    },
+    "run_root": {
+      "access": "rw",
+      "container_path": "/workspace/runs",
+      "expected_type": "dir",
+      "host_path": "/workspace/runs/post-advisor-unanswered-20260928",
+      "writable": true
+    }
+  },
+  "requirements": {
+    "clean_core_must_remain_immutable": true,
+    "container_visible_read_write_probe_required": true,
+    "cpu_no_gpu_probe_before_allocation": true,
+    "exact_host_container_mapping": true
+  },
+  "schema": "openevo.e3-rank-capacity-checkout-path-contract.202609300734"
+}

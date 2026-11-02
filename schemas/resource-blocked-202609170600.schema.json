@@ -1,0 +1,57 @@
+{
+  "$id": "openevo.resource-blocked.202609170600",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "block_class": {
+      "enum": [
+        "CAPACITY_UNAVAILABLE",
+        "HOST_CAPACITY_UNAVAILABLE",
+        "UUID_DRIFT",
+        "UNQUALIFIED_TOPOLOGY",
+        "PLACEMENT_UNAVAILABLE",
+        "LEASE_STATE_AMBIGUOUS"
+      ]
+    },
+    "block_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "operation_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "request_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "retryable_resource_wait": {
+      "type": "boolean"
+    },
+    "schema": {
+      "const": "openevo.resource-blocked.202609170600"
+    },
+    "scientific_retry_authorized": {
+      "const": false
+    },
+    "scientific_state_mutated": {
+      "const": false
+    },
+    "side_effect_materialized": {
+      "const": false
+    }
+  },
+  "required": [
+    "schema",
+    "block_id",
+    "request_id",
+    "operation_id",
+    "block_class",
+    "retryable_resource_wait",
+    "scientific_state_mutated",
+    "side_effect_materialized",
+    "scientific_retry_authorized"
+  ],
+  "title": "OpenEVO typed resource block",
+  "type": "object"
+}

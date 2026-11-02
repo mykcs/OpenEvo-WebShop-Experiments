@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/server-run-passport.schema.json",
+  "title": "OpenEVO Server Run Passport",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema", "passport_status", "passport_id", "record_scope",
+    "provider_observation_id", "server_run_root", "legacy_run_name",
+    "canonical_root_id", "canonical_run_id", "root_role",
+    "canonical_resolution", "field_resolution", "scientific_identity",
+    "scientific_state", "source_identity", "provider_bindings",
+    "provider_references", "retention", "evidence", "resolution_action"
+  ],
+  "properties": {
+    "schema": {"const": "openevo.server-run-passport.v1"},
+    "passport_status": {"const": "ISSUED"},
+    "passport_id": {"type": "string", "minLength": 1},
+    "record_scope": {"const": "server-top-level-run-root"},
+    "provider_observation_id": {"type": "string", "minLength": 1},
+    "server_run_root": {"type": "string", "minLength": 1},
+    "legacy_run_name": {"type": "string", "minLength": 1},
+    "canonical_root_id": {"type": "string", "minLength": 1},
+    "canonical_run_id": {"type": ["string", "null"]},
+    "root_role": {"type": "string", "minLength": 1},
+    "canonical_resolution": {
+      "type": "object",
+      "required": ["state", "evidence_grade", "reason", "missing_fields"],
+      "properties": {
+        "state": {"enum": ["RESOLVED", "STRONGLY_PARTIAL", "PARTIAL", "LEGACY_UNCERTAIN"]},
+        "evidence_grade": {"enum": ["A", "B", "C", "D"]},
+        "reason": {"type": "string", "minLength": 1},
+        "missing_fields": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "field_resolution": {
+      "type": "object",
+      "required": ["campaign", "design", "model", "stage", "source_git", "canonical_scientific_run"],
+      "properties": {
+        "campaign": {"enum": ["resolved", "ambiguous", "unresolved", "not-applicable"]},
+        "design": {"enum": ["resolved", "ambiguous", "unresolved", "not-applicable"]},
+        "model": {"enum": ["resolved", "unresolved", "not-applicable"]},
+        "stage": {"enum": ["resolved", "unresolved", "not-applicable"]},
+        "source_git": {"enum": ["resolved", "referenced-only", "unresolved", "not-applicable"]},
+        "canonical_scientific_run": {"enum": ["resolved", "unresolved", "not-applicable"]}
+      }
+    },
+    "provider_bindings": {"type": "array", "items": {"type": "object"}},
+    "provider_references": {"type": "array", "items": {"type": "object"}},
+    "retention": {
+      "type": "object",
+      "required": ["identity_retention", "local_bytes", "safe_to_delete"],
+      "properties": {
+        "identity_retention": {"const": "PERMANENT"},
+        "local_bytes": {"type": "string", "minLength": 1},
+        "safe_to_delete": {"const": false}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["selected_file_count", "selected_files", "evidence_digest_sha256"],
+      "properties": {
+        "selected_file_count": {"type": "integer", "minimum": 0},
+        "selected_files": {"type": "array"},
+        "evidence_digest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "resolution_action": {"type": "string", "minLength": 1}
+  }
+}

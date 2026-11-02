@@ -1,0 +1,138 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.28-action-label-fidelity-diagnostic-v1",
+  "campaign_id": "20260816-2130-h128-label-fidelity",
+  "phase": "H1.28",
+  "status": "completed-negative",
+  "scientific_question": "On identical deterministic oracle-success states, does replacing imperfect teacher next-action targets with exact oracle-path actions produce fresh-task closed-loop improvement?",
+  "hypothesis": "H1.18 was confounded because only 36 of 96 teacher actions matched the deterministic successful path. If action-label fidelity is causal, ORACLE-ACTION should selectively outperform both the matched TEACHER-ACTION control and BASE on fresh tasks.",
+  "independent_variable": "next-action supervision target only: H1.18 teacher action versus exact metadata.oracle_action",
+  "arms": {
+    "BASE": "frozen Qwen2.5-3B-Instruct with no adapter",
+    "TEACHER-ACTION": "existing H1.18 rank-4 SD-LoRA adapter trained on the 96 teacher-action records",
+    "ORACLE-ACTION": "new rank-4 SD-LoRA adapter trained on the same 96 prompts/states with exact deterministic oracle-action targets"
+  },
+  "cpu_audit": {
+    "path": "docs/evidence/remote-runs/2026-08-16/h1.28/evidence/h1.28-experience-content-audit-v1.json",
+    "file_sha256": "d401a6079c7147428bf89ba770de44851fbf4b2b26e7b36e76fdac37df907b71",
+    "teacher_oracle_compared": 96,
+    "teacher_oracle_exact": 36,
+    "teacher_oracle_mismatch": 60,
+    "teacher_oracle_exact_rate": 0.375,
+    "claim_boundary": "The audit establishes a supervision-fidelity confound, not causal transfer or Q3."
+  },
+  "training_panel": {
+    "task_ids": [2655, 3420, 3768, 5216, 5457, 6624],
+    "acquisition_seeds": [2026082600, 2026082601, 2026082602, 2026082603],
+    "records_per_arm": 96,
+    "states_per_task_per_seed": 4,
+    "state_selection": "the same first four pre-buy deterministic oracle-success states used by H1.18",
+    "teacher_action_source_records_sha256": "5c8dffdb4e10e20b307f16e585765251a262f7fa0ff7ea2753ef7fdeb8805e45",
+    "oracle_action_dataset": {
+      "manifest_path": "docs/evidence/remote-runs/2026-08-16/h1.28/manifests/h1.28-oracle-action-dataset-manifest.json",
+      "manifest_file_sha256": "701789e9c1309f4d343f522e50a6c147d0183830d057ea39f65cfd8ee8b83609",
+      "records_sha256": "448c86a09306e8659fe9bdd77007cae27be3d24f3d0b7ff0917e708b82d63e47",
+      "records_byte_size": 432224,
+      "prompt_sequence_sha256": "5f9ee68c3e3c31f83db9fbdc9f139e18cd045f19ebc47bc55334343d6e2e9fb1",
+      "changed_target_count": 60,
+      "unchanged_target_count": 36
+    },
+    "teacher_action_adapter": {
+      "server_path": "/workspace/workspace/runs/phase-h1.18-reachability-filtered-recovery-diagnostic-v1-20260815/artifacts/h1.18-success-state-fit-online-gpu0-v2/workers/sd-lora-51af9d6482c175e4834cbda7fa49bd79/adapter",
+      "wandb_run_id": "e4y9xqfe",
+      "adapter_model_sha256": "8672ad93d860fff3dacc1a987811deb5b65426d65b854e3b9b41b3a1ce69afa2",
+      "state_weights_sha256": "c7ede1f5143d953632a026e2dec3b0676e0a79b42d46282080a4f7a88c35de35"
+    }
+  },
+  "evaluation_panel": {
+    "manifest_path": "docs/evidence/remote-runs/2026-08-16/h1.28/manifests/h1.28-task-manifest.json",
+    "manifest_sha256": "130ffcda0efa28085dc5bffd17711590196075ad980f39301342281a0f558726",
+    "manifest_file_sha256": "bb380de563289614f5969f5e45c97dc5dc2561490e1575db755b82b63d8fe6a0",
+    "selection_seed": 20260852,
+    "task_ids": [680, 688, 1101, 2532, 4819, 4924, 5469, 6228],
+    "partitions": {"P1": [680, 688], "P2": [1101, 2532], "P3": [4819, 4924], "P4": [5469, 6228]},
+    "evaluation_seeds": [2026085200, 2026085201, 2026085202, 2026085203],
+    "arms": ["base", "teacher-action", "oracle-action"],
+    "cells": 24,
+    "attempts": 96,
+    "task_role": "fresh held-out evaluation only; no outcome or trace may enter training"
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "tokenizer_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "runtime_wandb_patch_sha256": "fb7c6a5ddd78404a3dceb92ccde93d9e2806af2d828304b9815dd6b2fb8c554c",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "training": {
+      "rank": 4,
+      "target_modules": ["q_proj", "v_proj"],
+      "learning_rate": 0.0002,
+      "coefficient_learning_rate": 0.01,
+      "coefficient_init": 0.8,
+      "epochs": 1,
+      "max_steps": 4,
+      "max_length": 512,
+      "max_records": 96,
+      "replay_capacity": 64,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 1,
+      "gradient_checkpointing": true,
+      "dtype": "bfloat16",
+      "seed": 1993
+    }
+  },
+  "contamination_check": {
+    "prior_versioned_goal_count": 99,
+    "prior_goal_indices_sha256": "84e033031b478a2ca0d240adaaf253d121c1597e650b91d7adc820cde3206c18",
+    "selected_prior_source_matches_empty": true,
+    "training_evaluation_task_overlap": false,
+    "teacher_oracle_used_during_evaluation": false,
+    "evaluation_outcomes_used_for_selection": false
+  },
+  "metrics": {
+    "primary": ["scientific-valid qualified-positive rate by arm and task", "mean final task_score over scientific-valid attempts", "paired ORACLE-ACTION minus TEACHER-ACTION task_score", "paired ORACLE-ACTION minus BASE task_score"],
+    "invalid": ["runtime error", "identity mismatch", "incomplete trace", "parser or fallback failure"],
+    "diagnostic": ["buy-now transition", "action-kind counts", "episode length", "W&B and GPU duration"]
+  },
+  "positive_rule": "ORACLE-ACTION strictly exceeds both BASE and TEACHER-ACTION on aggregate complete-valid paired score and on at least two task identities for which all four seed trios are valid; then preregister independent new-task/new-seed confirmation before Q3.",
+  "negative_rule": "If ORACLE-ACTION does not satisfy the positive rule, stop 3B parametric rescue variants and redesign agent/task decomposition; keep Q3, H2, D0, retention, transfer, and SEED locked.",
+  "invalid_rule": "Exclude invalid attempts from scientific denominators and repair only the runtime/provenance fault without changing tasks, seeds, labels, arms, or protocol.",
+  "resource_budget": {"new_training_runs": 1, "evaluation_cells": 24, "evaluation_waves": 3, "planned_gpus": 8, "gpu_hours_cap": 4, "no_retry_after_valid_completion": true},
+  "runtime_contract": {
+    "control_plane": "experiment-host inside experiment-host",
+    "scientific_uid_gid": "1001:1001",
+    "container_image": "experiment-host/openevo-scientific:qwen25-3b-webshop-20260814",
+    "container_image_digest": "sha256:ce92e587e7c934827025c001fd9b70ec4cb6de2deacfdf9f0cc0777d3ab928f1",
+    "python_venv": "/workspace/openevo-workspace/runtime/phase-g-live-20260814/env",
+    "python_venv_mount": "read-only at the same absolute path",
+    "python_freeze_sha256": "d7220829d4fc81e232523ea3aa22adfb4b55dba95d8236605a3e6f26b3b379d4",
+    "code_materialization_git_sha": "ecf07da78605568c3bd3fb730177febae3196970",
+    "run_root": "/workspace/workspace/runs/phase-h1.28-action-label-fidelity-v1-20260816",
+    "formal_execution_git_sha": "must equal the launch-authorized server clone HEAD and is recorded by every run plus reconciliation"
+  },
+  "tracking": {"entity": "example-entity", "project": "openevo-webshop-experiments", "group": "20260816-2130-h128-label-fidelity", "default_mode": "online", "offline_fallback": "only after an exact online initialization/upload failure is captured with error and spool hash"},
+  "launch_gate": "Authorized after model-ID/read-only-cache repair 0cab706 and green CPU CI run 31951298857 at head 762e234 (39 unittest tests); the launcher repeated runtime, CUDA, W&B, resource, cache, dataset, adapter, and exact-revision gates before formal consumption.",
+  "completion": {
+    "classification": "label-fidelity-not-supported",
+    "execution_git_sha": "42f6c2f6fbaa1c25015211cd03e9b5869f867566",
+    "ci_run_id": 31953233972,
+    "training_wandb_run_id": "nu779hpq",
+    "attempts": 96,
+    "scientific_valid_attempts": 84,
+    "parser_failure_attempts": 12,
+    "runtime_error_attempts": 0,
+    "complete_valid_tasks": 7,
+    "positive_task_ids": [],
+    "paired_delta_sums": {"oracle_minus_base": -0.3, "oracle_minus_teacher": -0.3},
+    "arm_mean_score_valid": {"BASE": 0.09014285714285718, "TEACHER-ACTION": 0.09014285714285718, "ORACLE-ACTION": 0.07942857142857143},
+    "gpu_hours": 0.779922053,
+    "decision": "Stop 3B parametric rescue variants and redesign agent/task decomposition; Q3, H2, ordinary-LoRA comparison, retention, transfer, and SEED remain locked."
+  },
+  "claim_boundary": "Matched action-label-fidelity diagnostic only; no Q3, H2, ordinary-LoRA comparison, retention, transfer, SEED, or general OpenEvo efficacy claim without independent confirmation."
+}

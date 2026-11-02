@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/experiment-provider-observation.schema.json",
+  "title": "OpenEvo Experiment Provider Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "observation_id", "provider", "provider_kind", "provider_id", "resolution_state", "security_class", "program_relevance", "canonical_id", "source_inventory_sha256", "observed_at_epoch", "metadata"],
+  "properties": {
+    "schema": {"const": "openevo.experiment-provider-observation.v1"},
+    "observation_id": {"type": "string", "pattern": "^obs-[a-z]+-[0-9a-f]{20}$"},
+    "provider": {"enum": ["server", "wandb", "huggingface", "kaggle", "github", "basemodel"]},
+    "provider_kind": {"type": "string", "minLength": 1},
+    "provider_id": {"type": "string", "minLength": 1},
+    "resolution_state": {"enum": ["unresolved", "candidate", "canonical-bound", "legacy-alias", "non-program", "sensitive-hold"]},
+    "security_class": {"enum": ["scientific", "scientific-or-support", "support", "non-scientific-credential-transport", "unknown"]},
+    "program_relevance": {"enum": ["openevo-related", "non-openevo", "unknown"]},
+    "canonical_id": {"type": ["string", "null"]},
+    "source_inventory_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "observed_at_epoch": {"type": "number"},
+    "metadata": {"type": "object"}
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$id": "openevo.lease-release.202609170600",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "all_resources_released": {
+      "type": "boolean"
+    },
+    "lease_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "placement_group_released": {
+      "type": "boolean"
+    },
+    "release_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "release_receipt_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "released_gpu_indices": {
+      "items": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "request_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "openevo.lease-release.202609170600"
+    },
+    "scientific_authority_granted": {
+      "const": false
+    }
+  },
+  "required": [
+    "schema",
+    "release_id",
+    "lease_id",
+    "request_id",
+    "release_receipt_identity",
+    "released_gpu_indices",
+    "placement_group_released",
+    "all_resources_released",
+    "scientific_authority_granted"
+  ],
+  "title": "OpenEVO lease release",
+  "type": "object"
+}

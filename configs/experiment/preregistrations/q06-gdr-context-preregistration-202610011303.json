@@ -1,0 +1,78 @@
+{
+  "campaign_id": "20260928-2338-post-advisor-unanswered",
+  "experiment_id": "202610011303-q06-gdr-context",
+  "external_teacher_call_limit": 0,
+  "final_panel_access_limit": 0,
+  "formal_rollout_limit": 64,
+  "formal_task_consumption_allowed": false,
+  "frozen_scientific_contract": {
+    "adaptive_reruns": 0,
+    "candidate_scoring_accounting": "Count diagnostic computation separately; it adds zero environment episodes.",
+    "claim_boundary": "Historical GDR ON mechanism-family context; no assertion of plotted meeting-run identity or entropy causality.",
+    "common_carriers": {
+      "agent_system_path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-readiness/qwen3-1p7b/harness201-final-v2-generic/agent.md",
+      "agent_system_sha256": "7a87fa050c526907b1999ba4c0ef9c127808e4983a1f36dc646a12c6ab75caf4",
+      "memory_path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/round-065/text-memory/memory.md",
+      "memory_sha256": "9a88356c084783e003d80db90a918be265d1ce481590d769453993d0e21dea6d",
+      "skill_path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-readiness/qwen3-1p7b/harness201-final-v2-generic/skill.md",
+      "skill_sha256": "cef31b897dbe4796d61710c13ab11630f64f043bd7df651d1faa12980163b21a"
+    },
+    "comparisons": "Reuse sealed Bounded and scalar-beta outputs; no rerun.",
+    "endpoints": [
+      "historical_gdr_r159_rank128"
+    ],
+    "execution_sha": "0e1ea4bbb62215be71a68f206eabf442c0227f58",
+    "final_panel_access_allowed": false,
+    "fixed_passes_per_endpoint": 1,
+    "manifest": {
+      "path": "docs/evidence/advisor-q06-e2-paired-analysis-20261001/Q06_GDR_CONTEXT_PROBE_MANIFEST.json",
+      "sha256": "edcaaf2b216e3f8713574105e52037675ef3ea091b81892d557dda4af2f9c33c"
+    },
+    "metrics": [
+      "reasoning token entropy mean/p90",
+      "constrained-action token entropy",
+      "selected-action NLL",
+      "top1-top2 logit margin",
+      "conditional click-destination entropy",
+      "click-destination HHI/top-3 concentration",
+      "output tokens per step/episode",
+      "episode steps",
+      "Task Score/exact success"
+    ],
+    "model": {
+      "base_model": "Qwen/Qwen3-1.7B",
+      "local_model_path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b",
+      "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+    },
+    "optimizer_updates": 0,
+    "panel_sha256": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+    "panel_tasks_per_endpoint": 64,
+    "prior_evidence_accounting": {
+      "preserved_authorized_failed_bounded_slots": 64,
+      "remaining_context_episodes": 64,
+      "sealed_existing_endpoint_episodes": 128,
+      "total_attempt_slots_after_context": 256
+    },
+    "question_id": "Q06_TOKEN_CLICK_ENTROPY",
+    "sampling": {
+      "max_new_tokens": 512,
+      "max_steps": 15,
+      "repetition_penalty": 1.0,
+      "step_seed_policy": "paired_generation_seed + step_index * 100000",
+      "temperature": 1.0,
+      "top_k": 0,
+      "top_p": 1.0
+    },
+    "scientific_authority": {
+      "git_sha": "2f0eaae6462cc25b6e1799dbc5524fb3d9aa6e10",
+      "path": "docs/science/webshop/advisor-questions/2026-09-22/Q06_TOKEN_CLICK_ENTROPY.md",
+      "sha256": "476d442fa48240f5745c16c63458befef53389ab7642241af31f6397e7b4dbff"
+    },
+    "teacher_calls": 0,
+    "total_probe_episodes": 64,
+    "training_rollouts": 0
+  },
+  "schema": "openevo.q06.context-probe-preregistration.202610011303",
+  "status": "FROZEN_SCIENCE_PRELAUNCH",
+  "stop_rule": "One fixed 64-task context pass; zero adaptive reruns. Preserve failed or partial consumption. Final panel remains locked."
+}

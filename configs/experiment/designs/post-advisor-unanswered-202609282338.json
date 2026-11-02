@@ -1,0 +1,198 @@
+{
+  "final_panel_access": 0,
+  "schema": "openevo.post-advisor-unanswered-experiments.202609282338",
+  "revision": "202609282338",
+  "status": "PREREGISTERED_OWNER_AUTHORIZED_PENDING_ZERO_FORMAL_PREFLIGHT",
+  "scientific_source": {
+    "advisor_raw": "docs/evidence/advisor/liaochang/2026-09-22-meeting-transcript.raw.md",
+    "reconciliation_pr": 608,
+    "post_advisor_completed_pr": 597,
+    "q17_plateau_pr": 588
+  },
+  "user_authorization": {
+    "recorded_date": "2026-09-28",
+    "scope": "Execute all still-unanswered experiments derived from the 2026-09-22 liaochang meeting after the plan is written; all eight established RTX 5090 GPUs may be used.",
+    "final_panel_unlock": false
+  },
+  "global_boundaries": {
+    "final_panel_access": 0,
+    "do_not_rerun": [
+      "ordinary SFT vs OPSD development comparison",
+      "ordinary SFT 3-epoch budget sensitivity",
+      "Q17 DirectApply held-out plateau study",
+      "post-advisor rank32 R152-R159 arm",
+      "historical rank128 R152-R159 continuation"
+    ],
+    "development_panel": {
+      "size": 64,
+      "sha256": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+      "role": "development/held-out only; not final panel"
+    },
+    "formal_training_stream": "reuse frozen canonical WebShop Small task/seed schedules where applicable",
+    "adaptive_task_selection": false,
+    "outcome_based_early_stop": false
+  },
+  "experiments": [
+    {
+      "id": "E1_DIRECTION_PRESERVING_SCALAR_GATE",
+      "question": "Does a magnitude-only adaptive gate avoid the direction distortion criticized in the 2026-09-22 meeting while preserving or improving Bounded behavior?",
+      "start": "sealed Q17/BOR R151-after identity used by post-advisor rank32 work",
+      "baseline": "reuse already-sealed historical rank128 Bounded R152-R159; do not rerun baseline",
+      "treatment": {
+        "persistent_rank": 128,
+        "rounds": "R152-R159",
+        "formal_rollouts": 1024,
+        "raw_update_training": "identical objective/data/replay semantics to matched Simple Bounded",
+        "gate": "For nonzero delta, normalize exactly by ||delta||_F and write beta*delta; for zero delta record a no-op and undefined cosine. Select beta from [0.25,0.5,0.75,1.0] by minimum NLL on the same current+replay training batches used to fit the raw update.",
+        "reward_or_task_score_used_to_choose_beta": false,
+        "direction_invariant": "For nonzero delta, cos(delta, gated_delta)=1 by construction. Beta=0 is excluded prospectively before formal consumption so replay/noop semantics cannot become a second treatment variable; zero updates have undefined cosine.",
+        "selector_scope": "within-training-objective selector; this protocol makes no claim that beta selection generalizes",
+        "selector_reporting": "per-round loss and sample count for every beta, selected beta for each round, and selection frequencies across R152-R159"
+      },
+      "primary_metrics": [
+        "mean Task Score",
+        "exact success",
+        "paired Task Score difference vs historical rank128"
+      ],
+      "mechanism_metrics": [
+        "beta_t",
+        "pre/post gate cosine",
+        "delta Frobenius norm",
+        "persistent-state rank/payload",
+        "update latency"
+      ],
+      "stop_rule": "complete exactly R152-R159 or stop only on typed integrity/runtime blocker"
+    },
+    {
+      "id": "E2_MECHANISM_TOKEN_CLICK_ENTROPY",
+      "question": "Do the relevant Bounded/beta mechanisms differ in token-level uncertainty and click-choice concentration, beyond coarse search-vs-click action-family entropy?",
+      "execution": "read-only matched inference; no training",
+      "task_manifest": {
+        "path": "docs/evidence/q17-validation-curve-20260923/coarse-manifest-q17-directapply-validation-curve-202609231600.json",
+        "sha256": "2d5d1620065a15840ae20fed324038312aec74b0895e13c9d283177928bf1a3b",
+        "panel_sha256": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+        "task_count": 64
+      },
+      "compared_states": [
+        "sealed historical Simple Bounded rank128 endpoint",
+        "sealed historical beta/GDR endpoint only if the meeting plotted run is bound to exact execution/runtime/beta-checkpoint/output-state identity, and the exact sealed payload is available and revalidated; otherwise omit this endpoint and retain the audit as mechanism-family context",
+        "E1 endpoint"
+      ],
+      "panel": "frozen 64-task development/held-out panel",
+      "metrics": [
+        "reasoning token entropy mean/p90",
+        "constrained-action token entropy",
+        "selected-action NLL",
+        "top1-top2 logit margin",
+        "conditional click-choice entropy",
+        "click destination HHI/top-k concentration",
+        "output tokens per step/episode",
+        "episode steps",
+        "Task Score/exact success"
+      ],
+      "stop_rule": "one fixed pass per state over the 64-task panel; no adaptive rerun",
+      "historical_beta_audit": "docs/evidence/post-advisor-unanswered-20260928/BETA_SEMANTIC_AUDIT.json; PASS_HISTORICAL_MECHANISM_CLASS_ONLY; GDR-to-meeting-class link is an inference, and meeting run-to-checkpoint lineage remains unverified"
+    },
+    {
+      "id": "E3_RANK_CAPACITY_SWEEP",
+      "question": "Where is the persistent-state capacity knee below rank128?",
+      "start": "same sealed R151-after identity",
+      "baseline_reuse": [
+        "rank128 historical R152-R159",
+        "rank32 post-advisor R152-R159"
+      ],
+      "new_arms": [
+        {
+          "rank": 8,
+          "rounds": "R152-R159",
+          "formal_rollouts": 1024
+        },
+        {
+          "rank": 16,
+          "rounds": "R152-R159",
+          "formal_rollouts": 1024
+        },
+        {
+          "rank": 64,
+          "rounds": "R152-R159",
+          "formal_rollouts": 1024
+        }
+      ],
+      "metrics": [
+        "mean Task Score",
+        "exact success",
+        "paired difference vs rank128",
+        "adapter bytes",
+        "training/update latency",
+        "effective-rank diagnostics"
+      ],
+      "stop_rule": "complete all 8 rounds for ranks 8, 16, and 64; no early stopping from observed score",
+      "interpretation_boundary": "rank8 evidence does not establish sufficiency below rank8"
+    },
+    {
+      "id": "E4_TASK_VECTOR_CAUSAL_INTERVENTION",
+      "question": "Which late update directions causally contribute to or damage held-out WebShop capability?",
+      "execution": "read-only/counterfactual model-state evaluation; no training",
+      "source": "sealed historical rank128 Bounded R151-R159 effective states",
+      "interventions": "construct effective delta_t = W_t-W_{t-1} for each t in R152..R159; evaluate W_159-delta_t leave-one-update-out and W_159-2*delta_t equal-magnitude sign reversal, plus intact W_159 and R151 reference",
+      "panel": "frozen 64-task development/held-out panel",
+      "metrics": [
+        "marginal mean Task Score",
+        "marginal exact success",
+        "per-task paired delta",
+        "delta norm",
+        "sign-reversal versus leave-one-out paired effect",
+        "cosine to cumulative late update",
+        "layerwise contribution"
+      ],
+      "selection": "evaluate all eight late deltas; no outcome-based direction selection",
+      "stop_rule": "18 fixed states x 64 tasks maximum unless representation audit proves a counterfactual cannot be materialized without semantic drift"
+    },
+    {
+      "id": "E5_FULL_SEED_STYLE_STAGE2",
+      "question": "Does the full SEED-style Stage2 self-evolving OPD/RL route change the negative Stage1-only result?",
+      "dependency": "start only after E1-E4 artifacts are sealed and a separate capacity/runtime preflight passes; outcome of E1-E4 does not cancel E5",
+      "start": "post-advisor SEED-style Qwen3-1.7B Stage1 final checkpoint from PR #597",
+      "claim_boundary": "SEED-style Qwen3-1.7B using frozen OpenEVO Stage1 trajectories/historical MiniMax analyses; not exact SEED-paper reproduction",
+      "source_code": "public SEED pinned commit 2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+      "stage2_budget": "At pinned SEED commit 2cf2fadca3c5aba28da68e8e1405182ba8d90e6c, use TRAIN_DATA_SIZE=16, data.train_batch_size=16, GROUP_SIZE=8, and trainer.total_epochs=160. The launcher selects 16 training rows; the pinned trainer uses drop_last=true, so len(train_dataloader)=1 and total_training_steps=len(train_dataloader)*total_epochs=160 policy updates. This is 128 rollout slots per update and 20480 rollout slots total. Do not override these budget values or stop based on scores.",
+      "gpu_plan": "use up to all eight RTX 5090s only after the smaller independent arms are sealed or released",
+      "storage_plan": "runtime scratch in /dev/shm; persistent checkpoints minimized to preregistered milestones/final and compact receipts; no deletion of unrelated/shared assets",
+      "evaluation": "development/held-out only during training; final panel remains locked",
+      "stop_rule": "pinned SEED Stage2 terminal budget or typed runtime/integrity/storage blocker; no score-based early stop"
+    }
+  ],
+  "priority_order": [
+    "E2 zero-formal historical beta identity audit",
+    "E1 + E3 in parallel where resource-safe",
+    "E2 matched inference once E1 endpoint exists",
+    "E4 counterfactual intervention",
+    "E5 full SEED-style Stage2"
+  ],
+  "preformal_amendments": [
+    {
+      "id": "A1_NONZERO_MAGNITUDE_GRID",
+      "timing": "before any formal task/model-call consumption",
+      "change": "E1 beta grid [0,0.25,0.5,0.75,1] -> [0.25,0.5,0.75,1]",
+      "reason": "avoid coupling magnitude treatment to separate parameter-NOOP/replay-update semantics",
+      "scientific_scope_changed": false,
+      "final_panel_access_delta": 0
+    },
+    {
+      "id": "A2_EXPLICIT_RANK8_AND_DIRECTION_REVERSAL",
+      "timing": "before any formal task/model-call consumption",
+      "change": "add the preregistered rank8 capacity arm and an equal-magnitude sign-reversal state for each late Task Vector update",
+      "reason": "directly test the stated rank8 sufficiency boundary and isolate update-direction contribution from update removal",
+      "scientific_scope_changed": true,
+      "final_panel_access_delta": 0
+    },
+    {
+      "id": "A3_BETA_AUDIT_CLAIM_AND_ENDPOINT_BOUNDARY",
+      "timing": "before any formal task/model-call consumption",
+      "change": "define the exact zero-update cosine boundary and training-objective-only selector reporting; restrict historical beta/GDR endpoint reuse to exact meeting-run/checkpoint identity and payload revalidation",
+      "reason": "keep the semantic evidence within what it proves and avoid treating training-batch selection as generalization or an unbound checkpoint as the meeting endpoint",
+      "scientific_scope_changed": false,
+      "final_panel_access_delta": 0
+    }
+  ]
+}

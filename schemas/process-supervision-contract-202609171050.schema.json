@@ -1,0 +1,65 @@
+{
+  "$id": "openevo.process-supervision-contract.202609171050",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenEVO process-supervision contract",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "openevo.process-supervision-contract.202609171050"},
+    "contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution_generation_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "members": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "role": {"enum": ["CONTROL_PLANE", "RESOURCE_BROKER", "ARM_SUPERVISOR", "PAIR_AUDIT", "WORKER"]},
+          "service_name": {"type": "string", "minLength": 1},
+          "working_directory": {"type": "string", "minLength": 1},
+          "argv": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "user": {"type": "string", "minLength": 1},
+          "group": {"type": "string", "minLength": 1},
+          "unit_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "process_supervisor": {"const": "systemd"},
+          "restart_policy": {"const": "NONE_FAIL_CLOSED"},
+          "manual_start_required": {"const": true},
+          "terminal_session_lifetime_allowed": {"const": false},
+          "boot_auto_start_allowed": {"const": false},
+          "scientific_authority": {"const": false},
+          "scientific_retry_authorized": {"const": false}
+        },
+        "required": [
+          "role", "service_name", "working_directory", "argv", "user", "group",
+          "unit_sha256", "process_supervisor", "restart_policy", "manual_start_required",
+          "terminal_session_lifetime_allowed", "boot_auto_start_allowed",
+          "scientific_authority", "scientific_retry_authorized"
+        ]
+      }
+    },
+    "lifetime_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "single_declared_contract": {"const": true},
+        "ssh_or_nohup_is_lifetime_authority": {"const": false},
+        "process_death_implies_scientific_retry": {"const": false},
+        "failure_requires_openevo_reconciliation": {"const": true},
+        "service_state_is_scientific_authority": {"const": false}
+      },
+      "required": [
+        "single_declared_contract", "ssh_or_nohup_is_lifetime_authority",
+        "process_death_implies_scientific_retry", "failure_requires_openevo_reconciliation",
+        "service_state_is_scientific_authority"
+      ]
+    },
+    "live_adoption": {"const": false},
+    "scientific_authority": {"const": false},
+    "scientific_retry_authorized": {"const": false}
+  },
+  "required": [
+    "schema", "contract_id", "execution_generation_id", "members", "lifetime_policy",
+    "live_adoption", "scientific_authority", "scientific_retry_authorized"
+  ]
+}

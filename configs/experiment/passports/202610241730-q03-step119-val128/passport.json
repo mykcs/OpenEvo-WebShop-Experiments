@@ -1,0 +1,539 @@
+{
+  "artifact_policy": {
+    "assets": [
+      {
+        "asset_id": "checkpoints/global_step_119/actor/model_world_size_8_rank_0.pt",
+        "required_for_resume": true,
+        "role": "evaluated native model shard",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_0.pt",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "d0b067688398477ba5f944663cd46a372f6d00aeaae65f01366b4432ac137730"
+        }
+      },
+      {
+        "asset_id": "checkpoints/global_step_119/actor/model_world_size_8_rank_1.pt",
+        "required_for_resume": true,
+        "role": "evaluated native model shard",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_1.pt",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "8e4385f13ad4eba26abab77400e2d8598bc0c314066f0b90003780d1abdd4375"
+        }
+      },
+      {
+        "asset_id": "checkpoints/global_step_119/actor/model_world_size_8_rank_2.pt",
+        "required_for_resume": true,
+        "role": "evaluated native model shard",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_2.pt",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "69391e7d13747c068cd94005b65dc9f42fb4fecdb4c94b3987aea144347f7839"
+        }
+      },
+      {
+        "asset_id": "checkpoints/global_step_119/actor/model_world_size_8_rank_3.pt",
+        "required_for_resume": true,
+        "role": "evaluated native model shard",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_3.pt",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "e35baa30fecfae329b6aaa3e350952cf95aa0cb0563f6e27d11eda53c4ed08ad"
+        }
+      },
+      {
+        "asset_id": "checkpoints/global_step_119/actor/model_world_size_8_rank_4.pt",
+        "required_for_resume": true,
+        "role": "evaluated native model shard",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_4.pt",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "1a579d78de9a76bca3d75be6b845a5a1744eb91372f903ebe5650275cb2d9ffd"
+        }
+      },
+      {
+        "asset_id": "checkpoints/global_step_119/actor/model_world_size_8_rank_5.pt",
+        "required_for_resume": true,
+        "role": "evaluated native model shard",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_5.pt",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "e6d9d4a355ce1c556b2c2a25181eedd39aa8fefeeb6ae0d6b4e67bcba5af0306"
+        }
+      },
+      {
+        "asset_id": "checkpoints/global_step_119/actor/model_world_size_8_rank_6.pt",
+        "required_for_resume": true,
+        "role": "evaluated native model shard",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_6.pt",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "bf8bfbdbfc9cfa90094ae60834df439e5399c79134d2b895ad63067fa0f81bd9"
+        }
+      },
+      {
+        "asset_id": "checkpoints/global_step_119/actor/model_world_size_8_rank_7.pt",
+        "required_for_resume": true,
+        "role": "evaluated native model shard",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_7.pt",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "04231930cbd0276ca696bf56fe136c6413886c41291a3588ad9479bc18182ab4"
+        }
+      },
+      {
+        "asset_id": "config.json",
+        "required_for_resume": true,
+        "role": "model configuration or tokenizer required for evaluation",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "config.json",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "b0afa15b34f94dc066cdb0b3d8c54fc45f47cbe39804f875cd64ea6151ebc6dc"
+        }
+      },
+      {
+        "asset_id": "generation_config.json",
+        "required_for_resume": true,
+        "role": "model configuration or tokenizer required for evaluation",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "generation_config.json",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "86b9e6a06a36bb731cb91b0f5fc184e28016e6cd9c46c4f11b59a0fd53bff629"
+        }
+      },
+      {
+        "asset_id": "tokenizer.json",
+        "required_for_resume": true,
+        "role": "model configuration or tokenizer required for evaluation",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "tokenizer.json",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506"
+        }
+      },
+      {
+        "asset_id": "tokenizer_config.json",
+        "required_for_resume": true,
+        "role": "model configuration or tokenizer required for evaluation",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "tokenizer_config.json",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "779410a34a98fb2c6c925a1be6f24d632f1723473161b037f6676eb6c04886c6"
+        }
+      },
+      {
+        "asset_id": "chat_template.jinja",
+        "required_for_resume": true,
+        "role": "model configuration or tokenizer required for evaluation",
+        "source": {
+          "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+          "kind": "hf",
+          "path": "chat_template.jinja",
+          "reason": null,
+          "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+          "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+          "sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8"
+        }
+      }
+    ],
+    "default_disclosure_state": "PRIVATE",
+    "default_recovery_state": "SERVER_ONLY",
+    "large_asset_provider": "Hugging Face dataset openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005; immutable revision and per-member hashes are specified by the Step119 design.",
+    "state_model_policy": "docs/operations/publication/RESEARCH_ASSET_RECOVERY_AND_DISCLOSURE_POLICY.zh-CN.md",
+    "wandb_is_sole_backup": false
+  },
+  "authority_paths": [
+    "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+    "configs/experiment/manifests/q03-step119-public-validation-id-manifest-20261025.json",
+    "docs/science/webshop/advisor-questions/2026-09-22/Q03_SEED_NATIVE_EVAL_CALIBRATION_20261007.md",
+    "docs/experiment-tracking/EXPERIMENT_PASSPORT_REGISTRY_IMPLEMENTATION_PLAN_202609111800.md"
+  ],
+  "budget_contract": {
+    "accounting_rule": "The 128 public validation tasks are evaluation cases, not training rollouts; the training budget is zero rollouts, zero rounds, and zero optimizer updates; each environment episode is capped at 15 steps.",
+    "external_teacher_call_limit": 0,
+    "final_panel_access_limit": 0,
+    "horizon": 15,
+    "optimizer_step_limit": 0,
+    "rollout_limit": 0,
+    "rollouts_per_round": 0,
+    "round_limit": 0,
+    "source": {
+      "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+      "kind": "repository_file",
+      "path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "20c9fcdf1ede0347058abe265f250b15370d95a1dfac81c6afc3493109097e83"
+    }
+  },
+  "campaign_id": "202610241730-q03-step119-val128",
+  "created_at": "2026-10-25T03:40:14Z",
+  "experiment_id": "202610241730-q03-step119-val128",
+  "initial_execution_identity": {
+    "activation": {
+      "evidence_path": null,
+      "kind": "unresolved",
+      "path": null,
+      "reason": "User authorization covers the single Step119 128-task validation pass; formal successor campaign activation has not yet been bound to runtime readiness.",
+      "repository": null,
+      "revision": null,
+      "sha256": null
+    },
+    "dependency_lock": {
+      "evidence_path": null,
+      "kind": "unresolved",
+      "path": null,
+      "reason": "No immutable dependency lock for the Step119 validation runtime has been captured yet.",
+      "repository": null,
+      "revision": null,
+      "sha256": null
+    },
+    "experiment_repository": "mykcs/openevo-experiment",
+    "frozen_science_sha": null,
+    "initial_experiment_sha": null,
+    "initial_ray_sha": null,
+    "initial_run_root": null,
+    "launcher": {
+      "evidence_path": null,
+      "kind": "unresolved",
+      "path": null,
+      "reason": "The declared launch route is scripts/oe run-campaign; its exact source/runtime identity is not yet frozen.",
+      "repository": null,
+      "revision": null,
+      "sha256": null
+    },
+    "python_version": null,
+    "release": {
+      "evidence_path": null,
+      "kind": "unresolved",
+      "path": null,
+      "reason": "A formal successor release bound to Step119 readiness has not yet been created.",
+      "repository": null,
+      "revision": null,
+      "sha256": null
+    },
+    "runtime_asset_lock": {
+      "evidence_path": null,
+      "kind": "unresolved",
+      "path": null,
+      "reason": "Runtime assets are not yet content-addressed in a frozen execution asset lock.",
+      "repository": null,
+      "revision": null,
+      "sha256": null
+    },
+    "runtime_digest_kind": "UNKNOWN",
+    "runtime_fingerprint": null,
+    "runtime_image_digest": null,
+    "upstream_openevo_sha": null,
+    "upstream_repository": null
+  },
+  "parent_experiment_id": null,
+  "passport_payload_sha256": null,
+  "provenance": {
+    "evidence_paths": [
+      "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+      "configs/experiment/manifests/q03-step119-public-validation-id-manifest-20261025.json",
+      "docs/science/webshop/advisor-questions/2026-09-22/Q03_SEED_NATIVE_EVAL_CALIBRATION_20261007.md"
+    ],
+    "parent_lineage_note": null,
+    "revision_naming_note": null,
+    "status": "NEW_DECLARATION",
+    "unknown_fields": [
+      "clean immutable experiment/runtime source SHAs, dependency lock, Python and OCI runtime identity",
+      "formal successor release and activation receipt, and immutable runtime asset lock",
+      "runtime proof that the evaluator loads the pinned WebShop prompt/action/parser modules and worker/rank RNG projection",
+      "final measurement result schema/aggregator and exact run output root"
+    ]
+  },
+  "resume_policy": {
+    "automatic_gpu_start": false,
+    "policy": "MANUAL_REVIEW_ONLY",
+    "reason": "This is one validation-only pass with no training resume; preserve any failure and do not rerun based on score. Start requires the frozen Passport, successor release, readiness, and matching runtime preflight.",
+    "requires_receipt_chain": true
+  },
+  "schema": "openevo.experiment-passport.202609111800",
+  "scientific_identity": {
+    "acceptance_policy": {
+      "candidate_rule": "Exactly the 128 ordered task IDs in the pinned ID-only manifest; do not replace or retry a task based on its score.",
+      "credit_assignment": "Report each task result and task_score with the observed denominator; make no causal or between-checkpoint comparison.",
+      "name": "descriptive 128-task validation record; no pass threshold",
+      "source": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "20c9fcdf1ede0347058abe265f250b15370d95a1dfac81c6afc3493109097e83"
+      }
+    },
+    "action_contract": {
+      "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+      "kind": "server_file",
+      "path": "/workspace/maintenance/seed-paperstyle-minimax-20261007/seed-source-clean-v1/agent_system/environments/env_package/webshop/envs.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "1a8a73b5e02854a822aa03dcb66a9fbf8d67c028f963f36845bf34fb1b60ea7c"
+    },
+    "benchmark": "WebShop public validation using the pinned SEED evaluator",
+    "claim_boundary": "Descriptive result for one historical checkpoint only; no causal comparison, training claim, final-panel claim, or paper-reproduction claim.",
+    "evaluator_contract": {
+      "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+      "kind": "server_file",
+      "path": "/workspace/maintenance/seed-paperstyle-minimax-20261007/seed-source-clean-v1/verl/trainer/main_ppo.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "cb5547674b8af03da4555af63887ce13a93054e5d1026a0138b79c46f77e012b"
+    },
+    "external_teacher": {
+      "future_call_budget": 0,
+      "prior_analyses": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "20c9fcdf1ede0347058abe265f250b15370d95a1dfac81c6afc3493109097e83"
+      },
+      "role": "none; validation-only"
+    },
+    "final_panel_policy": {
+      "future_access_limit": 0,
+      "policy": "No final-panel access",
+      "source": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "20c9fcdf1ede0347058abe265f250b15370d95a1dfac81c6afc3493109097e83"
+      }
+    },
+    "harness": {
+      "profile": "pinned public SEED WebShop val_only evaluator",
+      "source": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "20c9fcdf1ede0347058abe265f250b15370d95a1dfac81c6afc3493109097e83"
+      },
+      "thinking": false
+    },
+    "human_intervention_policy": "No manual policy steering, task substitution, outcome retry, or score editing during the validation pass.",
+    "hypothesis": "No causal or improvement hypothesis is tested; this is a same-checkpoint archival measurement only.",
+    "model": {
+      "asset": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "kind": "hf",
+        "path": "checkpoints/global_step_119/actor",
+        "reason": "Directory identity is the exact immutable revision; eight model-shard SHA-256 values and five supporting-file SHA-256 values are enumerated in artifact_policy.assets.",
+        "repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+        "revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+        "sha256": null
+      },
+      "dtype": "float32 (native checkpoint tensor dtype; all eight rank shards inspected with weights-only mmap metadata load)",
+      "model_id": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+      "model_revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+      "tokenizer_revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409"
+    },
+    "optimizer": {
+      "batch_size": 0,
+      "epochs": 0,
+      "extra_settings": {
+        "optimizer_updates": 0,
+        "training_rollouts": 0
+      },
+      "gradient_accumulation_steps": 0,
+      "learning_rate": 0,
+      "name": "none (validation-only)"
+    },
+    "parser_contract": {
+      "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+      "kind": "server_file",
+      "path": "/workspace/maintenance/seed-paperstyle-minimax-20261007/seed-source-clean-v1/agent_system/environments/env_package/webshop/projection.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "25c9bb7a8f4f2e68292a3ca25596e83493cb7be67fef2e7215c1800b5bc6c228"
+    },
+    "prompt_contract": {
+      "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+      "kind": "server_file",
+      "path": "/workspace/maintenance/seed-paperstyle-minimax-20261007/seed-source-clean-v1/agent_system/environments/env_package/webshop/envs.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "1a8a73b5e02854a822aa03dcb66a9fbf8d67c028f963f36845bf34fb1b60ea7c"
+    },
+    "protocol_fingerprint": null,
+    "research_question": "What descriptive WebShop validation result does the exact Q03 Stream A native global_step_119 checkpoint produce on the frozen public 128-task test split?",
+    "sampling": {
+      "do_sample": true,
+      "extra_settings": {
+        "history_length": 2,
+        "max_environment_steps": 15,
+        "rollout_engine": "vllm",
+        "thinking": false
+      },
+      "max_new_tokens": 512,
+      "temperature": 0.4,
+      "top_k": -1,
+      "top_p": 1.0
+    },
+    "sd_lora": {
+      "alpha": 0,
+      "effective_rank_cap": 0,
+      "extra_settings": {
+        "adapter_used": false,
+        "agent_system": false,
+        "memory": false,
+        "skill": false
+      },
+      "rank": 0,
+      "source": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "20c9fcdf1ede0347058abe265f250b15370d95a1dfac81c6afc3493109097e83"
+      },
+      "target_modules": []
+    },
+    "seed_policy": {
+      "rng_contract": "The 128 test.parquet carrier rows have extra_info.index 0..127 and bind by panel slot to the ID-only manifest; sampled_session_index is not a parquet row index. env.seed=0 gives validation RandomState(1000) session draw and worker seeds 1000+slot. generation_seed=2026082500+panel_ordinal; each WebShop action request uses generation_seed+step_index through one per-prompt vLLM SamplingParams.seed. A shared default seed is invalid for this schedule.",
+      "schedule": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "20c9fcdf1ede0347058abe265f250b15370d95a1dfac81c6afc3493109097e83"
+      },
+      "schedule_id": "q03-step119-public-panel-0-127-env-seed-0-generation-seed-base-2026082500-per-step-plus-index",
+      "seed_base": 2026082500
+    },
+    "split": "test (128 public validation task IDs; ID-only manifest)",
+    "stop_rule": {
+      "max_rollouts": 0,
+      "max_rounds": 0,
+      "source": {
+        "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "kind": "repository_file",
+        "path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+        "reason": null,
+        "repository": null,
+        "revision": null,
+        "sha256": "20c9fcdf1ede0347058abe265f250b15370d95a1dfac81c6afc3493109097e83"
+      }
+    },
+    "task_manifest": {
+      "evidence_path": "configs/experiment/manifests/q03-step119-public-validation-id-manifest-20261025.json",
+      "kind": "repository_file",
+      "path": "configs/experiment/manifests/q03-step119-public-validation-id-manifest-20261025.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "4498a0821301043fa6d7b0677763d4e9f7c8165645f4e7dfb12af86670176d2d"
+    },
+    "training_data_identity": {
+      "evidence_path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+      "kind": "repository_file",
+      "path": "configs/experiment/designs/q03-step119-validation-only-20261024.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "20c9fcdf1ede0347058abe265f250b15370d95a1dfac81c6afc3493109097e83"
+    },
+    "treatment": "Load the exact native global_step_119 model and execute one validation-only pass over task IDs 0 through 127.",
+    "what_changed": [
+      "A one-pass validation-only measurement is declared for the exact step-119 checkpoint; it does not modify model weights."
+    ],
+    "what_must_stay_fixed": [
+      "Checkpoint step and eight source shard identities",
+      "Public test split, 128 task IDs, dataset hash, and manifest hash",
+      "Pinned SEED commit and evaluator settings in the design",
+      "Zero optimizer updates, zero training rollouts, and zero final-panel access",
+      "vLLM validation sampling: temperature 0.4, top_p 1.0, top_k -1 (unbounded), max_new_tokens 512, environment seed 0",
+      "All eight native model shards use float32 tensors"
+    ]
+  },
+  "status": "DRAFT",
+  "tracking_policy": {
+    "approved_artifact_roles": [
+      "passport",
+      "run-manifest",
+      "startup-receipt",
+      "closeout-receipt",
+      "evaluation-summary",
+      "bounded-table"
+    ],
+    "entity": null,
+    "mode_order": [
+      "online",
+      "offline",
+      "disabled"
+    ],
+    "project": null,
+    "role": "MIRROR_ONLY",
+    "scientific_authority": false
+  }
+}

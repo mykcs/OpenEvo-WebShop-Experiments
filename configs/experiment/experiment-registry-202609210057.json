@@ -1,0 +1,61 @@
+{
+  "entries": [
+    {
+      "aliases": [
+        "qwen3-1p7b-directapply-no-gdr",
+        "Q17-DIRECT-APPLY-ONLY-W2-202609082022"
+      ],
+      "display_name": "Qwen3-1.7B DirectApply / No-GDR",
+      "experiment_id": "202609082022-q17-directapply-no-gdr",
+      "latest_authority_paths": [
+        "docs/operations/reproduction/Q17_DIRECTAPPLY_PORTABLE_REPRODUCTION_ROUTER_202609111537.md",
+        "docs/evidence/remote-runs/2026-09-11/Q17_TEXT_MEMORY_NOOP_MAIN_INTEGRATION_NOTE_202609111249.md",
+        "docs/evidence/remote-runs/2026-09-10/q17-gpu0456-recovery-closeout/README.md",
+        "configs/experiment/reproduction/q17-directapply-portable-router-202609111537.json",
+        "docs/evidence/experiment-passports/202609121011/Q17_RECOVERY_OBSERVATION_202609121011.json",
+        "docs/evidence/completed-1p7b-publication-20260918/Q17_PUBLIC_PRIVATE_RECOVERY_LEDGER.json",
+        "docs/evidence/completed-1p7b-publication-20260918/Q17_FRESH_RESTORE_VERIFY.json",
+        "docs/evidence/completed-1p7b-publication-20260918/COMPLETED_1P7B_ASSET_LEDGER.json"
+      ],
+      "lifecycle_class": "COMPLETE_SEALED",
+      "lineage_parent": null,
+      "passport_path": "configs/experiment/passports/202609082022-q17-directapply-no-gdr/passport.json",
+      "passport_sha256": "155e8885d2af2d4ee8b281f75cfec5c8b3af18b2c42b63f440da2af3e00805b6",
+      "state_source": {
+        "path": "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct/execution-state.json",
+        "release_path": null,
+        "required_equal": {
+          "arm": "qwen3-1p7b",
+          "twin_design_id": "Q17-DIRECT-APPLY-ONLY-W2-202609082022"
+        },
+        "type": "server_json"
+      }
+    },
+    {
+      "aliases": [
+        "bounded-effective-state-gdr",
+        "qwen3-1p7b-bounded-effective-state-gdr"
+      ],
+      "display_name": "Qwen3-1.7B Bounded OFF vs Effective-State GDR",
+      "experiment_id": "202609160255-bounded-effective-state-gdr",
+      "latest_authority_paths": [
+        "configs/experiment/campaigns/202609160255/authority-snapshots/INDEX.json",
+        "docs/evidence/bounded-effective-state-final-closeout-20260918/FINAL_CLOSEOUT.json",
+        "docs/evidence/completed-1p7b-publication-20260918/PASSPORT_PROVIDER_RECONCILIATION.json",
+        "docs/evidence/completed-1p7b-publication-20260918/COMPLETED_1P7B_ASSET_LEDGER.json"
+      ],
+      "lifecycle_class": "COMPLETE_SEALED",
+      "lineage_parent": null,
+      "passport_path": "docs/evidence/experiment-passports/202609160255-bounded-effective-state-gdr/FROZEN_PASSPORT_ORIGINAL.json",
+      "passport_sha256": "5d9adea0312ea93f4a12fa561fae5fa5fa8bd8f0f5cbff7d86c7db51371b5e42",
+      "state_source": {
+        "path": null,
+        "release_path": null,
+        "required_equal": {},
+        "type": "static"
+      }
+    }
+  ],
+  "role": "identity-routing-only; never live state or execution authority",
+  "schema": "openevo.experiment-registry.202609112120"
+}

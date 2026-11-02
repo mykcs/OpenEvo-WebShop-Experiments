@@ -1,0 +1,244 @@
+{
+  "schema": "openevo.post-advisor-e5-preparation-profile.v1",
+  "campaign_id": "20260928-2338-post-advisor-unanswered",
+  "experiment_id": "E5_FULL_SEED_STYLE_STAGE2",
+  "status": "INERT_BLOCKED",
+  "activation_allowed": false,
+  "formal_start_allowed": false,
+  "execution": {
+    "mode": "preparation-only",
+    "command": [
+      "/usr/bin/env",
+      "/bin/false"
+    ],
+    "launcher_overrides": {
+      "trainer.test_freq": -1,
+      "trainer.val_before_train": false
+    },
+    "launcher_override_role": "disable unbudgeted native SEED auxiliary evaluations; canonical Q17 evaluations remain separate at updates 0/40/80/120/160",
+    "activation_requires_exact_override_attestation": true,
+    "training_updates": 160,
+    "rollout_slots": 20480,
+    "external_teacher_calls": 0,
+    "seed_enable_analysis": true,
+    "seed_analysis_backend": "policy_vllm",
+    "final_panel_access": 0
+  },
+  "scientific_source": {
+    "pinned_repository": "https://github.com/NousResearch/SEED",
+    "pinned_commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+    "host_source_path": "/workspace/maintenance/SEED-STAGE1-SFT-MINIMAX-20260923/source",
+    "webshop_envs_sha256": "1a8a73b5e02854a822aa03dcb66a9fbf8d67c028f963f36845bf34fb1b60ea7c",
+    "webshop_env_manager_sha256": "73d8a3580456a96403bfe5c2897dffd5828d961e7a5e5a69f780d14ac00c4f3e",
+    "public_source_mutated": false
+  },
+  "development_evaluation": {
+    "manifest": "docs/evidence/q17-validation-curve-20260923/coarse-manifest-q17-directapply-validation-curve-202609231600.json",
+    "manifest_sha256": "2d5d1620065a15840ae20fed324038312aec74b0895e13c9d283177928bf1a3b",
+    "panel_sha256": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+    "panel_size": 64,
+    "schedule_builder": "scripts/openevo_webshop/post_advisor_e5_q17_dev_manifest_adapter_20260930.py",
+    "schedule_builder_sha256": "456674f61463f5a2410a59fb9860b44589af5c1f1039dd7e5a99164b343af2ed",
+    "schedule_consumer_bound": false,
+    "stock_launcher_compliant": false,
+    "internal_seed_validation": {
+      "role": "auxiliary-dev-only; never canonical Q17 capability evidence",
+      "immutable_source_carrier_rows": 128,
+      "derived_validation_carrier_rows": 64,
+      "validation_data_size": 64,
+      "validation_batch_size": 64,
+      "task_order": "frozen Q17 probe_ordinal 0..63 exactly once per pass",
+      "runtime_overlay": "scripts/openevo_webshop/prepare_post_advisor_e5_q17_runtime_overlay_20260930.py",
+      "runtime_overlay_sha256": "f0386d1c09488744af55ace5c5ed94187b93ca1569fff6177a7f6e9ce12197b8",
+      "schedule_builder": "scripts/openevo_webshop/post_advisor_e5_q17_dev_manifest_adapter_20260930.py",
+      "schedule_builder_sha256": "456674f61463f5a2410a59fb9860b44589af5c1f1039dd7e5a99164b343af2ed",
+      "schedule_consumer_bound": false,
+      "derived_carrier_status": "INERT_PREPARATION_ONLY",
+      "derived_carrier_path": "/workspace/runs/post-advisor-e5-stage2-preparation-20260930/carriers/q17-validation-attempt-02/test.parquet",
+      "derived_carrier_sha256": "81ab868d9dcbc28811606052d6b4d642965c055e0874a06270ed5c051f63f05e",
+      "derived_carrier_receipt_path": "/workspace/runs/post-advisor-e5-stage2-preparation-20260930/carriers/q17-validation-attempt-02/carrier-receipt.json",
+      "derived_carrier_receipt_sha256": "563c4a75a871c9af1809924a3ec7961a63fb1784c5184291872c4970489845ef",
+      "schedule_path": "/workspace/runs/post-advisor-e5-stage2-preparation-20260930/carriers/q17-validation-attempt-02/q17-dev-schedule.json",
+      "schedule_sha256": "7614b72e4065209820b186bf27cdd8467a17d2f7f5c5894d5b7ef39f2658cd40",
+      "derived_envs_sha256": "29498d73d6da20c247deccde354d79dadc1b0b6db22bcd10131a4c0952e4e63e",
+      "runtime_overlay_consumes_schedule": true,
+      "stage2_launcher_integration_bound": false,
+      "canonical_capability_claim_from_internal_validation": false
+    },
+    "canonical_milestone_evaluation": {
+      "updates": [
+        0,
+        40,
+        80,
+        120,
+        160
+      ],
+      "harness": "scripts/openevo_webshop/q17_fixed_checkpoint_probe.py",
+      "sampling": {
+        "max_steps": 15,
+        "max_new_tokens": 512,
+        "temperature": 1.0,
+        "top_p": 1.0,
+        "step_seed_policy": "paired_generation_seed + step_index * 100000"
+      },
+      "full_stage2_checkpoint_bridge": "unqualified; the candidate verifies FSDP source tree, full-model export receipt/tool and model tree before load",
+      "formal_task_consumption": 0,
+      "final_panel_access": 0,
+      "execution_adapter": "scripts/openevo_webshop/q17_fixed_full_checkpoint_probe_20260930.py",
+      "execution_adapter_sha256": "3b0ade3bc7c23c7c9bfcf5a36b489b50ba16d1ca83513207e7423480f31d86db",
+      "status": "inert-candidate; no Stage2 checkpoint/export receipt exists"
+    }
+  },
+  "assets": {
+    "stage1_checkpoint": "/workspace/runs/post-advisor-seed-style-qwen3-1p7b-20260928/attempt-01/checkpoints/global_step_486",
+    "stage1_receipt_sha256": "058180b0398237588c4a8a3d452381d60d094b73b01a8819fe3de231c6d227e8",
+    "base_model": "/workspace/models/qwen3-1.7b-seed-runtime-70d244",
+    "webshop_data": "/workspace/datasets/webshop-1000",
+    "carrier_attempt": "/workspace/runs/post-advisor-e5-stage2-preparation-20260930/carriers/attempt-06",
+    "train_carrier_sha256": "7ba23ab9ebc156f6c04af173e28d57ab29aec95711e59d6c22dce502068b1e3b",
+    "val_carrier_sha256": "271bf898898887e2d68494080888cc63c7e6c92db5f573366ca21b773af7f71f",
+    "carrier_semantics": "Geometry3K text-mode rows are blank prompt/index carriers; carried answer column is unused by pinned WebShop runtime; row index is not a WebShop session ID"
+  },
+  "runtime": {
+    "image": "experiment-host/openevo-scientific:h144-runtime-v1",
+    "image_id": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+    "qualification": "FAIL",
+    "missing_training_dependencies": [
+      "vllm",
+      "verl",
+      "ray",
+      "tensordict",
+      "datasets",
+      "pyarrow",
+      "Pillow"
+    ],
+    "formal_task_consumed": false
+  },
+  "capacity": {
+    "status": "FAIL",
+    "checkpoint_count": 16,
+    "lower_bound_bytes": 330350395392,
+    "lower_bound_gib": 307.66,
+    "observed_free_bytes": 295119527936,
+    "observed_free_gib": 274.85,
+    "shortfall_bytes": 35230867456,
+    "shortfall_gib": 32.81,
+    "basis": "FP32 unique tied parameters plus two FP32 Adam moments per checkpoint; excludes actual FSDP serialization overhead, rollout/log artifacts, and concurrent writes"
+  },
+  "launch_gates": {
+    "e1_e4_sealed": false,
+    "runtime_qualified": false,
+    "capacity_qualified": false,
+    "q17_dev_adapter_consumed_by_runtime": false,
+    "release": false,
+    "activation": false,
+    "e4_science_complete_reused_q07": true,
+    "e4_review_receipt": "docs/evidence/post-advisor-unanswered-20260928/E4_Q07_INDEPENDENT_REVIEW_20260930.json",
+    "e1_e3_sealed": false,
+    "full_checkpoint_q17_milestone_bridge_qualified": false
+  },
+  "native_validation_budget_audit": {
+    "status": "RESOLVED_BY_INERT_LAUNCH_OVERRIDE",
+    "source_commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+    "source_files": {
+      "examples/seed_trainer/_common/webshop.sh": "246dde9772ae7a3769d64ffcd7d62797194bcbce00e7967929db2161a30547fa",
+      "verl/trainer/ppo/ray_trainer.py": "cf48fc1f96b3f80cbe0de2d80672fc8afa047bed1d01b44d564cc5ada9067b75",
+      "verl/trainer/config/ppo_trainer.yaml": "d7467566a7ad260854e8694b38294b71ed3e31af446ad14578b9fb30a32095b8"
+    },
+    "launcher_policy": {
+      "trainer.test_freq": 5,
+      "trainer.total_epochs": 160,
+      "trainer.val_before_train": false
+    },
+    "authorized_compatibility_override": {
+      "trainer.test_freq": -1,
+      "trainer.val_before_train": false,
+      "source_mutated": false,
+      "changes_optimizer_or_rollout_training": false,
+      "activation_must_attest_exact_flags": true
+    },
+    "test_freq_semantics": {
+      "pinned_commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+      "commit_identity_sources": [
+        "/workspace/maintenance/SEED-STAGE1-SFT-MINIMAX-20260923/tooling/build_seed_style_sft_minimax.py:13",
+        "/workspace/maintenance/SEED-STAGE1-SFT-MINIMAX-20260923/data/dataset-manifest.json:seed_source_commit"
+      ],
+      "source_copy_git_metadata_present": false,
+      "source_path": "/workspace/maintenance/SEED-STAGE1-SFT-MINIMAX-20260923/source",
+      "trainer_path": "verl/trainer/ppo/ray_trainer.py",
+      "trainer_sha256": "cf48fc1f96b3f80cbe0de2d80672fc8afa047bed1d01b44d564cc5ada9067b75",
+      "initial_validation_guard_lines": "3034-3039",
+      "periodic_validation_guard_line": 3403,
+      "periodic_validation_guard": "test_freq > 0 AND (is_last_step OR global_steps % test_freq == 0)",
+      "override_effect": "test_freq=-1 disables every in-loop validation including the final step; val_before_train=false disables the initial validation",
+      "launcher_sha256": "246dde9772ae7a3769d64ffcd7d62797194bcbce00e7967929db2161a30547fa",
+      "config_sha256": "d7467566a7ad260854e8694b38294b71ed3e31af446ad14578b9fb30a32095b8"
+    },
+    "validation_passes_if_stock_test_freq_retained": 32,
+    "native_validation_passes_with_override": 0,
+    "validation_passes_at_updates": [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      105,
+      110,
+      115,
+      120,
+      125,
+      130,
+      135,
+      140,
+      145,
+      150,
+      155,
+      160
+    ],
+    "validation_data_rows": {
+      "pinned_public_default": 128,
+      "q17_compatibility_overlay": 64
+    },
+    "native_auxiliary_episodes": {
+      "pinned_public_default": 4096,
+      "q17_compatibility_overlay": 2048
+    },
+    "native_auxiliary_episodes_with_override": 0,
+    "canonical_q17_milestones": {
+      "updates": [
+        0,
+        40,
+        80,
+        120,
+        160
+      ],
+      "episodes": 320
+    },
+    "combined_episode_counts_if_native_validation_runs": {
+      "pinned_public_default_plus_canonical": 4416,
+      "q17_overlay_plus_canonical": 2368
+    },
+    "overlapping_checkpoint_positions": [
+      40,
+      80,
+      120,
+      160
+    ],
+    "interpretation": "The frozen Q03 contract budgets 20480 training rollout slots and five canonical 64-task milestone passes. The inert launch profile explicitly overrides trainer.test_freq=-1 and trainer.val_before_train=false, disabling unbudgeted native SEED auxiliary validation without changing training updates, optimizer, rollout semantics, or the pinned source. Native auxiliary evaluations remain zero; canonical Q17 milestone evaluations remain five separate passes (320 episodes). The exact override must be attested at the future activation boundary; the current execution command remains /bin/false."
+  }
+}

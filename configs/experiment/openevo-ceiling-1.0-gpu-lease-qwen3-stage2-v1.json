@@ -1,0 +1,784 @@
+{
+  "activation_file": "/workspace/control/openevo-ceiling1-gpu-lease-state-q17-stage2-v1/activations",
+  "coresidency": {
+    "3b_second": {
+      "qualification_receipt": "3b-over-7b-qualification.json",
+      "required_free_mib": 11264
+    },
+    "7b_second": {
+      "qualification_receipt": "7b-priority-over-3b-qualification.json",
+      "required_free_mib": 23296
+    },
+    "allowed_arm_pair": [
+      "3b",
+      "7b"
+    ],
+    "enabled": true,
+    "max_live_workloads_per_arm_per_gpu": 1,
+    "max_live_workloads_per_gpu": 2,
+    "preserve_existing_valid_project_occupant": true
+  },
+  "gpus": [
+    {
+      "index": 0,
+      "managed_by_ceiling1": false,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 1,
+      "managed_by_ceiling1": false,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 2,
+      "managed_by_ceiling1": false,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 3,
+      "managed_by_ceiling1": false,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 4,
+      "managed_by_ceiling1": true,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 5,
+      "managed_by_ceiling1": true,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 6,
+      "managed_by_ceiling1": true,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "index": 7,
+      "managed_by_ceiling1": true,
+      "uuid": "GPU-00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "handoff_sla_seconds": 5,
+  "holder_policy": {
+    "enabled": false,
+    "reservation_enabled": false,
+    "restore_after_release": false
+  },
+  "managed_gpu_indices": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "migration": {
+    "overlapping_orchestrators_allowed": false,
+    "requires_natural_safe_boundary": true,
+    "requires_zero_live_v3_leases": true,
+    "source_policy": "configs/experiment/openevo-ceiling-1.0-gpu-lease-v3-eight-gpu.json"
+  },
+  "policy_note": "Qwen3 Stage2 first-class lease over managed GPU4-7; independent activation/state root; science semantics remain arm-local and resource-only.",
+  "resource_authority_path": "configs/experiment/amendments/openevo-ceiling-1.0-gpu-resource-authority-v5.json",
+  "resource_authority_sha256": "7d36913d30d1301a547953ea1bb66f5386e87f9e997abd5f181d33d38f3ade80",
+  "schema": "openevo.ceiling1-gpu-lease-policy.v3",
+  "scientific_invariants": {
+    "arms_independent": true,
+    "no_global_barrier_between_3b_and_7b": true,
+    "no_mid_round_preemption": true,
+    "stage2_all_carrier_every_round": true,
+    "stage2_external_teacher_calls": 0,
+    "stage2_round_rollouts": 128,
+    "stage2_sd_lora_cadence_rollouts": 128,
+    "task_vector_checkpoint_diagnostics": true,
+    "task_vector_online_control": false
+  },
+  "status": "FROZEN_AWAITING_SAFE_BOUNDARY_MIGRATION_TO_FOUR_GPU_CORESIDENCY_V4",
+  "task_vector_policy": {
+    "may_change_next_round_training": false,
+    "online_use": "diagnostic-recording-only"
+  },
+  "topology_receipt_path": "configs/experiment/receipts/openevo-ceiling-1.0-eight-gpu-topology-20260831T0242Z.json",
+  "topology_receipt_sha256": "d4ae790fa18fa8b155df67511bf558dfccf21972d6b44e38072c0e8782c2153b",
+  "unmanaged_gpu_indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "workloads": {
+    "final_eval_3b": {
+      "arm": "3b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_7b",
+        "stage2_text_memory_7b",
+        "stage2_skill_bundle_7b",
+        "stage2_agent_system_7b",
+        "final_eval_7b"
+      ],
+      "cross_arm_coresidency_qualification": "3b-over-7b-qualification.json",
+      "default_min_free_before_launch_mib": 11264,
+      "max_gpus": 4,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 11264,
+        "5": 11264,
+        "6": 11264,
+        "7": 11264
+      },
+      "min_gpus": 4,
+      "required_anchor_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "final_eval_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 4
+    },
+    "final_eval_7b": {
+      "arm": "7b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_3b",
+        "stage2_text_memory_3b",
+        "stage2_skill_bundle_3b",
+        "stage2_agent_system_3b",
+        "stage2_sd_lora_3b",
+        "final_eval_3b"
+      ],
+      "cross_arm_coresidency_qualification": "7b-priority-over-3b-qualification.json",
+      "default_min_free_before_launch_mib": 23296,
+      "max_gpus": 4,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 23296,
+        "5": 23296,
+        "6": 23296,
+        "7": 23296
+      },
+      "min_gpus": 4,
+      "required_anchor_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "final_eval_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 4
+    },
+    "stage1_clean_replay_3b": {
+      "arm": "3b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_7b",
+        "stage2_text_memory_7b",
+        "stage2_skill_bundle_7b",
+        "stage2_agent_system_7b",
+        "final_eval_7b"
+      ],
+      "cross_arm_coresidency_qualification": "3b-over-7b-qualification.json",
+      "default_min_free_before_launch_mib": 11264,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 11264,
+        "5": 11264,
+        "6": 11264,
+        "7": 11264
+      },
+      "min_gpus": 1,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_agent_system_3b": {
+      "arm": "3b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_7b",
+        "stage2_text_memory_7b",
+        "stage2_skill_bundle_7b",
+        "stage2_agent_system_7b",
+        "final_eval_7b"
+      ],
+      "cross_arm_coresidency_qualification": "3b-over-7b-qualification.json",
+      "default_min_free_before_launch_mib": 11264,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 11264,
+        "5": 11264,
+        "6": 11264,
+        "7": 11264
+      },
+      "min_gpus": 1,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_agent_system_7b": {
+      "arm": "7b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_3b",
+        "stage2_text_memory_3b",
+        "stage2_skill_bundle_3b",
+        "stage2_agent_system_3b",
+        "stage2_sd_lora_3b",
+        "final_eval_3b"
+      ],
+      "cross_arm_coresidency_qualification": "7b-priority-over-3b-qualification.json",
+      "default_min_free_before_launch_mib": 23296,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 23296,
+        "5": 23296,
+        "6": 23296,
+        "7": 23296
+      },
+      "min_gpus": 1,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_agent_system_qwen3-1p7b": {
+      "arm": "qwen3-1p7b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [],
+      "default_min_free_before_launch_mib": 12000,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 12000,
+        "5": 12000,
+        "6": 12000,
+        "7": 12000
+      },
+      "min_gpus": 1,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_rollout_3b": {
+      "arm": "3b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_7b",
+        "stage2_text_memory_7b",
+        "stage2_skill_bundle_7b",
+        "stage2_agent_system_7b",
+        "final_eval_7b"
+      ],
+      "cross_arm_coresidency_qualification": "3b-over-7b-qualification.json",
+      "default_min_free_before_launch_mib": 11264,
+      "max_gpus": 4,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 11264,
+        "5": 11264,
+        "6": 11264,
+        "7": 11264
+      },
+      "min_gpus": 1,
+      "one_3b_experiment": true,
+      "prefer_max_safe_gpus": true,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "round_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 4
+    },
+    "stage2_rollout_7b": {
+      "arm": "7b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_3b",
+        "stage2_text_memory_3b",
+        "stage2_skill_bundle_3b",
+        "stage2_agent_system_3b",
+        "stage2_sd_lora_3b",
+        "final_eval_3b"
+      ],
+      "cross_arm_coresidency_qualification": "7b-priority-over-3b-qualification.json",
+      "default_min_free_before_launch_mib": 23296,
+      "max_gpus": 4,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 23296,
+        "5": 23296,
+        "6": 23296,
+        "7": 23296
+      },
+      "min_gpus": 4,
+      "one_3b_experiment": false,
+      "required_anchor_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "round_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 4
+    },
+    "stage2_rollout_qwen3-1p7b": {
+      "arm": "qwen3-1p7b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [],
+      "default_min_free_before_launch_mib": 12000,
+      "max_gpus": 4,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 12000,
+        "5": 12000,
+        "6": 12000,
+        "7": 12000
+      },
+      "min_gpus": 4,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "round_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 4
+    },
+    "stage2_sd_lora_3b": {
+      "arm": "3b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_7b",
+        "stage2_text_memory_7b",
+        "stage2_skill_bundle_7b",
+        "stage2_agent_system_7b",
+        "final_eval_7b"
+      ],
+      "cross_arm_coresidency_qualification": "3b-over-7b-qualification.json",
+      "default_min_free_before_launch_mib": 11264,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 11264,
+        "5": 11264,
+        "6": 11264,
+        "7": 11264
+      },
+      "min_gpus": 1,
+      "min_safety_headroom_mib": 4096,
+      "required_anchor_gpus": [],
+      "requires_vram_qualification": true,
+      "resource_class": "gpu_training",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_sd_lora_7b": {
+      "arm": "7b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [],
+      "cross_arm_coresidency_qualification": "7b-priority-over-3b-qualification.json",
+      "default_min_free_before_launch_mib": 23296,
+      "exclusive_against_opposite_arm": true,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 23296,
+        "5": 23296,
+        "6": 23296,
+        "7": 23296
+      },
+      "min_gpus": 1,
+      "min_safety_headroom_mib": 4096,
+      "required_anchor_gpus": [],
+      "requires_vram_qualification": true,
+      "resource_class": "gpu_training",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_sd_lora_qwen3-1p7b": {
+      "arm": "qwen3-1p7b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [],
+      "default_min_free_before_launch_mib": 20000,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 20000,
+        "5": 20000,
+        "6": 20000,
+        "7": 20000
+      },
+      "min_gpus": 1,
+      "min_safety_headroom_mib": 4096,
+      "required_anchor_gpus": [],
+      "requires_vram_qualification": true,
+      "resource_class": "gpu_training",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_skill_bundle_3b": {
+      "arm": "3b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_7b",
+        "stage2_text_memory_7b",
+        "stage2_skill_bundle_7b",
+        "stage2_agent_system_7b",
+        "final_eval_7b"
+      ],
+      "cross_arm_coresidency_qualification": "3b-over-7b-qualification.json",
+      "default_min_free_before_launch_mib": 11264,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 11264,
+        "5": 11264,
+        "6": 11264,
+        "7": 11264
+      },
+      "min_gpus": 1,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_skill_bundle_7b": {
+      "arm": "7b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_3b",
+        "stage2_text_memory_3b",
+        "stage2_skill_bundle_3b",
+        "stage2_agent_system_3b",
+        "stage2_sd_lora_3b",
+        "final_eval_3b"
+      ],
+      "cross_arm_coresidency_qualification": "7b-priority-over-3b-qualification.json",
+      "default_min_free_before_launch_mib": 23296,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 23296,
+        "5": 23296,
+        "6": 23296,
+        "7": 23296
+      },
+      "min_gpus": 1,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_skill_bundle_qwen3-1p7b": {
+      "arm": "qwen3-1p7b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [],
+      "default_min_free_before_launch_mib": 12000,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 12000,
+        "5": 12000,
+        "6": 12000,
+        "7": 12000
+      },
+      "min_gpus": 1,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_text_memory_3b": {
+      "arm": "3b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_7b",
+        "stage2_text_memory_7b",
+        "stage2_skill_bundle_7b",
+        "stage2_agent_system_7b",
+        "final_eval_7b"
+      ],
+      "cross_arm_coresidency_qualification": "3b-over-7b-qualification.json",
+      "default_min_free_before_launch_mib": 11264,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 11264,
+        "5": 11264,
+        "6": 11264,
+        "7": 11264
+      },
+      "min_gpus": 1,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_text_memory_7b": {
+      "arm": "7b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [
+        "stage2_rollout_3b",
+        "stage2_text_memory_3b",
+        "stage2_skill_bundle_3b",
+        "stage2_agent_system_3b",
+        "stage2_sd_lora_3b",
+        "final_eval_3b"
+      ],
+      "cross_arm_coresidency_qualification": "7b-priority-over-3b-qualification.json",
+      "default_min_free_before_launch_mib": 23296,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 23296,
+        "5": 23296,
+        "6": 23296,
+        "7": 23296
+      },
+      "min_gpus": 1,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    },
+    "stage2_text_memory_qwen3-1p7b": {
+      "arm": "qwen3-1p7b",
+      "candidate_gpus": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "co_resident_with": [],
+      "default_min_free_before_launch_mib": 12000,
+      "max_gpus": 1,
+      "mid_round_reshard_allowed": false,
+      "mid_workload_reshard_allowed": false,
+      "min_free_before_launch_mib": {
+        "4": 12000,
+        "5": 12000,
+        "6": 12000,
+        "7": 12000
+      },
+      "min_gpus": 1,
+      "required_anchor_gpus": [],
+      "resource_class": "gpu_inference",
+      "selection_boundary": "workload_start_write_once",
+      "selection_preference": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_gpus": 1
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "seed3090.webshop-h1.25-new-task-state-panel-prereg.v1",
+  "campaign_id": "20260815-1230-h125-new-task-state-panel",
+  "title": "H1.25 new-task identity state diagnostic",
+  "status": "preregistered",
+  "objective": "Test whether the H1.24 task-6262 terminal-transition pattern extends to independent task identities.",
+  "scientific_question": "Does the H1.24 6262 terminal-transition pattern persist on independent task identities from the same category and adjacent womens-fashion categories?",
+  "hypothesis": "If 6262 is a broader socks/hosiery state-family signal, new socks/hosiery identities should show more terminal buy transitions than adjacent womens-fashion tasks; if only 6262 repeats, classify the effect as task-identity-specific.",
+  "independent_variable": "task_identity_and_category",
+  "arms": [
+    "BASE-30"
+  ],
+  "frozen_variables": [
+    "model revision",
+    "prompt contract",
+    "action parser",
+    "environment seed",
+    "max steps",
+    "temperature",
+    "validity rule",
+    "category labels",
+    "task identities after registration"
+  ],
+  "selected_tasks": [
+    503,
+    507,
+    3735,
+    6826
+  ],
+  "rollout_seed_groups": {
+    "A": [
+      2026083800,
+      2026083801,
+      2026083802,
+      2026083803
+    ],
+    "B": [
+      2026083900,
+      2026083901,
+      2026083902,
+      2026083903
+    ]
+  },
+  "attempts": 32,
+  "gpu_cells": 8,
+  "primary_metrics": [
+    "qualified_positive_rate_by_task",
+    "mean_task_score_by_task",
+    "buy_action_rate_by_task"
+  ],
+  "diagnostic_metrics": [
+    "valid_action_rate",
+    "parser_or_fallback_invalid",
+    "episode_steps",
+    "first_buy_step",
+    "search_next_backtrack_repetition_counts"
+  ],
+  "validity_rule": "identity_ok && error == null && trace_complete && !parser_or_fallback_failure",
+  "claim_boundary": "BASE-30 only; no training, memory, adapter, teacher, retrieval, outcome-conditioned selection, Q3, H2, D0, retention, transfer, or SEED claim.",
+  "stop_rules": [
+    "Stop after exactly 32 preregistered formal attempts.",
+    "Do not change task identities, seeds, prompt, parser, horizon, denominator, or category labels after launch.",
+    "If all new tasks are zero or invalid, release GPUs and do not start a task-specific rescue sweep."
+  ],
+  "positive_branch": "If new socks/hosiery identities show terminal transitions, classify as category/state-family evidence only and require further independent identities before any efficacy test.",
+  "negative_branch": "If all new identities remain zero, classify 6262 as task-identity-specific and stop repeated BASE micro-panels.",
+  "manifest_path": "docs/evidence/remote-runs/2026-08-15/h1.25/H1.25_TASK_MANIFEST.json",
+  "manifest_sha256": "1f1c0f0f36c75a491ddd05df518b0ce41768cfd5cb6fa180b6fc0a4956d59c25",
+  "default_wandb_mode": "online",
+  "offline_fallback": "only after online initialization/upload failure with exact error and spool hash",
+  "branch": "codex/h1.25-new-task-state-panel-20260815",
+  "upstream_open_evo_stable": "796e6248a61112a61c880885844dd3b0420c0b6ae",
+  "next_gate": "Run exactly these eight BASE-30 cells after the 8-UUID and storage gate; reconcile by task and category; do not open Q3."
+}

@@ -1,0 +1,62 @@
+{
+  "schema": "openevo.mechanism1-m1a-identifiability-amendment.202609062100",
+  "amendment_id": "M1-A-IDENTIFIABILITY-202609062100",
+  "program_id": "openevo-mechanism-1.0-202609052200",
+  "status": "PREREGISTERED_BEFORE_M1A_EXECUTION",
+  "execution_authority": false,
+  "formal_task_consumption_allowed": false,
+  "discovery_source": {
+    "pr": "https://github.com/mykcs/openevo-experiment/pull/350",
+    "observed_resolution": {
+      "25pct": {
+        "round_index": 27,
+        "generation_index": 14,
+        "component_count": 6,
+        "adapter_sha256": "1e5c78ab34d8192a76b0a013d72e03185d0a07c745f8d42102949b15071aa110"
+      },
+      "50pct": {
+        "round_index": 49,
+        "generation_index": 27,
+        "component_count": 7,
+        "adapter_sha256": "1e3ea64b0b32e21f5bd421c55a49af5faf99e1b5042ee0d77948ceb5c9f7eaaf"
+      },
+      "75pct": {
+        "round_index": 49,
+        "generation_index": 27,
+        "component_count": 7,
+        "adapter_sha256": "1e3ea64b0b32e21f5bd421c55a49af5faf99e1b5042ee0d77948ceb5c9f7eaaf"
+      },
+      "100pct": {
+        "round_index": 49,
+        "generation_index": 27,
+        "component_count": 7,
+        "adapter_sha256": "1e3ea64b0b32e21f5bd421c55a49af5faf99e1b5042ee0d77948ceb5c9f7eaaf"
+      }
+    },
+    "preregistered_vector": "theta_100pct - theta_75pct",
+    "result": "ZERO_VECTOR_NOT_DIRECTION_IDENTIFIABLE"
+  },
+  "predecessor": {
+    "passport": "configs/experiment/designs/openevo-mechanism1-taskvector-causal-transplant-202609052200.json",
+    "disposition": "PRESERVED_HISTORICAL_PREREGISTRATION_BLOCKED_NOT_IDENTIFIABLE",
+    "may_execute": false,
+    "may_supply_m1c_signal": false
+  },
+  "scientific_interpretation": [
+    "The Ceiling-1.0 evidence remains valid and immutable.",
+    "The failure is an identifiability failure in the Mechanism-1.0 anchor mapping, not a negative causal result.",
+    "No reward, probe outcome, or final-panel result was used to select replacement states."
+  ],
+  "successor": {
+    "passport": "configs/experiment/designs/openevo-mechanism1-taskvector-causal-transplant-202609062100.json",
+    "relationship": "NARROW_SUCCESSOR_REPLACING_ONLY_M1A_ANCHOR_AND_DEPENDENT_LABELS",
+    "activation_release_required": true
+  },
+  "forbidden": [
+    "editing or deleting the predecessor passport",
+    "reporting the zero vector as a null causal effect",
+    "choosing replacement states by reward or geometry",
+    "executing either M1-A lineage from this amendment",
+    "allowing the predecessor M1-A result to satisfy the M1-C GO gate"
+  ]
+}

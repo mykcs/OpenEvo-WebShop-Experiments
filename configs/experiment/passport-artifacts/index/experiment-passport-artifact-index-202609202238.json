@@ -1,0 +1,15 @@
+{
+  "entries": [
+    {
+      "node_sha256": "f51009360f26391c6c8c62b43cc9afe75f6a3cfd3286b15ba9f5d63681a5258b",
+      "operation_digest": "fee66acd6c8650da254850aec1dfdb3a7f5bb5a49eb7885c503bfbf16c18dd4e",
+      "operation_type": "passport-artifact-dag.pilot.deterministic-file-summary",
+      "path": "configs/experiment/passport-artifacts/operation-nodes/fee66acd6c8650da254850aec1dfdb3a7f5bb5a49eb7885c503bfbf16c18dd4e/f51009360f26391c6c8c62b43cc9afe75f6a3cfd3286b15ba9f5d63681a5258b.json",
+      "side_effect_class": "DETERMINISTIC_COMPUTATION",
+      "status": "PASS"
+    }
+  ],
+  "generated_at": "2026-09-20T22:38:02+08:00",
+  "role": "lookup-acceleration-only; Passport/receipts remain execution and provenance authority",
+  "schema": "openevo.experiment-passport-artifact-index.202609202238"
+}

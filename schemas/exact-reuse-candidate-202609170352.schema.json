@@ -1,0 +1,114 @@
+{
+  "$id": "openevo.exact-reuse-candidate.202609170352",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "candidate_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "candidate_operation_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "execution_generation_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "existing_policy_automatic_reuse_permitted": {
+      "type": "boolean"
+    },
+    "node_path": {
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+      "type": "string"
+    },
+    "node_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "output_artifacts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "artifact_type": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "digest": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "digest_algorithm": {
+            "const": "sha256"
+          },
+          "logical_role": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "size_bytes": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "artifact_type",
+          "digest_algorithm",
+          "digest",
+          "size_bytes",
+          "logical_role"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "policy_review_required": {
+      "type": "boolean"
+    },
+    "producer_attempt": {
+      "type": "object"
+    },
+    "requested_operation_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "reuse_authorized_by_candidate_record": {
+      "const": false
+    },
+    "reuse_policy": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "openevo.exact-reuse-candidate.202609170352"
+    },
+    "side_effect_class": {
+      "enum": [
+        "PURE_ENGINEERING",
+        "DETERMINISTIC_COMPUTATION",
+        "STOCHASTIC_SCIENTIFIC_RESULT",
+        "FORMAL_ROLLOUT",
+        "MODEL_UPDATE",
+        "FINAL_EVALUATION"
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "candidate_id",
+    "requested_operation_digest",
+    "candidate_operation_digest",
+    "execution_generation_id",
+    "node_path",
+    "node_sha256",
+    "side_effect_class",
+    "output_artifacts",
+    "producer_attempt",
+    "reuse_policy",
+    "existing_policy_automatic_reuse_permitted",
+    "policy_review_required",
+    "reuse_authorized_by_candidate_record"
+  ],
+  "title": "OpenEVO exact advisory reuse candidate",
+  "type": "object"
+}

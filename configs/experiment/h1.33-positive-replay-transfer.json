@@ -1,0 +1,75 @@
+{
+  "schema": "openevo.experiment-h1.33-positive-replay-transfer.v1",
+  "experiment": "H1.33-positive-replay-transfer-v1",
+  "phase": "H1.33",
+  "status": "preregistered-not-authorized",
+  "formal_task_consumption_allowed": false,
+  "scientific_result": false,
+  "scientific_question": "Can a bounded OpenEvo SD-LoRA update trained only on Qwen-native successes from H0.1 improve fresh-task closed-loop behavior over the frozen Qwen base?",
+  "hypothesis": "Replay of diverse native Qwen success trajectories will improve at least one prespecified fresh-task metric without teacher or evaluation leakage.",
+  "source_condition": {
+    "discovery_experiment": "H0.1-qwen-success-discovery-v2",
+    "teacher": "disabled",
+    "source_rule": "Only H0.1 qualified-positive Qwen2.5-3B episodes may enter training; no teacher, oracle, evaluation outcome, or prompt rescue.",
+    "minimum_source_task_identities": 8,
+    "minimum_source_episodes": 16
+  },
+  "arms": {
+    "BASE": "frozen Qwen2.5-3B-Instruct with no adapter",
+    "SELF-EVOLUTION": "one rank-4 OpenEvo SD-LoRA adapter fit on H0.1 native-success traces"
+  },
+  "training": {
+    "max_steps": 8,
+    "rank": 4,
+    "target_modules": ["q_proj", "v_proj"],
+    "learning_rate": 0.0002,
+    "coefficient_learning_rate": 0.01,
+    "epochs": 1,
+    "max_records": 96,
+    "training_gpus": 1
+  },
+  "evaluation": {
+    "task_count": 8,
+    "rollout_seeds": [2026081800, 2026081801, 2026081802, 2026081803],
+    "attempts_per_arm": 32,
+    "total_attempts": 64,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "temperature": 0.0,
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1"
+  },
+  "primary_metrics": [
+    "SELF-EVOLUTION minus BASE paired mean task_score",
+    "SELF-EVOLUTION minus BASE paired won rate",
+    "scientific-valid rate"
+  ],
+  "diagnostic_metrics": [
+    "qualified-positive rate",
+    "valid-action rate",
+    "buy-now transition rate",
+    "premature-next-page rate",
+    "median valid episode wall time"
+  ],
+  "invalid_attempt_policy": "Runtime, identity, incomplete-trace, and parser/fallback failures are reported separately and excluded from scientific score denominators.",
+  "contamination_rules": [
+    "H0.1 source tasks are train-only and disjoint from fresh evaluation tasks",
+    "evaluation outcomes and traces never enter the dataset",
+    "teacher and oracle data are forbidden",
+    "one bounded adapter fit; no retry or hyperparameter sweep after valid completion",
+    "this diagnostic does not consume H1.30 formal SEED tasks"
+  ],
+  "decision_rule": {
+    "positive_candidate": "complete paired evaluation and positive aggregate paired score delta plus positive mean score on at least two task identities",
+    "negative": "complete paired evaluation with non-positive aggregate delta or task-local improvement only",
+    "claim_boundary": "Fresh-task pure self-evolution diagnostic only; no OpenEvo-vs-SEED superiority claim and no teacher-bootstrap claim."
+  },
+  "reproducibility": {
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "environment_seed": 2026,
+    "default_wandb_mode": "online",
+    "offline_fallback": "explicit receipt after online initialization failure"
+  },
+  "next_gate": "CPU tests, H0.1 reconciliation hash/source gate, fresh task manifest, adapter reload receipt, and UUID-bound GPU idle gate must pass before launch."
+}

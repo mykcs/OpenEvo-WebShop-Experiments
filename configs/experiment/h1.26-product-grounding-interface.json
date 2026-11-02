@@ -1,0 +1,130 @@
+{
+  "schema": "seed3090.webshop-h1.26-product-grounding-prereg.v1",
+  "campaign_id": "20260815-1300-h126-product-grounding",
+  "phase": "H1.26",
+  "title": "Product identity/price grounding interface diagnostic",
+  "status": "pre-registered",
+  "scientific_question": "Does a deterministic product-title and price annotation beside exact clickable product IDs improve fresh-task WebShop closed-loop selection over the frozen compact prompt?",
+  "hypothesis": "The H1.25 traces show repeated selection of one opaque product ID across tasks and only partial score on the positive path. Exposing visible title/price beside exact action keys may improve constraint grounding without changing the model, memory, training, or evaluator.",
+  "independent_variable": "prompt_interface_product_identity_price_grounding",
+  "arms": [
+    {
+      "id": "BASE-30-COMPACT",
+      "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+      "carrier": "none"
+    },
+    {
+      "id": "BASE-30-PRODUCT-GROUNDED",
+      "prompt_contract": "seed3090.webshop-product-grounded-action-prompt.v1",
+      "carrier": "none"
+    }
+  ],
+  "controls": [
+    "Same frozen Qwen2.5-3B-Instruct, model/tokenizer revision, WebShop catalog/index, environment seed, task identities, rollout seeds, temperature, 30-step horizon, 512-token cap, parser and evaluator.",
+    "Only the prompt representation changes: product-grounded adds deterministic title/price text extracted from the current observation and exact clickable IDs; it does not add task outcomes, memory, retrieval, teacher labels, action substitution, or a new action.",
+    "Product annotations are generated from current observation text only; reserved navigation actions are not annotated and unmatched IDs are not invented."
+  ],
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa5ea5ed015b17504d1",
+    "tokenizer_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_open_evo_stable": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "temperature": 0,
+    "manifest_sha256": "f0fcd105e38c1e90eb21ee2af897d4e313501bcbe94392bbf0a30b7d95e9bda1"
+  },
+  "tasks": {
+    "selected_goal_indices": [
+      500,
+      501,
+      502,
+      504
+    ],
+    "task_manifest": "docs/evidence/remote-runs/2026-08-15/h1.26/H1.26_TASK_MANIFEST.json",
+    "task_manifest_sha256": "f0fcd105e38c1e90eb21ee2af897d4e313501bcbe94392bbf0a30b7d95e9bda1",
+    "rollout_seeds": [
+      2026084000,
+      2026084001,
+      2026084002,
+      2026084003
+    ],
+    "pairing_key": [
+      "goal_idx",
+      "rollout_seed"
+    ],
+    "scheduled_attempts": 32,
+    "planned_cells": 8,
+    "selection_rule": "first four unused catalog goal indices >=500 after recorded H0-H1.25 manifests; selection did not inspect outcomes"
+  },
+  "contamination_check": {
+    "selected_task_ids_disjoint_from_recorded_h0_h1_25": true,
+    "train_tasks_used": false,
+    "teacher_oracle_used": false,
+    "memory_or_retrieval_used": false,
+    "adapter_or_parametric_update_used": false,
+    "evaluation_outcomes_used_for_selection_or_prompt": false
+  },
+  "primary_metrics": [
+    "valid qualified-positive rate by arm and task",
+    "mean final task_score over valid attempts",
+    "full win rate (won == true and task_score == 1.0)",
+    "paired product-grounded minus compact score delta by task and seed"
+  ],
+  "diagnostic_metrics": [
+    "valid action rate and parser/fallback invalid rate",
+    "buy-now transition rate and first-buy step",
+    "unique product IDs selected per episode",
+    "repeated identical product-click count",
+    "next/backtrack/navigation repetition counts",
+    "product annotation coverage per step"
+  ],
+  "validity_rule": "error == null && identity_ok && trace_complete && !parser_or_fallback_failure",
+  "budget": {
+    "gpus": 8,
+    "cells": 8,
+    "attempts": 32,
+    "retries_after_valid_completion": 0,
+    "gpu_uuid_policy": "only explicit idle authorized UUIDs; occupied UUID blocks that cell"
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "project": "openevo-webshop-experiments",
+    "group": "20260815-1300-h126-product-grounding",
+    "mode": "online",
+    "offline_fallback": "only after exact online initialization/upload failure; preserve error and spool hash"
+  },
+  "storage_contract": {
+    "output_root": "/dev/shm/private-source-h1.26-product-grounding-20260815",
+    "wandb_and_tmp": "under per-cell output root via startup_gate_5090.sh",
+    "no_root_disk_writes": true
+  },
+  "stop_rule": "Stop after exactly 32 formal attempts; no prompt wording, horizon, seed, task, or parser sweep after launch.",
+  "positive_branch": "If product-grounded selectively improves score or full wins across at least two of four task identities with valid paired coverage, register one independent task/seed confirmation; this interface diagnostic alone does not open Q3.",
+  "negative_branch": "If no selective paired improvement, classify product identity/price grounding as insufficient and stop interface micro-variants; revisit model capability or a separately preregistered experience-content question.",
+  "invalid_branch": "Exclude operational/parser/identity failures from scientific denominator, preserve them separately, repair only runtime contract, and do not change the frozen comparison.",
+  "upstream_audit": {
+    "stable_sha": "796e6248a61112a61c880885844dd3b0420c0b6ae",
+    "checked": [
+      "CompLifeLab-ZJU/OpenEvo#297",
+      "CompLifeLab-ZJU/OpenEvo#298",
+      "CompLifeLab-ZJU/OpenEvo#293"
+    ],
+    "decision": "retain pinned runtime; active upstream work is unrelated to this frozen WebShop interface diagnostic"
+  },
+  "implementation": {
+    "branch": "codex/h1.26-product-grounding-20260815",
+    "code_parent_sha": "d54d0008c2f4c595f4129e26d6cdf676703adac4",
+    "runtime_entrypoint": "scripts/openevo_webshop/startup_gate_5090.sh",
+    "cell_runner": "scripts/openevo_webshop/run_base30_cell.py",
+    "prompt_implementation": "scripts/openevo_webshop/webshop_comparison_contract.py"
+  },
+  "claim_boundary": "BASE interface diagnostic only. No OpenEvo efficacy, Q3, H2, D0, retention, transfer, or SEED claim.",
+  "references": {
+    "roadmap": "docs/webshop/SCIENTIFIC_ROADMAP_2026-08-15_0127_UTC8.md",
+    "h1_25_checkpoint": "docs/reports/OPEN_EVO_WEBSHOP_CHECKPOINT_2026-08-15-H1.25.md",
+    "h1_25_trace_diagnostic": "docs/evidence/remote-runs/2026-08-15/h1.25/evidence/h1.25-reconciliation-v1.json"
+  }
+}

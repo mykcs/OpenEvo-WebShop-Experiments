@@ -1,0 +1,29 @@
+{
+  "schema": "openevo.bounded-gdr.ray-capacity-resource-contract.20260916",
+  "status": "ZERO_FORMAL_QUALIFICATION_ONLY",
+  "formal_activation_allowed": false,
+  "base_ray_config_path": "configs/experiment/openevo-ceiling1-ray-placement-backend-202609042025.json",
+  "profile_registry_path": "configs/experiment/bounded-effective-state-ray-profile-registry-20260916.json",
+  "qualified_topology_registry_path": "configs/experiment/bounded-effective-state-qualified-topologies-202609170845.json",
+  "managed_gpus": [4,5,6,7],
+  "resource_model": "per-physical-GPU virtual Ray node + numeric vram_mib + process_slot + exact gpu_index resource + live UUID/VRAM gate",
+  "workload_map": {
+    "off": {"rollout":"bounded_off_rollout","text_memory":"bounded_off_text_memory","sd_lora":"bounded_off_sd_lora","skill_bundle":"bounded_off_skill_bundle","agent_system":"bounded_off_agent_system"},
+    "on": {"rollout":"bounded_on_rollout","text_memory":"bounded_on_text_memory","sd_lora":"bounded_on_sd_lora","skill_bundle":"bounded_on_skill_bundle","agent_system":"bounded_on_agent_system"}
+  },
+  "qualification_scenarios": [
+    ["bounded_off_rollout","bounded_on_sd_lora"],
+    ["bounded_on_rollout","bounded_off_text_memory"],
+    ["bounded_off_rollout","bounded_on_rollout"],
+    ["bounded_off_sd_lora","bounded_on_sd_lora"]
+  ],
+  "scientific_invariants": {
+    "science_DAG_owned_by_controller": true,
+    "scheduler_only_decides_placement": true,
+    "formal_rollout_replay": 0,
+    "additional_model_calls": 0,
+    "final_panel_access_delta": 0,
+    "preemption": false,
+    "mid_workload_reshard": false
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.4-compact-action-prompt-runtime-repair-v2",
+  "phase": "H1.4-runtime-repair",
+  "status": "pre-registered",
+  "repair_of": "H1.4-compact-action-prompt-runtime-repair-v1",
+  "protocol_change": "None to scientific factors; export the pinned JDK and Hugging Face cache required by the local model runtime.",
+  "source_invalid_run": "/workspace/workspace/runs/phase-h1.4-compact-action-prompt-runtime-repair-v1-20260814",
+  "scientific_question": "With the pinned JDK and Hugging Face cache exposed to the ordinary-user process, does compact action-format prompting restore fallback-free greedy behavior and non-zero reward for the frozen SUCCESS adapter?",
+  "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+  "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+  "task_panel": {
+    "task_manifest": "/workspace/workspace/runs/phase-h0-natural-success-search-v1-20260814-rerun-rng-fix/task-manifest.json",
+    "task_manifest_sha256": "fec3203f8abfad571048d27dfac1dd7c6fd62ad784d452939b09de1bb9f4e077",
+    "task_indices": [2822, 5135, 5294, 6769],
+    "partitions": {"A": [2822, 5135], "B": [5294, 6769]},
+    "rollout_seeds": [2026081450, 2026081451, 2026081452, 2026081453]
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_steps": 15,
+    "max_new_tokens": 512,
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "parser_retry_seed_offset": 900000,
+    "evaluator": "WebShop task_score/won",
+    "runtime_gpu_contract": "CUDA_VISIBLE_DEVICES exactly one selected GPU UUID"
+  },
+  "runtime_repair": {
+    "jdk_home": "/workspace/openevo-workspace/runtime/phase-g-live-20260814/tools/jdk-11.0.20.1",
+    "java_home": "/workspace/openevo-workspace/runtime/phase-g-live-20260814/tools/jdk-11.0.20.1",
+    "hf_home": "/workspace/openevo-workspace/runtime/cache/huggingface",
+    "hf_hub_cache": "/workspace/openevo-workspace/runtime/cache/huggingface",
+    "model_snapshot": "/workspace/openevo-workspace/runtime/cache/huggingface/models--Qwen--Qwen2.5-3B-Instruct/snapshots/aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "scientific_factor_change": false,
+    "preflight": "AutoTokenizer.from_pretrained by model id with local_files_only=True must pass before launch"
+  },
+  "execution": {
+    "new_cells": "3 arms x 2 partitions = 6 compact_v2 cells; 8 attempts per cell",
+    "baseline": "reuse sealed H1.3 repair greedy512 artifacts as reference",
+    "gpu_policy": "one UUID-bound process per cell; launch only on verified idle GPUs; two cards remain unused because no duplicate deterministic baseline is added"
+  },
+  "code_sha": "001ca07c5cfc7b9536b251b39d0e96fe2cc78810",
+  "claim_boundary": "Runtime repair only; no benchmark claim and D0 remains closed."
+}

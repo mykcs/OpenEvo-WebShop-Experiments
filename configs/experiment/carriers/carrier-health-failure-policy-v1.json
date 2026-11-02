@@ -1,0 +1,35 @@
+{
+  "automatic_mutations": {
+    "arm_specific_fallback": false,
+    "change_acceleration_semantics": false,
+    "change_gdr": false,
+    "change_update_frequency": false,
+    "extra_reflector_call": false,
+    "force_selected": false,
+    "raise_token_cap": false,
+    "reward_conditioned_repair": false,
+    "third_repair": false
+  },
+  "final_panel_access_allowed": false,
+  "formal_run": {
+    "block_next_round": true,
+    "evaluate_after_round_complete": true,
+    "on_health_fail": "PAUSE_FOR_DIAGNOSTIC",
+    "preserve_completed_transaction": true
+  },
+  "policy_id": "carrier-health-failure-policy-v1",
+  "pre_round0": {
+    "formal_task_consumption_allowed": false,
+    "on_fail": "BLOCKED",
+    "required_status": "PASS"
+  },
+  "resume": {
+    "automatic_resume": false,
+    "new_contract_requires_prospective_authority": true,
+    "requires_resolution_receipt": true,
+    "same_contract_allowed": true,
+    "single_arm_patch_allowed": false
+  },
+  "reward_conditioning_allowed": false,
+  "schema": "openevo.carrier-health-failure-policy.v1"
+}

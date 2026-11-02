@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/cross-platform-experiment-asset-record.schema.json",
+  "title": "OpenEvo Cross-Platform Experiment Asset Record",
+  "description": "Derived registry record linking Git-backed scientific identity to provider-native server, W&B, Hugging Face, Kaggle, and website bindings. This registry is not a scientific source of truth.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "record_level",
+    "canonical_id",
+    "display_title_en",
+    "program",
+    "benchmark",
+    "scientific_lifecycle",
+    "scientific_validity",
+    "asset_lifecycle",
+    "visibility",
+    "aliases",
+    "source_authority",
+    "provider_bindings",
+    "language_policy"
+  ],
+  "properties": {
+    "schema": {"const": "openevo.cross-platform-experiment-asset-record.v1"},
+    "record_level": {"enum": ["campaign", "design", "run", "asset"]},
+    "canonical_id": {"type": "string", "minLength": 1},
+    "display_title_en": {"type": "string", "minLength": 1},
+    "summary_zh": {"type": ["string", "null"]},
+    "summary_en": {"type": ["string", "null"]},
+    "program": {"type": "string", "minLength": 1},
+    "benchmark": {"type": "string", "minLength": 1},
+    "campaign_id": {"type": ["string", "null"]},
+    "design_id": {"type": ["string", "null"]},
+    "canonical_run_id": {"type": ["string", "null"]},
+    "asset_id": {"type": ["string", "null"]},
+    "model_slugs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "scientific_stage": {
+      "type": ["string", "null"],
+      "enum": [null, "stage1", "minimax", "opsd", "text-memory", "skill-bundle", "agent-system", "stage2", "gdn", "eval", "analysis"]
+    },
+    "execution_class": {
+      "type": ["string", "null"],
+      "enum": [null, "formal", "qualification", "smoke", "diagnostic", "replay", "retrospective", "preflight"]
+    },
+    "scientific_lifecycle": {
+      "enum": ["draft", "preregistered", "frozen", "authorized", "running", "sealed", "analyzed", "closed", "superseded", "cancelled"]
+    },
+    "scientific_validity": {
+      "enum": ["not-assessed", "valid-positive", "valid-negative", "protocol-invalid", "measurement-invalid", "runtime-failure", "tracking-degraded", "cancelled", "not-run"]
+    },
+    "asset_lifecycle": {
+      "enum": ["live-writing", "local-closed", "remote-published", "remote-verified-exact", "retained-hot", "retained-cold", "reconstructible-pinned", "retired"]
+    },
+    "visibility": {
+      "enum": ["public", "private", "server-only", "non-scientific-credential-transport"]
+    },
+    "aliases": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "source_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "git_sha", "source_path"],
+      "properties": {
+        "repository": {"type": "string"},
+        "git_sha": {"type": "string", "pattern": "^[0-9a-f]{7,40}$"},
+        "source_path": {"type": "string"},
+        "protocol_fingerprint": {"type": ["string", "null"]},
+        "runtime_fingerprint": {"type": ["string", "null"]}
+      }
+    },
+    "provider_bindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["provider", "provider_id", "binding_role"],
+        "properties": {
+          "provider": {"enum": ["server", "github", "wandb", "huggingface", "kaggle", "basemodel"]},
+          "provider_id": {"type": "string", "minLength": 1},
+          "binding_role": {"type": "string", "minLength": 1},
+          "url": {"type": ["string", "null"]},
+          "immutable_revision": {"type": ["string", "null"]},
+          "content_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+          "legacy": {"type": "boolean", "default": false},
+          "notes_zh": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "language_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title_language", "primary_explanatory_language", "english_companion"],
+      "properties": {
+        "title_language": {"const": "en"},
+        "primary_explanatory_language": {"const": "zh-CN"},
+        "english_companion": {"enum": ["inline-below", "README.en.md", "separate-linked-report", "optional"]}
+      }
+    },
+    "supersedes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "superseded_by": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "child_design_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "public_projection_allowed": {"type": "boolean", "default": false},
+    "generated_at": {"type": ["string", "null"], "format": "date-time"},
+    "generated_from": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+  }
+}

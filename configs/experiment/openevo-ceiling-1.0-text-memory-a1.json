@@ -1,0 +1,35 @@
+{
+  "coverage": {
+    "duplicates": 0,
+    "omissions": 0,
+    "required_source_rows": 1440
+  },
+  "external_teacher_calls_after_frozen_pool": 0,
+  "failure_behavior": "fail closed and write A1_BLOCKED.json",
+  "forbidden": [
+    "input splitting",
+    "20-to-10+10",
+    "recursive bisection",
+    "adaptive tree",
+    "outcome-based evidence selection",
+    "automatic escalation to A2"
+  ],
+  "logical_reflection_unit_max_inputs": 20,
+  "primary_max_output_tokens": 2048,
+  "repair": {
+    "input_identity": "exact same logical inputs and exact same order as primary",
+    "max_attempts_per_failed_node": 1,
+    "max_output_tokens": 2048,
+    "prompt_change": "fixed stronger compression instruction only"
+  },
+  "saturation_trigger": "primary completion reaches the 2048 hard cap",
+  "schema": "openevo.ceiling1-text-memory-a1.v1",
+  "status": "frozen-before-a1-primary-restart",
+  "supersession_20260903": {
+    "a11_4096_result": "rejected: both qwen25-3b and qwen3-1p7b BLOCKED extended_repair_failed",
+    "authority": "configs/experiment/amendments/openevo-ceiling-1.0-stage1-capacity-recovery-v1.json",
+    "current_lineage": "202609030400",
+    "status": "SUPERSEDED_HISTORICAL_ONLY",
+    "successor": "configs/experiment/openevo-ceiling-1.0-text-memory-a2.json"
+  }
+}

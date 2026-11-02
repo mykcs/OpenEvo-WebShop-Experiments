@@ -1,0 +1,50 @@
+{
+  "schema": "openevo.webshop-h1.30-seed-route-qualification.v2",
+  "experiment": "H1.30-SEED-route-qualification",
+  "status": "runtime-qualified-checkpoint-reload-passed-clean-teacher-off-retry-storage-blocked",
+  "formal_task_consumption_allowed": false,
+  "scientific_role": "runtime and checkpoint-route qualification only; no benchmark claim",
+  "purpose": "Verify that the pinned SEED WebShop source can execute one bounded 8-GPU policy-update step and export a reloadable checkpoint before H1.30 matched evaluation.",
+  "source": {
+    "repository": "mykcs/seed3090",
+    "commit": "9996427d3ae7c71b3cc8ac82940efe764a8a2485"
+  },
+  "runtime": {
+    "image": "experiment-host/openevo-seed:qwen25-3b-webshop-20260817-rc15",
+    "digest": "sha256:1f049d117b376e4af225ef1915bedbcec88d31bdf7376d189f7682ab9d118885",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1"
+  },
+  "bounds": {
+    "gpus": 8,
+    "train_rows": 8,
+    "train_batch_size": 8,
+    "rollout_group_size": 1,
+    "environment_max_steps": 2,
+    "total_training_steps": 1,
+    "save_frequency": 1,
+    "temperature": 1.0,
+    "max_prompt_length": 512,
+    "max_model_len": 512,
+    "vllm_gpu_memory_utilization": 0.30,
+    "attention_implementation": "eager",
+    "remove_padding": false,
+    "analysis_enabled": false,
+    "formal_h1_30_tasks_accessed": false
+  },
+  "method_contract": {
+    "advantage_estimator": "seed",
+    "opd_loss_coefficient": 0.0,
+    "teacher_signal": "disabled by the actual key algorithm.seed.enable_analysis=false for the clean retry; the rc14 passing artifact used the source default and all eight OpenAI analyses failed closed for missing credentials",
+    "prompt_contract": "seed3090 source WebShop prompt; not H1.30 evaluation contract",
+    "evaluator": "source WebShop environment reset/step only"
+  },
+  "success_gates": [
+    "source imports and WebShop environment initialize",
+    "one rollout/update step exits successfully on eight GPUs",
+    "checkpoint is written under the qualification run root",
+    "the written checkpoint is reloaded by the pinned runtime",
+    "all GPU processes are released and no H1.30 evaluation task is consumed"
+  ],
+  "execution_evidence": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-seed-route-qualification.json",
+  "claim_boundary": "A pass proves only route executability and checkpoint reloadability. It does not establish SEED performance, OpenEvo-versus-SEED comparability, or a scientific result."
+}

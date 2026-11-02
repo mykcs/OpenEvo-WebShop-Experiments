@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+"""Canonical OpenEvo launcher entrypoint.
+
+Formal GPU execution must pass through ``run-campaign`` so current scientific
+authority, frozen artifacts/profile, runtime qualification, the volatile live
+gate, and the final point-of-use GPU gate are one continuous chain.
+
+``oe resolve --experiment <config>`` is a CPU/read-only identity projection. It
+proves that a scientific experiment config maps unambiguously onto the Golden
+Runtime family and content-addressed assets. It does not authorize a launch.
+
+The historical direct ``oe run <profile>`` spelling is intentionally retained
+only as a fail-closed migration error. It used to call the low-level GPU
+launcher without campaign readiness and therefore created a structural bypass.
+
+Implementation note
+-------------------
+``scripts/oe`` is also a long-standing import/test seam. Older regression tests
+load this executable as a Python module and monkeypatch symbols such as ``_run``,
+``image_id``, ``git_identity`` and ``command_launch``. Importing function objects
+from a separate module breaks that seam because their ``__globals__`` remain in
+the implementation module. Execute the implementation in this module namespace
+instead: the CLI remains split on disk, while instrumentation/monkeypatching the
+canonical entrypoint still affects the code that actually runs.
+"""
+
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+# Load the implementation into *this* module dictionary. Temporarily give the
+# embedded file a non-main module name so its own ``if __name__ == '__main__'``
+# block does not execute. Functions created by exec therefore retain this
+# facade's globals and preserve the historical test/instrumentation contract.
+_ENTRYPOINT_NAME = __name__
+_IMPL_PATH = Path(__file__).with_name("oe_impl.py")
+_IMPL_SOURCE = _IMPL_PATH.read_text(encoding="utf-8")
+__name__ = "scripts.oe_impl_embedded"
+try:
+    exec(compile(_IMPL_SOURCE, str(_IMPL_PATH), "exec"), globals(), globals())
+finally:
+    __name__ = _ENTRYPOINT_NAME
+
+_IMPL_MAIN = main
+
+
+def main(argv: list[str] | None = None) -> int:
+    """Apply the canonical formal-execution entrypoint policy."""
+    raw = list(sys.argv[1:] if argv is None else argv)
+    if raw and raw[0] == "campaign":
+        from scripts.openevo_webshop.autonomous_campaign import CampaignError, main as campaign_main
+
+        try:
+            return campaign_main(raw[1:])
+        except CampaignError as exc:
+            print(f"oe campaign: {exc}", file=sys.stderr)
+            return 2
+    if raw and raw[0] == "gpu-window-plan":
+        # Pure CPU/read-only schedule advice. Formal launches remain run-campaign only.
+        from scripts.openevo_webshop.gpu_window_advice import main as plan_gpu_windows
+
+        return plan_gpu_windows(raw[1:])
+    if raw and raw[0] == "resolve":
+        from scripts.openevo_webshop.experiment_resolver import main as resolver_main
+
+        return resolver_main(raw[1:])
+    if raw and raw[0] == "experiments":
+        if len(raw) >= 2 and raw[1] == "create":
+            from scripts.openevo_webshop.experiment_create import main as experiment_create_main
+
+            return experiment_create_main(raw[2:])
+        if len(raw) >= 2 and raw[1] == "freeze":
+            from scripts.openevo_webshop.experiment_freeze import main as experiment_freeze_main
+
+            return experiment_freeze_main(raw[2:])
+        from scripts.openevo_webshop.experiment_console import main as experiment_console_main
+
+        return experiment_console_main(raw[1:])
+    if raw and raw[0] == "run":
+        print(
+            "oe: direct 'oe run <profile>' GPU execution is disabled because it "
+            "bypasses execution readiness; use 'oe run-campaign' with a current "
+            "release and hash-bound execution_readiness.profile",
+            file=sys.stderr,
+        )
+        return 2
+    return _IMPL_MAIN(raw)
+
+
+if _ENTRYPOINT_NAME == "__main__":
+    raise SystemExit(main())

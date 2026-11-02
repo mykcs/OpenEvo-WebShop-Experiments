@@ -1,0 +1,333 @@
+{
+  "activation_authority": false,
+  "arms": {
+    "qwen25-3b": {
+      "model_family": "qwen2.5",
+      "model_id": "Qwen/Qwen2.5-3B-Instruct",
+      "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+      "phases": [
+        {
+          "depends_on": [],
+          "id": "stage1a_collection",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen25-3b-stage1a.json"
+        },
+        {
+          "depends_on": [
+            "stage1a_collection"
+          ],
+          "id": "stage1a_postcollection_audit",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen25-3b-stage1a-postcollection-audit.json"
+        },
+        {
+          "depends_on": [
+            "stage1a_postcollection_audit"
+          ],
+          "id": "stage1b_minimax",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen25-3b-stage1b-minimax.json"
+        },
+        {
+          "depends_on": [
+            "stage1b_minimax"
+          ],
+          "id": "stage1b_teacher_evidence",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen25-3b-stage1b-teacher-evidence.json"
+        },
+        {
+          "depends_on": [
+            "stage1b_teacher_evidence"
+          ],
+          "id": "stage1c_opsd",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen25-3b-stage1c-opsd.json"
+        },
+        {
+          "depends_on": [
+            "stage1c_opsd"
+          ],
+          "id": "stage1d_text_memory",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen25-3b-stage1d-text-memory.json"
+        },
+        {
+          "depends_on": [
+            "stage1d_text_memory"
+          ],
+          "id": "stage1e_skill_bundle",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen25-3b-stage1e-skill-bundle.json"
+        },
+        {
+          "depends_on": [
+            "stage1e_skill_bundle"
+          ],
+          "id": "stage1f_agent_system",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen25-3b-stage1f-agent-system.json"
+        },
+        {
+          "depends_on": [
+            "stage1f_agent_system"
+          ],
+          "id": "stage1g_closeout",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen25-3b-stage1g-closeout.json"
+        },
+        {
+          "depends_on": [
+            "stage1g_closeout"
+          ],
+          "id": "stage2_vnext",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen25-3b-stage2-vnext.json"
+        },
+        {
+          "depends_on": [
+            "stage2_vnext"
+          ],
+          "gate": {
+            "reason": "Stage2 must be completed and sealed by this arm before this release may exist.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "stage2_seal",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage2_seal"
+          ],
+          "gate": {
+            "reason": "D1 remains conditional on this arm own Stage2 seal and its preregistered gate.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "d1_gdn_diagnostic",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "d1_gdn_diagnostic"
+          ],
+          "gate": {
+            "reason": "Final panel remains locked until own Stage2 seal, final-evaluation release, and explicit final-panel authority all exist.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "final_evaluation",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "final_evaluation"
+          ],
+          "gate": {
+            "reason": "Final analysis waits for this arm immutable final-evaluation closeout.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "final_analysis",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "final_analysis"
+          ],
+          "gate": {
+            "reason": "Cross-arm reconciliation waits for both within-arm analyses; it may not synchronize arm execution.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "cross_arm_reconciliation",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "cross_arm_reconciliation"
+          ],
+          "gate": {
+            "reason": "Publication/archive closeout waits for reconciled final evidence and provider projection validation.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "publication_archive_closeout",
+          "release": null
+        }
+      ],
+      "stage1_thinking": null
+    },
+    "qwen3-1p7b": {
+      "model_family": "qwen3",
+      "model_id": "Qwen/Qwen3-1.7B",
+      "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "phases": [
+        {
+          "depends_on": [],
+          "id": "stage1a_collection",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen3-1p7b-stage1a.json"
+        },
+        {
+          "depends_on": [
+            "stage1a_collection"
+          ],
+          "id": "stage1a_postcollection_audit",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen3-1p7b-stage1a-postcollection-audit.json"
+        },
+        {
+          "depends_on": [
+            "stage1a_postcollection_audit"
+          ],
+          "id": "stage1b_minimax",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen3-1p7b-stage1b-minimax.json"
+        },
+        {
+          "depends_on": [
+            "stage1b_minimax"
+          ],
+          "id": "stage1b_teacher_evidence",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen3-1p7b-stage1b-teacher-evidence.json"
+        },
+        {
+          "depends_on": [
+            "stage1b_teacher_evidence"
+          ],
+          "id": "stage1c_opsd",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen3-1p7b-stage1c-opsd.json"
+        },
+        {
+          "depends_on": [
+            "stage1c_opsd"
+          ],
+          "id": "stage1d_text_memory",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen3-1p7b-stage1d-text-memory.json"
+        },
+        {
+          "depends_on": [
+            "stage1d_text_memory"
+          ],
+          "id": "stage1e_skill_bundle",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen3-1p7b-stage1e-skill-bundle.json"
+        },
+        {
+          "depends_on": [
+            "stage1e_skill_bundle"
+          ],
+          "id": "stage1f_agent_system",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen3-1p7b-stage1f-agent-system.json"
+        },
+        {
+          "depends_on": [
+            "stage1f_agent_system"
+          ],
+          "id": "stage1g_closeout",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen3-1p7b-stage1g-closeout.json"
+        },
+        {
+          "depends_on": [
+            "stage1g_closeout"
+          ],
+          "id": "stage2_vnext",
+          "release": "configs/experiment/campaigns/202609030400/releases/qwen3-1p7b-stage2-vnext.json"
+        },
+        {
+          "depends_on": [
+            "stage2_vnext"
+          ],
+          "gate": {
+            "reason": "Stage2 must be completed and sealed by this arm before this release may exist.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "stage2_seal",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage2_seal"
+          ],
+          "gate": {
+            "reason": "D1 remains conditional on this arm own Stage2 seal and its preregistered gate.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "d1_gdn_diagnostic",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "d1_gdn_diagnostic"
+          ],
+          "gate": {
+            "reason": "Final panel remains locked until own Stage2 seal, final-evaluation release, and explicit final-panel authority all exist.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "final_evaluation",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "final_evaluation"
+          ],
+          "gate": {
+            "reason": "Final analysis waits for this arm immutable final-evaluation closeout.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "final_analysis",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "final_analysis"
+          ],
+          "gate": {
+            "reason": "Cross-arm reconciliation waits for both within-arm analyses; it may not synchronize arm execution.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "cross_arm_reconciliation",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "cross_arm_reconciliation"
+          ],
+          "gate": {
+            "reason": "Publication/archive closeout waits for reconciled final evidence and provider projection validation.",
+            "state": "BLOCKED_UPSTREAM"
+          },
+          "id": "publication_archive_closeout",
+          "release": null
+        }
+      ],
+      "required_downstream_chat_template_policy": "enable_thinking=false for both student and privileged teacher OPSD views",
+      "stage1_thinking": false
+    }
+  },
+  "campaign_id": "202609030400-ceiling1-autonomous-v1",
+  "claim_boundary": "Stage1 through PRE_STAGE2_READY is sealed for both arms. The repository-current shared Stage2 runtime is hash-bound to the 202609042025 Ray authority, while each arm remains read-only-adopted from its live external executor until an audited natural-boundary single-executor transfer. Master Plan execution authority remains false.",
+  "control_state_root": "/workspace/control/openevo-autonomous-campaign-state/202609030400-ceiling1-autonomous-v1",
+  "controller_concurrency_contract": "Exactly one real campaign controller may hold the campaign lock. Read-only status/plan/validate calls do not acquire it.",
+  "current_entrypoint": "docs/experiment-tracking/OPEN_EVO_CEILING_1.0_CURRENT.md",
+  "failure_policy": {
+    "engineering_failure": "exact resume or fail closed",
+    "final_panel_before_own_stage2_seal": false,
+    "scientific_contract_ambiguity": "BLOCKED_SCIENCE",
+    "silent_scientific_repair": false,
+    "source_or_input_identity_drift": "BLOCKED_SOURCE or MANUAL_REVIEW_REQUIRED"
+  },
+  "instance_role": "current_202609030400_stage2_external_execution_adoption_pending_single_executor_takeover",
+  "lineage_rebind_rule": "A trajectory recollection or successor lineage updates only the campaign instance/phase releases plus the hash-bound router; the master plan and controller must not change.",
+  "master_plan": "docs/experiment-tracking/OPEN_EVO_CEILING_1.0_END_TO_END_MASTER_PLAN.md",
+  "name": "OpenEVO-Ceiling-1.0 End-to-End Autonomous Campaign",
+  "program_contract": "openevo.ceiling1-e2e.v2",
+  "program_contract_successor_note": "v2 extends v1 only with explicit authority/audit/seal/reconciliation/archive slots. It does not change scientific treatment, sampling, budgets, task schedule, carrier eligibility, or final-panel semantics.",
+  "replaceable_lineage_bindings": true,
+  "schema": "openevo.autonomous-campaign.v1",
+  "source_of_truth_order": [
+    "latest explicit scientific amendment or operator hold",
+    "current frozen scientific design/preregistration",
+    "immutable scientific completion/activation receipt",
+    "phase release adopting that evidence",
+    "stable router and campaign manifest",
+    "live runtime readback for executor/process/resource presence",
+    "historical documentation"
+  ],
+  "status": "CURRENT_202609030400_STAGE2_EXTERNAL_EXECUTORS_ADOPTED_MASTER_PLAN_EXECUTION_DISABLED",
+  "transition_journal_contract": "Every real phase action writes append-only ACTION_STARTED then ACTION_FINISHED or ACTION_EXCEPTION records under control_state_root/TRANSITIONS.jsonl.",
+  "bindings": {
+    "shared_stage2_runtime_authority_path": "configs/experiment/openevo-ceiling1-stage2-runtime-authority-202609042025.json",
+    "shared_stage2_runtime_authority_sha256": "5c02fb25fbefdd271a060bf997d80638cd5ea81c3c3eb45e2c5073931c6f1f13"
+  },
+  "repository_current_stage2_runtime_authority": {
+    "path": "configs/experiment/openevo-ceiling1-stage2-runtime-authority-202609042025.json",
+    "sha256": "5c02fb25fbefdd271a060bf997d80638cd5ea81c3c3eb45e2c5073931c6f1f13",
+    "schema": "openevo.ceiling1-stage2-runtime-authority.202609042025",
+    "status": "READY_FOR_AUDITED_NATURAL_MIGRATION",
+    "execution_activation_authority": false,
+    "live_adoption_rule": "Each arm remains governed by its current read-only external-executor release until one exact natural-boundary migration receipt transfers it to the Master Plan."
+  }
+}

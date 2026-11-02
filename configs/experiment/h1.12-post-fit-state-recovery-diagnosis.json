@@ -1,0 +1,64 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.12-post-fit-state-recovery-diagnosis-v1",
+  "phase": "H1.12",
+  "status": "complete-no-selective-recovery",
+  "scientific_question": "Did H1.11 SUCCESS-NEW fail to transfer because compact-v2 over-navigates or lacks state-aware recovery on fresh tasks?",
+  "hypothesis": "A minimal state-aware action cue will reduce long-horizon navigation and recover part of SUCCESS-NEW closed-loop reward without changing model, adapter, parser, evaluator, or task identities.",
+  "arms": ["BASE-COMPACT", "BASE-STATE-AWARE", "SUCCESS-NEW-COMPACT", "SUCCESS-NEW-STATE-AWARE"],
+  "evaluation_panel": {
+    "manifest": "/workspace/workspace/runs/phase-h1.11-new-positive-supervision-fit-v1-20260815/task-manifest.json",
+    "manifest_sha256": "0120266457887f2d27ee4fb741bda2bb18d533a192f14849fa0dee068d6705ec",
+    "partitions": {"A": [509, 714, 2709, 4111], "B": [4170, 4849, 5678, 6602]},
+    "new_rollout_seeds": [2026082100, 2026082101, 2026082102, 2026082103],
+    "task_contamination_rule": "H1.11 training used only goal 5169/6017; all H1.12 evaluation goals remain held out"
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_steps": 15,
+    "max_new_tokens": 512,
+    "evaluator": "WebShop task_score/won",
+    "adapters": {"base": "none", "success_new": "/workspace/workspace/runs/phase-h1.11-new-positive-supervision-fit-v1-20260815/artifacts/success-new"},
+    "prompt_control": "seed3090.webshop-compact-action-prompt.v2",
+    "prompt_treatment": "seed3090.webshop-state-aware-action-prompt.v3"
+  },
+  "cell_design": "2 adapter arms x 2 prompt contracts x 2 held-out partitions = 8 cells; 16 attempts/cell; 128 total",
+  "primary_metrics": ["state-aware minus compact paired reward", "qualified positive rate", "valid rate"],
+  "diagnostic_metrics": ["Next > count", "buy-now transitions", "trajectory length", "parser/fallback rate", "first divergence step", "positive task identity"],
+  "result": {
+    "run_root": "/workspace/workspace/runs/phase-h1.12-post-fit-state-recovery-diagnosis-v1-20260815",
+    "reconciliation": "/workspace/workspace/runs/phase-h1.12-post-fit-state-recovery-diagnosis-v1-20260815/evidence/h1.12-reconciliation-v1.json",
+    "reconciliation_sha256": "42f270988d80f60d7e11c850285f3be9bd60c1322532684481ec952677eacc92",
+    "postmortem": "/workspace/workspace/runs/phase-h1.12-post-fit-state-recovery-diagnosis-v1-20260815/evidence/h1.12-postmortem-v1.json",
+    "postmortem_sha256": "0740dc844d9f85f1b86f65af354ada253b66a54e855e5e65b0d6c4de6ff2f633",
+    "attempts": 128,
+    "valid": 116,
+    "qualified_positive": 12,
+    "runtime_errors": 0,
+    "protocol_invalid_attempts": 1,
+    "cells": {
+      "base_compact_A": {"valid": 16, "positive": 4},
+      "base_state_A": {"valid": 12, "positive": 0},
+      "base_compact_B": {"valid": 12, "positive": 4},
+      "base_state_B": {"valid": 16, "positive": 0},
+      "success_compact_A": {"valid": 16, "positive": 0},
+      "success_state_A": {"valid": 16, "positive": 0},
+      "success_compact_B": {"valid": 12, "positive": 4},
+      "success_state_B": {"valid": 16, "positive": 0}
+    },
+    "paired_score_delta_state_minus_compact": {"base_A": -2.668, "base_B": -0.3, "success_A": 0.0, "success_B": -0.3},
+    "paired_next_delta_state_minus_compact": {"base_A": -9.5, "base_B": -6.5, "success_A": -3.5, "success_B": -6.75},
+    "classification": "state-aware-cue-not-selective-recovery"
+  },
+  "branch_rule": {
+    "selective_recovery": "SUCCESS-NEW state-aware beats SUCCESS-NEW compact on both partitions and exceeds BASE state-aware: preregister independent confirmation",
+    "task_specific_recovery": "cue helps one task/partition only: retain task heterogeneity diagnosis; no generalization claim",
+    "no_recovery": "cue does not improve SUCCESS-NEW: stop prompt rescue and redesign supervision/state representation as a new group"
+  },
+  "claim_boundary": "Post-fit state/recovery diagnosis only; no benchmark/generalization claim, no D0 opening, no SEED comparison."
+}

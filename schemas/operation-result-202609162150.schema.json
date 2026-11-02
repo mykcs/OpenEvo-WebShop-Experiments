@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "openevo.operation-result.202609162150",
+  "title": "OpenEVO typed operation result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "status",
+    "reason_code",
+    "retry_class",
+    "operation_id",
+    "scientific_state_mutated",
+    "side_effect_materialized",
+    "message",
+    "details"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openevo.operation-result.202609162150"
+    },
+    "status": {
+      "enum": ["READY", "RUNNING", "WAITING", "BLOCKED", "SUCCEEDED", "NOOP", "SEALED", "FAILED"]
+    },
+    "reason_code": {
+      "enum": [
+        "NONE",
+        "GPU_RESOURCE_UNAVAILABLE",
+        "ARM_CONTROLLER_RESOURCE_BUSY",
+        "ENGINEERING_FAILURE_NO_SIDE_EFFECT",
+        "ACKNOWLEDGEMENT_MISSING_AFTER_MATERIALIZATION",
+        "CONTENT_REJECTED_KEEP_PRIOR",
+        "INTEGRITY_MISMATCH",
+        "SIDE_EFFECT_STATUS_UNKNOWN",
+        "AUTHORITY_IDENTITY_DRIFT",
+        "SCIENCE_SEMANTICS_CHANGE_REQUIRED",
+        "OPERATION_ALREADY_SEALED",
+        "UNCLASSIFIED_ENGINEERING_FAILURE"
+      ]
+    },
+    "retry_class": {
+      "enum": [
+        "NONE",
+        "WAIT_RESOURCE",
+        "EXACT_RESUME",
+        "CONTENT_REJECTION_NOOP",
+        "INTEGRITY_UNKNOWN",
+        "AUTHORITY_DRIFT",
+        "SCIENCE_DECISION_REQUIRED",
+        "SEALED"
+      ]
+    },
+    "operation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scientific_state_mutated": {
+      "type": ["boolean", "null"]
+    },
+    "side_effect_materialized": {
+      "type": ["boolean", "null"]
+    },
+    "message": {
+      "type": "string"
+    },
+    "details": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+title = "Reviewed scientific hash false positives"
+[extend]
+useDefault = true
+[[rules]]
+id = "generic-api-key"
+[[rules.allowlists]]
+description = "Reviewed 40/64-character hexadecimal model revisions and file digests"
+regexTarget = "secret"
+regexes = ['''^[a-f0-9]{40}$''', '''^[a-f0-9]{64}$''']

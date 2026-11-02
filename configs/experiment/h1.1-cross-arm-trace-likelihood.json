@@ -1,0 +1,68 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.1-cross-arm-trace-likelihood-v1",
+  "phase": "H1.1",
+  "status": "pre-registered",
+  "scientific_question": "Does the SUCCESS adapter selectively score successful trajectories while losing likelihood on unseen BASE trajectories?",
+  "hypothesis": "The small teacher-forced gain is concentrated on the supervision distribution; cross-arm scoring will reveal a state-distribution or first-divergence mismatch rather than parser-only collapse.",
+  "arms": [
+    "BASE-model",
+    "FAILURE-SD-LORA-model",
+    "SUCCESS-SD-LORA-model"
+  ],
+  "controls": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "h1_eval_plan": "/workspace/workspace/runs/phase-h1-successful-supervision-train-fit-v1-20260814/manifests/h1-eval-plan-v4-final.json",
+    "h1_reconciliation": "/workspace/workspace/runs/phase-h1-successful-supervision-train-fit-v1-20260814/evidence/h1-reconciliation-v4.json",
+    "source_task": "webshop_005294",
+    "source_generation_seeds": [
+      2026081432, 2026081433, 2026081434, 2026081435,
+      2026081436, 2026081437, 2026081438, 2026081439,
+      2026081440, 2026081441, 2026081442, 2026081443,
+      2026081444, 2026081445, 2026081446, 2026081447
+    ],
+    "validity_filter": "H1 reconciliation valid episodes only; preserve invalid source files and record their exclusion",
+    "scoring": "teacher-forced raw_completion token log-probability",
+    "generation": false,
+    "protocol_change": false
+  },
+  "primary_metrics": [
+    "token-normalized mean log-probability by model arm and source arm",
+    "paired SUCCESS-minus-BASE delta on each source trajectory"
+  ],
+  "diagnostic_metrics": [
+    "token_count",
+    "trace_steps_scored",
+    "per-step log-probability",
+    "source episode hash",
+    "task-seed pairing completeness"
+  ],
+  "cells": [
+    {"model_arm": "base", "source_arm": "base", "wave": 1},
+    {"model_arm": "base", "source_arm": "failure", "wave": 1},
+    {"model_arm": "base", "source_arm": "success", "wave": 1},
+    {"model_arm": "failure", "source_arm": "base", "wave": 1},
+    {"model_arm": "failure", "source_arm": "failure", "wave": 1},
+    {"model_arm": "failure", "source_arm": "success", "wave": 1},
+    {"model_arm": "success", "source_arm": "base", "wave": 1},
+    {"model_arm": "success", "source_arm": "failure", "wave": 1},
+    {"model_arm": "success", "source_arm": "success", "wave": 2}
+  ],
+  "stop_branch": {
+    "selective_success_score": "diagnose state-distribution or supervision-support mismatch before any optimizer change",
+    "uniform_score_gain": "consider a new closed-loop recovery protocol with the same frozen adapter",
+    "no_score_gain": "audit trainer/objective/projection and retain H1 negative evidence",
+    "invalid_source_or_runtime": "exclude from metrics, preserve evidence, repair runtime without changing the protocol"
+  },
+  "gpu_policy": "one UUID-bound teacher-forced process per GPU; wave 2 starts only after a wave 1 GPU is idle",
+  "tracking": {
+    "project": "openevo-webshop-experiments",
+    "mode": "offline-first",
+    "group": "H1.1-cross-arm-trace-likelihood-v1",
+    "full_traces": "local source artifacts; W&B compact summaries"
+  },
+  "code_sha": "2d6c700",
+  "claim_boundary": "This is an off-policy trace diagnostic; it cannot establish closed-loop reward improvement."
+}

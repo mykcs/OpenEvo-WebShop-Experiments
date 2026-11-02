@@ -1,0 +1,199 @@
+{
+  "activation_authority": false,
+  "arms": {
+    "qwen25-3b": {
+      "model_family": "qwen2.5",
+      "model_id": "Qwen/Qwen2.5-3B-Instruct",
+      "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+      "phases": [
+        {
+          "depends_on": [],
+          "id": "stage1a_collection",
+          "release": "configs/experiment/campaigns/202609021800/releases/qwen25-3b-stage1a.json"
+        },
+        {
+          "depends_on": [
+            "stage1a_collection"
+          ],
+          "id": "stage1b_minimax",
+          "release": "configs/experiment/campaigns/202609021800/releases/qwen25-3b-stage1b-minimax.json"
+        },
+        {
+          "depends_on": [
+            "stage1b_minimax"
+          ],
+          "id": "stage1c_opsd",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage1c_opsd"
+          ],
+          "id": "stage1d_text_memory",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage1d_text_memory"
+          ],
+          "id": "stage1e_skill_bundle",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage1e_skill_bundle"
+          ],
+          "id": "stage1f_agent_system",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage1f_agent_system"
+          ],
+          "id": "stage1g_closeout",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage1g_closeout"
+          ],
+          "id": "stage2_vnext",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage2_vnext"
+          ],
+          "id": "d1_gdn_diagnostic",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "d1_gdn_diagnostic"
+          ],
+          "id": "final_evaluation",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "final_evaluation"
+          ],
+          "id": "final_analysis",
+          "release": null
+        }
+      ],
+      "stage1_thinking": null
+    },
+    "qwen3-1p7b": {
+      "model_family": "qwen3",
+      "model_id": "Qwen/Qwen3-1.7B",
+      "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "phases": [
+        {
+          "depends_on": [],
+          "id": "stage1a_collection",
+          "release": "configs/experiment/campaigns/202609021800/releases/qwen3-1p7b-stage1a.json"
+        },
+        {
+          "depends_on": [
+            "stage1a_collection"
+          ],
+          "id": "stage1b_minimax",
+          "release": "configs/experiment/campaigns/202609021800/releases/qwen3-1p7b-stage1b-minimax.json"
+        },
+        {
+          "depends_on": [
+            "stage1b_minimax"
+          ],
+          "id": "stage1c_opsd",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage1c_opsd"
+          ],
+          "id": "stage1d_text_memory",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage1d_text_memory"
+          ],
+          "id": "stage1e_skill_bundle",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage1e_skill_bundle"
+          ],
+          "id": "stage1f_agent_system",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage1f_agent_system"
+          ],
+          "id": "stage1g_closeout",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage1g_closeout"
+          ],
+          "id": "stage2_vnext",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "stage2_vnext"
+          ],
+          "id": "d1_gdn_diagnostic",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "d1_gdn_diagnostic"
+          ],
+          "id": "final_evaluation",
+          "release": null
+        },
+        {
+          "depends_on": [
+            "final_evaluation"
+          ],
+          "id": "final_analysis",
+          "release": null
+        }
+      ],
+      "required_downstream_chat_template_policy": "enable_thinking=false for both student and privileged teacher OPSD views",
+      "stage1_thinking": false
+    }
+  },
+  "campaign_id": "202609021800-ceiling1-autonomous-v1",
+  "claim_boundary": "This commit freezes the control plane and current Stage1A/MiniMax adoption releases only. Empty release slots are deliberate scientific blocks, not TODOs the Agent may improvise.",
+  "control_state_root": "/workspace/control/openevo-autonomous-campaign-state/202609021800-ceiling1-autonomous-v1",
+  "controller_concurrency_contract": "Exactly one real campaign controller may hold the campaign lock. Read-only status/plan/validate calls do not acquire it.",
+  "failure_policy": {
+    "engineering_failure": "exact resume or fail closed",
+    "final_panel_before_own_stage2_seal": false,
+    "scientific_contract_ambiguity": "BLOCKED_SCIENCE",
+    "silent_scientific_repair": false,
+    "source_or_input_identity_drift": "BLOCKED_SOURCE or MANUAL_REVIEW_REQUIRED"
+  },
+  "instance_role": "migration_fixture_not_current_scientific_authority",
+  "lineage_rebind_rule": "A trajectory recollection or successor lineage updates only the campaign instance/phase releases plus the hash-bound router; the master plan and controller must not change.",
+  "master_plan": "docs/experiment-tracking/OPEN_EVO_CEILING_1.0_END_TO_END_MASTER_PLAN.md",
+  "name": "OpenEVO-Ceiling-1.0 End-to-End Autonomous Campaign",
+  "program_contract": "openevo.ceiling1-e2e.v1",
+  "replaceable_lineage_bindings": true,
+  "schema": "openevo.autonomous-campaign.v1",
+  "source_of_truth_order": [
+    "phase scientific authority receipt",
+    "phase release",
+    "campaign manifest",
+    "live runtime state",
+    "historical documentation"
+  ],
+  "status": "CONTROL_PLANE_FROZEN_NO_EXECUTION_ACTIVATION",
+  "transition_journal_contract": "Every real phase action writes append-only ACTION_STARTED then ACTION_FINISHED or ACTION_EXCEPTION records under control_state_root/TRANSITIONS.jsonl."
+}

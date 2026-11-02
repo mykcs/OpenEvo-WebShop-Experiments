@@ -1,0 +1,33 @@
+--- a/scripts/model_merger.py
++++ b/scripts/model_merger.py
+@@ -54,7 +54,7 @@
+     AutoConfig,
+     AutoModelForCausalLM,
+     AutoModelForTokenClassification,
+-    AutoModelForVision2Seq,
++    AutoModelForImageTextToText as AutoModelForVision2Seq,
+     GenerationConfig,
+     PretrainedConfig,
+ )
+--- a/verl/workers/fsdp_workers.py
++++ b/verl/workers/fsdp_workers.py
+@@ -186,7 +186,7 @@
+         from torch import optim
+         from torch.distributed.fsdp import CPUOffload, MixedPrecision
+         from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
+-        from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForVision2Seq
++        from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForImageTextToText as AutoModelForVision2Seq
+ 
+         from verl.utils.model import get_generation_config, print_model_size, update_model_config
+         from verl.utils.torch_dtypes import PrecisionType
+--- a/verl/utils/checkpoint/fsdp_checkpoint_manager.py
++++ b/verl/utils/checkpoint/fsdp_checkpoint_manager.py
+@@ -225,7 +225,7 @@
+ 
+                     auto_model_cls = AutoModelForCausalLM
+                 elif "ForConditionalGeneration" in model_config.architectures[0]:
+-                    from transformers import AutoModelForVision2Seq
++                    from transformers import AutoModelForImageTextToText as AutoModelForVision2Seq
+ 
+                     auto_model_cls = AutoModelForVision2Seq
+                 else:

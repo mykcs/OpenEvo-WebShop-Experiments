@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/carrier-health-v2.schema.json",
+  "title": "OpenEvo Carrier Health v2 ledger row",
+  "type": "object",
+  "required": [
+    "schema", "round_index", "arm", "carrier",
+    "requested", "generation_attempted", "repair_requested",
+    "terminal_disposition", "terminal_reason", "accepted_payload_sha256",
+    "task_local_scope_result", "router_requested", "router_selected",
+    "governor_reason", "identities", "health_status", "health_reasons"
+  ],
+  "properties": {
+    "schema": {"const": "openevo.carrier-health.v2"},
+    "round_index": {"type": "integer", "minimum": 0},
+    "arm": {"type": "string", "minLength": 1},
+    "carrier": {"enum": ["text_memory", "skill_bundle", "agent_system"]},
+    "state_id_before": {"type": ["string", "null"]},
+    "requested": {"type": "boolean"},
+    "generation_attempted": {"type": "boolean"},
+    "primary_payload_sha256": {"type": ["string", "null"]},
+    "primary_contract_valid": {"type": ["boolean", "null"]},
+    "primary_scope_status": {"enum": ["PASS", "FAIL", "NOT_EVALUATED", null]},
+    "repair_requested": {"type": "boolean"},
+    "repair_payload_sha256": {"type": ["string", "null"]},
+    "repair_changed_bytes": {"type": ["boolean", "null"]},
+    "repair_contract_valid": {"type": ["boolean", "null"]},
+    "repair_scope_status": {"enum": ["PASS", "FAIL", "NOT_EVALUATED", null]},
+    "terminal_disposition": {
+      "enum": [
+        "UPDATE", "NOOP_GATE_INELIGIBLE", "NOOP_NO_CONTENT_CHANGE",
+        "NOOP_KEEP_PRIOR_CONTRACT_REJECTED"
+      ]
+    },
+    "terminal_reason": {"type": "string", "minLength": 1},
+    "accepted_payload_sha256": {"type": "string", "minLength": 1},
+    "task_local_scope_result": {"enum": ["PASS", "FAIL", "NOT_APPLICABLE", "NOT_EVALUATED"]},
+    "task_local_scope_violation_hashes": {
+      "type": "array", "items": {"type": "string"}, "uniqueItems": true
+    },
+    "scope_manifest_sha256": {"type": ["string", "null"]},
+    "router_requested": {"type": "boolean"},
+    "router_selected": {"type": "boolean"},
+    "router_policy": {"type": ["string", "null"]},
+    "governor_reason": {"type": "string", "minLength": 1},
+    "router_requested_steps": {"type": "integer", "minimum": 0},
+    "router_selected_steps": {"type": "integer", "minimum": 0},
+    "governor_reason_counts": {
+      "type": "object", "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "requested_payload_sha256": {"type": ["string", "null"]},
+    "router_selected_payload_sha256": {"type": ["string", "null"]},
+    "runtime_readback_payload_sha256": {"type": ["string", "null"]},
+    "requested_tokens": {"type": ["integer", "null"], "minimum": 0},
+    "selected_tokens": {"type": ["integer", "null"], "minimum": 0},
+    "identities": {
+      "type": "object",
+      "required": ["generator", "validator", "repair", "router", "governor"],
+      "properties": {
+        "generator": {"type": "string", "minLength": 1},
+        "validator": {"type": "string", "minLength": 1},
+        "repair": {"type": "string", "minLength": 1},
+        "router": {"type": "string", "minLength": 1},
+        "governor": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "health_status": {"enum": ["PASS", "FAIL"]},
+    "health_reasons": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+  },
+  "additionalProperties": true
+}

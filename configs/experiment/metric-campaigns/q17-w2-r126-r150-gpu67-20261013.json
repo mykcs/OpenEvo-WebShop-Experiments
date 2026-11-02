@@ -1,0 +1,109 @@
+{
+  "schema": "openevo.q17.w2.rehydrated_adapters_gpu67_frozen_dev64.v1",
+  "science_question": "Does the original byte-exact recovered Q17 R126/R150 adapter exhibit frozen development behavior and Q06 token/action entropy diagnostic differences under identical seeds?",
+  "claim_limit": "Q17 64-task development-only observational comparison; not canonical SEED reproduction, not final holdout, no causal rank claim",
+  "base_model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "runtime_execution_sha": "ac130148ee08b6462d9728e482a858fe5f514047",
+  "core_execution_sha": "59478929d884ca794cce2cb49cc6cc16103d6abe",
+  "docker_image_id": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "safety": {
+    "exact_gpu_indices": [
+      6,
+      7
+    ],
+    "exact_gpu_uuid": [
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ],
+    "forbidden_gpu_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "maximum_new_development_episodes": 128,
+    "task_count_each_arm": 64,
+    "horizon": 15,
+    "formal_task_consumption": 0,
+    "final_panel_access": 0,
+    "new_training_updates": 0,
+    "original_checkpoint_modifications": 0,
+    "minimum_free_disk_bytes": 68719476736,
+    "maximum_live_prelaunch_vram_used_mib": 256,
+    "minimum_free_vram_mib": 24576
+  },
+  "paths": {
+    "source_repo_root": "/workspace/tmp/q17-gpu67-measurement-source-20261012",
+    "original_q17_root": "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct",
+    "independent_reconstructed_adapters": "/workspace/maintenance/Q17-SD-LORA-RECONSTRUCT-20261013",
+    "results_root": "/workspace/maintenance/Q17-W2-RECONSTRUCTED-EVAL-20261013",
+    "lock_root": "/workspace/.gpu-locks",
+    "runtime_root": "/workspace/maintenance/Q17-VALIDATION-CURVE-202609231600/runtime-ac130148",
+    "core_root": "/workspace/maintenance/Q17-VALIDATION-CURVE-202609231600/core-594789",
+    "base_model_root": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b",
+    "seed_root": "/workspace/runs/phase-h1.20-action-admissibility-diagnostic-v1-20260815/seed-roots/base-P1",
+    "panel_manifest_rel": "docs/evidence/q17-validation-curve-20260923/coarse-manifest-q17-directapply-validation-curve-202609231600.json",
+    "probefile_rel": "scripts/openevo_webshop/q17_fixed_checkpoint_probe.py",
+    "qualifier_rel": "scripts/analysis/advisor_q07_load_qualifier_20261001.py"
+  },
+  "frozen_hashes": {
+    "panel_manifest": "2d5d1620065a15840ae20fed324038312aec74b0895e13c9d283177928bf1a3b",
+    "panel_id": "4033523c01697576b7f9ce8cddc3a63cf6c1514ef5554e01a8c82b59ee62d478",
+    "probe_script": "2906ef13392f182d1cf4a644b69ff19cd8f177c74b35ffd18896459e77130070",
+    "qualifier_script": "84b967524c90bb9dea8397ac5fb1706cddbb94b80bf8fbc120a7079928a4f1b3",
+    "memory": "c01c9ff77b66b5d99973e260deb6950bfdf5837179f8452620d6307dc273ddce",
+    "skill": "82280d2babae6c20c3d6055f7ecbc7951f1c3105143da8e0e6a648d27e408bb0",
+    "agent": "0435954573e68b3454faca4b9ff6bf2527c8b33dd56466302f461fa76e00442a"
+  },
+  "arms": {
+    "r126": {
+      "index": 6,
+      "round": 126,
+      "checkpoint_id": "after_127_updates",
+      "update_count": 127,
+      "state_id": "native-state-sha256:584880018329f4b00bbb33d77739aaaa7bc0861247f269646a95b6c8ab349b6d",
+      "native_sha256": "584880018329f4b00bbb33d77739aaaa7bc0861247f269646a95b6c8ab349b6d",
+      "adapter_sha256": "74cdc9d37d4adc9bd01db22cdafa3a7b5f35d3cde5c2247d8a2467ed529ae973",
+      "config_sha256": "dff7f86e4d143414a58d050477b709ed770bb5722b71b34a2ef91329c9df71e3",
+      "adapter_dir_rel": "round-126"
+    },
+    "r150": {
+      "index": 7,
+      "round": 150,
+      "checkpoint_id": "after_151_updates",
+      "update_count": 151,
+      "state_id": "native-state-sha256:be1981960fd140c9932719561927959a59a502fb13ca2f1c30c8bfb0ab667133",
+      "native_sha256": "be1981960fd140c9932719561927959a59a502fb13ca2f1c30c8bfb0ab667133",
+      "adapter_sha256": "decf98f62076f66aff1a54c71a91e7df6bbfcdf20700271cfa76808d2e405a54",
+      "config_sha256": "7e297952d5d4055e7eaf9855003a4875eff401814b1fa2709bf30406f9380ec4",
+      "adapter_dir_rel": "round-150"
+    }
+  },
+  "carriers": {
+    "memory": "round-095/text-memory/memory.md",
+    "skill": "round-000/skill-bundle/SKILL.md",
+    "agent": "round-115/agent-system/agent_system.md"
+  },
+  "evaluation": {
+    "sampling": {
+      "max_steps": 15,
+      "max_new_tokens": 512,
+      "temperature": 1,
+      "top_p": 1,
+      "top_k": 0,
+      "repetition_penalty": 1,
+      "step_seed_policy": "paired_generation_seed + step_index * 100000"
+    },
+    "frozen_task_selection": "original SHA-pinned 64-task manifest, identical task+seed IDs between both arms",
+    "instrumentation": "on",
+    "enable_q06_pre_action_diagnostics": true,
+    "outputs": [
+      "64-task summary per arm",
+      "attempts.jsonl per arm (private)",
+      "paired-metrics.json with taskwise CPU bootstrap and entropy/NLL summaries"
+    ],
+    "reuse_policy": "new 128 development attempts, not existing W0 attempts and not original training updates"
+  }
+}

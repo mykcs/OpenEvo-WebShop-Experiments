@@ -1,0 +1,38 @@
+{
+  "activation_authority": false,
+  "claim_boundary": "Call this SEED-style Stage1 under a matched WebShop world, not an exact source-faithful SEED Stage1 reproduction.",
+  "decision": {
+    "applies_to": "all M1-D WebShop workers that materialize the frozen 180 task identities",
+    "history_length": 2,
+    "lucene_index": "indexes_1k",
+    "max_steps": 15,
+    "policy_temperature": 0.4,
+    "policy_temperature_role": "SEED-native; not matched to OpenEvo T=1.0",
+    "request_level_sampling_seed": null,
+    "rollouts_per_task": 8,
+    "seed_metadata_formula": "2026 + task_ordinal*1000 + rollout_id",
+    "task_order": "exact frozen OpenEvo Qwen2.5-3B Stage1 180-task order",
+    "webshop_num_products": 1000,
+    "webshop_world_construction_seed": 2026
+  },
+  "evidence": "docs/evidence/mechanism1/m1d-world-seed-qualification-202609060100.json",
+  "experiment_id": "M1-D-SEED-STAGE1-INIT-PROBE-3B",
+  "final_panel_access": 0,
+  "formal_task_consumption_allowed": false,
+  "hard_stop": "No M1-D task-bearing launch until matched manifest, adapter source identity, runtime dependency qualification, Ray live gate, and an explicit per-phase activation receipt all PASS.",
+  "intentional_non_source_faithful_axis": "WebShop worker construction is rebound to world seed 2026 and num_products=1000 (indexes_1k). These are benchmark-world identity constraints; policy/action generation remains pinned public SEED behavior.",
+  "parent_passport": "configs/experiment/designs/openevo-mechanism1-seed-stage1-init-probe-3b-202609052200.json",
+  "parent_passport_sha256": "0f3528b174a8df206aafa1f45cb55d7fe0f1aa7ccbf647dd708bab61137c6c18",
+  "preserved_upstream_semantics": [
+    "public SEED WebShop policy prompt/action path",
+    "policy temperature 0.4",
+    "history length 2",
+    "max completion tokens 512",
+    "fallback action click[back to search]",
+    "upstream collect_baseline_rollouts control flow and stopping after baseline collection"
+  ],
+  "program_id": "openevo-mechanism-1.0-202609052200",
+  "reason_for_amendment": "Runtime identity audit showed that WebShop world-construction seed changes generated instruction text, so goal_idx alone is not a complete same-task identity. The public small-data path also leaves num_products unset, which would select a different search-index family than the frozen 1000-product world.",
+  "schema": "openevo.mechanism1-m1d-matched-world-amendment.202609060100",
+  "status": "PREREGISTERED_BEFORE_FORMAL_CONSUMPTION"
+}

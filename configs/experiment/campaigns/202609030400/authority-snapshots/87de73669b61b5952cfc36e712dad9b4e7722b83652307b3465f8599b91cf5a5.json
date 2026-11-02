@@ -1,0 +1,54 @@
+{
+  "schema": "openevo.shared-stage1.minimax-handoff.v1",
+  "status": "FROZEN",
+  "freeze_id": "202609030400",
+  "formal_generation_code_sha": "362271d3cdc411581dd7f09d98d5ce69cfb1cb57",
+  "qualified_generation_git_sha": "23f51ab4b7038d23f16076f047d16e767529a319",
+  "confirmation_sha256": "e54be6a4d01353a5a04b9d617c2e1e3a2d6378d386769d234e7b5268fe03aa5b",
+  "provenance_smoke_sha256": "3239113cbdefb3e4fd16c33bfb66a5c05f2b06a1066f1663d14dfc0f51a1cb52",
+  "shared_sampling": {
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "repetition_penalty": 1.0,
+    "max_new_tokens": 512
+  },
+  "behavior_replay_panel": {
+    "positions": [1, 64],
+    "same_schedule_and_rollout_seeds": true,
+    "gates": {
+      "qwen25-3b": {"positive_min": 15, "mean_raw_min": 0.08, "max_steps_max": 52, "adjacent_repeat_rate_max": 0.32},
+      "qwen3-1p7b": {"positive_min": 40, "mean_raw_min": 0.30, "max_steps_max": 24, "adjacent_repeat_rate_max": 0.30}
+    }
+  },
+  "minimax": {
+    "role": "post-hoc trajectory analyzer only",
+    "provider": "MiniMax",
+    "model": "MiniMax-M3",
+    "analysis_prompt_version": "seed",
+    "skill_mode": "episode_only",
+    "thinking_type": "adaptive",
+    "reasoning_split": true,
+    "max_completion_tokens": 1024,
+    "workers_per_arm": 4,
+    "resume_success_definition": "parse_ok=true only",
+    "failed_rows_must_be_retried": true,
+    "retry_after_header_respected": true,
+    "new_webshop_calls": 0,
+    "final_panel_access": 0,
+    "max_pipeline_attempts": 3
+  },
+  "analyzer_execution": {
+    "git_sha": "c60419cad2e4ff0aad0b7e22177ac6e16475fe97",
+    "checkout": "/workspace/control/openevo-experiment-stage1-minimax-exec-c60419ca",
+    "analyzer_sha256": "41c435a0311a510685dac44f5a4fb674c31555355d5353227be922c8e512fb70"
+  },
+  "closeout": {
+    "required_records": 1440,
+    "required_parse_ok": 1440,
+    "required_parse_failures": 0,
+    "trajectory_identity_must_match": true,
+    "trajectory_sha256_must_match": true
+  },
+  "downstream_after_minimax_forbidden": ["OPSD", "Text Memory", "Skill Bundle", "Agent System", "Stage2"]
+}

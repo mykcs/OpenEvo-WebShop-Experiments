@@ -1,0 +1,60 @@
+{
+  "schema": "openevo.ceiling1-stage1-skill-capacity-recovery-amendment.v1",
+  "status": "FROZEN",
+  "authority_recorded_at": "2026-09-03T19:17:00+08:00",
+  "authority_source": "User instructed that qwen25-3b must be advanced to the same PRE_STAGE2_READY boundary as qwen3-1p7b, while keeping both arms on the same engineering/scientific code wherever model identity does not require a difference.",
+  "decision": "Adopt one symmetric, reward-blind, capacity-only bounded recovery for Stage1 Skill Bundle. The normal unit remains 20 inputs; only input overflow or output-cap saturation may trigger deterministic frozen-order midpoint bisection.",
+  "observed_trigger": {
+    "arm": "qwen25-3b",
+    "freeze_id": "202609030400",
+    "predecessor_method": "local_qwen_hierarchical_skill_bundle_reflector",
+    "predecessor_policy": "fixed full-20, no split",
+    "failure": "output_token_cap saturation",
+    "engineering_failure": false,
+    "reward_or_outcome_used": false
+  },
+  "applies_to_arms": ["qwen25-3b", "qwen3-1p7b"],
+  "algorithm": {
+    "unit_node_cap": 20,
+    "primary_max_output_tokens": 2048,
+    "split_triggers": ["input_overflow", "output_token_cap"],
+    "split_order": "deterministic midpoint in frozen input order",
+    "max_split_depth": 5,
+    "max_split_depth_basis": "ceil(log2(20))",
+    "single_node_repair_max_output_tokens": 1024,
+    "single_node_repair_prompt": "fixed stronger compression only",
+    "recursive_split_beyond_max_depth": false,
+    "outcome_based_split": false,
+    "reward_based_split": false,
+    "score_based_split": false,
+    "success_based_split": false,
+    "external_teacher_calls_after_frozen_pool": 0,
+    "new_webshop_calls": 0
+  },
+  "symmetry": {
+    "same_algorithm_both_arms": true,
+    "equal_split_event_count_required": false,
+    "qwen3_1p7b_existing_fixed20_pass": "path-equivalent because the fallback was not triggered; no scientific rerun is required solely to relabel that successful zero-split path",
+    "qwen25_3b": "may exercise the capacity fallback because its current sealed corpus triggered the mechanical capacity condition"
+  },
+  "formal_acceptance": {
+    "source_rows": 1440,
+    "unique_source_ids": 1440,
+    "duplicates": 0,
+    "omissions": 0,
+    "unexpected_rows": 0,
+    "silent_truncation_allowed": false,
+    "runtime_readback_required": true
+  },
+  "forbidden": [
+    "reward-triggered splitting",
+    "outcome-triggered splitting",
+    "changing input order",
+    "unbounded recursive splitting",
+    "raising the 2048 primary output cap as a rescue",
+    "new MiniMax/teacher calls",
+    "new WebShop rollouts",
+    "using Stage2/final-panel outcomes to choose this recovery"
+  ],
+  "stage2_authorized_by_this_amendment": false
+}

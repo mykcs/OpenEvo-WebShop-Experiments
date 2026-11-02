@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/carrier-contract-v2-implementation-identity-v1.schema.json",
+  "title": "Carrier Contract v2 implementation identity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "carrier_contract_identity_sha256",
+    "identity_projection",
+    "health_component_identities",
+    "component_file_count"
+  ],
+  "properties": {
+    "schema": {"const": "openevo.carrier-contract-v2-implementation-identity.v1"},
+    "carrier_contract_identity_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "component_file_count": {"type": "integer", "minimum": 1},
+    "identity_projection": {"type": "object"},
+    "health_component_identities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generator", "validator", "repair", "router", "governor"],
+      "properties": {
+        "generator": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "validator": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "repair": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "router": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "governor": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

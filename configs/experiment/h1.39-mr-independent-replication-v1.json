@@ -1,0 +1,104 @@
+{
+  "schema": "openevo.experiment-h1.39-mr-independent-replication.v1",
+  "campaign_id": "20260820-0139-h139-mr-independent-replication",
+  "phase": "H1.39-MR",
+  "status": "launch-authorized",
+  "title": "H1.38B frozen-adapter independent fresh-task replication",
+  "objective": "Independently test the H1.38B frozen ordinary and SD-LoRA adapters on a new task-ID-disjoint WebShop panel without retraining or tuning.",
+  "scientific_question": "Does the H1.38B final SD-LoRA adapter independently improve fresh-task WebShop reward over the same frozen BASE on an untouched task-ID-disjoint panel?",
+  "primary_contrast": "H1.38B_SD minus BASE",
+  "secondary_contrasts": ["H1.38B_ORDINARY minus BASE", "H1.38B_SD minus H1.38B_ORDINARY"],
+  "selection": {
+    "builder": "scripts/openevo_webshop/build_h139_mr_manifest.py",
+    "selection_seed": 2026082039,
+    "environment_seed": 2026,
+    "minimum_goal_index": 500,
+    "task_count": 64,
+    "task_identity_policy": "task-ID-disjoint from every committed historical formal/reserved/aborted/training/evaluation identity, including H0/H0.1/H1.29-H1.38 and H1.38A-C/H1.38B",
+    "manual_replacement_allowed": false,
+    "selection_outcomes_blind": true,
+    "exact_panel_must_be_committed_before_gpu_treatment": true,
+    "materialized_panel": {
+      "manifest_path": "configs/experiment/manifests/h1.39-mr-independent-panel-v1.json",
+      "manifest_file_sha256": "cf2dc0726c34ed94640c36509d5a5018d1261d888b9a75a97fdaddbf54662e00",
+      "manifest_content_sha256": "1aab05a8b89e7fc4ef5934dd07ffb99cfe47492210487b2fc14df77cf7b67b83",
+      "eligible_pool_count": 5869,
+      "eligible_pool_digest": "56052f9e3ba6bd6e4b6a9d7b59129a739e355e24a5da5a52dd3f02aeb2560ce9",
+      "selected_panel_digest": "34f240de8da5659e9d3dd2f5964b64d1872031632448f2d5910e4e0e42f3bf01",
+      "exclusion_ledger_path": "configs/experiment/manifests/h1.39-mr-exclusion-ledger-v1.json",
+      "exclusion_ledger_file_sha256": "0c59a95a7385178d14c27e876add14e9b041b2027d1a8de757343c1c26b29506",
+      "exclusion_ledger_content_sha256": "b43c8eaa5a1ee8eadc7dae8fde14cb1974f6d1b5ae0710b5ffdf4668ca9e7c5a",
+      "task_count": 64
+    }
+  },
+  "arms": {
+    "BASE": {"adapter": "none"},
+    "H1.38B_ORDINARY": {"adapter_sha256": "22a5adb1a0bdda5b56372a2926bc2724e45b416493403ece86755330add8cd7d", "source_campaign": "20260820-0129-h138b-method-control"},
+    "H1.38B_SD": {"adapter_sha256": "47e63d417f85cb2defed5ff1ee934128b96e6a4f78a8f410fa052957d919190c", "source_campaign": "20260820-0129-h138b-method-control"}
+  },
+  "frozen_evaluation_contract": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "model_content_pin": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+    "official_open_evo_stable": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "parser_contract": "seed3090.webshop-action-parser.v3-action-command",
+    "evaluator": "WebShop task_score/won",
+    "invalid_taxonomy": ["parser_or_fallback", "runtime", "identity", "incomplete_trace", "adapter_load_unverified", "base_fallback"]
+  },
+  "matrix": {"tasks": 64, "arms": 3, "rollout_seeds": [2026103900, 2026103901, 2026103902, 2026103903], "cells": 192, "attempts": 768},
+  "qualification": {
+    "formal_task_consumption": true,
+    "gates": ["BASE clean inference load", "ordinary artifact identity/load/no-fallback/bounded generation", "SD artifact identity/load/no-fallback/bounded generation", "replay identity", "task identity", "output isolation", "partial-output absence", "numeric JSON serialization", "parser contract"],
+    "required_result": "all structural and provenance checks pass before any formal panel attempt",
+    "status": "pass",
+    "task_consumption": "none",
+    "evidence": {
+      "startup_report": "docs/evidence/remote-runs/2026-08-20/h1.39-mr-qualification/startup-report.txt",
+      "live_gpu_preflight": "docs/evidence/remote-runs/2026-08-20/h1.39-mr-qualification/qualification/live-gpu-preflight.txt",
+      "base": {"path": "docs/evidence/remote-runs/2026-08-20/h1.39-mr-qualification/qualification/base.json", "sha256": "93601019451eecf825002864b18f5ac8f652e720fcf376fe1397b3a8fabc0fe3"},
+      "ordinary_lora": {"path": "docs/evidence/remote-runs/2026-08-20/h1.39-mr-qualification/qualification/ordinary-lora.json", "sha256": "35308dd6c4e2024e05536d78465ce937d9a8c24cafe3972873ceab4edb37901d"},
+      "sd_lora": {"path": "docs/evidence/remote-runs/2026-08-20/h1.39-mr-qualification/qualification/sd-lora.json", "sha256": "dbc1844c13b9ca2e229d82daadfee340bd69b98ea0924a35e02101df4a27eee9"}
+    }
+  },
+  "resources": {
+    "authorized_gpu_uuids": [
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ],
+    "authorization_basis": "parent experiment-execution-policy.md standing pool plus this exact versioned campaign allowlist",
+    "live_idle_required_immediately_before_launch": true,
+    "gpu_hours_cap": 5.0,
+    "extension_allowed": false,
+    "kill_reset_preempt_allowed": false,
+    "live_gate_evidence": "docs/evidence/remote-runs/2026-08-20/h1.39-mr-qualification/qualification/live-gpu-preflight.txt"
+  },
+  "analysis": {
+    "unit": "task cluster over four rollout seeds",
+    "bootstrap_rounds": 10000,
+    "bootstrap_seed": 2026082039,
+    "sign_flip_rounds": 10000,
+    "sign_flip_seed": 2026082040,
+    "estimand": "task-weighted mean reward difference over complete-valid four-seed task clusters",
+    "report_for_each_contrast": ["complete-valid task count", "valid attempts", "task-weighted delta", "ITT delta", "bootstrap CI95", "task sign-flip p", "positive/tie/negative tasks", "per-arm valid mean", "invalid counts/rates/taxonomy"],
+    "parser_invalid_asymmetry": "report separately; do not interpret automatically as competence"
+  },
+  "classification": {
+    "R1": "REPLICATED_POSITIVE_SD: SD-BASE delta > 0, CI lower > 0, structure/provenance pass",
+    "R2": "POSITIVE_NOT_REPLICATED: H1.38B positive but H1.39 SD-BASE CI includes 0 or reverses",
+    "R3": "REPLICATED_ORDINARY_ONLY: ordinary-BASE confirmed but SD-BASE not",
+    "R4": "BOTH_REPLICATE: ordinary-BASE and SD-BASE both confirmed",
+    "R5": "CONFIRMED_METHOD_DIFFERENCE: SD-ordinary CI wholly one side",
+    "R0": "STRUCTURALLY_INVALID: provenance or formal contract invalid"
+  },
+  "forbidden_changes": ["adapter retraining", "learning-rate/rank/epoch sweep", "prompt/horizon/parser redesign", "task cherry-picking", "new seed or extra attempt", "teacher/SEED/MemoryOps/retrieval/stronger base", "upstream SD-LoRA-RR port", "threshold change after results"],
+  "tracking": {"entity": "example-entity", "project": "openevo-webshop-experiments", "group": "20260820-0139-h139-mr-independent-replication", "default_mode": "online", "offline_fallback": "only after saved online probe failure and final spool hash"},
+  "claim_boundary": "H1.39-MR can independently replicate or fail to replicate the H1.38B frozen-adapter fresh-task contrast only; it does not establish universal transfer, upstream claims, or multi-generation self-evolution.",
+  "next_gate": "No H1.40 task consumption; only prepare its preregistration after R1/R4-style positive replication."
+}

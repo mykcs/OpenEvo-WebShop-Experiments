@@ -1,0 +1,33 @@
+{
+  "activation_authority": false,
+  "experiment_id": "M1-D",
+  "formal_task_consumption_allowed": false,
+  "model_identity_inherited_exactly_from_parent": true,
+  "override_scope": "physical Ray pool binding only",
+  "parent_pass_gates_inherited": true,
+  "parent_qualification_plan": "configs/experiment/designs/openevo-mechanism1-m1d-policy-endpoint-qualification-202609061100.json",
+  "parent_qualification_plan_sha256": "6024e637f7b1db838cc3499304f9b794dd28cc46a879ba5e8fddc1913e868a34",
+  "post_pass_rule": "Passing the endpoint smoke still does not activate the formal 1,440-trajectory M1-D run. A separate activation receipt remains required.",
+  "program_id": "OpenEVO-Mechanism-1.0",
+  "ray_authority_semantics": "Ray placement remains the sole GPU admission authority. For this zero-benchmark qualification only, the parent outer-Ray requirement resolves to a dedicated one-GPU auxiliary Ray pool on authorized GPU3.",
+  "reason": "The frozen secondary_spare lane on the live GPU4-7 pool is currently occupied by active Ceiling/q17 work. GPU3 was explicitly authorized before this qualification result was observed. This amendment isolates qualification on GPU3 without restarting or mutating the live GPU4-7 pool.",
+  "resource_contract": {
+    "auxiliary_config_path": "configs/experiment/openevo-mechanism1-m1d-gpu3-ray-qualification-202609061300.json",
+    "auxiliary_config_sha256": "beab708daf799ad8a0150f8ff2599762695c4c88cc9d9158afd704ab5f6c0e5a",
+    "auxiliary_profile_registry_path": "configs/experiment/openevo-mechanism1-m1d-gpu3-ray-profile-registry-202609061300.json",
+    "auxiliary_profile_registry_sha256": "b2cd0901678f5e42da7d0aaf5d69ab3b50d9b6b137ec79b837856f3cf8a68ccc",
+    "gpu_index": 3,
+    "gpu_uuid": "GPU-00000000-0000-0000-0000-000000000000",
+    "main_gpu4567_pool_restart_allowed": false,
+    "main_gpu4567_pool_state_mutation_allowed": false,
+    "release_required_after_smoke": true,
+    "selection_count": 1,
+    "slot_class": "secondary_spare",
+    "vram_request_mib_per_gpu": 9000,
+    "workload": "mechanism1_seed_stage1_3b"
+  },
+  "schema": "openevo.mechanism1-m1d-endpoint-resource-amendment.202609061300",
+  "scientific_semantics_unchanged": true,
+  "status": "PREREGISTERED_RESOURCE_ONLY",
+  "synthetic_request_inherited_exactly_from_parent": true
+}

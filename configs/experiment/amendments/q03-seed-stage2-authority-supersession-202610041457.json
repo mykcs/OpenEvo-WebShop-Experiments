@@ -1,0 +1,42 @@
+{
+  "schema": "openevo.q03.seed-stage2-prospective-amendment.v1",
+  "amendment_id": "202610041457-q03-seed-stage2-authority-supersession",
+  "owner_pr": 630,
+  "owner_authorized": true,
+  "authorization_source": "User instruction in this task on 2026-10-04: prioritize Q03, switch the control campaign as needed, and make non-security-impacting changes needed to start the GPU work; preserve the established capacity-sharing rule and do not disturb other workloads.",
+  "supersedes": {
+    "prior_program_order": "2026-10-01 serial advisor-response order placing Q03 after Q02 and Q09",
+    "prior_q03_gate": "Old E5 single-stream 20,480-rollout authority required E1-E4 seals before activation.",
+    "scope": "Prospective Q03 authority selection and activation ordering only. The old E5 release remains inert and immutable."
+  },
+  "preserves": [
+    "#597 sealed Stage1 receipt, final checkpoint, and negative WebShop result byte-for-byte; no Stage1 rerun.",
+    "The frozen Q03 two-stream Stage2 treatment, 160 updates per stream, both seed tuples, 40,960 rollout total, five fixed canonical milestones, fixed 64-task panel, primary estimand, bootstrap, and +0.02 threshold.",
+    "All E1-E4 evidence and owner-specific campaign states; no claim that an unfinished E1-E4 gate is sealed and no mutation of another owner's ledger, output, lock, controller, or process.",
+    "The final panel remains locked with access count zero; no outcome-based retry, seed/task/checkpoint substitution, or preemption of another workload."
+  ],
+  "prospective_q03_gate": {
+    "status": "OWNER_AUTHORIZED_SUCCESSOR__FORMAL_LOCKED",
+    "supersedes_e1_e4_as_q03_activation_dependency": true,
+    "does_not_supersede_or_reclassify_e1_e4_evidence": true,
+    "formal_task_consumption_allowed_until_all_q03_gates_pass": false,
+    "zero_formal_gpu_qualification_allowed": true,
+    "required_before_formal_start": [
+      "Exact native source, prompt/action/parser, RNG, teacher, and resume consumer qualification.",
+      "Effective full-trainer profile and FSDP save/restore/export qualification.",
+      "Identity-matched canonical update0 and Q17 evaluator consumer qualification under the frozen panel and sampling contract.",
+      "Two-stream resource/cost ledger and persistent recovery/checkpoint-retention contract.",
+      "Exact current-main execution identity, candidate-bound zero-formal preflight PASS, and separate formal release/activation PASS."
+    ]
+  },
+  "resource_authority": {
+    "pool": "Established eight-device LYG RTX 5090 pool.",
+    "capacity_based_co_residency": true,
+    "must_prove_qualified_peak_and_transient_headroom_at_point_of_use": true,
+    "must_resolve_current_workload_owner": true,
+    "preemption_allowed": false,
+    "kill_reset_restart_other_workload_allowed": false
+  },
+  "scientific_contract_path": "configs/experiment/advisor-questions/q03-work-package-202610041457.json",
+  "final_panel_access": 0
+}

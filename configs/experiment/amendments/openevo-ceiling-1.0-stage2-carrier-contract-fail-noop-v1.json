@@ -1,0 +1,62 @@
+{
+  "applies_to_arms": [
+    "3b",
+    "qwen3-1p7b"
+  ],
+  "applies_to_carriers": [
+    "text_memory",
+    "skill_bundle",
+    "agent_system"
+  ],
+  "authority_basis": "User explicitly chose the minimal scientific amendment: after the frozen primary plus single repair budget is exhausted by typed-contract failure, keep the prior carrier and continue the other Stage2 learning channels; do not switch reflector prompts and do not add a third generation.",
+  "authorized_at": "2026-09-04T17:17:00+08:00",
+  "engineering_failure_boundary": "Missing/partial rejected evidence, provenance drift, OOM before exhausting the two-call budget, or unrelated container/runtime failure remains BLOCKED and must not be converted to NOOP.",
+  "forbidden": [
+    "third reflector generation",
+    "switch to typed-reflector prompt as formal recovery",
+    "deterministic semantic rewrite/sanitization of a failed carrier candidate",
+    "inject an invalid carrier into State_k+1",
+    "reward-based output selection"
+  ],
+  "frozen_designs": {
+    "3b_vnext_sha256": "514401d4c3f12a19dd4a7ecd035e5bc48ab02c420e98dac99c9636eb0ef5baac",
+    "qwen3_1p7b_vnext_sha256": "17cb758a2b8ff8c13871f1f5b76af333f78836d6aae5baedfe7a25642f67207e",
+    "stage2_config_sha256": "328713d810744c50eca090648c2317be46ed1fd61f303727acf68687bc8eafe4"
+  },
+  "retroactivity": "No sealed round is rewritten or rerun. Historical 3B round 5 deterministic safety-projection remediation remains immutable evidence; its active Memory was ultimately kept prior after candidate rejection. This amendment governs future/resumed unsealed carrier failures only.",
+  "schema": "openevo.ceiling1-stage2-carrier-contract-fail-noop-amendment.v1",
+  "scientific_rationale": {
+    "fail_closed_on_engineering_failure": true,
+    "round_is_observation_accounting_boundary_not_mandatory_learning_boundary": true,
+    "unchanged_carriers_continue_to_reference_State_k": true,
+    "unsafe_or_unavailable_update_should_be_noop": true
+  },
+  "status": "AUTHORIZED",
+  "transition": {
+    "active_carrier": "State_k prior carrier",
+    "candidate_acceptance_runs_only_if_combined_candidate_state_differs_for_other_reasons": true,
+    "carrier_terminal_status": "NOOP",
+    "evidence_retained_append_only": true,
+    "other_carriers_and_sd_lora_continue": true,
+    "reason": "NOOP_KEEP_PRIOR_TYPED_CONTRACT_REJECTED_AFTER_REPAIR"
+  },
+  "trigger": {
+    "both_candidates_artifact_contract_valid": false,
+    "eligibility_gate_already_true": true,
+    "model_call_attempt_identity_required": true,
+    "primary_calls_exactly": 1,
+    "rejected_candidate_hashes_required": true,
+    "repair_calls_exactly": 1
+  },
+  "unchanged": {
+    "external_teacher_calls": 0,
+    "final_panel_access": 0,
+    "max_primary_calls": 1,
+    "max_repair_calls": 1,
+    "reflector_prompt": true,
+    "reward_success_gates": true,
+    "sampling": true,
+    "sd_lora_selector_and_training": true,
+    "stage2_rollout_schedule": true
+  }
+}

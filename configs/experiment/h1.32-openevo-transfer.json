@@ -1,0 +1,81 @@
+{
+  "schema": "openevo.webshop-h1.32-openevo-transfer-preregistration.v1",
+  "experiment": "H1.32-cross-campaign-openevo-transfer",
+  "campaign_id": "20260817-1200-h132-openevo-transfer",
+  "standard_profile": "vNext",
+  "status": "launch-authorized",
+  "formal_task_consumption_allowed": false,
+  "scientific_question": "Does a frozen OpenEvo SD-LoRA adapter trained on H1.29 self-generated successes transfer to a fresh WebShop task panel under the same frozen base-model evaluation contract?",
+  "hypothesis": "If the H1.29 adapter captured task-general action behavior rather than only its acquisition tasks, the adapter arm will improve paired fresh-task score or execution quality over BASE; otherwise the result will distinguish task-specific fitting from transfer failure.",
+  "panel": {
+    "source_experiment": "H1.30 replacement evaluation panel",
+    "source_manifest": "docs/evidence/remote-runs/2026-08-17/h1.30/manifests/h1.30-task-manifest-v2.json",
+    "source_manifest_sha256": "45a34e6d7db71c06b5cce3c1fec6fc1df785c5a4e0ad13558a8f7557fe1d6f1d",
+    "task_ids": [6603, 1354, 2279, 2562, 3166, 5661, 4047, 4980],
+    "task_use": "consumed by H1.32 only; do not later reuse it as H1.30 formal evaluation",
+    "outcome_access_before_freeze": false,
+    "evaluation_task_count": 8,
+    "attempts_per_arm": 32
+  },
+  "arms": {
+    "BASE": "frozen Qwen2.5-3B-Instruct with no adapter",
+    "H129_SELF_ADAPTER": "the exact H1.29 rank-4 OpenEvo SD-LoRA adapter, loaded without further training or modification"
+  },
+  "frozen_contract": {
+    "benchmark": "webshop",
+    "catalog": "indexes_1k",
+    "environment_seed": 2026,
+    "rollout_seeds": [2026091100, 2026091101, 2026091102, 2026091103],
+    "model_id": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "tokenizer_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "evaluator": "seed3090.webshop-task-score-won-evaluator.v1",
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "invalid_attempt_policy": "retain parser/runtime/identity failures; exclude them from valid-score denominators and report separately",
+    "teacher_during_evaluation": false,
+    "training_during_evaluation": false,
+    "pairing_key": ["task identity", "generation seed"]
+  },
+  "adapter_identity": {
+    "source_campaign": "H1.29-self-evolution-v1",
+    "adapter_uri": "/workspace/runs/phase-h1.29-self-evolution-v1-20260816/artifacts/h1.29-self-evolution-fit-gpu0-v1/workers/sd-lora-f2c0c9ef3a94b9cc0c5dd9ba43fba020/adapter",
+    "adapter_model_sha256": "ea5b3eddaae9ce60ed1210edf2d46993102b2642de382a0e954a4ddc3c95ddf7",
+    "state_weights_sha256": "ebffc412219fc6711188511891296624f768e1bd711fab469f807f281d6cd3fe",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "load_policy": "local_files_only; verify adapter config, state manifest, component count, base revision, and reload evidence before launch"
+  },
+  "metrics": {
+    "primary": ["mean valid task_score", "valid win rate", "paired adapter-minus-base task_score"],
+    "secondary": ["valid-action rate", "buy-now transition rate", "premature-next-page rate", "median valid episode wall time seconds", "median valid seconds per step"],
+    "failure": ["runtime error", "parser/fallback failure", "identity mismatch", "incomplete trace"],
+    "positive_rule": "H129_SELF_ADAPTER has a positive paired mean task_score and does not worsen invalid-attempt rate by more than 5 percentage points; this remains a transfer diagnostic, not a general OpenEvo efficacy claim.",
+    "negative_rule": "Non-positive paired score or task-local improvement classifies the adapter as no demonstrated fresh-task transfer; do not sweep H1.29 hyperparameters under this experiment."
+  },
+  "resource_budget": {
+    "attempts": 64,
+    "arms": 2,
+    "gpus": 8,
+    "parallel_policy": "one UUID-bound container per task cell; BASE and adapter waves are disjoint; verify release after each wave",
+    "teacher_api": false,
+    "training_runs": 0,
+    "gpu_hours_cap": 4
+  },
+  "tracking": {
+    "project": "openevo-webshop-experiments",
+    "entity": "example-entity",
+    "default_mode": "online",
+    "offline_fallback": "only after recorded online initialization failure and spool hash"
+  },
+  "required_gates": [
+    "CPU tests, preflight, and manifest hash verification pass",
+    "H1.29 adapter files and reload evidence match every recorded digest",
+    "eight authorized UUIDs are idle immediately before each wave",
+    "all output cells preserve task/seed/arm identity and local Run Manifest receipts",
+    "all GPUs are idle after each wave"
+  ],
+  "claim_boundary": "This is a fresh-task transfer diagnostic for one frozen H1.29 adapter. It makes no SEED comparison, no teacher claim, no Q3 generalization claim, and no claim about a new adapter or hyperparameter sweep."
+}

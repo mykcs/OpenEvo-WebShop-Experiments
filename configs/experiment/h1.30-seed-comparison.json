@@ -1,0 +1,215 @@
+{
+  "schema": "openevo.webshop-h1.30-seed-comparison-draft.v1",
+  "standard_core": "v1",
+  "standard_profile": "vNext",
+  "experiment": "H1.30-open-evo-versus-seed",
+  "campaign_id": "20260817-0000-h130-seed-comparison",
+  "status": "blocked-on-v3-capability-gate-and-cross-method-training-contract",
+  "formal_task_consumption_allowed": false,
+  "objective": "Measure whether a frozen OpenEvo WebShop route beats a matched SEED baseline in at least one prespecified dimension: score, win rate, speed, or execution quality.",
+  "scientific_question": "Under one frozen WebShop task/seed/model/evaluator contract, does OpenEvo outperform SEED on any preregistered metric without hiding invalid attempts?",
+  "route_decision": {
+    "qwen25_3b_gate": "H1.30 v2 and fresh v3 train-only gates failed: v2 had 2/8 positive episodes; v3 had 4/8 positives from 1/2 task identities",
+    "gpt_opsd_fallback": "eligible by the preregistered trigger; CPU-only gateway route is implemented, but no endpoint, credential, model contract, or provider receipt is present",
+    "candidate_open_evo_route": "freeze only after selecting an auditable OpenEvo implementation and adapter artifact; do not silently reuse a failed or missing artifact"
+  },
+  "arms": {
+    "OPEN_EVO": "one frozen OpenEvo route with exact code/core/runtime/model/adapter identity",
+    "SEED": "one frozen SEED implementation with exact public source or auditable artifact identity",
+    "BASE_CONTROL": "optional frozen Qwen2.5-3B no-adapter control, only if both method arms use the same base model"
+  },
+  "frozen_comparison_contract": {
+    "catalog": "indexes_1k",
+    "environment_seed": 2026,
+    "task_manifest": "one newly materialized manifest, identical task identity and order for every arm",
+    "rollout_seeds": [2026091100, 2026091101, 2026091102, 2026091103],
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "evaluator": "seed3090.webshop-task-score-won-evaluator.v1",
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "invalid_attempt_policy": "retain and report parser/runtime/identity failures; exclude them from valid-score denominators"
+  },
+  "manifest_probe": {
+    "status": "rejected-for-formal-h1.30",
+    "path": "/workspace/runs/phase-h1.30-seed-comparison-v1-20260817/manifests/h1.30-task-manifest.json",
+    "file_sha256": "d13c4c35cfb84ea4dc33bb44f81a0786d881ccdbfc6c9bddcf9b1d42114ad4bf",
+    "manifest_sha256": "30ca98c8dbdc4f2b365086089f960df513720309e13b3f2f58cfb79afa234e81",
+    "access_ledger_file_sha256": "459ad19a66d8fd0e315ec1bbc215884e0486a06eb82d200cbc02476e9f14286b",
+    "captured_at_utc": "2026-08-16T21:11:14Z",
+    "source_seed_root": "/workspace/runs/phase-h1.21-horizon-matched-action-admissibility-v1-20260815/seed-roots/base-P1",
+    "index_tree_sha256": "a9596fc157c2fe2e7a949406ea405dd854e5a12c8a0102176d5998f7fde6f950",
+    "rejection_reason": "The existing qualification generator emits temperature=0.4, max_steps=15, and rollout_seeds=[202600,202601]; H1.30 requires temperature=0.0, max_steps=30, and four preregistered rollout seeds. It is retained as a probe only, not as a formal task manifest."
+  },
+  "formal_manifest": {
+    "status": "rejected-for-formal-h1.30-contamination",
+    "repository_path": "docs/evidence/remote-runs/2026-08-17/h1.30/manifests/h1.30-task-manifest-v2.json",
+    "server_path": "not-yet-published; CPU control-plane artifact only",
+    "manifest_sha256": "45a34e6d7db71c06b5cce3c1fec6fc1df785c5a4e0ad13558a8f7557fe1d6f1d",
+    "repository_file_sha256": "f19b65d0ebd59f289b086c8dede38368dd0418208a7d7b8bf1f925ec3021c412",
+    "rejected_manifest_sha256": "ccdd9caed86ce4f3087d66fdadfc285371fd431f40dff495665e7596f87f8c1b",
+    "captured_at_utc": "2026-08-17T00:00:00Z",
+    "task_ids": ["webshop_006603", "webshop_001354", "webshop_002279", "webshop_002562", "webshop_003166", "webshop_005661", "webshop_004047", "webshop_004980"],
+    "index_tree_sha256": "e93a842f3fc4ada165052bf98cd96bc4bbcafe3c747153a09f255780cceab61f"
+  },
+  "fresh_v3_panel": {
+    "status": "draft-not-authorized",
+    "evaluation_manifest": "docs/evidence/remote-runs/2026-08-17/h1.30/manifests/h1.30-task-manifest-v3.json",
+    "evaluation_manifest_sha256": "b199ebb1304c13ad74faf50ea523f8586f24db8cfd83aab500529e992802ce7d",
+    "training_manifest": "docs/evidence/remote-runs/2026-08-17/h1.30/manifests/h1.30-training-manifest-v3.json",
+    "training_manifest_sha256": "586038478ba171e2abeb5241bc2d447ec78a176458a1db51595e7989d69cb459",
+    "evaluation_tasks": 8,
+    "training_tasks": 16,
+    "validation_tasks": 8,
+    "pairwise_disjoint": true,
+    "formal_task_consumption_allowed": false,
+    "panel_evidence": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-panel-materialization-v3.json"
+  },
+  "contamination_reconciliation": {
+    "status": "pass-rejected-and-rematerialized",
+    "evidence": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-contamination-ledger-v2.json",
+    "old_evaluation_panel_overlap_with_h1_31": true,
+    "old_training_panel_overlap_with_h1_31": true,
+    "new_panel_excludes_h1_31_and_prior_json_identities": true,
+    "historical_materials_deleted": false
+  },
+  "open_evo_route_candidate": {
+    "status": "candidate-not-authorized",
+    "evidence": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-openevo-route-candidate.json",
+    "source_campaign": "H1.29 self-evolution",
+    "adapter_id": "sd-lora-85cce48615d28b3376d07222",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "state_weights_sha256": "ebffc412219fc6711188511891296624f768e1bd711fab469f807f281d6cd3fe",
+    "peft_weights_sha256": "ea5b3eddaae9ce60ed1210edf2d46993102b2642de382a0e954a4ddc3c95ddf7",
+    "reuse_requires": [
+      "fresh H1.30 load/reload digest receipt (pass; receipt retained for audit)",
+      "explicit frozen cross-campaign reuse decision",
+      "jointly executable SEED route under the same evaluator contract"
+    ]
+  },
+  "technical_route_audit": {
+    "status": "pass-technical-not-scientifically-authorized",
+    "evidence": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-route-audit.json",
+    "formal_task_consumption_allowed": false,
+    "remaining_authorization": [
+      "explicit freeze of the cross-campaign OpenEvo adapter or a newly trained H1.30 OpenEvo artifact",
+      "scientifically matched SEED training data and compute contract; current placeholder/random-goal qualification is not sufficient"
+    ]
+  },
+  "training_manifest": {
+    "status": "v3-panel-materialized-overlay-audited-not-authorized",
+    "builder": "scripts/openevo_webshop/build_h1_30_training_manifest.py",
+    "schema": "openevo.webshop-h1.30-training-manifest.v1",
+    "formal_task_consumption_allowed": false,
+    "manifest": "docs/evidence/remote-runs/2026-08-17/h1.30/manifests/h1.30-training-manifest-v3.json",
+    "manifest_sha256": "586038478ba171e2abeb5241bc2d447ec78a176458a1db51595e7989d69cb459",
+    "manifest_file_sha256": "b6fa6d4066377d6ff7a751e8b82bcea2d4c981bd43a105f18c053cdfef456247",
+    "rejected_manifest_sha256": "9fcb7ca6adb71d019dd06c0e26f45c44029106a375679c6505d56e2f63526a86",
+    "materialization_evidence": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-contamination-ledger-v2.json",
+    "overlay_validation_evidence": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-seed-overlay-training-contract-v3.json",
+    "overlay_server_path": "/workspace/runs/h130-v3-panel-20260817/overlay",
+    "overlay_patch_sha256": "1c6c0227c6943060b74c9e3fd10f3b946a8607c10d458a841b05baf1c3b5bf62",
+    "overlay_cpu_reset_and_trainer_dry_run": "manifest-bound-overlay-contract-pass; persistent-checkpoint-write-reload-pass; formal task consumption disabled",
+    "panel": "fresh 16 train identities plus 8 validation identities, disjoint from the fresh 8-task evaluation panel",
+    "remaining_gate": "resolve the failed v3 capability gate or authorize the separately audited teacher route, then freeze method-independent training, compute, and artifact contracts; formal GPU consumption remains disabled"
+  },
+  "manifest_bound_seed_route_smoke": {
+    "status": "pass-infrastructure-only",
+    "receipt": "server:/workspace/runs/phase-h1.30-seed-manifest-route-smoke-v1-20260817/route-smoke-receipt.json",
+    "log_sha256": "8cb0b58dafa0bb9f3f0a9cfc5db1d6f6d6fe498f42dec32f85cd7048fe4f44e2",
+    "trainer_global_step": 1,
+    "gpu_count": 8,
+    "formal_task_consumption_allowed": false,
+    "scientific_result": false
+  },
+  "storage_capacity_audit": {
+    "status": "blocked",
+    "evidence": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-storage-capacity-audit-v1.json",
+    "free_bytes": 19282108416,
+    "formal_checkpoint_capacity_proven": false,
+    "deletion_authorized": false
+  },
+  "open_evo_capability_gate": {
+    "status": "failed-v3",
+    "evidence": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-open-evo-capability-gate-v3.json",
+    "failure_taxonomy": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-failure-taxonomy-v3.json",
+    "attempts": 64,
+    "fully_valid_attempts": 48,
+    "parser_or_fallback_failures": 16,
+    "runtime_errors": 0,
+    "qualified_positive_task_count": 1,
+    "qualified_positive_episode_count": 4,
+    "minimum_positive_episode_count": 8,
+    "minimum_positive_task_count": 2,
+    "rollout_contract": {
+      "temperature": 0.0,
+      "max_steps": 30,
+      "max_new_tokens": 512,
+      "rollout_seeds": [2026091200, 2026091201, 2026091202, 2026091203]
+    },
+    "formal_task_consumption_allowed": false
+  },
+  "gpt_opsd_fallback_audit": {
+    "status": "eligible-by-trigger-route-implemented-but-not-authorized",
+    "evidence": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-gpt-opsd-fallback-audit.json",
+    "implementation": "scripts/openevo_webshop/generate_teacher_success_episodes.py --backend gateway",
+    "requires": [
+      "OPENAI_BASE_URL",
+      "teacher model identity",
+      "teacher prompt contract SHA-256",
+      "teacher data contract SHA-256"
+    ],
+    "gpu_workload_launched": false,
+    "formal_task_consumption_allowed": false
+  },
+  "wandb_formal_probe": {
+    "status": "pass",
+    "evidence": "docs/evidence/remote-runs/2026-08-17/h1.30/evidence/h1.30-wandb-online-probe.json",
+    "run_id": "uvti3ih2",
+    "run_url": "https://wandb.ai/example-entity/openevo-webshop-experiments/runs/uvti3ih2",
+    "gpu_workload_launched": false
+  },
+  "planned_matrix": {
+    "tasks": 8,
+    "seeds_per_task": 4,
+    "method_arms": 2,
+    "attempts_without_optional_base": 64,
+    "planned_gpus": 8,
+    "parallel_policy": "one UUID-bound child container per GPU; use all eight only after every launch gate passes"
+  },
+  "metrics": {
+    "primary": ["mean valid task_score", "valid win rate"],
+    "speed": ["median valid episode wall time seconds", "median valid seconds per step"],
+    "quality": ["valid-action rate", "buy-now transition rate", "premature-next-page rate"],
+    "candidate_win_rule": "OpenEvo may be called a candidate winner only with positive paired difference on at least one prespecified metric, method identity receipts, and no hidden invalid-rate degradation",
+    "claim_rule": "A paper-level claim requires independent confirmation or uncertainty analysis"
+  },
+  "mandatory_launch_gates": [
+    "SEED source/revision, runtime, model and evaluator are present and auditable; otherwise stop as non-comparable",
+    "OpenEvo route and adapter artifact have exact hashes and a reproducible load check",
+    "public manifest hash, task split, seeds, prompt/action/evaluator contracts are frozen before formal consumption",
+    "CPU pytest/unittest/preflight and remote online W&B probe are green; offline fallback requires an exact receipt",
+    "persistent checkpoint/storage capacity is proven by an exact write/reload receipt",
+    "all eight GPU UUIDs are idle and post-run release is verified"
+  ],
+  "runtime_candidate": {
+    "status": "runtime-smoke-passed-not-formal",
+    "image": "experiment-host/openevo-seed:qwen25-3b-webshop-20260817-rc15",
+    "image_digest": "sha256:1f049d117b376e4af225ef1915bedbcec88d31bdf7376d189f7682ab9d118885",
+    "source_recorded_commit": "9996427d3ae7c71b3cc8ac82940efe764a8a2485",
+    "source_checkout_git_metadata_present": false,
+    "auditable_git_checkout": "/workspace/runtime-seed-git-9996427-v2",
+    "auditable_git_checkout_head": "9996427d3ae7c71b3cc8ac82940efe764a8a2485",
+    "auditable_git_checkout_status": "detached-clean",
+    "auditable_git_checkout_verified_at_utc": "2026-08-16T21:05:00Z",
+    "remote_ref_verified": "https://github.com/mykcs/seed3090.git#refs/heads/codex/webshop-seed-contract",
+    "pip_check": "pass",
+    "single_gpu_webshop_smoke": "pass-under-rc15-with-explicit-readonly-cache-contract; safe-action-fallback-used; non-scientific",
+    "route_qualification": "pass-under-rc14; rc15-clean-teacher-off-8gpu-update-and-tmpfs-checkpoint-write-pass; persistent checkpoint/reload pending",
+    "scientific_result": false
+  },
+  "current_blocker": "The fresh v3 panel is disjoint and its manifest-bound SEED input contract passes, but the v3 train-only capability gate produced 4 qualified positive episodes from 1 task identity versus the preregistered minimum of 8 episodes from 2 task identities. The OpenEvo artifact is still a cross-campaign H1.29 candidate, storage remains tight, and no H1.30 evaluation task or formal method arm is authorized.",
+  "claim_boundary": "This draft does not claim OpenEvo superiority, SEED superiority, Q3, GPT/OPSD effectiveness, or a WebShop benchmark result."
+}

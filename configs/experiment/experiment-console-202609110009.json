@@ -1,0 +1,178 @@
+{
+  "schema": "openevo.experiment-console-index.202609110009",
+  "status": "CURRENT_READ_ONLY_INDEX",
+  "role": "operator-observability-only; never scientific or execution authority",
+  "runtime_assets": {
+    "h144-scientific-runtime": {
+      "asset_path": "configs/assets/runtimes/h144-scientific-runtime-v1.json", "revision_naming_note": "legacy-revision-compat",
+      "expected_image_digest": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850"
+    }
+  },
+  "experiments": [
+    {
+      "id": "qwen25-7b-long-run",
+      "display_name": "Qwen2.5-7B historical long run",
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "treatment": "historical gated-update / SD-LoRA long-run lineage",
+      "what_changed": [
+        "This was the earlier 7B long-run learning line used before the later small-arm Harness201.1 and DirectApply studies."
+      ],
+      "what_stays_fixed": [
+        "Historical receipts and archived adapters remain immutable evidence; old container names are not execution authority."
+      ],
+      "state_source": {
+        "type": "static",
+        "status": "HISTORICAL_COMPLETE",
+        "note": "The server bulk was later thinned/archived. This console intentionally does not reconstruct a live state from retired Docker containers."
+      },
+      "runtime": {
+        "kind": "historical-receipt-bound",
+        "note": "Resolve exact historical image/source from the run receipt or archive before reproduction; do not infer it from a Docker tag."
+      },
+      "resume": {
+        "policy": "NO_RESUME_HISTORICAL",
+        "next_action": "Use archived evidence for analysis or create a new prospective experiment if a rerun is scientifically needed."
+      },
+      "authority_paths": [
+        "docs/troubleshooting/experiment-ops/CASE-CEILING1-PAUSE-HOLDER-GPU-RELEASE-20260831.md",
+        "docs/operations/publication/HUGGINGFACE_ASSET_REGISTRY.json"
+      ]
+    },
+    {
+      "id": "qwen3-1p7b-gdr",
+      "display_name": "Qwen3-1.7B completed GDR-era line",
+      "model": "Qwen/Qwen3-1.7B",
+      "treatment": "GDR-era candidate gating with SD-LoRA",
+      "what_changed": [
+        "Candidate parameter states could be rejected instead of automatically becoming the active state."
+      ],
+      "what_stays_fixed": [
+        "Harness201.1, thinking=false, 160 rounds x 128 rollouts, zero external-teacher calls, and the separately locked final panel."
+      ],
+      "state_source": {
+        "type": "repo_json",
+        "documents": [
+          {
+            "path": "docs/evidence/server-runs/2026-09-06/qwen3-1p7b-final-closeout/STAGE2_SEALED_qwen3-1p7b.json",
+            "required_equal": {"schema": "openevo.ceiling1-stage2-sealed.v1", "status": "PASS", "arm": "qwen3-1p7b"}, "revision_naming_note": "legacy-revision-compat",
+            "metrics": {
+              "rounds": "rounds",
+              "rollouts": "rollouts",
+              "external_teacher_calls": "external_teacher_calls",
+              "final_panel_access_count": "final_panel_access_count"
+            }
+          },
+          {
+            "path": "docs/evidence/server-runs/2026-09-06/qwen3-1p7b-final-closeout/D1_CLOSEOUT.json",
+            "required_equal": {
+              "status": "PASS",
+              "arm": "qwen3-1p7b"
+            },
+            "metrics": {
+              "accepted_parametric_updates": "accepted_parametric_updates"
+            }
+          }
+        ],
+        "status": "COMPLETE"
+      },
+      "runtime": {
+        "asset": "h144-scientific-runtime"
+      },
+      "resume": {
+        "policy": "COMPLETE_NO_RESUME_NEEDED",
+        "next_action": "Analyze the sealed result; do not reopen the completed lineage."
+      },
+      "authority_paths": [
+        "docs/evidence/server-runs/2026-09-06/qwen3-1p7b-final-closeout/README.md"
+      ]
+    },
+    {
+      "id": "qwen25-3b-legacy-stage2",
+      "display_name": "Qwen2.5-3B legacy Stage2",
+      "model": "Qwen/Qwen2.5-3B-Instruct",
+      "treatment": "premature legacy Stage2 lineage",
+      "what_changed": [
+        "This line predates the Harness201.1 corrected successor and has been superseded as the formal 3B scale point."
+      ],
+      "what_stays_fixed": [
+        "Its old trajectories, checkpoints, Memory, Skill and Agent artifacts remain historical provenance and must not be relabeled as corrected-successor work."
+      ],
+      "state_source": {
+        "type": "static",
+        "status": "NO_RESUME",
+        "note": "Historical evidence only."
+      },
+      "runtime": {
+        "kind": "historical-receipt-bound"
+      },
+      "resume": {
+        "policy": "NO_RESUME",
+        "next_action": "Keep archived. If a formal 3B scale point is needed, use only the Harness201.1 corrected successor."
+      },
+      "authority_paths": [
+        "docs/science/webshop/history/QWEN25_3B_LINEAGE_DISPOSITION.md"
+      ]
+    },
+    {
+      "id": "qwen25-3b-h2011-corrected",
+      "display_name": "Qwen2.5-3B Harness201.1 corrected successor",
+      "model": "Qwen/Qwen2.5-3B-Instruct",
+      "treatment": "corrected Harness201.1 Stage2 successor with gated candidate acceptance",
+      "what_changed": [
+        "The formal 3B lineage was restarted from the corrected Harness201.1 ancestry instead of continuing the premature legacy Stage2."
+      ],
+      "what_stays_fixed": [
+        "The frozen 160 x 128 Stage2 budget, no external teacher, final-panel lock, exact activation/config identities, and fail-closed recovery rules."
+      ],
+      "state_source": {
+        "type": "release_external_executor",
+        "release_path": "configs/experiment/campaigns/202609030400/releases/qwen25-3b-stage2-vnext.json", "revision_naming_note": "legacy-revision-compat"
+      },
+      "runtime": {
+        "asset": "h144-scientific-runtime",
+        "note": "Repository-current shared-Ray runtime is a future audited migration target; the per-arm exact external executor remains live authority until transfer."
+      },
+      "resume": {
+        "policy": "RECONCILE_THEN_EXACT_RESUME_ONLY",
+        "next_action": "Round132 is zero-replay recovered and must not be replayed. Re-read live state and the newest hash-bound recovery authority before continuing at Round133 or later; never resume the legacy 3B line."
+      },
+      "authority_paths": [
+        "configs/experiment/openevo-ceiling1-stage2-runtime-authority-202609042025.json",
+        "docs/science/webshop/history/QWEN25_3B_LINEAGE_DISPOSITION.md",
+        "docs/evidence/server-runs/2026-09-11/3b-r132-zero-replay-recovery/README.md"
+      ]
+    },
+    {
+      "id": "qwen3-1p7b-directapply-no-gdr",
+      "display_name": "Qwen3-1.7B DirectApply / No-GDR",
+      "model": "Qwen/Qwen3-1.7B",
+      "treatment": "DirectApply: remove GDR veto from the active-state transition",
+      "what_changed": [
+        "A mechanically valid SD-LoRA candidate is applied directly instead of being vetoed by GDR; the shadow/diagnostic logic must not feed back into learning."
+      ],
+      "what_stays_fixed": [
+        "Task/seed schedule, sampling, budget, eligibility, final panel, model, optimizer, batch, gradient accumulation, rank, learning rate, epoch and replay semantics stay frozen unless a separate prospective authority says otherwise."
+      ],
+      "state_source": {
+        "type": "server_json",
+        "path": "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct/execution-state.json",
+        "required_equal": {"schema": "openevo.ceiling1-stage2-execution-state.v1", "arm": "qwen3-1p7b"}, "revision_naming_note": "legacy-revision-compat"
+      },
+      "runtime": {
+        "asset": "h144-scientific-runtime",
+        "note": "The exact live control checkout and execution SHA outrank this read-only index."
+      },
+      "resume": {
+        "policy": "EXACT_LIVE_AUTHORITY_ONLY",
+        "next_action": "If interrupted, reuse only the hash-bound live successor/recovery path. Do not reconstruct the run from this catalog or from a dated README."
+      },
+      "authority_paths": [
+        "docs/operations/reproduction/Q17_DIRECTAPPLY_PORTABLE_REPRODUCTION_ROUTER_202609111537.md",
+        "docs/evidence/remote-runs/2026-09-11/Q17_TEXT_MEMORY_NOOP_MAIN_INTEGRATION_NOTE_202609111249.md",
+        "docs/evidence/remote-runs/2026-09-10/Q17_GPU0456_MAIN_INTEGRATION_NOTE.md",
+        "docs/evidence/remote-runs/2026-09-10/q17-gpu0456-recovery-closeout/README.md",
+        "docs/evidence/remote-runs/2026-09-10/q17-sd-performance-closeout/README.md"
+      ]
+    }
+  ]
+}

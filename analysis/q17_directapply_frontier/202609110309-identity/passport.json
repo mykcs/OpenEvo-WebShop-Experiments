@@ -1,0 +1,27 @@
+{
+  "schema": "openevo.q17.frontier.identity-passport.202609110309",
+  "role": "CPU-only supplement for the earliest unfinished Deliverable A identity check",
+  "treatment_identity": "q17-direct-apply-only-w2-202609082022-direct",
+  "code_git_sha": "0c1cc7b35a8f3cf13fd069bd5225d7e7145fe27e",
+  "code_sha256": "251342223daad679b02389cc2d88c5acda6c9b8ade71e44645834df3272b24c8",
+  "frozen_execution_git_sha": "ac130148ee08b6462d9728e482a858fe5f514047",
+  "frozen_identity_predicate_file": "/workspace/worktrees/q17-gdr-twin-runtime-ac130148/scripts/openevo_webshop/ceiling1_stage2_vnext_evidence.py", "naming_exception": "legacy-revision-compat",
+  "frozen_identity_predicate_sha256": "df46c75aefeaf459418839875b98720c5a9b87d3f9d5afc61e941840c01f22dd",
+  "formal_config_sha256": "328713d810744c50eca090648c2317be46ed1fd61f303727acf68687bc8eafe4",
+  "base_sha": "ed596ec263ad116f9e71ca4e996ffdca2923bbbf",
+  "input_manifest_path": "analysis/q17_directapply_frontier/20260910T1640Z/q17_frontier_manifest_R000_R121.sha256",
+  "input_manifest_sha256": "b4487a919723ecfa01137dae0cf211f79cf60973993bdf62b10c3f7badf0bd4f",
+  "input_file_count": 366,
+  "sealed_round_range": [
+    0,
+    121
+  ],
+  "sealed_round_count": 122,
+  "rollout_count": 15616,
+  "output_path": "analysis/q17_directapply_frontier/202609110309-identity",
+  "output_manifest_path": "analysis/q17_directapply_frontier/202609110309-identity/SHA256SUMS",
+  "original_metric_pack_unchanged": true,
+  "formal_runtime_changed": false,
+  "final_panel_opened": false,
+  "successor_started": false
+}

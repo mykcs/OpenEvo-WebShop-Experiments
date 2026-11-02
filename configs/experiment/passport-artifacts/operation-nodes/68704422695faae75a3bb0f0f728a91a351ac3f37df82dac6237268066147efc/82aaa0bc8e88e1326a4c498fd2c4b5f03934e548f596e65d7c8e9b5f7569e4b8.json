@@ -1,0 +1,222 @@
+{
+  "completed_at": "2026-09-29T09:43:00+08:00",
+  "created_at": "2026-09-29T09:43:00+08:00",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/gated_delta_private_remote_backup_dag_backfill.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "c06a4da720b73506b3db65bec03694c0bce5058b5f82175c9d493705890b0cf2"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/experiment-passports/202609290943-gated-delta-private-remote-backup/REMOTE_BACKUP_CONFIG.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "aaf1da269195fad8dc64cdd32e52a84aeacb2538d011b2ffd4dcae1e5627774c"
+    },
+    "contract_identities": [],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "e4587fdb23986ccf373c3afbffdd45b292078289047cd9232e4965c34768c487",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_SOURCE_MEMBER_TABLE_20260929.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "e4587fdb23986ccf373c3afbffdd45b292078289047cd9232e4965c34768c487"
+          }
+        ],
+        "logical_role": "gated-delta-live-source-member-table",
+        "size_bytes": 8984
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "b2eb0099690c4224dce8a689ec353058cd015ad61554cb52aa48fd1e066e3d26",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_REGISTRY_LFS_JOIN_20260929.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "b2eb0099690c4224dce8a689ec353058cd015ad61554cb52aa48fd1e066e3d26"
+          }
+        ],
+        "logical_role": "gated-delta-current-registry-lfs-join",
+        "size_bytes": 7201
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "c464a7beec4e64441e05c78f04c289e705b559808371dbd7eb74105974a152b3",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_PROVIDER_READBACK_20260929.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "c464a7beec4e64441e05c78f04c289e705b559808371dbd7eb74105974a152b3"
+          }
+        ],
+        "logical_role": "gated-delta-private-provider-readback",
+        "size_bytes": 5246
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "89cb2186df0a3e9a0a172da629961dcb8aed28190756bd3ea49cbaae0c184a37",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_FRESH_RESTORE_STATUS_20260929.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "89cb2186df0a3e9a0a172da629961dcb8aed28190756bd3ea49cbaae0c184a37"
+          }
+        ],
+        "logical_role": "gated-delta-partial-fresh-restore-status",
+        "size_bytes": 3032
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "6fd6b81dc2bdaf6d7f74c64658ad266248ed8aa358b26f4d86c90ced987bd6f2",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_PRIVATE_DUPLICATE_OBSERVATION_20260929.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "6fd6b81dc2bdaf6d7f74c64658ad266248ed8aa358b26f4d86c90ced987bd6f2"
+          }
+        ],
+        "logical_role": "gated-delta-private-duplicate-observation",
+        "size_bytes": 4554
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "53b11207e7d28115ca257d7536707592300f5bed8a9d3596042f108c52fec38b",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_HF_CREDENTIAL_HANDLING_INCIDENT_20260929.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "53b11207e7d28115ca257d7536707592300f5bed8a9d3596042f108c52fec38b"
+          }
+        ],
+        "logical_role": "gated-delta-credential-boundary",
+        "size_bytes": 2018
+      }
+    ],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "deterministic-provider-observation-registration",
+      "scientific_execution_or_replay": "not_authorized"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "68704422695faae75a3bb0f0f728a91a351ac3f37df82dac6237268066147efc",
+  "operation_schema_version": "202609290943",
+  "operation_type": "gated-delta-weight.register.private-remote-backup-pending-full-fresh-restore",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [
+        "53b11207e7d28115ca257d7536707592300f5bed8a9d3596042f108c52fec38b",
+        "6fd6b81dc2bdaf6d7f74c64658ad266248ed8aa358b26f4d86c90ced987bd6f2",
+        "89cb2186df0a3e9a0a172da629961dcb8aed28190756bd3ea49cbaae0c184a37",
+        "b2eb0099690c4224dce8a689ec353058cd015ad61554cb52aa48fd1e066e3d26",
+        "c464a7beec4e64441e05c78f04c289e705b559808371dbd7eb74105974a152b3",
+        "e4587fdb23986ccf373c3afbffdd45b292078289047cd9232e4965c34768c487"
+      ],
+      "digest": "16b77c353996265565def234cd9ba37960ec31658b92a5df0c7f4994db6828f4",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/experiment-passports/202609290943-gated-delta-private-remote-backup/GATED_DELTA_PRIVATE_REMOTE_BACKUP_BINDING.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "16b77c353996265565def234cd9ba37960ec31658b92a5df0c7f4994db6828f4"
+        }
+      ],
+      "logical_role": "private-remote-backup-binding",
+      "size_bytes": 1574
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "gated-delta-weight.register.private-remote-backup-pending-full-fresh-restore-202609290943",
+    "created_at": "2026-09-29T09:43:00+08:00",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_SOURCE_MEMBER_TABLE_20260929.json",
+      "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_REGISTRY_LFS_JOIN_20260929.json",
+      "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_PROVIDER_READBACK_20260929.json",
+      "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_FRESH_RESTORE_STATUS_20260929.json",
+      "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_PRIVATE_DUPLICATE_OBSERVATION_20260929.json",
+      "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_HF_CREDENTIAL_HANDLING_INCIDENT_20260929.json",
+      "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_PRIVATE_CAPACITY_EXCEPTION_20260928.json"
+    ],
+    "experiment_id": null,
+    "external_views": [
+      {
+        "evidence_path": "docs/evidence/recovery-disclosure-audit-20260926/GATED_DELTA_WEIGHT_PROVIDER_READBACK_20260929.json",
+        "kind": "hf",
+        "path": null,
+        "reason": "Private immutable provider readback is remote-backup evidence only; full fresh restore remains pending.",
+        "repository": "openevo-recovery-2/openevo-gated-delta-d1-paired-private-recovery-20260928",
+        "revision": "60234e69b1cb082fa57352a5b49b0d356cfc3e40",
+        "sha256": "c464a7beec4e64441e05c78f04c289e705b559808371dbd7eb74105974a152b3"
+      }
+    ],
+    "passport_sha256": null,
+    "producer_scope": "ENGINEERING_GLOBAL"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "ALLOWLISTED_ENGINEERING_ONLY",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Remote backup registration only; full recovery, scientific reuse, deletion, and public release remain unauthorized."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "PURE_ENGINEERING",
+  "status": "PASS",
+  "supersedes": []
+}

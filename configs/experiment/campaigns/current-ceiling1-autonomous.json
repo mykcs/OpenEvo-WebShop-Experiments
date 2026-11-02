@@ -1,0 +1,24 @@
+{
+  "active_manifest": {
+    "binding_role": "current_202609030400_stage2_external_execution_adoption",
+    "campaign_id": "202609030400-ceiling1-autonomous-v1",
+    "path": "configs/experiment/campaigns/202609030400-ceiling1-autonomous-v1.json",
+    "program_contract": "openevo.ceiling1-e2e.v2",
+    "sha256": "d18dadaa6d8913dbb66ebf2ee8b49ea2c703d25422620532da0e978eb970df9d"
+  },
+  "controller_contract": "One Master Plan/controller resolves one hash-bound campaign and one repository-current shared Stage2 runtime authority. Per-arm external executors remain read-only live authority until audited natural-boundary transfer; execution stays disabled until single-executor takeover is proven.",
+  "current_entrypoint": "docs/experiment-tracking/OPEN_EVO_CEILING_1.0_CURRENT.md",
+  "execution_activation_authority": false,
+  "master_plan": "docs/experiment-tracking/OPEN_EVO_CEILING_1.0_END_TO_END_MASTER_PLAN.md",
+  "program_contract": "openevo.ceiling1-e2e.v2",
+  "replacement_rule": "A new trajectory lineage must be frozen in a new autonomous-campaign instance and phase releases, then routed here by exact SHA in a separate authority change. Never edit the controller to adopt a lineage.",
+  "repository_current_stage2_runtime_authority": {
+    "execution_activation_authority": false,
+    "path": "configs/experiment/openevo-ceiling1-stage2-runtime-authority-202609042025.json",
+    "schema": "openevo.ceiling1-stage2-runtime-authority.202609042025",
+    "sha256": "5c02fb25fbefdd271a060bf997d80638cd5ea81c3c3eb45e2c5073931c6f1f13",
+    "status": "READY_FOR_AUDITED_NATURAL_MIGRATION"
+  },
+  "schema": "openevo.autonomous-campaign-router.v1",
+  "status": "BOUND_CURRENT_202609030400_AND_SHARED_RAY_202609042025_MASTER_PLAN_EXECUTION_DISABLED"
+}

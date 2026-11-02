@@ -1,0 +1,164 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.15-recovery-corpus-carrier-diagnostic-v1",
+  "phase": "H1.15",
+  "status": "completed-with-parser-invalid-cells-and-code-repair-boundary",
+  "scientific_question": "When the same train-only student-recovery experience is supplied through different carriers, does held-out WebShop behavior improve through text memory, parametric SD-LoRA, or neither?",
+  "hypothesis": "H1.14 produced a valid recovery corpus but no qualified successful demonstrations. A matched carrier diagnostic can still distinguish whether recovery experience is usable by the base agent and whether the failure is specific to parametric internalization.",
+  "independent_variable": "experience carrier only",
+  "arms": [
+    "BASE",
+    "TEXT-MEMORY",
+    "PARAMETRIC"
+  ],
+  "experience_source": {
+    "role": "one shared train-only recovery corpus for TEXT-MEMORY and PARAMETRIC",
+    "source_group": "H1.14-student-state-recovery-v1",
+    "source_labels_schema": "seed3090.webshop-h1.14-recovery-labels.v1",
+    "source_label_file_sha256": "58c7ea73b46298eac176a0703c46ecc52c6a93b1d8ca173d967cbfe913603061",
+    "source_episode_count": 32,
+    "source_candidate_count": 128,
+    "source_train_tasks": [3420, 6624, 5216, 2655, 5457, 3768, 4513, 1657],
+    "source_teacher_success_qualified_count": 0,
+    "source_teacher_boundary": "H1.14 Qwen2.5-14B teacher labels train-only recovery states only; no teacher output or held-out outcome enters evaluation"
+  },
+  "training_panel": {
+    "task_ids": [3420, 6624, 5216, 2655, 5457, 3768, 4513, 1657],
+    "task_role": "train-only experience source; disjoint from all evaluation tasks",
+    "rollout_seeds": [2026082300, 2026082301, 2026082302, 2026082303],
+    "record_count": 128,
+    "parametric_budget": {
+      "method": "official OpenEvo parametric_memory_sd_lora",
+      "rank": 4,
+      "target_modules": ["q_proj", "v_proj"],
+      "learning_rate": 0.0002,
+      "coefficient_learning_rate": 0.01,
+      "epochs": 1,
+      "max_steps": 4,
+      "max_records": 128,
+      "max_length": 512,
+      "replay_capacity": 64,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 1,
+      "dtype": "bfloat16",
+      "seed": 1993
+    }
+  },
+  "evaluation_panel": {
+    "task_ids": {
+      "A": [509, 714, 2709, 4111],
+      "B": [4170, 4849, 5678, 6602]
+    },
+    "task_role": "held-out evaluation only; no outcome or trace flows back into the experience corpus",
+    "evaluation_seeds": [2026082400, 2026082401, 2026082402, 2026082403],
+    "attempts_per_cell": 16,
+    "cell_design": "3 arms x 2 held-out partitions = 6 cells; one independent UUID-bound cell per authorized GPU"
+  },
+  "carrier_contract": {
+    "BASE": "frozen Qwen2.5-3B-Instruct with no experience and no adapter",
+    "TEXT-MEMORY": "frozen base with deterministic top-1 lexical retrieval from the shared train-only recovery corpus injected at every evaluation step",
+    "PARAMETRIC": "frozen base reloaded with the official OpenEvo SD-LoRA artifact trained on the shared recovery corpus"
+  },
+  "text_memory": {
+    "retrieval": "token-set cosine similarity over normalized state-prompt tokens; ties break by event_id",
+    "top_k": 1,
+    "prompt_injection": "fixed [experience] block after the canonical compact-v2 WebShop prompt and before generation",
+    "maximum_retrieved_prompt_chars": 1400,
+    "evaluation_access": "train-only memory bank only; no evaluation trace, goal, score, or outcome is written to the bank"
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "tokenizer_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_steps": 15,
+    "max_new_tokens": 512,
+    "parser_retry": "frozen ParserSafeRetryBackend contract; retries are runtime diagnostics and never change the denominator rule",
+    "evaluation": "no teacher, no post-test prompt changes, no action post-processing, no evaluation-to-training feedback"
+  },
+  "primary_metrics": [
+    "qualified-positive rate",
+    "final task_score",
+    "TEXT-MEMORY minus BASE paired reward",
+    "PARAMETRIC minus BASE paired reward",
+    "PARAMETRIC minus TEXT-MEMORY paired reward",
+    "valid rate"
+  ],
+  "diagnostic_metrics": [
+    "retrieval hit count and similarity",
+    "retrieved action validity against current available actions",
+    "Next/backtrack/repeated-navigation counts",
+    "buy-now transition rate",
+    "episode length",
+    "parser/runtime failure rate",
+    "parametric training loss and artifact reload identity"
+  ],
+  "contamination_check": {
+    "required": [
+      "training task IDs disjoint from evaluation task IDs",
+      "evaluation seeds disjoint from acquisition seeds",
+      "text memory contains only the frozen H1.14 train-only corpus",
+      "parametric dataset digest equals the shared carrier corpus digest",
+      "all artifacts carry task, seed, carrier, model, and upstream provenance"
+    ],
+    "fail_closed": "any identity, carrier, task, seed, or memory-boundary mismatch invalidates the affected cell and excludes it from the scientific denominator"
+  },
+  "resource_budget": {
+    "expected_gpu_hours": "one bounded four-step adapter fit plus 96 evaluation attempts across six cells",
+    "gpu_policy": "use only genuinely idle authorized UUIDs; do not duplicate cells or occupy GPUs without a preregistered information-bearing cell",
+    "planned_cells": 6,
+    "planned_gpus": 6
+  },
+  "stop_rule": "one bounded carrier diagnostic; no rank/LR/epoch sweep, no additional teacher seeds, no prompt rescue, no repeated evaluation seeds",
+  "branch_rule": {
+    "text_positive_parametric_negative": "classify as parametric internalization bottleneck; preregister one localized parametric objective/mechanism only after reconciliation",
+    "both_negative": "classify as base-agent/interface/experience-usability bottleneck; stop adapter micro-variants and revisit the frozen interface under a new question",
+    "parametric_positive": "replicate on new tasks/seeds before Q3 opens; do not interpret a single panel as general learning",
+    "task_specific": "retain heterogeneity evidence and do not promote a global carrier claim",
+    "invalid": "repair only the failed runtime/provenance contract without changing carrier semantics or denominator"
+  },
+  "upstream_audit": {
+    "stable_sha_checked": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "relevant_open_work_checked": [
+      "OpenEvo#296",
+      "OpenEvo#297 SD-LoRA-RR",
+      "OpenEvo#238 textual memory",
+      "OpenEvo#298 MemEvolve validation",
+      "OpenEvo#293 AgentSquare on-policy",
+      "OpenEvo#300 branch governance"
+    ],
+    "decision": "retain the pinned runtime; use official SD-LoRA as the parametric carrier and isolate text memory without importing unrelated agent-system evolution"
+  },
+  "claim_boundary": "Carrier diagnosis only; no Q3 opening, H2, D0, retention/transfer, or SEED claim before independent confirmation and the later official-baseline gate",
+  "result": {
+    "run_root": "/workspace/workspace/runs/phase-h1.15-recovery-corpus-carrier-diagnostic-v1",
+    "reconciliation_sha256": "4f4bcf8b2670cd96ef125d2e4ed7e8850a75777923d5ee9d75b16fa0422e5d78",
+    "parametric_training_evidence_sha256": "2d4d738467e8252aac8d91ce81e1a725217c009f1b71f03ffdb32e8c08191daf",
+    "attempts": 96,
+    "scientific_valid_attempts": 76,
+    "scientific_qualified_positive": 16,
+    "parser_or_contract_invalid_attempts": 20,
+    "runtime_process_errors": 0,
+    "cell_summary": {
+      "BASE-A": "16/16 valid, 4 qualified positives",
+      "BASE-B": "12/16 valid, 4 qualified positives; task 6602 parser-invalid",
+      "TEXT-MEMORY-A": "16/16 valid, 0 qualified positives",
+      "TEXT-MEMORY-B": "12/16 valid, 0 qualified positives; task 4170 parser-invalid",
+      "PARAMETRIC-A": "12/16 valid, 8 qualified positives; task 2709 parser-invalid",
+      "PARAMETRIC-B": "8/16 valid, 0 qualified positives; tasks 4170 and 6602 parser-invalid"
+    },
+    "paired_valid_deltas": {
+      "text_memory_minus_base_sum": -2.668,
+      "parametric_minus_base_sum": 0.2,
+      "parametric_minus_text_memory_sum": 2.868,
+      "paired_excluded_attempts": 12
+    },
+    "classification": "heterogeneous-carrier-signal-but-not-qualified-for-expansion",
+    "code_boundary": "BASE/TEXT-MEMORY used 22ff71e; PARAMETRIC used 69c5e9c, a path-normalization repair required to load the adapter. Treat the carrier result as diagnostic evidence, not a strict same-SHA causal comparison.",
+    "next": "Do not open Q3/H2/D0 or sweep. Repair/protocol-register a strict same-code carrier confirmation only if a new question permits fresh seeds; otherwise revisit parser validity/interface bottleneck."
+  }
+}

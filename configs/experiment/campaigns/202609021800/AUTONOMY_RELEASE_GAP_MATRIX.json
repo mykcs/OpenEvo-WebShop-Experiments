@@ -1,0 +1,98 @@
+{
+  "campaign_id": "202609021800-ceiling1-autonomous-v1",
+  "definition_of_done": "All missing/conditional release slots must be hash-bound and black-box fault qualification must PASS before claiming one-Prompt full end-to-end autonomy.",
+  "phases": {
+    "d1_gdn_diagnostic": {
+      "activation": "CONDITIONAL_AFTER_STAGE2",
+      "control_plane": "READY",
+      "prereg": "FROZEN"
+    },
+    "final_analysis": {
+      "blockers": [
+        "final evaluation closeout"
+      ],
+      "control_plane": "READY",
+      "release": "MISSING"
+    },
+    "final_evaluation": {
+      "blockers": [
+        "own Stage2 seal",
+        "final-panel authority"
+      ],
+      "control_plane": "HARD_GATED",
+      "release": "MISSING"
+    },
+    "stage1a_collection": {
+      "control_plane": "READY",
+      "current_lineage_adoption": "BOUND",
+      "fresh_launch": "NEEDS_RESOURCE_ACTIVATION_RELEASE",
+      "science_design": "FROZEN_202609021800"
+    },
+    "stage1b_minimax": {
+      "control_plane": "READY",
+      "current_lineage_adoption": "BOUND",
+      "exact_resume": "READY",
+      "science_design": "FROZEN"
+    },
+    "stage1c_opsd": {
+      "blockers": [
+        "MiniMax close per arm",
+        "current-main OPSD successor implementation",
+        "Qwen3 explicit enable_thinking=false in student and teacher views",
+        "latest storage-v2 current+previous heavy checkpoint policy",
+        "lightweight permanent snapshot policy",
+        "Parameter Geometry ledger",
+        "workload-specific GPU qualification",
+        "phase activation release"
+      ],
+      "control_plane": "READY",
+      "implementation": "MISSING_CURRENT_MAIN_SUCCESSOR",
+      "qwen3_thinking_false": "REQUIRED_BY_RELEASE_INVARIANT_NOT_YET_IMPLEMENTED_ON_MAIN"
+    },
+    "stage1d_text_memory": {
+      "blockers": [
+        "bind latest arm-specific A1/A2 authority and exact topology"
+      ],
+      "control_plane": "READY",
+      "release": "MISSING"
+    },
+    "stage1e_skill_bundle": {
+      "blockers": [
+        "bind latest arm-specific fixed input topology and runtime readback"
+      ],
+      "control_plane": "READY",
+      "release": "MISSING"
+    },
+    "stage1f_agent_system": {
+      "blockers": [
+        "bind latest arm-specific authority and runtime readback"
+      ],
+      "control_plane": "READY",
+      "release": "MISSING"
+    },
+    "stage1g_closeout": {
+      "blockers": [
+        "all required Stage1 channels sealed"
+      ],
+      "control_plane": "READY",
+      "release": "MISSING"
+    },
+    "stage2_vnext_qwen25_3b": {
+      "blockers": [
+        "new Stage1 closeout",
+        "formal activation release"
+      ],
+      "control_plane": "READY",
+      "design": "FROZEN_NO_ACTIVATION"
+    },
+    "stage2_vnext_qwen3_1p7b": {
+      "blockers": [
+        "independent 1.7B scientific freeze/implementation; do not substitute 3B"
+      ],
+      "control_plane": "READY",
+      "design": "MISSING"
+    }
+  },
+  "schema": "openevo.autonomous-campaign-release-gap-matrix.v1",
+  "status": "CONTROL_PLANE_READY_SCIENTIFIC_RELEASES_PARTIAL"
+}

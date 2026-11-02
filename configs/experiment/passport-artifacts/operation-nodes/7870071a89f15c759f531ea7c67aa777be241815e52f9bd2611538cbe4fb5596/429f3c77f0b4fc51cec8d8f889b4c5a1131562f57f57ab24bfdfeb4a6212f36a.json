@@ -1,0 +1,161 @@
+{
+  "completed_at": "2026-10-20T17:16:24Z",
+  "created_at": "2026-10-20T17:16:24Z",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/completed_1p7b_artifact_dag_backfill.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "e54045347c6db875826ce7d3b15d9aefea595d447595ee83410def8cc0ae63db"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/checkpoint-placement-20261020/q17/BACKFILL_CONFIG.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "eab5a55bbcec415cd11841b9698d9fe80b09930c8c2c6f60594512188493652d"
+    },
+    "contract_identities": [
+      {
+        "identity": {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "configs/experiment/passports/202609082022-q17-directapply-no-gdr/passport.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "caaf7bf63fbc58574f6eb4c8353c45f3ba80ddf103b0b8ef1b55bae2ecf36ddb"
+        },
+        "name": "experiment-passport"
+      }
+    ],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "4546f52520e7f61fa0e2fd84d7f307e5c2b5bfc855f5de2cc225a17299d6a4dc",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/checkpoint-placement-20261020/q17/q17-local-weight-presence-20261020.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "4546f52520e7f61fa0e2fd84d7f307e5c2b5bfc855f5de2cc225a17299d6a4dc"
+          }
+        ],
+        "logical_role": "observed-placement-source-0",
+        "size_bytes": 142423
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "7b2f224425703984e817736d7b2e1731bcd515c63cf3d11027960c9c44f12c98",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/checkpoint-placement-20261020/q17/q17-current-model-member-reconciliation-20261020.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "7b2f224425703984e817736d7b2e1731bcd515c63cf3d11027960c9c44f12c98"
+          }
+        ],
+        "logical_role": "observed-placement-source-1",
+        "size_bytes": 203460
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "8cc2b6be1ed0b6a2ae842c727e6fa1cedb8c41d5e0fb4f68fa7dfe72901a3650",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/checkpoint-placement-20261020/q17/q17-present-member-fresh-hashes-20261020.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "8cc2b6be1ed0b6a2ae842c727e6fa1cedb8c41d5e0fb4f68fa7dfe72901a3650"
+          }
+        ],
+        "logical_role": "observed-placement-source-2",
+        "size_bytes": 2664
+      }
+    ],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "deterministic-backfill",
+      "randomness": "none"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "7870071a89f15c759f531ea7c67aa777be241815e52f9bd2611538cbe4fb5596",
+  "operation_schema_version": "202610201716",
+  "operation_type": "q17.backfill.current-local-weight-placement",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [
+        "4546f52520e7f61fa0e2fd84d7f307e5c2b5bfc855f5de2cc225a17299d6a4dc",
+        "7b2f224425703984e817736d7b2e1731bcd515c63cf3d11027960c9c44f12c98",
+        "8cc2b6be1ed0b6a2ae842c727e6fa1cedb8c41d5e0fb4f68fa7dfe72901a3650"
+      ],
+      "digest": "3544cea22872e6fa12a8517997a353dd48e6247d96f8c08495d92346135966cf",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/checkpoint-placement-20261020/q17/CURRENT_PLACEMENT_BINDING.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "3544cea22872e6fa12a8517997a353dd48e6247d96f8c08495d92346135966cf"
+        }
+      ],
+      "logical_role": "backfill-binding",
+      "size_bytes": 4951
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "q17.backfill.current-local-weight-placement-202610201716",
+    "created_at": "2026-10-20T17:16:24Z",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/checkpoint-placement-20261020/q17/q17-current-model-member-reconciliation-20261020.json",
+      "docs/evidence/checkpoint-placement-20261020/q17/q17-local-weight-presence-20261020.json",
+      "docs/evidence/checkpoint-placement-20261020/q17/q17-present-member-fresh-hashes-20261020.json"
+    ],
+    "experiment_id": "202609082022-q17-directapply-no-gdr",
+    "external_views": [],
+    "passport_sha256": "155e8885d2af2d4ee8b281f75cfec5c8b3af18b2c42b63f440da2af3e00805b6",
+    "producer_scope": "EXPERIMENT"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "REVIEW_REQUIRED_DETERMINISM",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Verified historical engineering evidence may be surfaced as REUSE_CANDIDATE only; consumer/scientific authority remains external to the DAG."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "DETERMINISTIC_COMPUTATION",
+  "status": "PASS",
+  "supersedes": []
+}

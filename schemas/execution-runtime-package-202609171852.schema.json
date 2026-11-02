@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "openevo.execution-runtime-package.202609171852",
+  "type": "object",
+  "required": ["schema", "package_identity", "python_version", "temporalio_version", "files", "scientific_authority", "formal_launch_authority", "gpu_authority", "final_panel_authority"],
+  "properties": {
+    "schema": {"const": "openevo.execution-runtime-package.202609171852"},
+    "package_identity": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "python_version": {"type": "string"},
+    "temporalio_version": {"const": "1.33.0"},
+    "files": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["path", "sha256", "size_bytes"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "size_bytes": {"type": "integer", "minimum": 0}}, "additionalProperties": false}},
+    "scientific_authority": {"const": false},
+    "formal_launch_authority": {"const": false},
+    "gpu_authority": {"const": false},
+    "final_panel_authority": {"const": false}
+  },
+  "additionalProperties": false
+}

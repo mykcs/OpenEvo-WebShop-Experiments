@@ -1,0 +1,39 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.5-compact-recovery-action-calibration-v1",
+  "phase": "H1.5",
+  "status": "pre-registered",
+  "scientific_question": "Does the compact-v2 action-format rescue for SUCCESS persist on fresh rollout seeds under the same frozen WebShop task panel?",
+  "hypothesis": "H1.4 compact-v2 restored SUCCESS validity and produced four qualified positives; a fresh-seed confirmation panel will test whether this is reproducible rather than a single-seed artifact.",
+  "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+  "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+  "task_panel": {
+    "task_manifest": "/workspace/workspace/runs/phase-h0-natural-success-search-v1-20260814-rerun-rng-fix/task-manifest.json",
+    "task_manifest_sha256": "fec3203f8abfad571048d27dfac1dd7c6fd62ad784d452939b09de1bb9f4e077",
+    "task_indices": [2822, 5135, 5294, 6769],
+    "partitions": {"A": [2822, 5135], "B": [5294, 6769]},
+    "rollout_seeds": [2026081454, 2026081455, 2026081456, 2026081457]
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_steps": 15,
+    "max_new_tokens": 512,
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "parser_retry_seed_offset": 900000,
+    "evaluator": "WebShop task_score/won",
+    "runtime": "H1.4 v2 pinned JDK/HF cache and UUID binding"
+  },
+  "cell_design": "3 arms x 2 partitions = 6 cells; 8 attempts per cell; compact-v2 only",
+  "baseline_reference": "/workspace/workspace/runs/phase-h1.4-compact-action-prompt-runtime-repair-v2-20260814/evidence/h1.4-reconciliation-v1.json",
+  "branch_rule": {
+    "confirmation": "SUCCESS >=12/16 valid and >=2 qualified positives: retain bounded recovery evidence and design held-out/state-distribution test; D0 remains closed",
+    "failure": "below either threshold: diagnose state distribution/action choices; do not change adapter rank/LR/epochs",
+    "runtime_failure": "exclude and open a new repair group"
+  },
+  "code_sha": "2bc31a63bd216b04955e921cb83f4445e113fb9b",
+  "claim_boundary": "Fresh-seed confirmation of compact-v2 contract rescue on four frozen tasks; no benchmark claim and D0 remains closed."
+}

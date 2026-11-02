@@ -1,0 +1,67 @@
+{
+  "$id": "openevo.prelaunch-zero-formal.202609281010",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenEVO selected-GPU zero-formal prelaunch receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "openevo.prelaunch-zero-formal.202609281010"},
+    "run_id": {"type": "string", "minLength": 1},
+    "attempt": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["PASS", "FAIL"]},
+    "failure_class": {"type": ["string", "null"]},
+    "failure_stage": {"type": ["string", "null"]},
+    "selected_gpu_uuids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^GPU-[A-Za-z0-9-]+$"}
+    },
+    "image_id": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "command_identity": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "return_code": {"type": "integer"},
+    "wall_seconds": {"type": "number", "minimum": 0},
+    "gpu_hours": {"type": "number", "minimum": 0},
+    "payload": {"type": ["object", "null"]},
+    "payload_error": {"type": ["string", "null"]},
+    "stderr_tail": {"type": "string"},
+    "formal_task_consumed": {"const": false},
+    "scientific_budget_consumed": {"const": 0},
+    "model_calls": {"const": 0},
+    "training_calls": {"const": 0},
+    "final_panel_access": {"const": 0},
+    "scientific_state_mutated": {"const": false},
+    "scientific_authority_granted_by_receipt": {"const": false},
+    "observed_at_epoch": {"type": "number", "minimum": 0},
+    "receipt_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "required": [
+    "schema", "run_id", "attempt", "status", "failure_class", "failure_stage",
+    "selected_gpu_uuids", "image_id", "command_identity", "return_code",
+    "wall_seconds", "gpu_hours", "payload", "payload_error", "stderr_tail",
+    "formal_task_consumed", "scientific_budget_consumed", "model_calls",
+    "training_calls", "final_panel_access", "scientific_state_mutated",
+    "scientific_authority_granted_by_receipt", "observed_at_epoch",
+    "receipt_sha256"
+  ],
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "PASS"}}},
+      "then": {
+        "properties": {
+          "failure_class": {"const": null},
+          "failure_stage": {"const": null}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "FAIL"}}},
+      "then": {
+        "properties": {
+          "failure_class": {"const": "PRELAUNCH_ENGINEERING"},
+          "failure_stage": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  ]
+}

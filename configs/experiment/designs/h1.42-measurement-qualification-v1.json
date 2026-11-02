@@ -1,0 +1,227 @@
+{
+  "schema": "openevo.experiment-h1.42-measurement-qualification.v1",
+  "campaign_id": "20260821-0142-h142-measurement-qualification",
+  "phase": "H1.42-MQ",
+  "status": "preregistered-design-only-execution-closed",
+  "formal_task_consumption_allowed": false,
+  "title": "H1.42 measurement qualification before the next continual-update mechanism screen",
+  "objective": "Qualify the WebShop measurement path itself before any new updater-mechanism claim by combining a frozen positive control, a null repeatability control, and a targeted diagnosis of the H1.41 parser-invalid sentinels.",
+  "scientific_question": "Can the current frozen WebShop evaluator reliably reproduce a known positive contrast, avoid a false positive under an identical-artifact null control, and characterize the H1.41 parser-invalid sentinels well enough to support a later mechanism experiment?",
+  "claim_boundary": "H1.42 is measurement qualification only. It cannot support a new magnitude-policy effect, replay/rank mechanism claim, fresh-task transfer claim, T2 result, or multi-generation self-evolution claim. A later mechanism experiment requires a separate preregistration after H1.42 is classified MEASUREMENT_READY.",
+  "parent_h141": {
+    "campaign_id": "20260821-0141-h141-magnitude-screen",
+    "status": "closed-measurement-invalid",
+    "reconciliation": "docs/evidence/remote-runs/2026-08-21/h1.41/h141-reconciliation-v2-v5-summary.json",
+    "selector": "MEASUREMENT_INVALID",
+    "observed_boundary": "C0 acquisition was complete but degenerate at delta 0.0; C1 had one incomplete acquisition cluster and one incomplete preservation cluster; retention C1-C0 was exactly 0.0.",
+    "sentinel_tasks": [
+      "webshop_003560",
+      "webshop_004357"
+    ],
+    "t2_reuse_forbidden": true
+  },
+  "frozen_measurement_contract": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "model_content_pin": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+    "official_open_evo_stable": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "parser_contract": "seed3090.webshop-action-parser.v3-action-command",
+    "evaluator": "WebShop task_score/won",
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "invalid_taxonomy": [
+      "parser_or_fallback",
+      "runtime",
+      "identity",
+      "incomplete_trace",
+      "adapter_load_unverified",
+      "base_fallback"
+    ],
+    "invalid_attempts_are_never_scored_as_zero": true
+  },
+  "measurement_stages": {
+    "M0_cpu_only_invalidity_autopsy": {
+      "task_consumption": 0,
+      "gpu_hours": 0,
+      "required_before_activation": true,
+      "inputs": [
+        "H1.41 raw/structured evidence for webshop_003560",
+        "H1.41 raw/structured evidence for webshop_004357",
+        "H1.41 C0/C1 artifact identity receipts"
+      ],
+      "required_outputs": [
+        "sentinel failure taxonomy",
+        "whether failures are parser-only, runtime, identity, or mixed",
+        "exact frozen C0/C1 artifact identities for M3",
+        "confirmation that no historical invalid is relabelled as zero"
+      ],
+      "activation_rule": "If the raw evidence or exact artifact identities cannot be resolved without guessing, H1.42 remains execution-closed."
+    },
+    "M1_positive_control": {
+      "purpose": "Show that the measurement path can reproduce a previously established positive signal under frozen artifacts and an already-exposed panel.",
+      "panel": "configs/experiment/manifests/h1.39-mr-independent-panel-v1.json",
+      "panel_manifest_file_sha256": "cf2dc0726c34ed94640c36509d5a5018d1261d888b9a75a97fdaddbf54662e00",
+      "tasks": 64,
+      "rollout_seeds": [
+        2026103900,
+        2026103901,
+        2026103902,
+        2026103903
+      ],
+      "arms": {
+        "BASE": {
+          "adapter": "none"
+        },
+        "H1.38B_SD_POSITIVE_CONTROL": {
+          "adapter_sha256": "47e63d417f85cb2defed5ff1ee934128b96e6a4f78a8f410fa052957d919190c",
+          "source_campaign": "20260820-0129-h138b-method-control"
+        }
+      },
+      "attempts": 512,
+      "historical_reference_only": {
+        "source": "docs/evidence/remote-runs/2026-08-20/h1.39-mr/reconciliation-summary.json",
+        "historical_sd_minus_base_delta": 0.24884482758620693,
+        "historical_ci95": [
+          0.16415517241379313,
+          0.3365172413793103
+        ],
+        "use": "Calibration target only; do not pool old outcomes into the new estimate."
+      },
+      "measurement_validity_gate": {
+        "minimum_jointly_usable_task_clusters": 58,
+        "maximum_invalid_attempt_rate_per_arm": 0.05,
+        "maximum_absolute_invalid_rate_asymmetry": 0.03,
+        "positive_control_requirement": "New task-weighted SD-minus-BASE point estimate > 0 and bootstrap 95% CI lower bound > 0."
+      }
+    },
+    "M2_null_repeatability_control": {
+      "purpose": "Show that duplicated labels for the exact same frozen artifact do not manufacture an effect.",
+      "task_selection": "First 16 tasks by committed H1.39 manifest sample_index; this rule is outcome-blind and frozen before execution.",
+      "task_ids": [
+        "webshop_000658",
+        "webshop_000689",
+        "webshop_000826",
+        "webshop_000850",
+        "webshop_000876",
+        "webshop_000896",
+        "webshop_001054",
+        "webshop_001597",
+        "webshop_001879",
+        "webshop_001947",
+        "webshop_001984",
+        "webshop_001996",
+        "webshop_002019",
+        "webshop_002038",
+        "webshop_002043",
+        "webshop_002131"
+      ],
+      "rollout_seeds": [
+        2026103900,
+        2026103901,
+        2026103902,
+        2026103903
+      ],
+      "arms": {
+        "SD_NULL_A": {
+          "adapter_sha256": "47e63d417f85cb2defed5ff1ee934128b96e6a4f78a8f410fa052957d919190c"
+        },
+        "SD_NULL_B": {
+          "adapter_sha256": "47e63d417f85cb2defed5ff1ee934128b96e6a4f78a8f410fa052957d919190c"
+        }
+      },
+      "attempts": 128,
+      "measurement_validity_gate": {
+        "minimum_jointly_usable_task_clusters": 15,
+        "maximum_invalid_attempt_rate_per_arm": 0.05,
+        "maximum_absolute_invalid_rate_asymmetry": 0.03,
+        "maximum_absolute_point_estimate": 0.03,
+        "null_control_requirement": "The preregistered paired 95% CI must include zero."
+      }
+    },
+    "M3_h141_sentinel_diagnosis": {
+      "purpose": "Determine whether the two H1.41 parser-invalid task clusters reproduce under the exact frozen H1.41 states; this stage diagnoses measurement failure and is not a mechanism-effect test.",
+      "task_ids": [
+        "webshop_003560",
+        "webshop_004357"
+      ],
+      "rollout_seeds": [
+        2026082100,
+        2026082101,
+        2026082102,
+        2026082103
+      ],
+      "states": [
+        "H1.41_C0_exact_h140",
+        "H1.41_C1_reset_magnitude"
+      ],
+      "artifact_identity_rule": "Exact C0/C1 artifact hashes must be materialized by M0 before activation; placeholders are forbidden in an execution release.",
+      "attempts": 16,
+      "classification_only": true,
+      "classifications": {
+        "SENTINEL_REPRODUCES_STATE_SPECIFIC": "The historical invalidity reproduces in one frozen state but not the matched other state.",
+        "SENTINEL_REPRODUCES_GENERAL": "The invalidity reproduces across both frozen states.",
+        "SENTINEL_INTERMITTENT": "The historical invalidity does not reproduce consistently under the frozen rerun.",
+        "SENTINEL_STRUCTURALLY_INVALID": "Runtime/identity/artifact provenance prevents a diagnostic classification."
+      }
+    }
+  },
+  "analysis": {
+    "unit": "task cluster over four rollout seeds unless a stage explicitly says classification-only",
+    "bootstrap_rounds": 10000,
+    "bootstrap_seed": 2026082142,
+    "sign_flip_rounds": 10000,
+    "sign_flip_seed": 2026082143,
+    "invalid_handling": "Invalid attempts are reported by taxonomy and excluded from reward aggregation; no invalid is silently converted to zero. Stage validity is governed by preregistered completeness and invalid-rate/asymmetry thresholds rather than a post-hoc decision.",
+    "selector": {
+      "MEASUREMENT_READY": "M0 is complete; M1 passes all measurement-validity and positive-control requirements; M2 passes all measurement-validity and null-control requirements; M3 is structurally classifiable.",
+      "POSITIVE_CONTROL_FAIL": "M1 is structurally valid but fails to reproduce a positive SD-minus-BASE contrast.",
+      "NULL_CONTROL_FAIL": "M2 is structurally valid but produces a preregistered non-null artifact-label effect.",
+      "INVALIDITY_ASYMMETRY_FAIL": "Either control stage exceeds its preregistered invalid-rate or invalid-rate-asymmetry threshold.",
+      "STRUCTURALLY_INVALID": "Provenance, runtime, identity, parser, incomplete trace, or unresolved M0 artifact evidence prevents the required measurement classification."
+    },
+    "mechanism_inference_forbidden": true
+  },
+  "resource_contract": {
+    "planned_formal_attempts_if_later_activated": 656,
+    "new_training_attempts": 0,
+    "new_harvest_attempts": 0,
+    "t2_attempts": 0,
+    "gpu_hours_cap": 4.5,
+    "accounting": "Exact per GPU-bearing attempt through the canonical resource wrapper; unknown intervals are not reported as zero.",
+    "standing_pool_basis": "Parent eight-GPU standing authorization intersected with fresh live-idle UUID projection at launch time.",
+    "kill_reset_preempt_allowed": false
+  },
+  "activation_requirements": {
+    "separate_execution_release_required": true,
+    "materialize_M0_cpu_autopsy": true,
+    "materialize_exact_h141_C0_C1_artifact_hashes": true,
+    "freeze_exact_openevo_experiment_sha": true,
+    "freeze_exact_openevo_core_sha": true,
+    "freeze_exact_run_profile_image_id": true,
+    "reuse_existing_runtime_qualification_only_if_fingerprint_matches": true,
+    "fresh_live_idle_gpu_gate": true,
+    "exact_head_cpu_ci_green": true,
+    "no_open_t2": true
+  },
+  "forbidden": [
+    "new training or adapter creation",
+    "new harvest",
+    "H1.40 or H1.41 T2",
+    "fresh task panel presented as a transfer result",
+    "magnitude/replay/rank mechanism claim",
+    "teacher data",
+    "vLLM/FlashInfer route change",
+    "prompt/parser/evaluator redesign during the campaign",
+    "post-result threshold changes",
+    "manual task replacement or outcome-based task selection"
+  ],
+  "formal_execution_guard": {
+    "tasks_consumed": 0,
+    "gpu_hours_consumed": 0,
+    "arms_executed": [],
+    "t2_panel_evaluated": false,
+    "launcher_must_fail_closed_while_status_is_design_only": true
+  },
+  "next_gate": "Only a separate H1.42 execution release may open these already-exposed measurement-control panels. Even after MEASUREMENT_READY, a new H1.43-style mechanism successor must be separately preregistered; H1.42 never opens T2 automatically."
+}

@@ -1,0 +1,80 @@
+# WebShop/OpenEvo overlay for the RTX6 host runtime.
+#
+# IMPORTANT: torch and vllm are intentionally NOT installed here. The overlay
+# is layered on top of an existing, read-only GDKVM Python >=3.11 environment
+# that already imports CUDA torch. This keeps the relay small and avoids
+# replacing a known-working GPU stack. vLLM belongs to deferred P2 infra work.
+#
+# The 2026-07-29 successful Colab WebShop rebuild in private-source is the
+# reference for the environment-specific dependencies below. gym/env/train are
+# source-only on PyPI; the Mac relay builds platform-independent wheels for
+# them separately before staging the Linux wheelhouse to RTX6. Gym's runtime
+# dependencies are repeated explicitly because cross-platform binary
+# resolution excludes the source-only gym sdist.
+
+transformers==4.51.1
+numpy==1.26.4
+gym==0.24.0
+cloudpickle>=1.2.0
+gym-notices>=0.0.4
+env==0.1.0
+train==0.0.5
+httpx>=0.27.0,<1
+pydantic==2.10.6
+pytest==8.3.5
+
+# Experiment tracking. 0.26.1 is the exact version validated in the real
+# RTX 5090 / Qwen2.5-3B / pinned OpenEvo runtime. W&B remains an observability
+# layer: online/offline/disabled mode is selected by the current campaign and
+# must not change scientific execution semantics.
+wandb==0.26.1
+
+# Pyserini 0.17.0 declares broad dependencies for both sparse and dense
+# retrieval. We still install the exact pyserini wheel with --no-deps so its
+# old metadata cannot unexpectedly reshape the environment. However, real RTX6
+# execution proved that importing pyserini.search.lucene.LuceneSearcher itself
+# traverses an onnxruntime import. Therefore ONNX Runtime is an explicit runtime
+# dependency even though WebShop does not execute dense ONNX retrieval.
+pyserini==0.17.0
+Cython>=0.29.21
+pyjnius>=1.4.0
+scipy>=1.4.1
+sentencepiece>=0.1.95
+nmslib>=2.1.1
+onnxruntime==1.18.1
+# ONNX Runtime's documented base Python dependencies. NumPy is pinned above;
+# keep the remaining dependencies explicit so the no-deps ORT wheel is fully
+# usable offline on RTX6.
+coloredlogs==15.0.1
+flatbuffers>=2.0
+packaging>=21.0
+protobuf>=3.20.2
+sympy==1.13.1
+# Pyserini intentionally does not depend on a Faiss variant. The historical
+# successful WebShop setup installed faiss-cpu explicitly. 1.8.0.post1 has a
+# CPython 3.12 manylinux2014 x86_64 wheel and is sufficient for this old stack.
+faiss-cpu==1.8.0.post1
+
+spacy==3.7.2
+PyYAML==6.0.2
+beautifulsoup4==4.11.1
+cleantext==1.1.4
+Flask==2.1.2
+pandas==2.2.3
+rank_bm25==0.2.2
+requests==2.27.1
+requests_mock
+rich==12.4.4
+scikit_learn
+selenium==4.2.0
+thefuzz==0.19.0
+tqdm==4.64.0
+Werkzeug==2.1.0
+
+# OpenEvo source is provided through PYTHONPATH, so its runtime dependencies
+# must also exist in the overlay when they are absent from the reused GPU env.
+fastapi>=0.115.0
+click>=8.3.3
+idna>=3.15
+starlette>=1.3.1
+uvicorn>=0.30.0

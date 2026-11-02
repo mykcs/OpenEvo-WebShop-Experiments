@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/execution-generation-202609170115.schema.json",
+  "title": "OpenEVO ExecutionGeneration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "openevo.execution-generation.202609170115"},
+    "generation_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution_git_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "science_contract_identity": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_package_identity": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "ready_identity": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "owner_release_identity": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "recovery_policy_identity": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "carrier_policy_identity": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "resource_policy_identity": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "artifact_reuse_manifest_identity": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+  },
+  "required": [
+    "schema",
+    "generation_id",
+    "execution_git_sha",
+    "science_contract_identity",
+    "runtime_package_identity",
+    "ready_identity",
+    "owner_release_identity",
+    "recovery_policy_identity",
+    "carrier_policy_identity",
+    "resource_policy_identity",
+    "artifact_reuse_manifest_identity"
+  ]
+}

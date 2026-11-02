@@ -1,0 +1,117 @@
+{
+  "arm": {
+    "arm_key": "off",
+    "experiment_arm_id": "BOUNDED_OFF",
+    "treatment_mode": "BOUNDED_OFF"
+  },
+  "campaign_id": "20260916-0255-bounded-effective-state-gdr",
+  "environment": {
+    "environment_seed": 0,
+    "num_products": 1000,
+    "seed_root": "/workspace/assets/bounded-effective-state-formal-seed-root-20260915",
+    "webshop_data_sha256": {
+      "items_human_ins.json": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3",
+      "items_ins_v2_1000.json": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+      "items_shuffle_1000.json": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269"
+    }
+  },
+  "execution_code_git_sha": "c637b84e209021b89269a060e95b1a59e4e07be9",
+  "experiment_id": "202609160255-bounded-effective-state-gdr",
+  "final_eval_implementation": {
+    "driver_path": "scripts/openevo_webshop/q17_directapply_final_eval_driver.py",
+    "driver_sha256": "615583252c0de8602b3f540b9da9b532d32e8e9c84ead8b90ff4a5da8ca7357b",
+    "historical_q17_authority_reused": false,
+    "implementation_reused_only": true,
+    "worker_path": "scripts/openevo_webshop/q17_directapply_final_eval_worker.py",
+    "worker_sha256": "0896bac2ea672f756ce8a6dcf559130d418a4563f313c83b7c52dee754476667"
+  },
+  "final_panel": {
+    "canonical_locator": "configs/experiment/manifests/q17-gdr-twin-post-audit-heldout-202609061643.json",
+    "content_sha256": "3529b94f97491434da01f9b2adc2faf1d0571545603a788d367561ae2b529d48",
+    "execution_locator": "docs/evidence/q17-final-closeout-20260912/frozen-inputs/aea97afdd5b176126cf67f7ed315189c95fbf37b07263c84b947903cca69aa4d.json",
+    "execution_locator_sha256_observed": "aea97afdd5b176126cf67f7ed315189c95fbf37b07263c84b947903cca69aa4d",
+    "file_sha256": "aea97afdd5b176126cf67f7ed315189c95fbf37b07263c84b947903cca69aa4d",
+    "selected_panel_digest": "cd531caff21d13d72df5c6fb013fadc10457393134d8bc3bcdc63fadf76bc453",
+    "task_count_exact": 128,
+    "valid_measurements_exact": 1
+  },
+  "final_state": {
+    "agent_system": {
+      "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-readiness/qwen3-1p7b/harness201-final-v2-generic/agent.md",
+      "sha256": "7a87fa050c526907b1999ba4c0ef9c127808e4983a1f36dc646a12c6ab75caf4"
+    },
+    "memory": {
+      "path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/round-065/text-memory/memory.md",
+      "sha256": "9a88356c084783e003d80db90a918be265d1ce481590d769453993d0e21dea6d"
+    },
+    "sd_adapter": {
+      "adapter_config_sha256": "cbd30da3262c20cd0df9542d7577d14568db14e7d9cbb69291c0182da96d4ee8",
+      "adapter_model_sha256": "1bc2f7f62c1bde68cd4fd34e86c25af7f9663153a9ded631759dda52c87a21a5",
+      "bounded_recurrence_receipt_sha256": "7caad7d51b51b76b0ffd843d2ac13e92a55986834c4463ce2c09c0079a96093d",
+      "path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/round-159/sd-lora/bounded-state"
+    },
+    "skill": {
+      "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-readiness/qwen3-1p7b/harness201-final-v2-generic/skill.md",
+      "sha256": "cef31b897dbe4796d61710c13ab11630f64f043bd7df651d1faa12980163b21a"
+    }
+  },
+  "inference": {
+    "chat_template_enable_thinking": false,
+    "do_sample": false,
+    "environment_seed": 0,
+    "harness_profile": "201.1",
+    "max_new_tokens": 512,
+    "max_steps": 15,
+    "repetition_penalty": 1.0,
+    "temperature": null,
+    "top_k": null,
+    "top_p": null
+  },
+  "model": {
+    "id": "Qwen/Qwen3-1.7B",
+    "local_path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "runtime_image_digest": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850"
+  },
+  "owner_instruction": "After the OFF arm completes 160/160 Stage2 rounds, complete its own final closeout without mutating either sealed arm or using ON final outcomes to choose OFF state or settings.",
+  "qualification": {
+    "final_panel_access": 0,
+    "generation_seeds": [
+      202609120001000,
+      202609120001001,
+      202609120001002,
+      202609120001003
+    ],
+    "implementation_path": "scripts/openevo_webshop/q17_directapply_final_eval_qualify.py",
+    "implementation_sha256": "398de9ac44937cc9d9907c2716b6716142dbcffc6d4379d357d18c7a6b8ae5b3",
+    "purpose": "Interface-only pre-final qualification on task identities already consumed by OFF Round159.",
+    "source_round": 159,
+    "source_session_indices": [
+      870,
+      4996,
+      6325,
+      5676
+    ],
+    "training_mutation": false
+  },
+  "recovery_rule": "Only exact-resume of engineering-invalid final ordinals is allowed with identical state, panel, decoding, runtime, activation and code identity; no score-driven rerun or checkpoint change.",
+  "schema": "openevo.bounded-effective-state.off-final-eval-design.20260918",
+  "sibling_isolation": {
+    "joint_long_horizon_analysis_is_separate": true,
+    "off_final_outcome_may_affect_on": false,
+    "on_final_outcome_may_affect_off": false,
+    "wait_for_on_final": false
+  },
+  "stage2": {
+    "execution_git_sha": "a6f67b66e7d0fce0dc445890a68f9f0364da452a",
+    "execution_state_path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/execution-state.json",
+    "execution_state_sha256": "cb17ae8bde6da36bcebb6a9120975455ca7903ad2ec874475c57438f5ee65bc0",
+    "final_panel_access_before": 0,
+    "final_state_id": "6333af5da5b4cb850cd065a83670f877fb102ea1be5bc8d27438e10b3195dc2d",
+    "rollouts": 20480,
+    "rounds": 160,
+    "seal_path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/FORMAL_ARM_SEALED.json",
+    "seal_sha256": "3e37c358dbeeacbeda610a7b2eb1a21dcf695e52cb8981aa418cd3b8431effbd"
+  },
+  "status": "FROZEN_PRE_FINAL_QUALIFICATION"
+}

@@ -1,0 +1,118 @@
+{
+  "arms": {
+    "3b": {
+      "capacity_policy_sha256": "f9cfbd48eb1aa9cd7c4b960810fa2e185e5d04925105b5ea70b60e53d7f39e3c",
+      "model_family": "Qwen2.5-3B"
+    },
+    "qwen3-1p7b": {
+      "capacity_policy_sha256": "608cc8b44d56f952d406d7c7fd2e5249076588b15b6e4763dbcb974e2a3bf2ac",
+      "model_family": "Qwen3-1.7B"
+    }
+  },
+  "authority_principle": "science controller declares ready workload intents; Ray decides placement/co-residency from resource envelopes and live physical capacity, never from phase-name exclusivity",
+  "carrier_contract_failure": {
+    "legacy_authority_sha256": "fe40ae2149094cc45a9e19cd771aabf94dc2bd4726f02f963082271172b547e3",
+    "max_primary_calls": 1,
+    "max_repair_calls": 1,
+    "terminal_transition": "NOOP_KEEP_PRIOR_TYPED_CONTRACT_REJECTED_AFTER_REPAIR",
+    "third_generation_allowed": false
+  },
+  "control_plane_guarantees": {
+    "blocked_science_state_is_never_auto_retried": true,
+    "candidate_probe_resource_and_container_identity_is_arm_qualified": true,
+    "existing_gpu_workloads_drain_on_pause": true,
+    "failed_launch_reservation_cleanup_is_truthful": true,
+    "fresh_checkout_local_python_dependency_closure_is_tested": true,
+    "immutable_rollout_selection_can_reconstruct_exact_gpu_reservation": true,
+    "launching_reservation_binds_container_and_lease_identity": true,
+    "launching_reservation_crash_promotes_to_lease": true,
+    "managed_gpu_index_uuid_double_pin": true,
+    "materialized_success_prevents_duplicate_gpu_recall": true,
+    "operator_resource_pause_does_not_mark_science_blocked": true,
+    "orphan_placement_group_never_hidden_by_state_cleanup": true,
+    "overlapping_ray_pool_singleton_host_lock": true,
+    "per_arm_output_single_writer_os_lock": true,
+    "per_channel_launch_transaction_lock": true,
+    "physical_vram_prefilter_prevents_false_no_placement_on_partially_busy_pool": true,
+    "placement_ready_timeout_is_configured": true,
+    "pool_requires_fresh_heartbeat_and_live_pid": true,
+    "pool_restart_forbidden_while_recorded_live_containers_exist": true,
+    "unexpected_controller_death_restarts_only_after_same_arm_live_work_drains": true
+  },
+  "historical_compatibility": {
+    "new_revision_identities_must_use_timestamp": true,
+    "read_only_predecessor_serialized_identities_allowed": true
+  },
+  "identity_timestamp": "202609042025",
+  "invariants": {
+    "cross_arm_co_residency": "allowed whenever declared resource admission and live VRAM/UUID gates pass",
+    "external_teacher_calls": 0,
+    "final_panel_remains_separate_and_locked_until_arm_seal": true,
+    "managed_gpus": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "no_mid_workload_reshard": true,
+    "no_preemption": true,
+    "phase_name_is_not_exclusivity_authority": true,
+    "unmanaged_gpus": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "migration": {
+    "formal_rollout_replay": 0,
+    "natural_boundary_required": true,
+    "validator": "scripts/openevo_webshop/validate_ceiling1_stage2_resource_migration_ray_202609042025.py",
+    "whole_pool_continuation_builder": "scripts/openevo_webshop/prepare_ceiling1_ray_continuation_202609042025.py",
+    "zero_live_both_arms_required": true
+  },
+  "pinned_runtime_dependencies": [
+    {
+      "execution_sha": "0ef8b0ebdf8c6d50d67bdfd0e60c8ac04a3f3ed0",
+      "path": "/workspace/control/openevo-core-ceiling1-effective-rank-exec-0ef8b0eb",
+      "retention": "DO_NOT_DELETE_UNTIL_3B_AND_QWEN3_1P7B_STAGE2_SEALED_OR_EXPLICITLY_MIGRATED",
+      "role": "sd_lora_openevo_core"
+    }
+  ],
+  "platform_boundary": {
+    "activation_note": "repository-current public launcher is intentionally disabled for current formal arms; exact per-arm external executors remain execution authority. A future public-launcher migration requires a truthful host/container path contract plus an audited natural-boundary migration receipt.",
+    "current_formal_arms_use_public_launcher": false,
+    "path_contract_required_before_public_launcher": true,
+    "path_contract_status": "DEFERRED_UNTIL_AUDITED_PUBLIC_LAUNCHER_MIGRATION",
+    "public_launcher_activation_authority": false
+  },
+  "resource_backend": {
+    "config": "configs/experiment/openevo-ceiling1-ray-placement-backend-202609042025.json",
+    "name": "ray-202609042025",
+    "placement": "scripts/openevo_webshop/ceiling1_ray_placement_backend_202609042025.py",
+    "pool": "scripts/openevo_webshop/ceiling1_ray_gpu_pool_202609042025.py",
+    "runner": "scripts/openevo_webshop/run_ceiling1_stage2_ray_202609042025.py",
+    "supervisor": "scripts/openevo_webshop/run_ceiling1_stage2_ray_supervised_202609042025.py"
+  },
+  "schema": "openevo.ceiling1-stage2-runtime-authority.202609042025",
+  "scope": "Ceiling-1.0 shared small-arm Stage2 (Qwen2.5-3B + Qwen3-1.7B)",
+  "shared_runtime": {
+    "candidate_state_logic": "scripts/openevo_webshop/ceiling1_stage2_state_202609042025.py",
+    "controller": "scripts/openevo_webshop/run_ceiling1_stage2_arm_202609042025.py",
+    "fanout_barrier_before": [
+      "candidate_state_compose",
+      "candidate_probe",
+      "round_commit"
+    ],
+    "host_driver": "scripts/openevo_webshop/ceiling1_stage2_current_arm_driver_202609042025.sh",
+    "platform_launcher": "scripts/openevo_webshop/launch_ceiling1_stage2_current_arm_202609042025.sh",
+    "post_rollout_fanout": [
+      "text_memory",
+      "parametric_sd_lora",
+      "skill_bundle",
+      "agent_system"
+    ],
+    "same_state_k_for_all_fanout_channels": true
+  },
+  "status": "READY_FOR_AUDITED_NATURAL_MIGRATION"
+}

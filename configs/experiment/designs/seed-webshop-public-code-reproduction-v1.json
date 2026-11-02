@@ -1,0 +1,123 @@
+{
+  "schema_version": "1",
+  "design_id": "seed-webshop-public-code-reproduction-v1",
+  "status": "PREPARED",
+  "formal_task_consumption_allowed": false,
+  "benchmark": "webshop",
+  "track": "A-source-faithful-task-semantics-plus-paired-performance-measurement",
+  "objective": "Re-answer the existing BASE-vs-frozen-OpenEvo held-out question on a source-faithful first-validation semantic panel derived from pinned public SEED code, without retraining either arm.",
+  "scientific_question": "On the source-faithful first-validation semantic panel derived from pinned public SEED code, does the already-frozen OpenEvo SD-LoRA policy improve WebShop performance relative to its paired BASE policy under one identical parser-compatible measurement contract?",
+  "source_pins": {
+    "seed_repository": "jinyangwu/SEED",
+    "seed_commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+    "public_launcher_env_seed": 0,
+    "validation_seed_offset": 1000,
+    "validation_base_seed": 1000,
+    "validation_batch_size": 128,
+    "heldout_session_index_min": 0,
+    "heldout_session_index_max": 499,
+    "history_length": 2,
+    "max_steps": 15,
+    "validation_temperature": 0.4,
+    "validation_samples_per_slot": 1
+  },
+  "semantic_manifest": {
+    "required": true,
+    "materialized": true,
+    "ordered_slots": 128,
+    "session_draw": "np.random.RandomState(1000).choice(np.arange(500), size=128, replace=False)",
+    "worker_seed_formula": "1000 + slot",
+    "required_slot_fields": [
+      "slot",
+      "seed_source_commit",
+      "validation_base_seed",
+      "worker_seed",
+      "sampled_session_index",
+      "instruction",
+      "instruction_sha256",
+      "webshop_data_identity"
+    ],
+    "rebuild_gate": "two-clean-process-builds-must-have-identical-canonical-sha256",
+    "manifest_path": "configs/experiment/manifests/webshop-seed-source-faithful-reproduction-v1-panel-v1.json",
+    "manifest_file_sha256": "60df28877c1168c46aa05f505830bb2923f8ee6100fa10b3b9597099a6efa76e",
+    "manifest_content_sha256": "dbc0e39f4ee4d3d3df3e9308aac57729881f4066996e7df3d0f4f7071fd4e355",
+    "selected_panel_digest": "4e7ace9224e3f7311bdda00e726291545269bd0afcda751e83b4194b9a4d5854",
+    "rebuild_receipts": [
+      "configs/experiment/receipts/webshop-seed-source-faithful-reproduction-v1-rebuild-1.json",
+      "configs/experiment/receipts/webshop-seed-source-faithful-reproduction-v1-rebuild-2.json"
+    ],
+    "historical_panel_comparison": "configs/experiment/receipts/webshop-seed-source-faithful-vs-historical-panel-comparison-v1.json"
+  },
+  "arms": {
+    "base": {
+      "role": "paired control",
+      "identity_source": "reuse exact BASE model/tokenizer identity from seed-official-heldout-comparison-v1 lineage",
+      "retraining_allowed": false
+    },
+    "open_evo_sd_lora": {
+      "role": "paired treatment",
+      "identity_source": "reuse exact frozen OpenEvo SD-LoRA adapter/model/tokenizer identity from seed-official-heldout-comparison-v1 lineage",
+      "retraining_allowed": false
+    }
+  },
+  "measurement": {
+    "primary_contract": "seed3090.webshop-action-parser.v3-action-command",
+    "strict_seed_parser": "historical-diagnostic-only-no-full-rerun-by-default",
+    "primary_continuous_endpoint": "mean_terminal_task_score_x100",
+    "primary_binary_endpoint": "exact_success_rate",
+    "pairing": "same ordered semantic slots and same frozen generation-seed schedule across arms",
+    "inference_multiplicity": 1,
+    "uncertainty": "paired per-task bootstrap confidence intervals",
+    "infrastructure_invalid_policy": "retain-classify-and-reconcile; never silently drop",
+    "parser_compatible_interface_files": {
+      "vendor/openevo-webshop/src/openevo_webshop/comparison_contract.py": "sha256:e34adb6eade4746d7537d2cd0869d4f6d908dff5e1362fd7b9bb87ca09b93c07",
+      "vendor/openevo-webshop/src/openevo_webshop/prompts.py": "sha256:a5f13046cec24ab4b98b49fa1eb437940dc7127182c1bc0c150f2bccef152d7f",
+      "scripts/openevo_webshop/webshop_comparison_contract.py": "sha256:3fdb76559adb5c950da509db7da93e767197c1f1032e86622e56f8a7618cf882"
+    }
+  },
+  "forbidden_changes_after_preregistration": [
+    "task selection",
+    "semantic manifest",
+    "worker seed mapping",
+    "generation seed schedule",
+    "parser compatibility interface",
+    "model or adapter identity",
+    "primary endpoints",
+    "stopping rule"
+  ],
+  "release_prerequisites": [
+    "current primary-v2 run is closed and transferred without overwriting historical evidence",
+    "source-faithful semantic manifest is materialized",
+    "two deterministic rebuild receipts match",
+    "BASE and frozen OpenEvo model/tokenizer/adapter identities are hash-bound",
+    "parser-compatible measurement interface is hash-bound (not strict SEED parser as primary)",
+    "generation-seed schedule is frozen",
+    "successor preregistration is committed before formal task consumption",
+    "server runtime semantic validation 128/128 PASS",
+    "separate activation/release PR moves current-campaign to launch-authorized",
+    "runtime qualification and live gate pass",
+    "explicit execution release binds all scientific artifact hashes and sets formal_task_consumption_allowed=true"
+  ],
+  "claim_boundary": {
+    "supports": [
+      "source-faithful first-validation task-construction semantics from pinned SEED public code",
+      "paired BASE-vs-frozen-OpenEvo comparison on that semantic panel under one identical parser-compatible measurement contract"
+    ],
+    "does_not_support": [
+      "exact SEED paper final 128-task denominator",
+      "reproduction of the SEED paper checkpoint",
+      "byte-exact SEED inference once a compatibility interface is used",
+      "local paired comparison against paper-reported SEED numbers"
+    ]
+  },
+  "relationship_to_wb1": "WB1 remains primarily a fair matched benchmark (Track B). Do not retroactively rewrite its train-only evidence. Amend final-evaluation semantics prospectively before final-pool consumption.",
+  "resource_policy": {
+    "cpu_only_preparation_allowed": true,
+    "gpu_scientific_execution_allowed": false,
+    "note": "GPU holding/reservation is resource management only and does not authorize scientific task consumption."
+  },
+  "authoritative_docs": [
+    "docs/experiment-tracking/SEED_WEBSHOP_PUBLIC_CODE_REPRODUCTION_V1.md",
+    "docs/experiment-tracking/SEED_VS_MATCHED_BENCHMARK_POLICY.md"
+  ]
+}

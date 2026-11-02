@@ -1,0 +1,53 @@
+{
+  "activation_boundary": "PASS of this qualification only permits G3 shadow rehearsal. It does not authorize formal Stage2.",
+  "arm": "3b-successor-only",
+  "candidate_policy": {
+    "base": 148000000,
+    "formula": "148000000 + schedule_position + step_idx * 100000",
+    "global_injective_over_frozen_stage2_schedule": true,
+    "id": "injective-step-seed-v1",
+    "schedule_position_max": 21920,
+    "schedule_position_min": 1,
+    "step0_seed_unchanged": true,
+    "step_idx_max": 14,
+    "step_idx_min": 0,
+    "step_stride": 100000
+  },
+  "comparability_boundary": "Current 7B formal lineage used the legacy colliding step-seed policy. A 3B successor using injective-step-seed-v1 remains matched on tasks, rollout budget, rollout_seed, step0 seed, temperature and Harness-independent science, but is not bitwise/micro-RNG matched to current 7B after step0. Any 3B-vs-current-7B headline must disclose this amendment. A future matched 7B successor should use the same injective policy.",
+  "legacy_policy": {
+    "cross_episode_collision": true,
+    "formula": "148000000 + schedule_position + step_idx"
+  },
+  "qualification": {
+    "adaptive_extension": false,
+    "candidate_action_like_pseudo_actions_max": 0,
+    "cases": 16,
+    "final_panel_access": 0,
+    "formal_task_consumption": 0,
+    "manifest": "configs/experiment/manifests/openevo-ceiling-1.0-harness201-g2-pathology-replay-v1.json",
+    "old_cjk_fixture_recurrence_max": 2,
+    "reward_or_success_used": false
+  },
+  "qualification_result": {
+    "candidate_action_like_pseudo_actions": 0,
+    "formal_stage2_authority": false,
+    "old_cjk_fixture_recurrence_count": 0,
+    "path": "docs/evidence/remote-runs/2026-09-01/ceiling1-harness201-stage2-readiness/g2b-injective-step-seed-v1/G2_COMPLETE.json",
+    "sha256": "8ebe61ebdd0839abe68ba38102b8507b8835e3312e59a4cab45f7ff099c3f898",
+    "status": "PASS"
+  },
+  "reason": "Exact prompt x seed replay reproduced CJK pathology in 7 of 8 old CJK fixtures under the current Harness 2.0.1 English contract. Legacy base+position+step is non-injective across episodes.",
+  "schema": "openevo.ceiling1-harness201-step-seed-amendment.v1",
+  "scientific_non_changes": {
+    "harness": "Harness 2.0.1 thin",
+    "max_steps": 15,
+    "parser": "unchanged",
+    "rollout_seed": "unchanged",
+    "task_schedule": "unchanged",
+    "teacher_budget": 0,
+    "temperature": 1.0,
+    "top_k": 0,
+    "top_p": 1.0
+  },
+  "status": "QUALIFIED_FOR_SHADOW_ONLY"
+}

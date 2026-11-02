@@ -1,0 +1,5 @@
+{
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "test_equal_counts_are_not_equal_identities (__main__.IdentityAuditTests.test_equal_counts_are_not_equal_identities) ... ok\ntest_frozen_authority_ast_match_and_drift (__main__.IdentityAuditTests.test_frozen_authority_ast_match_and_drift) ... ok\ntest_frozen_success_filters (__main__.IdentityAuditTests.test_frozen_success_filters) ... ok\ntest_hash_bound_end_to_end_and_unicode (__main__.IdentityAuditTests.test_hash_bound_end_to_end_and_unicode) ... ok\ntest_out_of_scope_and_duplicate_manifest_fail_closed (__main__.IdentityAuditTests.test_out_of_scope_and_duplicate_manifest_fail_closed) ... ok\ntest_prior_success_is_not_current_success (__main__.IdentityAuditTests.test_prior_success_is_not_current_success) ... ok\ntest_tampered_input_is_not_accepted (__main__.IdentityAuditTests.test_tampered_input_is_not_accepted) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.008s\n\nOK\n"
+}

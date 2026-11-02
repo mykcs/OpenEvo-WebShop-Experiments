@@ -1,0 +1,139 @@
+{
+  "completed_at": "2026-09-26T07:09:45Z",
+  "created_at": "2026-09-26T07:09:45Z",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/experiment_artifact_dag.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "312ebfb54ba136ed0ccb94c0f2b25debe0eff71a0d4afd9fa6f50f431f5d7964"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_STAGING_CONTROL_PRIVATE_RECOVERY_BINDING.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "26aed1d9dba00a820499ce955f414148718758d6e42874e71304d49d8c58c46d"
+    },
+    "contract_identities": [
+      {
+        "identity": {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "configs/experiment/passports/202609082022-q17-directapply-no-gdr/passport.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "caaf7bf63fbc58574f6eb4c8353c45f3ba80ddf103b0b8ef1b55bae2ecf36ddb"
+        },
+        "name": "q17-frozen-experiment-passport"
+      }
+    ],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "577c69e5c45e2e6bf0bfdc5e01b17ed807dd79c4f83948dab8fe139e9db61bc5",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/completed-1p7b-publication-20260918/Q17_PUBLIC_PRIVATE_RECOVERY_LEDGER.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "577c69e5c45e2e6bf0bfdc5e01b17ed807dd79c4f83948dab8fe139e9db61bc5"
+          }
+        ],
+        "logical_role": "q17-public-private-round-recovery-ledger",
+        "size_bytes": 3076
+      }
+    ],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "historical-provider-staging-control-recovery-registration",
+      "original_materialization_randomness": "not reasserted"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "8d61c13bbf09098fbffa33019f8d793eecab9e9df675c2216e3f71c8c2b03d22",
+  "operation_schema_version": "20260926",
+  "operation_type": "q17-closeout-staging.backfill.unique-control-private-recovery",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [
+        "577c69e5c45e2e6bf0bfdc5e01b17ed807dd79c4f83948dab8fe139e9db61bc5"
+      ],
+      "digest": "26aed1d9dba00a820499ce955f414148718758d6e42874e71304d49d8c58c46d",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_STAGING_CONTROL_PRIVATE_RECOVERY_BINDING.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "26aed1d9dba00a820499ce955f414148718758d6e42874e71304d49d8c58c46d"
+        }
+      ],
+      "logical_role": "q17-staging-unique-control-private-recovery-binding",
+      "size_bytes": 2637
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "q17-staging.unique-control-private-recovery-backfill-20260926",
+    "created_at": "2026-09-26T07:09:45Z",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/recovery-disclosure-audit-20260926/Q17_STAGING_CONTROL_PRIVATE_RECOVERY_BINDING.json",
+      "docs/evidence/completed-1p7b-publication-20260918/Q17_PUBLIC_PRIVATE_RECOVERY_LEDGER.json"
+    ],
+    "experiment_id": "202609082022-q17-directapply-no-gdr",
+    "external_views": [
+      {
+        "evidence_path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_STAGING_CONTROL_PRIVATE_RECOVERY_BINDING.json",
+        "kind": "hf",
+        "path": "MANIFEST.json",
+        "reason": "private recovery observation; no automatic scientific reuse",
+        "repository": "kyo-myk/openevo-q17-closeout-staging-control-private-recovery-20260926",
+        "revision": "1471673958e19a69d21fa5d7845ee9ea2414d1f6",
+        "sha256": "53b218c94726ba0cb1baf4051f278392bfbc2cf12e1f74c6a1ddb1b65f589d2a"
+      },
+      {
+        "evidence_path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_STAGING_CONTROL_PRIVATE_RECOVERY_BINDING.json",
+        "kind": "hf",
+        "path": "q17-staging-unique-control-20260926-complete.tar.gz",
+        "reason": "exact 680-member control tar",
+        "repository": "kyo-myk/openevo-q17-closeout-staging-control-private-recovery-20260926",
+        "revision": "1471673958e19a69d21fa5d7845ee9ea2414d1f6",
+        "sha256": "a670435bd89da52eeff9bb20eded1907430c8c84db0ec215d1ec24eab534d388"
+      }
+    ],
+    "passport_sha256": "155e8885d2af2d4ee8b281f75cfec5c8b3af18b2c42b63f440da2af3e00805b6",
+    "producer_scope": "EXPERIMENT"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "ALLOWLISTED_ENGINEERING_ONLY",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Provider recovery registration is engineering evidence only; materialized adapters are diagnostic and never automatically admitted to formal science."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "PURE_ENGINEERING",
+  "status": "PASS",
+  "supersedes": []
+}

@@ -1,0 +1,89 @@
+{
+  "baseline_reuse": [
+    "rank128 historical R152-R159",
+    "rank32 post-advisor R152-R159"
+  ],
+  "campaign_id": "20260928-2338-post-advisor-unanswered",
+  "common_r151_adapter_sha256": "812e64cff1efc55d3eb7e293876c0ab8658734b42486898306e3a338335d784a",
+  "common_r151_state_id": "afb7ff3a3e91536576d2661091c0af04411c834b33c9cb7dc4fbaa1eac1bd3e6",
+  "common_r151_state_sha256": "4303d03d3e58ec25807ed835d1c03b3554a8fb92f3f19d7cd00855b54088aba7",
+  "design": {
+    "cell_id": "E3_RANK_CAPACITY_SWEEP",
+    "path": "configs/experiment/designs/post-advisor-unanswered-202609282338.json",
+    "sha256": "65cebfddc2962488c95cc218820bedba704b65f611e927edaefa94f68524acd4"
+  },
+  "experiment_id": "202609300248-post-advisor-e3-rank-capacity",
+  "external_teacher_call_limit": 0,
+  "final_panel_access_limit": 0,
+  "fork_origin": "R151_AFTER",
+  "formal_rollout_limit_per_rank": 1024,
+  "formal_task_consumption_allowed": false,
+  "frozen_scientific_contract": {
+    "baseline_reuse": [
+      "rank128 historical R152-R159",
+      "rank32 post-advisor R152-R159"
+    ],
+    "common_r151_adapter_sha256": "812e64cff1efc55d3eb7e293876c0ab8658734b42486898306e3a338335d784a",
+    "common_r151_state_id": "afb7ff3a3e91536576d2661091c0af04411c834b33c9cb7dc4fbaa1eac1bd3e6",
+    "common_r151_state_sha256": "4303d03d3e58ec25807ed835d1c03b3554a8fb92f3f19d7cd00855b54088aba7",
+    "external_teacher_call_limit": 0,
+    "final_panel_access_limit": 0,
+    "fork_origin": "R151_AFTER",
+    "formal_rollout_limit_per_rank": 1024,
+    "historical_rank128_control_rerun": false,
+    "persistent_state_ranks": [
+      8,
+      16,
+      64
+    ],
+    "rollouts_per_rank_per_round": 128,
+    "rounds": [
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159
+    ],
+    "total_new_rollout_limit": 3072,
+    "treatment_mode": "BOUNDED_OFF"
+  },
+  "historical_rank128_control_rerun": false,
+  "interpretation_boundary": "rank8 evidence does not establish sufficiency below rank8",
+  "metrics": [
+    "mean Task Score",
+    "exact success",
+    "paired difference vs rank128",
+    "adapter bytes",
+    "training/update latency",
+    "effective-rank diagnostics"
+  ],
+  "persistent_state_ranks": [
+    8,
+    16,
+    64
+  ],
+  "question": "Where is the persistent-state capacity knee below rank128?",
+  "reusable_baseline": {
+    "path": "docs/evidence/post-advisor-unanswered-20260928/REUSABLE_STATE_IDENTITY_20260929.json",
+    "sha256": "66bc8c9ee5bc7f6494f63541bfe9d7f917c8cb25f4bc4f680d1442f415ae27cf"
+  },
+  "rollouts_per_rank_per_round": 128,
+  "rounds": [
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159
+  ],
+  "schema": "openevo.post-advisor.e3-rank-capacity-preregistration.202609300248",
+  "status": "FROZEN_SCIENCE_PRELAUNCH",
+  "stop_rule": "complete all 8 rounds for ranks 8, 16, and 64; no early stopping from observed score",
+  "total_new_rollout_limit": 3072,
+  "treatment_mode": "BOUNDED_OFF"
+}

@@ -1,0 +1,22 @@
+{
+  "$id": "openevo.experiment-lifecycle-telemetry.202609281950",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenEVO experiment lifecycle telemetry",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "schema": {"const": "openevo.experiment-lifecycle-telemetry.202609281950"},
+    "run_id": {"type": "string", "minLength": 1},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "events": {"type": "array"},
+    "summary": {"type": "object"},
+    "metrics": {"type": "object"},
+    "observability_only": {"const": true},
+    "scientific_authority_granted": {"const": false},
+    "resource_authority_granted": {"const": false},
+    "retry_authority_granted": {"const": false},
+    "updated_at_epoch": {"type": "number"},
+    "receipt_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "required": ["schema","run_id","campaign_id","events","summary","metrics","observability_only","scientific_authority_granted","resource_authority_granted","retry_authority_granted","updated_at_epoch","receipt_sha256"]
+}

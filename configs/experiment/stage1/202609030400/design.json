@@ -1,0 +1,82 @@
+{
+  "schema": "openevo.shared-stage1.freeze.v1",
+  "freeze_id": "202609030400",
+  "status": "FROZEN",
+  "scope": {"stage1_only": true, "downstream_not_started_by_launcher": true},
+  "scientific_goal": "One identical strategy-neutral Stage1 harness for Qwen2.5-3B-Instruct and Qwen3-1.7B.",
+  "execution_git_sha": "23f51ab4b7038d23f16076f047d16e767529a319",
+  "confirmation": {
+    "path": "/workspace/runs/20260903-shared-min-deliberation/confirmation64/FINAL_CONFIRMATION.json",
+    "sha256": "e54be6a4d01353a5a04b9d617c2e1e3a2d6378d386769d234e7b5268fe03aa5b",
+    "decision": "FREEZE_ONE_SHARED_STAGE1_HARNESS"
+  },
+  "shared_harness": {
+    "profile": "harness201.1-stage1-shared-seed-native-min-deliberation-v1",
+    "prompt_profile": "harness201.1-stage1-shared-seed-native-soft-deliberation-v1",
+    "prompt_contract_sha256": "76b780231fe0298b44ddb25c397537ab81cfdba645258f5643a49514a50b7e55",
+    "strategy_guidance": false,
+    "minimum_pre_action_model_tokens": 4,
+    "deliberation_word_cap": null,
+    "think_tags_required": false
+  },
+  "environment": {
+    "benchmark": "WebShop",
+    "schedule": "configs/experiment/manifests/h1.44-on-3b-training-schedule-v1.json",
+    "schedule_sha256": "1b3ac4252cda4d25d9542713e68e2fa4aacd90ceb377e5c03c8c1ad7c6878428",
+    "semantic_tasks": 180,
+    "rollouts_per_task": 8,
+    "total_rollouts": 1440,
+    "max_steps": 15,
+    "observation_representation": "SEED WebshopEnvironmentManager.format_obs",
+    "history_length": 2,
+    "history_representation": "SEED SimpleMemory formatted pre-action observation + action"
+  },
+  "sampling": {
+    "do_sample": true,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "repetition_penalty": 1.0,
+    "max_new_tokens": 512,
+    "step_seed_policy": "injective-v1"
+  },
+  "interface": {
+    "allowed_actions_hard_constrained": true,
+    "interface_owned_action_opener": true,
+    "search_query_token_budget": 256,
+    "parser_repair": false,
+    "unconstrained_fallback": false
+  },
+  "arms": {
+    "qwen25-3b": {
+      "model_id": "Qwen/Qwen2.5-3B-Instruct",
+      "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+      "dtype": "bfloat16",
+      "chat_template_enable_thinking": null,
+      "run_name": "qwen25-3b-stage1-202609030400"
+    },
+    "qwen3-1p7b": {
+      "model_id": "Qwen/Qwen3-1.7B",
+      "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "dtype": "float16",
+      "chat_template_enable_thinking": false,
+      "run_name": "qwen3-1p7b-stage1-202609030400"
+    }
+  },
+  "arm_specific_fields_allowed": ["model_id", "revision", "dtype", "chat_template_enable_thinking", "run_name"],
+  "hard_gates": [
+    "1440/1440 schedule coverage",
+    "180 tasks x 8 rollouts",
+    "all worker exits zero",
+    "zero engineering invalid",
+    "zero invalid action termination",
+    "zero parser repair",
+    "zero constraint escape",
+    "zero environment action schema violation",
+    "all action channels present and admissible",
+    "100% nonempty pre-action deliberation receipt",
+    "exact execution/prompt/model/schedule identity"
+  ],
+  "reward_or_success_is_pass_gate": false,
+  "downstream_after_pass": "MiniMax-M3 post-hoc analysis only after each arm seals PASS; no automatic OPSD or Memory."
+}

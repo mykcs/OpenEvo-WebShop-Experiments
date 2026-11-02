@@ -1,0 +1,62 @@
+{
+  "activation_authority": false,
+  "arm": "qwen25-3b",
+  "asset_contract": {
+    "consumes": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen25-3b--stage1f_agent_system",
+        "role": "upstream-phase"
+      }
+    ],
+    "produces": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen25-3b--stage1g_closeout",
+        "provider": "server",
+        "provider_id": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/PRE_STAGE2_READY_qwen25-3b.json",
+        "role": "phase-receipt"
+      }
+    ],
+    "publication": [],
+    "recovery": [],
+    "registry_policy": "observation-first-canonical-if-proven",
+    "telemetry": []
+  },
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 0,
+    "local_reflector_requests_max": 0,
+    "optimizer_steps_max": 0
+  },
+  "completion": {
+    "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/PRE_STAGE2_READY_qwen25-3b.json",
+    "required_equal": {
+      "arm": "qwen25-3b",
+      "freeze_id": "202609030400",
+      "stage2_authorized": false,
+      "status": "PASS"
+    },
+    "sha256": "c66d45bb3d2959a4fa6ec73ed1f2c6fc99e95b9fcee7c8d8c95600c7f41b4e7d"
+  },
+  "historical_execution_provenance": {
+    "rule": "do not infer missing producer identity from names or timestamps",
+    "status": "PARTIAL_UNKNOWN_NOT_UPGRADED"
+  },
+  "phase": "stage1g_closeout",
+  "release_mode": "adoption",
+  "retry": {
+    "exact_resume": false,
+    "reason": "immutable completion adopted into current control plane; no execution is authorized by this release"
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "configs/experiment/stage1/202609030400/prestage2_shared.json",
+    "required_equal": {
+      "freeze_id": "202609030400",
+      "schema": "openevo.shared-prestage2.v2",
+      "status": "FROZEN_METHOD"
+    },
+    "sha256": "f2418a55da833c518b3dc1bdc535fe3c067a7ed13e48e5819cf7ea2cef469190"
+  },
+  "status": "ADOPTED_IMMUTABLE_COMPLETION"
+}

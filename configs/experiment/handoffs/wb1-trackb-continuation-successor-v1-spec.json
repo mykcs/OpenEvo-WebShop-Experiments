@@ -1,0 +1,176 @@
+{
+  "schema": "openevo.successor-handoff-spec.v1",
+  "predecessor": {
+    "campaign_id": "20260821-2341-wb1-seed-aligned-webshop-benchmark",
+    "phase": "WB1-P2",
+    "status": "train-dev-continuation-final-locked",
+    "source_evidence_head": "6d088ce54fae6896b850506fe2979981765a52c9",
+    "description": "WB1 SEED-aligned WebShop benchmark train-only trajectory (PR #132 draft branch). Generations 1-27 of the WB1-ON-S native textual-state arm completed under formal seed 20260821; 3,456 valid completed episodes; state-v27. Provides immutable model, dataset, index, protocol, state, and final-panel identities for the Track B continuation."
+  },
+  "successor": {
+    "campaign_id": "20260821-2341-wb1-seed-aligned-webshop-benchmark",
+    "phase": "WB1-TRACKB-CONTINUATION",
+    "track": "Track B - Fair Matched Benchmark",
+    "description": "Continue WB1 as an explicit Track B fair matched benchmark on latest-main governance, with a registered deterministic matched final panel (Amendment 004). No final consumption, no GPU, until the continuation reaches READY_TO_EXECUTE and the user authorizes resumption.",
+    "final_panel_digest": "48ec9c848ad9bbecdf78aab19c63d9c341a18a5fdc29ff5874fe6501e60e626b"
+  },
+  "facts": [
+    {
+      "role": "base_model_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "model_id": "Qwen/Qwen2.5-3B-Instruct",
+        "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+        "role_in_successor": "frozen backbone shared by all three Core arms"
+      }
+    },
+    {
+      "role": "openevo_upstream_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "repository": "CompLifeLab-ZJU/OpenEvo",
+        "commit": "796e6248a61112a61c880885844d3b0420c0b6ae",
+        "role_in_successor": "pinned OpenEvo native textual-state evolution implementation (WB1-ON-S)"
+      }
+    },
+    {
+      "role": "seed_upstream_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "repository": "jinyangwu/SEED",
+        "commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+        "tree": "3f91f467473d7134d17692b050003f872686da04",
+        "role_in_successor": "pinned SEED reference for the matched SEED arm and WebShop interface"
+      }
+    },
+    {
+      "role": "dataset_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "root": "/workspace/datasets/webshop-1000",
+        "goal_count": 6910,
+        "goal_count_sha256": "754c0acf2e4022aae07658e3fcb4a2bc2af774da4a62e52a128be0ea5df8461a",
+        "num_products": 1000,
+        "files": {
+          "items_shuffle_1000.json": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+          "items_ins_v2_1000.json": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+          "items_human_ins.json": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3"
+        },
+        "role_in_successor": "pinned 1000-product WebShop dataset and 6910 synthetic goals"
+      }
+    },
+    {
+      "role": "index_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "reconciled_by_amendment": "WB1_AMENDMENT_003_INDEX_IDENTITY_RECONCILIATION_2026-08-23.md",
+        "non_lock_file_count": 18,
+        "logical_bytes": 3031519,
+        "tree_sha256": "0bb06eb2a717a4b4941e4eaa8ca524a823abe52a8a7a39959692051d249d1387",
+        "build_manifest_sha256": "38c2f03f0c683b607771da53ba1e2714cbdcb27ff92e731465b880ee148fe514",
+        "documents_sha256": "be65abb3e66cd1bcfe8e7b5b504b76d9d9d4b86b4747d67d0f5552cc3a80a287",
+        "semantic_behavior_fingerprint_sha256": "e1e646a1a274d6a1696f3cbd7d284ee223a1026b80c1838bcf856bbaa8241d01",
+        "role_in_successor": "reconciled Lucene retrieval index identity (Amendment 003)"
+      }
+    },
+    {
+      "role": "protocol_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "canonical_sha256": "133385386bc9c29c4fa9e49bef4b96cfe8b93d0152109280257389fad2e3e41b",
+        "schema": "openevo.wb1-protocol.v1",
+        "role_in_successor": "frozen WB1 protocol fingerprint"
+      }
+    },
+    {
+      "role": "training_trajectory_state",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "latest_completed_generation": 27,
+        "valid_completed_episodes": 3456,
+        "cumulative_exact_successes": 7,
+        "formal_seed": 20260821,
+        "generation_valid_episodes": 128,
+        "latest_native_state_version": 27,
+        "state_v27_checksum": "83b06092ea87ce2a3a8a569d493175fbc92a79879e4a11728ff11113456ba132",
+        "state_v27_file_sha256": "135349958a19163cab598bb2595c33c7f22017cdec224f07d11f2f029032685e",
+        "memory_v27_sha256": "9efb2716920cfb6ada8eb31bae49b873da4e70145a3b23eb82cb8ca5c580241d",
+        "state_v27_receipt_sha256": "d1558424efa20e3c6aa044764bb23f27fc4235d361bb0bcc562038ff0b32117e",
+        "native_state_adapter_sha256": "a54e875abebbf2c6cac3c93aca96a2a65207ccca28d19b0ee5dcb3175f1d18cd",
+        "role_in_successor": "immutable latest native textual state (state-v27) and training-trajectory counters; state-v28/Gen28 outcome pending live verification"
+      }
+    },
+    {
+      "role": "native_state_integration_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "arm": "WB1-ON-S",
+        "state_format": "native-openevo-static-markdown-v1",
+        "update_boundary": "one native OpenEvo textual state evolution after each valid 128-episode generation",
+        "backbone_frozen": true,
+        "adapter_or_optimizer_write": false,
+        "information_flow": "only exact success/failure enters pre-update OpenEvo input; task_score masked until update completion",
+        "source_files": {
+          "src/openevo/evolution/memevolve.py": "fc7c79bf0cef4f0912784cf501b26ca074d0f9f8b7ff06d26047a28a956e8571",
+          "src/openevo/evolution/models.py": "073f36da48f19a7472336fb35f980fb7e6de1cbf6da9ef5d28c2b3f437e48d06",
+          "src/openevo/evolution/artifact_payloads.py": "864bf03fd1151ba1e3cda5a3994ceed1fc5e714f127d407226059a09f7f422c9",
+          "tests/evolution/test_memevolve_text_memory.py": "a376036bfd951ef15c476c5ab6173725e8140c955cef9de11d27616b97092185"
+        },
+        "role_in_successor": "pinned OpenEvo native textual-state evolution semantics for WB1-ON-S"
+      }
+    },
+    {
+      "role": "trackb_final_panel_identity",
+      "kind": "identity",
+      "lifetime": "immutable",
+      "value": {
+        "schema": "openevo.wb1-trackb-final-panel.v1",
+        "registered_by_amendment": "WB1_AMENDMENT_004_TRACK_B_MATCHED_FINAL_PANEL_2026-08-26.md",
+        "selector": "sha256(domain|env.seed=2026|goal_idx) ascending; first 128 of goal_idx 0..499",
+        "env_seed": 2026,
+        "panel_digest_ordered": "48ec9c848ad9bbecdf78aab19c63d9c341a18a5fdc29ff5874fe6501e60e626b",
+        "reward_blind": true,
+        "final_unlock_allowed": false,
+        "role_in_successor": "registered deterministic matched final panel shared identically by WB1-V, WB1-SEED, WB1-ON-S; final stays locked"
+      }
+    },
+    {
+      "role": "wb1_protocol_file",
+      "kind": "file",
+      "lifetime": "immutable",
+      "path": "configs/experiment/wb1/protocol.json"
+    },
+    {
+      "role": "wb1_train_dev_split_file",
+      "kind": "file",
+      "lifetime": "immutable",
+      "path": "configs/experiment/wb1/splits/wb1_train_dev_split.json"
+    },
+    {
+      "role": "trackb_final_panel_file",
+      "kind": "file",
+      "lifetime": "immutable",
+      "path": "configs/experiment/wb1/splits/wb1_final_panel_matched_trackb_v1.json"
+    },
+    {
+      "role": "wb1_plan_file",
+      "kind": "file",
+      "lifetime": "immutable",
+      "path": "docs/agent-handoffs/OPEN_EVO_WEBSHOP_WB1_SEED_ALIGNED_BENCHMARK_2026-08-21.md"
+    },
+    {
+      "role": "wb1_amendment_004_file",
+      "kind": "file",
+      "lifetime": "immutable",
+      "path": "docs/experiment-tracking/WB1_AMENDMENT_004_TRACK_B_MATCHED_FINAL_PANEL_2026-08-26.md"
+    }
+  ]
+}

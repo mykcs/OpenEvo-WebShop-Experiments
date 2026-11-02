@@ -1,0 +1,60 @@
+{
+  "campaign_id": "20261025-0825-q03-step119-val128",
+  "container_root": "/workspace",
+  "host_root": "/workspace",
+  "network": "none",
+  "paths": {
+    "dataset": {
+      "access": "ro",
+      "host_path": "/workspace/runs/20261004-1457-q03-seed-stage2/data/verl-agent/text/test.parquet",
+      "sha256": "271bf898898887e2d68494080888cc63c7e6c92db5f573366ca21b773af7f71f"
+    },
+    "experiment": {
+      "access": "ro",
+      "container_path": "/workspace/src/openevo-experiment",
+      "host_path": "/workspace/control/q03-step119-source-24ad",
+      "revision": "24ad8ea49673c3eddc3d1ea3f557b14878310417"
+    },
+    "model": {
+      "access": "ro",
+      "host_path": "/dev/shm/q03-step119-model-merge-r6",
+      "sha256": "4b9207ce1d7fdbe9c3acb3e06684ef8d0a1bcdadf34d3fe6c23e8c47ec7f7b1b"
+    },
+    "openevo": {
+      "access": "ro",
+      "container_path": "/workspace/src/openevo-core",
+      "host_path": "/workspace/control/openevo-core",
+      "revision": "a85f9a8dc5cc9870695a4301d8fc128a7ec38fb0"
+    },
+    "run_root": {
+      "access": "rw",
+      "fresh_private_directory_required": true,
+      "host_path": "/workspace/runs/q03-step119-val128-20261025"
+    },
+    "runtime_staging": {
+      "access": "launcher-only",
+      "host_path": "/dev/shm/q03-step119-runtime-r13/assets"
+    },
+    "seed_runtime": {
+      "access": "ro",
+      "container_path": "/workspace/src/seed",
+      "host_path": "/dev/shm/q03-step119-runtime-r13/assets/host-effective-sources/5978228d1e4f2a70928248e1c0d24f487708da66f729a94abcc5d66e2777d0c2",
+      "sha256": "5978228d1e4f2a70928248e1c0d24f487708da66f729a94abcc5d66e2777d0c2"
+    },
+    "validation_manifest": {
+      "access": "ro",
+      "repo_path": "configs/experiment/manifests/q03-step119-public-validation-id-manifest-20261025.json",
+      "sha256": "4498a0821301043fa6d7b0677763d4e9f7c8165645f4e7dfb12af86670176d2d"
+    }
+  },
+  "requirements": {
+    "cpu_no_gpu_import_probe_before_allocation": true,
+    "exact_hash_bound_runtime_imports": true,
+    "fresh_private_output_root": true,
+    "live_owner_and_memory_gate": true,
+    "no_preemption": true
+  },
+  "runtime_import_receipt": "docs/evidence/experiment-passports/20261026/Q03_STEP119_RUNTIME_IMPORT_IDENTITY.json",
+  "runtime_source_sha256": "5978228d1e4f2a70928248e1c0d24f487708da66f729a94abcc5d66e2777d0c2",
+  "schema": "openevo.q03.step119.path-contract.v1"
+}

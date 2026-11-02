@@ -1,0 +1,1034 @@
+{
+  "$defs": {
+    "reference": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "repository_file",
+            "git_file",
+            "hf",
+            "server_file",
+            "oci",
+            "unresolved"
+          ]
+        },
+        "path": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "repository": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "repository",
+        "revision",
+        "path",
+        "sha256",
+        "evidence_path",
+        "reason"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/experiment-passport-202609111800.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Passport is not live state, a tracking run, a resume authorization or an asset availability claim. Null historical facts must remain explicit and block unsupported continuation.",
+  "properties": {
+    "artifact_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "assets": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "asset_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "required_for_resume": {
+                "type": "boolean"
+              },
+              "role": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "source": {
+                "$ref": "#/$defs/reference"
+              }
+            },
+            "required": [
+              "asset_id",
+              "role",
+              "source",
+              "required_for_resume"
+            ],
+            "type": "object"
+          },
+          "minItems": 0,
+          "type": "array"
+        },
+        "large_asset_provider": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "wandb_is_sole_backup": {
+          "const": false
+        },
+        "state_model_policy": {
+          "const": "docs/operations/publication/RESEARCH_ASSET_RECOVERY_AND_DISCLOSURE_POLICY.zh-CN.md"
+        },
+        "default_recovery_state": {
+          "type": "string",
+          "enum": [
+            "SERVER_ONLY",
+            "REMOTE_BACKED_UP",
+            "RECOVERY_VERIFIED"
+          ]
+        },
+        "default_disclosure_state": {
+          "type": "string",
+          "enum": [
+            "PRIVATE",
+            "EMBARGOED",
+            "PUBLIC",
+            "NEVER_PUBLIC"
+          ]
+        }
+      },
+      "required": [
+        "large_asset_provider",
+        "assets",
+        "wandb_is_sole_backup"
+      ],
+      "type": "object"
+    },
+    "authority_paths": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "budget_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "accounting_rule": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "external_teacher_call_limit": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "final_panel_access_limit": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "horizon": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "optimizer_step_limit": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "rollout_limit": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "rollouts_per_round": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "round_limit": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/reference"
+        }
+      },
+      "required": [
+        "rollout_limit",
+        "round_limit",
+        "rollouts_per_round",
+        "horizon",
+        "optimizer_step_limit",
+        "external_teacher_call_limit",
+        "final_panel_access_limit",
+        "accounting_rule",
+        "source"
+      ],
+      "type": "object"
+    },
+    "campaign_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "minLength": 1,
+      "type": "string"
+    },
+    "experiment_id": {
+      "pattern": "^[0-9]{12}-[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "type": "string"
+    },
+    "initial_execution_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "activation": {
+          "$ref": "#/$defs/reference"
+        },
+        "dependency_lock": {
+          "$ref": "#/$defs/reference"
+        },
+        "experiment_repository": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "frozen_science_sha": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "initial_experiment_sha": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "initial_ray_sha": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "initial_run_root": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "launcher": {
+          "$ref": "#/$defs/reference"
+        },
+        "python_version": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "release": {
+          "$ref": "#/$defs/reference"
+        },
+        "runtime_asset_lock": {
+          "$ref": "#/$defs/reference"
+        },
+        "runtime_digest_kind": {
+          "enum": [
+            "IMAGE_ID",
+            "MANIFEST_DIGEST",
+            "UNKNOWN"
+          ]
+        },
+        "runtime_fingerprint": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "runtime_image_digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "upstream_openevo_sha": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "upstream_repository": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "initial_experiment_sha",
+        "frozen_science_sha",
+        "upstream_openevo_sha",
+        "initial_ray_sha",
+        "experiment_repository",
+        "upstream_repository",
+        "python_version",
+        "initial_run_root",
+        "runtime_asset_lock",
+        "dependency_lock",
+        "launcher",
+        "release",
+        "activation",
+        "runtime_image_digest",
+        "runtime_digest_kind",
+        "runtime_fingerprint"
+      ],
+      "type": "object"
+    },
+    "parent_experiment_id": {
+      "pattern": "^[0-9]{12}-[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "passport_payload_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_paths": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+            "type": "string"
+          },
+          "minItems": 0,
+          "type": "array"
+        },
+        "parent_lineage_note": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision_naming_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "enum": [
+            "NEW_DECLARATION",
+            "BACKFILLED_FROM_DURABLE_EVIDENCE"
+          ]
+        },
+        "unknown_fields": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "status",
+        "evidence_paths",
+        "unknown_fields",
+        "parent_lineage_note",
+        "revision_naming_note"
+      ],
+      "type": "object"
+    },
+    "resume_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "automatic_gpu_start": {
+          "const": false
+        },
+        "policy": {
+          "enum": [
+            "EXACT_RECEIPT_LINEAGE_ONLY",
+            "NO_RESUME_HISTORICAL",
+            "COMPLETE_NO_RESUME_NEEDED",
+            "MANUAL_REVIEW_ONLY"
+          ]
+        },
+        "reason": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "requires_receipt_chain": {
+          "const": true
+        }
+      },
+      "required": [
+        "policy",
+        "automatic_gpu_start",
+        "requires_receipt_chain",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "openevo.experiment-passport.202609111800"
+    },
+    "scientific_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "acceptance_policy": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_rule": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "credit_assignment": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "name": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "$ref": "#/$defs/reference"
+            }
+          },
+          "required": [
+            "name",
+            "candidate_rule",
+            "credit_assignment",
+            "source"
+          ],
+          "type": "object"
+        },
+        "action_contract": {
+          "$ref": "#/$defs/reference"
+        },
+        "benchmark": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "claim_boundary": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evaluator_contract": {
+          "$ref": "#/$defs/reference"
+        },
+        "external_teacher": {
+          "additionalProperties": false,
+          "properties": {
+            "future_call_budget": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "prior_analyses": {
+              "$ref": "#/$defs/reference"
+            },
+            "role": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "role",
+            "future_call_budget",
+            "prior_analyses"
+          ],
+          "type": "object"
+        },
+        "final_panel_policy": {
+          "additionalProperties": false,
+          "properties": {
+            "future_access_limit": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "policy": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "$ref": "#/$defs/reference"
+            }
+          },
+          "required": [
+            "policy",
+            "future_access_limit",
+            "source"
+          ],
+          "type": "object"
+        },
+        "harness": {
+          "additionalProperties": false,
+          "properties": {
+            "profile": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "$ref": "#/$defs/reference"
+            },
+            "thinking": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "profile",
+            "thinking",
+            "source"
+          ],
+          "type": "object"
+        },
+        "human_intervention_policy": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hypothesis": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model": {
+          "additionalProperties": false,
+          "properties": {
+            "asset": {
+              "$ref": "#/$defs/reference"
+            },
+            "dtype": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "model_id": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "model_revision": {
+              "pattern": "^[0-9a-f]{40}$",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "tokenizer_revision": {
+              "pattern": "^[0-9a-f]{40}$",
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "model_id",
+            "model_revision",
+            "tokenizer_revision",
+            "dtype",
+            "asset"
+          ],
+          "type": "object"
+        },
+        "optimizer": {
+          "additionalProperties": false,
+          "properties": {
+            "batch_size": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "epochs": {
+              "minimum": 0,
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "extra_settings": {
+              "type": "object"
+            },
+            "gradient_accumulation_steps": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "learning_rate": {
+              "minimum": 0,
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "name": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "name",
+            "learning_rate",
+            "batch_size",
+            "gradient_accumulation_steps",
+            "epochs",
+            "extra_settings"
+          ],
+          "type": "object"
+        },
+        "parser_contract": {
+          "$ref": "#/$defs/reference"
+        },
+        "prompt_contract": {
+          "$ref": "#/$defs/reference"
+        },
+        "protocol_fingerprint": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "research_question": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sampling": {
+          "additionalProperties": false,
+          "properties": {
+            "do_sample": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "extra_settings": {
+              "type": "object"
+            },
+            "max_new_tokens": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "temperature": {
+              "minimum": 0,
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "top_k": {
+              "minimum": -1,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "top_p": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "temperature",
+            "top_p",
+            "top_k",
+            "do_sample",
+            "max_new_tokens",
+            "extra_settings"
+          ],
+          "type": "object"
+        },
+        "sd_lora": {
+          "additionalProperties": false,
+          "properties": {
+            "alpha": {
+              "minimum": 0,
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "effective_rank_cap": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "extra_settings": {
+              "type": "object"
+            },
+            "rank": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "source": {
+              "$ref": "#/$defs/reference"
+            },
+            "target_modules": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "rank",
+            "alpha",
+            "target_modules",
+            "effective_rank_cap",
+            "source",
+            "extra_settings"
+          ],
+          "type": "object"
+        },
+        "seed_policy": {
+          "additionalProperties": false,
+          "properties": {
+            "rng_contract": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "schedule": {
+              "$ref": "#/$defs/reference"
+            },
+            "schedule_id": {
+              "minLength": 1,
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "seed_base": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "schedule_id",
+            "seed_base",
+            "schedule",
+            "rng_contract"
+          ],
+          "type": "object"
+        },
+        "split": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stop_rule": {
+          "additionalProperties": false,
+          "properties": {
+            "max_rollouts": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "max_rounds": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "source": {
+              "$ref": "#/$defs/reference"
+            }
+          },
+          "required": [
+            "max_rollouts",
+            "max_rounds",
+            "source"
+          ],
+          "type": "object"
+        },
+        "task_manifest": {
+          "$ref": "#/$defs/reference"
+        },
+        "training_data_identity": {
+          "$ref": "#/$defs/reference"
+        },
+        "treatment": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "what_changed": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "what_must_stay_fixed": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "research_question",
+        "hypothesis",
+        "treatment",
+        "human_intervention_policy",
+        "benchmark",
+        "split",
+        "claim_boundary",
+        "what_changed",
+        "what_must_stay_fixed",
+        "task_manifest",
+        "prompt_contract",
+        "action_contract",
+        "parser_contract",
+        "evaluator_contract",
+        "training_data_identity",
+        "model",
+        "harness",
+        "seed_policy",
+        "sampling",
+        "optimizer",
+        "sd_lora",
+        "acceptance_policy",
+        "protocol_fingerprint",
+        "external_teacher",
+        "final_panel_policy",
+        "stop_rule"
+      ],
+      "type": "object"
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "FROZEN"
+      ]
+    },
+    "tracking_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "approved_artifact_roles": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 0,
+          "type": "array"
+        },
+        "entity": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mode_order": {
+          "const": [
+            "online",
+            "offline",
+            "disabled"
+          ]
+        },
+        "project": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "role": {
+          "const": "MIRROR_ONLY"
+        },
+        "scientific_authority": {
+          "const": false
+        }
+      },
+      "required": [
+        "role",
+        "entity",
+        "project",
+        "mode_order",
+        "approved_artifact_roles",
+        "scientific_authority"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "experiment_id",
+    "status",
+    "created_at",
+    "parent_experiment_id",
+    "campaign_id",
+    "scientific_identity",
+    "initial_execution_identity",
+    "budget_contract",
+    "tracking_policy",
+    "artifact_policy",
+    "resume_policy",
+    "authority_paths",
+    "provenance",
+    "passport_payload_sha256"
+  ],
+  "title": "OpenEVO immutable experiment scientific identity",
+  "type": "object",
+  "x-hash-contract": "Canonical UTF-8 JSON; sorted keys; compact separators; finite numbers only; omit each own fingerprint/hash field when hashing its owning object."
+}

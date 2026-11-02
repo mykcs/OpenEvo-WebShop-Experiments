@@ -1,0 +1,98 @@
+{
+  "arm": {
+    "arm_key": "off",
+    "experiment_arm_id": "BOUNDED_OFF",
+    "treatment_mode": "BOUNDED_OFF"
+  },
+  "authority_scope": "BOUNDED_OFF_ONLY",
+  "budget": {
+    "checkpoint_or_state_selection_after_release": false,
+    "external_teacher_calls_delta": 0,
+    "final_panel_tasks_exact": 128,
+    "formal_training_delta": 0,
+    "valid_measurements_exact": 1
+  },
+  "campaign_id": "20260916-0255-bounded-effective-state-gdr",
+  "experiment_id": "202609160255-bounded-effective-state-gdr",
+  "final_eval_release_path": "configs/experiment/releases/bounded-effective-state-off-final-eval-release-20260918.json",
+  "final_eval_release_sha256": "0ac0fe24e5cf5d2c17f5232fd462a7985283d6d5c13e9d1bc7819c8ef3e3d3b1",
+  "final_state": {
+    "agent_system": {
+      "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-readiness/qwen3-1p7b/harness201-final-v2-generic/agent.md",
+      "sha256": "7a87fa050c526907b1999ba4c0ef9c127808e4983a1f36dc646a12c6ab75caf4"
+    },
+    "memory": {
+      "path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/round-065/text-memory/memory.md",
+      "sha256": "9a88356c084783e003d80db90a918be265d1ce481590d769453993d0e21dea6d"
+    },
+    "sd_adapter": {
+      "adapter_config_sha256": "cbd30da3262c20cd0df9542d7577d14568db14e7d9cbb69291c0182da96d4ee8",
+      "adapter_model_sha256": "1bc2f7f62c1bde68cd4fd34e86c25af7f9663153a9ded631759dda52c87a21a5",
+      "bounded_recurrence_receipt_sha256": "7caad7d51b51b76b0ffd843d2ac13e92a55986834c4463ce2c09c0079a96093d",
+      "path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/round-159/sd-lora/bounded-state"
+    },
+    "skill": {
+      "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-readiness/qwen3-1p7b/harness201-final-v2-generic/skill.md",
+      "sha256": "cef31b897dbe4796d61710c13ab11630f64f043bd7df651d1faa12980163b21a"
+    }
+  },
+  "historical_q17_authority_reused": false,
+  "inference": {
+    "chat_template_enable_thinking": false,
+    "do_sample": false,
+    "environment_seed": 0,
+    "harness_profile": "201.1",
+    "max_new_tokens": 512,
+    "max_steps": 15,
+    "repetition_penalty": 1.0,
+    "temperature": null,
+    "top_k": null,
+    "top_p": null
+  },
+  "on_final_outcomes_used_to_choose_off_state_or_settings": false,
+  "owner_instruction": "After the OFF arm completes 160/160 Stage2 rounds, complete its own final closeout without mutating either sealed arm or using ON final outcomes to choose OFF state or settings.",
+  "panel": {
+    "canonical_locator": "configs/experiment/manifests/q17-gdr-twin-post-audit-heldout-202609061643.json",
+    "content_sha256": "3529b94f97491434da01f9b2adc2faf1d0571545603a788d367561ae2b529d48",
+    "execution_locator": "docs/evidence/q17-final-closeout-20260912/frozen-inputs/aea97afdd5b176126cf67f7ed315189c95fbf37b07263c84b947903cca69aa4d.json",
+    "execution_locator_sha256_observed": "aea97afdd5b176126cf67f7ed315189c95fbf37b07263c84b947903cca69aa4d",
+    "file_sha256": "aea97afdd5b176126cf67f7ed315189c95fbf37b07263c84b947903cca69aa4d",
+    "selected_panel_digest": "cd531caff21d13d72df5c6fb013fadc10457393134d8bc3bcdc63fadf76bc453",
+    "task_count_exact": 128,
+    "valid_measurements_exact": 1
+  },
+  "qualification": {
+    "final_panel_access": 0,
+    "status": "PASS",
+    "verification_path": "docs/evidence/bounded-effective-state-final-closeout-20260918/OFF_FINAL_INTERFACE_QUALIFICATION_VERIFICATION.json",
+    "verification_sha256": "186bb0b1f6ebf7be779ea65d63b256e5bf72d164143219871ad3a282334a3a26"
+  },
+  "recovery_rule": "Only exact-resume of engineering-invalid final ordinals is allowed with identical state, panel, decoding, runtime, activation and code identity; no score-driven rerun or checkpoint change.",
+  "resource_policy": {
+    "authorized_gpu_uuids": [
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ],
+    "external_owner_gpu_use_forbidden": true,
+    "fresh_gpu_who_required": true,
+    "may_change_gpu_split_after_score_rows": false,
+    "may_preempt_on_final": false
+  },
+  "runtime_code_git_sha": "c637b84e209021b89269a060e95b1a59e4e07be9",
+  "schema": "openevo.bounded-effective-state.off-final-panel-authority.20260918",
+  "sibling_isolation": {
+    "joint_long_horizon_analysis_is_separate": true,
+    "off_final_outcome_may_affect_on": false,
+    "on_final_outcome_may_affect_off": false,
+    "wait_for_on_final": false
+  },
+  "stage2": {
+    "final_panel_access_before": 0,
+    "final_state_id": "6333af5da5b4cb850cd065a83670f877fb102ea1be5bc8d27438e10b3195dc2d",
+    "rollouts": 20480,
+    "rounds": 160,
+    "seal_path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/off/FORMAL_ARM_SEALED.json",
+    "seal_sha256": "3e37c358dbeeacbeda610a7b2eb1a21dcf695e52cb8981aa418cd3b8431effbd"
+  },
+  "status": "AUTHORIZED"
+}

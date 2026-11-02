@@ -1,0 +1,133 @@
+{
+  "cells": [
+    {
+      "adapter_sha256": "7bed8e9760f4325bf1d1b4750a955a8509e742c0c8c695d2b44e85c0decadfe4",
+      "cell_id": "bounded-r40",
+      "checkpoint_id": "after_040_rounds",
+      "episodes": 64,
+      "passes": 1
+    },
+    {
+      "adapter_sha256": "25a140fdd7660e8d5264128e0f44a740c2300f587c00aa0edfe2b8f6e82e46ff",
+      "cell_id": "bounded-r80",
+      "checkpoint_id": "after_080_rounds",
+      "episodes": 64,
+      "passes": 1
+    },
+    {
+      "adapter_sha256": "723df2a2ee0630367589149366aef1ddb1111e3fbe6ba81f6c524a3ed3bfb3b7",
+      "cell_id": "gdr-r40",
+      "checkpoint_id": "after_040_rounds",
+      "episodes": 64,
+      "passes": 1
+    },
+    {
+      "adapter_sha256": "5c84fb20bb51433bed520d0e4aa9a7b2d6169db4d89c850a94ecbc4bfa077957",
+      "cell_id": "gdr-r80",
+      "checkpoint_id": "after_080_rounds",
+      "episodes": 64,
+      "passes": 1
+    },
+    {
+      "adapter_sha256": "f2a08138935e9bea45b93b261e3255b7ee2cff54e8cb24eb7a70a13b743e10b4",
+      "cell_id": "gdr-r120",
+      "checkpoint_id": "after_120_rounds",
+      "episodes": 64,
+      "passes": 1
+    },
+    {
+      "adapter_sha256": "ae96baaf173c02a64f231c80c95105d74c5f2ce0b2c21f48031c5964e9eb2d72",
+      "cell_id": "ordinary-r80",
+      "checkpoint_id": "after_080_updates",
+      "episodes": 64,
+      "passes": 1
+    },
+    {
+      "adapter_sha256": "18032c5cabd135b2464d5cbb2a3949aeb6130046dcc9f33acb33aee38c1baf46",
+      "cell_id": "ordinary-r160",
+      "checkpoint_id": "after_160_updates",
+      "episodes": 64,
+      "passes": 1
+    }
+  ],
+  "final_panel_access": 0,
+  "missing_payload_cells": [
+    "ordinary-r40",
+    "ordinary-r120"
+  ],
+  "new_episodes": 448,
+  "observations": {
+    "action_context": "exact constrained-action input token IDs copied before action generation; no decoded reconstruction",
+    "event_order": "copy inputs before generate; uncertainty observed before env.step; no post-action feature inputs",
+    "producer_sha256": "2906ef13392f182d1cf4a644b69ff19cd8f177c74b35ffd18896459e77130070",
+    "schema": "openevo.q06.pre-action-state.v1",
+    "state_type_definition": "q06-available-actions-v1: has_search_bar => search; else clickables contain buy now or start with description/features => product; else results",
+    "token_counts": "exact independently tokenized prompt and rendered history, add_special_tokens=False"
+  },
+  "optimizer_updates": 0,
+  "original_work_package": {
+    "path": "configs/experiment/advisor-questions/q06-work-package.v1.json",
+    "sha256": "5e20ae7952ef4f906c2680ab53e7d711d0761b415ff9773492c937ddd6b8e032"
+  },
+  "owner_pr": 633,
+  "predictive_protocol": {
+    "adapter": {
+      "path": "scripts/analysis/advisor_q06_raw_adapter.py",
+      "sha256": "fd3780eb314f6662bbb1586c3bf2005bc3db7c2c1cb611e7086890109423629d"
+    },
+    "bootstrap": {
+      "cluster": "task",
+      "replicates": 50000,
+      "seed": 20261001
+    },
+    "candidate": "simultaneous lower bound > 0.02 and trajectory directions agree",
+    "familywise": "Holm p and Bonferroni percentile simultaneous 95% CI",
+    "implementation": {
+      "path": "scripts/analysis/advisor_q06_nested_prediction.py",
+      "sha256": "94de56e887f618feac27cea27e1de11300e9975f7bde495772b58644d1ab07f6"
+    },
+    "outer": [
+      "task",
+      "time_train_max_round_80",
+      "training_lineage"
+    ],
+    "practical_margin": 0.02,
+    "primary": "baseline MAE minus uncertainty MAE",
+    "prospective_confirmation": "requires separate frozen predictor before fresh independent trajectory labels; S2 alone does not satisfy it"
+  },
+  "reused_cells": [
+    "bounded-r120",
+    "bounded-r160",
+    "gdr-r160"
+  ],
+  "s3_bank": {
+    "activation": "snapshot capture covered by these S2 cells; cross-checkpoint bank scoring requires its exact resource contract before model calls",
+    "capture_episodes_extra": 0,
+    "quota_each": 64,
+    "same_input_scoring": "exact retained observation/prompt/history/action schema/action context tokens, no environment reset or generation to manufacture history",
+    "selection": "outcome-blind SHA256(q06-bank-v1|cell_id|task_identity|step) ascending within strata; no refill from outcome columns; short stratum remains PARTIAL",
+    "size": 256,
+    "strata": [
+      [
+        5,
+        8
+      ],
+      [
+        9,
+        16
+      ],
+      [
+        17,
+        32
+      ],
+      [
+        33,
+        null
+      ]
+    ]
+  },
+  "schema": "openevo.q06.remaining-matrix-preregistration.v1",
+  "status": "FROZEN",
+  "teacher_calls": 0,
+  "training_rollouts": 0
+}

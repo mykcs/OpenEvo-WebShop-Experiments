@@ -1,0 +1,226 @@
+{
+  "schema": "openevo.webshop-seed-source-faithful-reproduction.v1",
+  "campaign_id": "20260826-0638-webshop-seed-source-faithful-reproduction",
+  "phase": "SEED-SOURCE-FAITHFUL-REPRODUCTION",
+  "status": "preregistered",
+  "formal_task_consumption_allowed": false,
+  "title": "SEED WebShop source-faithful reproduction: frozen OpenEvo SD-LoRA vs BASE under corrected task semantics",
+  "objective": "Re-answer the existing BASE-vs-frozen-OpenEvo held-out question on a source-faithful first-validation semantic panel derived from pinned public SEED code, without retraining either arm.",
+  "scientific_question": "On the source-faithful first-validation semantic panel derived from pinned public SEED code, does the already-frozen OpenEvo SD-LoRA policy improve WebShop performance relative to its paired BASE policy under one identical parser-compatible measurement contract?",
+  "benchmark": {
+    "name": "WebShop small (source-faithful first-validation panel)",
+    "environment": "WebAgentTextEnv-v0",
+    "canonical_standard_source": "docs/experiment-tracking/SEED_WEBSHOP_PUBLIC_CODE_REPRODUCTION_V1.md",
+    "seed_public_repo": "github.com/jinyangwu/SEED",
+    "seed_public_commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+    "data_files": {
+      "items_shuffle_1000.json": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+      "items_ins_v2_1000.json": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+      "items_human_ins.json": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3"
+    },
+    "human_goals": false,
+    "goals_total": 6910,
+    "held_out_session_index_min": 0,
+    "held_out_session_index_max": 499,
+    "environment_seed": 0,
+    "validation_base_seed": 1000,
+    "worker_seed_formula": "1000 + slot",
+    "session_draw": "np.random.RandomState(1000).choice(np.arange(500), size=128, replace=False)",
+    "task_semantics": "Per-slot worker seeds Python random, loads products, constructs synthetic goals (which consume random via price-range sampling), re-seeds with the same worker_seed, then shuffles before reset(session=sampled_session_index) selects the task. This matches pinned SEED SimServer.__init__. A numeric session index alone is not a complete task identity.",
+    "not_exact_paper_denominator": true,
+    "selected_panel_digest": "4e7ace9224e3f7311bdda00e726291545269bd0afcda751e83b4194b9a4d5854"
+  },
+  "frozen_artifact": {
+    "base_model": {
+      "model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "model_content_pin": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+      "role": "paired control arm"
+    },
+    "open_evo_sd_lora": {
+      "adapter_kind": "H1.38B final SD-LoRA",
+      "adapter_file_sha256": "47e63d417f85cb2defed5ff1ee934128b96e6a4f78a8f410fa052957d919190c",
+      "adapter_config_sha256": "ed48aae286e03ae63fe0f70c5e75dddd650f098e6d5cba55efb11106523c5261",
+      "loaded_tensor_digest": "eedc36232f04a8a7d6e8fc6a38b935758db65206f4945a6cfa35c4ab666a48f9",
+      "source_campaign": "20260820-0129-h138b-method-control",
+      "role": "paired treatment arm"
+    },
+    "substitution_allowed": false,
+    "reverify_on_server_before_execution": true
+  },
+  "successor_handoff": {
+    "spec": "configs/experiment/handoffs/seed-official-heldout-to-source-faithful-successor-v1-spec.json",
+    "handoff_receipt": "configs/experiment/handoffs/seed-official-heldout-to-source-faithful-successor-v1-handoff.json",
+    "handoff_sha256": "sha256:711077d2e052e8ae89dbc9560397dfdb57dc4e4f3681b8e8e8355d5d9cfacd5f",
+    "bootstrap_status": "READY_FOR_SUCCESSOR_PREP"
+  },
+  "frozen_evaluation_contract": {
+    "primary": {
+      "name": "repaired-PRIMARY parser-compatible identical-across-arms inference contract",
+      "prompt_contract": "seed3090.webshop-shared-prompt.v1",
+      "action_contract": "seed3090.webshop-action-parser.v3-action-command",
+      "prompt_source": "vendor/openevo-webshop/src/openevo_webshop/comparison_contract.py::render_webshop_prompt + WEBSHOP_TEMPLATE*",
+      "action_source": "scripts/openevo_webshop/webshop_comparison_contract.py::repair_action_command",
+      "facade_source": "vendor/openevo-webshop/src/openevo_webshop/prompts.py",
+      "history": "SimpleMemory format [Observation n: 'obs', Action n: 'act']; records are (pre-step reformatted obs, projected action); history_length=2",
+      "parser": "v3 action-command recovery: strict parse first; if it fails, recover the first well-formed (search|click|select|buy)[...] command after </think> and re-wrap as <think>...</think>\\n<action>cmd</action> so strict re-parse succeeds. Invalid/unparseable actions are passed through to the environment (no substitution/repair), identical across BASE and OPEN_EVO_SD.",
+      "temperature": 0.4,
+      "do_sample": true,
+      "top_p": 1.0,
+      "top_k": "disabled (HF neutralized to vocab_size 151936 to match vLLM top_k=-1)",
+      "max_steps": 15,
+      "max_new_tokens": 512,
+      "environment_seed": 0,
+      "rollouts_per_task": 1,
+      "generation_seed": "2026082500 + panel_ordinal (frozen, identical across arms for the same slot); per-step + step_index",
+      "evaluator": "WebShop raw task_score (continuous, terminal) + exact success (won == done and task_score==1.0), saved separately",
+      "invalid_taxonomy": [
+        "invalid_action_step",
+        "runtime",
+        "identity",
+        "incomplete_trace",
+        "adapter_load_unverified",
+        "base_fallback"
+      ],
+      "implementation_files": {
+        "vendor/openevo-webshop/src/openevo_webshop/comparison_contract.py": "sha256:e34adb6eade4746d7537d2cd0869d4f6d908dff5e1362fd7b9bb87ca09b93c07",
+        "vendor/openevo-webshop/src/openevo_webshop/prompts.py": "sha256:a5f13046cec24ab4b98b49fa1eb437940dc7127182c1bc0c150f2bccef152d7f",
+        "scripts/openevo_webshop/webshop_comparison_contract.py": "sha256:3fdb76559adb5c950da509db7da93e767197c1f1032e86622e56f8a7618cf882"
+      }
+    },
+    "diagnostic": {
+      "strict_seed_parser": {
+        "role": "historical diagnostic only",
+        "prompt_contract": "seed.webshop-public-eval-prompt.v1",
+        "action_contract": "seed.webshop-public-eval-projection.v1",
+        "parser": "webshop_projection verbatim; PASS-THROUGH (invalid projected action sent to env, no substitution/repair)",
+        "note": "Do not rerun an entire strict-parser panel merely to reproduce an already-established 0/0 wrapper failure.",
+        "implementation_file": "vendor/openevo-webshop/src/openevo_webshop/comparison_contract.py",
+        "implementation_sha256": "sha256:e34adb6eade4746d7537d2cd0869d4f6d908dff5e1362fd7b9bb87ca09b93c07"
+      }
+    }
+  },
+  "task_selection": {
+    "builder": "scripts/openevo_webshop/build_seed_source_faithful_panel.py",
+    "method": "np.random.RandomState(1000).choice(np.arange(500), size=128, replace=False); per-slot worker_seed=1000+slot",
+    "selection_seed": 1000,
+    "selection_basis": "SEED first-validation draw (env.seed+1000); draw order preserved as panel order; each slot interpreted within its own worker-shuffled goal list",
+    "held_out_only": true,
+    "minimum_session_index": 0,
+    "maximum_session_index": 499,
+    "train_pool_forbidden_for_formal_eval": true,
+    "task_count": 128,
+    "label": "source-faithful SEED WebShop first-validation 128-slot semantic panel",
+    "materialized_panel": {
+      "manifest_path": "configs/experiment/manifests/webshop-seed-source-faithful-reproduction-v1-panel-v1.json",
+      "manifest_file_sha256": "60df28877c1168c46aa05f505830bb2923f8ee6100fa10b3b9597099a6efa76e",
+      "manifest_content_sha256": "dbc0e39f4ee4d3d3df3e9308aac57729881f4066996e7df3d0f4f7071fd4e355",
+      "selected_panel_digest": "4e7ace9224e3f7311bdda00e726291545269bd0afcda751e83b4194b9a4d5854",
+      "superseded_manifest": {
+        "reason": "Builder omitted the second random.seed(worker_seed) before shuffle that pinned SEED SimServer performs after get_synthetic_goals; fixed in builder commit 12034fde3c7c8506b25d0bbbdfe0b3afc12f3bec.",
+        "manifest_file_sha256": "6a975f034a5ccc6302f4f16345e349a8bef0fcceb61ab182ff5a9c61cd2f876d",
+        "manifest_content_sha256": "c3375c567bd6423c4f86aec46f412e25c278d5ca1214a348fdec0a40fb0caaf6",
+        "selected_panel_digest": "a6c714043cf292672e83329c9cf38fb88a0d0e7dd70871896dcfe2695e4ff3e7"
+      }
+    },
+    "rebuild_receipts": [
+      "configs/experiment/receipts/webshop-seed-source-faithful-reproduction-v1-rebuild-1.json",
+      "configs/experiment/receipts/webshop-seed-source-faithful-reproduction-v1-rebuild-2.json"
+    ],
+    "selection_outcomes_blind": true
+  },
+  "arms": {
+    "BASE": {
+      "adapter": "none",
+      "model": "Qwen/Qwen2.5-7B-Instruct"
+    },
+    "OPEN_EVO_SD": {
+      "adapter_sha256": "47e63d417f85cb2defed5ff1ee934128b96e6a4f78a8f410fa052957d919190c",
+      "source_campaign": "20260820-0129-h138b-method-control"
+    }
+  },
+  "matrix": {
+    "primary": {
+      "tasks": 128,
+      "arms": 2,
+      "rollout_seeds": 1,
+      "episodes": 256
+    },
+    "total_episodes": 256,
+    "label": "source-faithful paired BASE-vs-OpenEvo evaluation"
+  },
+  "analysis": {
+    "primary_estimand": "OPEN_EVO_SD minus BASE paired contrast on identical source-faithful task identities",
+    "task_weighted_paired_mean": true,
+    "bootstrap_rounds": 10000,
+    "bootstrap_seed": 2026082601,
+    "paired_counts": [
+      "positive",
+      "tie",
+      "negative"
+    ],
+    "estimands_reported": [
+      "valid-only",
+      "ITT/all-scheduled"
+    ],
+    "never_drop_parser_invalid_silently": true,
+    "aggregates": [
+      "mean raw task_score",
+      "mean task_score x100",
+      "exact success rate",
+      "valid/total",
+      "invalid rate + taxonomy"
+    ]
+  },
+  "resources": {
+    "gpu_model": "single GPU per arm; the two arms may run in parallel on two authorized live-idle GPUs",
+    "resource_assignment_mode": "dynamic-live-idle",
+    "authorized_gpu_uuids_source": "parent experiment-execution-policy.md standing RTX 5090 pool intersected with immediate live-idle at launch",
+    "live_idle_required_immediately_before_launch": true,
+    "kill_reset_preempt_allowed": false,
+    "assume_zero_util_means_free": false,
+    "assume_invisible_pid_means_orphaned": false,
+    "record_per_attempt": [
+      "gpu_uuid",
+      "start/end timestamps",
+      "wall time",
+      "gpu count",
+      "gpu-hours",
+      "exit code",
+      "post-run release state"
+    ]
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "project": "openevo-webshop-experiments",
+    "group": "20260826-0638-webshop-seed-source-faithful-reproduction",
+    "default_mode": "online",
+    "offline_fallback": "only after saved online probe failure and final spool hash"
+  },
+  "forbidden_changes": [
+    "SEED training",
+    "OpenEvo retraining",
+    "adapter tuning",
+    "rank/LR/prompt/horizon/parser sweep",
+    "task cherry-picking",
+    "post-hoc new seeds",
+    "replacing failed/parser-failure/hard tasks",
+    "opportunistic extra arms",
+    "using session_index>=500 as official evaluation",
+    "silently reverting environment_seed to 2026",
+    "killing/resetting/preempting GPU workloads",
+    "substituting another adapter"
+  ],
+  "claim_boundary": {
+    "supports": [
+      "source-faithful first-validation task-construction semantics from pinned SEED public code",
+      "paired BASE-vs-frozen-OpenEvo comparison on that semantic panel under one identical parser-compatible measurement contract"
+    ],
+    "does_not_support": [
+      "exact SEED paper final 128-task denominator",
+      "reproduction of the SEED paper checkpoint",
+      "byte-exact SEED inference once a compatibility interface is used",
+      "local paired comparison against paper-reported SEED numbers"
+    ]
+  },
+  "next_gate": "PREPARED. Next: server runtime semantic validation 128/128, then a separate activation/release PR to move current-campaign to launch-authorized."
+}

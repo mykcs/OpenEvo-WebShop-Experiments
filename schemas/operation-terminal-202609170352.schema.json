@@ -1,0 +1,49 @@
+{
+  "$id": "openevo.operation-terminal.202609170352",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "execution_generation_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "idempotency_key": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "intent_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "operation_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "result": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "openevo.operation-terminal.202609170352"
+    },
+    "terminal_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "terminal_receipt_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "terminal_id",
+    "intent_id",
+    "operation_digest",
+    "idempotency_key",
+    "execution_generation_id",
+    "terminal_receipt_identity",
+    "result"
+  ],
+  "title": "OpenEVO durable operation terminal classification",
+  "type": "object"
+}

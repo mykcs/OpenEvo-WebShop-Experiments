@@ -1,0 +1,40 @@
+{
+  "activation_authority": false,
+  "arm": "qwen3-1p7b",
+  "budget_class": "formal_webshop",
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 1440,
+    "local_reflector_requests_max": 0,
+    "optimizer_steps_max": 0
+  },
+  "claim_boundary": "Current lineage adoption is complete; fresh Stage1A execution uses frozen thinking=false but requires a separate activation release.",
+  "completion": {
+    "path": "/workspace/runs/20260902-stage1-minimax-qwen3-1p7b-v1/READY_FOR_MINIMAX_qwen3-1p7b.json",
+    "required_equal": {
+      "arm": "qwen3-1p7b",
+      "new_webshop_calls": 0,
+      "status": "PASS",
+      "trajectory_count": 1440
+    }
+  },
+  "execution_source": {
+    "checkout": "/workspace/control/openevo-experiment-stage1-202609021800",
+    "execution_sha": "0ba74265907772860d2265d700631b175e806703"
+  },
+  "phase": "stage1a_collection",
+  "retry": {
+    "exact_resume": true
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "/workspace/control/openevo-experiment-stage1-202609021800/configs/experiment/stage1/202609021800/design.json",
+    "required_equal": {
+      "freeze_id": "202609021800",
+      "status": "FROZEN"
+    },
+    "sha256": "b5f2aaae25371f1c8aeebc233f690fdbfe69c42e97f5ee0b990d9d21e2fb0784"
+  },
+  "status": "ROUTING_RELEASE"
+}

@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/experiment-asset-graph-node-202609201821.schema.json",
+  "title": "OpenEvo Canonical Experiment Asset Graph Node 202609201821",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "node_level",
+    "canonical_id",
+    "display_title_en",
+    "program",
+    "benchmark",
+    "scientific_lifecycle",
+    "scientific_validity",
+    "asset_lifecycle",
+    "aliases",
+    "source_authorities",
+    "provider_bindings",
+    "relations",
+    "recovery_state",
+    "recoverability_class",
+    "disclosure_state",
+    "provider_visibility",
+    "state_model_policy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openevo.experiment-asset-graph-node.202609201821"
+    },
+    "node_level": {
+      "enum": [
+        "campaign",
+        "design",
+        "run",
+        "asset"
+      ]
+    },
+    "canonical_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "display_title_en": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary_zh": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "program": {
+      "const": "openevo"
+    },
+    "benchmark": {
+      "type": "string",
+      "minLength": 1
+    },
+    "campaign_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "design_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "canonical_run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "asset_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scientific_stage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "asset_role": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scientific_lifecycle": {
+      "enum": [
+        "draft",
+        "preregistered",
+        "frozen",
+        "authorized",
+        "running",
+        "sealed",
+        "analyzed",
+        "closed",
+        "superseded",
+        "cancelled"
+      ]
+    },
+    "scientific_validity": {
+      "enum": [
+        "not-assessed",
+        "valid-positive",
+        "valid-negative",
+        "protocol-invalid",
+        "measurement-invalid",
+        "runtime-failure",
+        "tracking-degraded",
+        "cancelled",
+        "not-run"
+      ]
+    },
+    "asset_lifecycle": {
+      "enum": [
+        "live-writing",
+        "local-closed",
+        "remote-published",
+        "remote-verified-exact",
+        "retained-hot",
+        "retained-cold",
+        "reconstructible-pinned",
+        "retired"
+      ]
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "source_authorities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "authority_type",
+          "provider_id"
+        ],
+        "properties": {
+          "authority_type": {
+            "enum": [
+              "git",
+              "receipt",
+              "content-hash",
+              "provider-readback"
+            ]
+          },
+          "provider_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "immutable_revision": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "content_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "notes_zh": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "provider_bindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "provider",
+          "provider_id",
+          "binding_role",
+          "provider_visibility",
+          "disclosure_state"
+        ],
+        "properties": {
+          "provider": {
+            "enum": [
+              "server",
+              "github",
+              "wandb",
+              "huggingface",
+              "kaggle",
+              "basemodel"
+            ]
+          },
+          "provider_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "binding_role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "immutable_revision": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "metadata_revision": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "content_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "legacy": {
+            "type": "boolean"
+          },
+          "notes_zh": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "provider_visibility": {
+            "enum": [
+              "private",
+              "public",
+              "unknown",
+              "not_applicable"
+            ]
+          },
+          "disclosure_state": {
+            "enum": [
+              "PRIVATE",
+              "EMBARGOED",
+              "PUBLIC",
+              "NEVER_PUBLIC"
+            ]
+          }
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "relation",
+          "target_canonical_id"
+        ],
+        "properties": {
+          "relation": {
+            "enum": [
+              "child-of",
+              "consumes",
+              "produces",
+              "derived-from",
+              "analyzes",
+              "recovers-from",
+              "published-as",
+              "supersedes",
+              "superseded-by"
+            ]
+          },
+          "target_canonical_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "execution_binding": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "generated_from": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "recovery_state": {
+      "enum": [
+        "SERVER_ONLY",
+        "REMOTE_BACKED_UP",
+        "RECOVERY_VERIFIED"
+      ]
+    },
+    "recoverability_class": {
+      "type": "string",
+      "minLength": 1
+    },
+    "disclosure_state": {
+      "enum": [
+        "PRIVATE",
+        "EMBARGOED",
+        "PUBLIC",
+        "NEVER_PUBLIC"
+      ]
+    },
+    "provider_visibility": {
+      "enum": [
+        "private",
+        "public",
+        "unknown",
+        "not_applicable"
+      ]
+    },
+    "state_model_policy": {
+      "const": "docs/operations/publication/RESEARCH_ASSET_RECOVERY_AND_DISCLOSURE_POLICY.zh-CN.md"
+    }
+  }
+}

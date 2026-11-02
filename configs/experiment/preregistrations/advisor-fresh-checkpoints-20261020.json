@@ -1,0 +1,110 @@
+{
+  "analysis": {
+    "early_stop_confirmation": "Both joint upper confidence limits for late-minus-early must be no larger than their prespecified margins. Non-significance alone is inconclusive.",
+    "family_confidence": 0.95,
+    "paired_bootstrap_draws": 50000,
+    "quantile_tail_probability": 0.003125,
+    "resampling_unit": "paired task identity, same indices jointly across all contrasts/endpoints",
+    "reverse_claim": "Specific reverse-R156 minus intact-R160 effect on new tasks; no direction-vs-norm claim without matched removal control.",
+    "score_noninferiority_margin": 0.02,
+    "seed": 20261020,
+    "success_noninferiority_margin": 0.03125,
+    "two_sided_per_endpoint_alpha": 0.00625,
+    "wide_interval": "report uncertain; do not add tasks or change thresholds based on results"
+  },
+  "checkpoint_count": 7,
+  "contrasts": [
+    [
+      "ordinary160",
+      "ordinary120"
+    ],
+    [
+      "bounded160",
+      "bounded150"
+    ],
+    [
+      "gdr160",
+      "gdr130"
+    ],
+    [
+      "reverse156",
+      "bounded160"
+    ]
+  ],
+  "endpoints": [
+    "task_score",
+    "success"
+  ],
+  "episodes": 448,
+  "episodes_per_checkpoint": 64,
+  "exclusions": {
+    "inventory_sha256": "f863aa68ee4f77e2c04f4c19210cb5aedbd4ec6d654e3282106b44f17d0c9e26",
+    "q08_seen_panel_sha256": "0780dbe68dcc1cafb013a8765f2ecb4b91bfd2a0d92ac3ac9fe4fde7453fccc3",
+    "q10_reserved_panel_sha256": "af1546d4d2d628eaa4ed8e5b6647d44cd60c6c7e3c806f1f772b472b5c5a182d"
+  },
+  "failure_policy": "Preserve per-task START/COMPLETE/failure and partial model consumption. No automatic replay after START, outcome-based retry, omitted difficult rows or silent budget renewal.",
+  "final_panel_access": 0,
+  "frozen_scientific_contract": {
+    "analysis": {
+      "early_stop_confirmation": "Both joint upper confidence limits for late-minus-early must be no larger than their prespecified margins. Non-significance alone is inconclusive.",
+      "family_confidence": 0.95,
+      "paired_bootstrap_draws": 50000,
+      "quantile_tail_probability": 0.003125,
+      "resampling_unit": "paired task identity, same indices jointly across all contrasts/endpoints",
+      "reverse_claim": "Specific reverse-R156 minus intact-R160 effect on new tasks; no direction-vs-norm claim without matched removal control.",
+      "score_noninferiority_margin": 0.02,
+      "seed": 20261020,
+      "success_noninferiority_margin": 0.03125,
+      "two_sided_per_endpoint_alpha": 0.00625,
+      "wide_interval": "report uncertain; do not add tasks or change thresholds based on results"
+    },
+    "budget": {
+      "checkpoint_count": 7,
+      "episodes": 448,
+      "episodes_per_checkpoint": 64,
+      "final_panel_access": 0,
+      "optimizer_updates": 0,
+      "teacher_calls": 0
+    },
+    "contrasts": [
+      [
+        "ordinary160",
+        "ordinary120"
+      ],
+      [
+        "bounded160",
+        "bounded150"
+      ],
+      [
+        "gdr160",
+        "gdr130"
+      ],
+      [
+        "reverse156",
+        "bounded160"
+      ]
+    ],
+    "failure_policy": "Preserve per-task START/COMPLETE/failure and partial model consumption. No automatic replay after START, outcome-based retry, omitted difficult rows or silent budget renewal.",
+    "manifest": {
+      "path": "configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+      "sha256": "7bdf7b8d43a924e538d57d3ecf667a25dd496e41496aea2aad1e3e646b5fe964"
+    },
+    "question_ids": [
+      "Q01",
+      "Q07"
+    ],
+    "replication_scope": "New tasks on these exact historical training lineages; not independent initializations."
+  },
+  "interpretation": "At most three preselected early/late comparisons; does not establish an entire curve plateau or optimal stopping policy.",
+  "joint_family_endpoint_count": 8,
+  "manifest_sha256": "7bdf7b8d43a924e538d57d3ecf667a25dd496e41496aea2aad1e3e646b5fe964",
+  "optimizer_updates": 0,
+  "question_ids": [
+    "Q01",
+    "Q07"
+  ],
+  "replication_scope": "New tasks on these exact historical training lineages; not independent initializations.",
+  "schema": "openevo.advisor.fresh-checkpoint-preregistration.20261020.v1",
+  "status": "PROSPECTIVELY_FROZEN_BEFORE_ANY_MODEL_CALL",
+  "teacher_calls": 0
+}

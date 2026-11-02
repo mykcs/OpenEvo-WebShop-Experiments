@@ -1,0 +1,71 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.17-horizon-interface-diagnostic-v1",
+  "phase": "H1.17",
+  "status": "completed-clean-negative-horizon-diagnostic",
+  "scientific_question": "Is the clean H1.16 zero-reward result caused primarily by the frozen 15-step action horizon rather than by carrier or adapter choice?",
+  "hypothesis": "H1.16 traces show repeated next/back navigation and no buy transition. Extending only max_steps from 15 to 30 may reveal whether the frozen horizon is the limiting interface factor.",
+  "arms": [
+    {"name": "BASE-15", "runner_arm": "base", "max_steps": 15, "adapter": "none"},
+    {"name": "BASE-30", "runner_arm": "base-30", "max_steps": 30, "adapter": "none"}
+  ],
+  "unique_core_variable": "max_steps only",
+  "source_task_panel": "H1.16 eight fresh task identities; no task or outcome enters training",
+  "task_manifest_builder": "scripts/openevo_webshop/build_h1_17_manifest.py",
+  "evaluation_seeds": [2026082600, 2026082601, 2026082602, 2026082603],
+  "cell_design": "2 conditions x 4 partitions x 8 attempts = 64 attempts; eight independent cells concurrent",
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "runner_git_sha": "84cc530",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "environment_seed": 2026,
+    "temperature": 0.0,
+    "max_new_tokens": 512,
+    "memory": "none",
+    "adapter": "none"
+  },
+  "primary_metrics": ["qualified-positive rate", "final task_score", "BASE-30 minus BASE-15 paired reward", "valid rate"],
+  "diagnostic_metrics": ["next/backtrack count", "product-click count", "buy transition count", "episode length", "parser/runtime failure rate"],
+  "contamination_check": {
+    "task_role": "held-out diagnostic only",
+    "training": "no training or adapter fit",
+    "fresh_seeds": true,
+    "independent_seed_roots": true
+  },
+  "resource_budget": {
+    "planned_gpus": 8,
+    "planned_cells": 8,
+    "gpu_policy": "one independent UUID-bound cell per authorized GPU; no duplicate or occupancy-only work"
+  },
+  "stop_rule": "one horizon-only diagnostic; no prompt rescue, memory, adapter, parser, or task changes",
+  "branch_rule": {
+    "base30_positive": "classify frozen horizon as a leading interface bottleneck; preregister the smallest interface follow-up, not Q3",
+    "both_negative": "classify horizon as insufficient explanation; stop carrier/horizon micro-variants and inspect task/action interface under a new question",
+    "invalid": "repair only runtime/provenance without changing horizon semantics"
+  },
+  "claim_boundary": "Interface-horizon diagnosis only; no Q3, H2, D0, retention/transfer, or SEED claim.",
+  "result": {
+    "run_root": "/workspace/workspace/runs/phase-h1.17-horizon-interface-diagnostic-v1-20260815",
+    "manifest_sha256": "26188f4f8d175f022fae96f2e9c6e0135e5edef0e756a9319dc1de5e707d5a95",
+    "manifest_file_sha256": "25f2395bf2d0e305a6e20e41d2d7d6634312d1455dfe2a94bd48902cae485c33",
+    "reconciliation_sha256": "fa708b1891c0268b579cfff1426c5349b02844c3000d36939118f84529cae587",
+    "attempts": 64,
+    "valid": 64,
+    "qualified_positive": 0,
+    "runtime_process_errors": 0,
+    "paired_excluded": 0,
+    "base30_minus_base15_delta_sum": 0.0,
+    "oracle_reachability_audit": {
+      "evidence_sha256": "06e7088db60f1f7a206be9e9d6ed52a91d7ad71fe2d6c049b780c7cfa76fed2d",
+      "target_found_count": 6,
+      "qualified_oracle_success_count": 4,
+      "partial_oracle_count": 2,
+      "method": "exact goal query plus deterministic target/options/buy actions; no model inference"
+    },
+    "classification": "max_steps_not_sufficient; model_action_interface_failure_on_feasible_subset; two_tasks_not_query_reachable",
+    "next": "Stop horizon, carrier, and adapter micro-variants; investigate task/action interface or model capability only under a new preregistered question. Keep Q3/H2/D0/retention/transfer/SEED closed."
+  }
+}

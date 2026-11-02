@@ -1,0 +1,69 @@
+{
+  "schema": "openevo.experiment-queue.v1",
+  "experiment_group": "H1.3-greedy-output-budget-v1",
+  "phase": "H1.3",
+  "status": "pre-registered",
+  "scientific_question": "Does increasing the greedy output budget from 256 to 512 tokens restore fallback-free action-contract validity for the frozen H1 adapters?",
+  "hypothesis": "H1.2 greedy traces often ended inside <think> without a closing action tag; max_new_tokens=512 should reduce truncation/parser failures, especially for SUCCESS, without changing the model, prompt, task, seed, temperature, or evaluator.",
+  "arms": ["BASE", "FAILURE-SD-LORA", "SUCCESS-SD-LORA"],
+  "decoding": {
+    "temperature": 0.0,
+    "do_sample": false,
+    "budgets": [256, 512]
+  },
+  "task_panel": {
+    "source": "H0 train-only task manifest; no task is used for H1.3 training",
+    "task_manifest": "/workspace/workspace/runs/phase-h0-natural-success-search-v1-20260814-rerun-rng-fix/task-manifest.json",
+    "task_manifest_sha256": "fec3203f8abfad571048d27dfac1dd7c6fd62ad784d452939b09de1bb9f4e077",
+    "task_indices": [2822, 5135, 5294, 6769],
+    "partitions": {
+      "A": [2822, 5135],
+      "B": [5294, 6769]
+    }
+  },
+  "frozen_variables": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "upstream_openevo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "environment_seed": 2026,
+    "generation_seeds": [2026081450, 2026081451, 2026081452, 2026081453],
+    "max_steps": 15,
+    "prompt_contract": "seed3090.webshop-shared-prompt.v1",
+    "action_contract": "seed3090.webshop-action-parser.v1",
+    "parser_retry_seed_offset": 900000,
+    "evaluator": "WebShop task_score/won",
+    "adapter_manifests": {
+      "failure": "/workspace/workspace/runs/phase-h1-successful-supervision-train-fit-v1-20260814/manifests/training-failure-v3.json",
+      "success": "/workspace/workspace/runs/phase-h1-successful-supervision-train-fit-v1-20260814/manifests/training-success-v3.json"
+    }
+  },
+  "primary_metrics": [
+    "fallback-free valid rate by arm and output budget",
+    "qualified positive rate among valid episodes",
+    "mean task_score among fallback-free valid episodes",
+    "paired 512-minus-256 reward and validity deltas"
+  ],
+  "diagnostic_metrics": [
+    "completion ending with closing think/action tags",
+    "parser/fallback failure and first failure step",
+    "generation length and max-step termination",
+    "action-type distribution and unique trajectory count",
+    "episode latency and peak GPU memory"
+  ],
+  "cell_factors": "3 arms x 2 output budgets x 2 task partitions = 12 cells; each cell has 2 tasks x 4 seeds = 8 attempts",
+  "gpu_policy": "one UUID-bound process per cell; wave 1 uses 8 GPUs, wave 2 starts only after a required GPU is idle; no DDP",
+  "tracking": {
+    "project": "openevo-webshop-experiments",
+    "mode": "offline-first",
+    "group": "H1.3-greedy-output-budget-v1",
+    "full_traces": "local atomic episode files; W&B compact summaries and identity metadata"
+  },
+  "stop_branch": {
+    "contract_restored": "if SUCCESS at 512 has >=12/16 valid episodes and >=2 qualified positives, queue a frozen recovery/action-calibration panel; do not open D0",
+    "validity_restored_without_reward": "retain a contract-only repair result and diagnose state distribution; do not call it learning efficacy",
+    "no_contract_recovery": "preserve negative evidence and inspect prompt/adaptor compatibility before any optimizer or rank change",
+    "runtime_or_parser_failure": "exclude from efficacy metrics, preserve raw artifacts, and create a separate repair group rather than changing this protocol"
+  },
+  "code_sha": "4669da3",
+  "claim_boundary": "H1.3 is a bounded output-contract calibration diagnostic on four frozen WebShop tasks; it cannot establish benchmark improvement or open D0 by itself."
+}

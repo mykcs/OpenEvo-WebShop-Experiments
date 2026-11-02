@@ -1,0 +1,147 @@
+{
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/carrier-health-failure-policy-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "automatic_mutations": {
+      "additionalProperties": false,
+      "properties": {
+        "arm_specific_fallback": {
+          "const": false
+        },
+        "change_acceleration_semantics": {
+          "const": false
+        },
+        "change_gdr": {
+          "const": false
+        },
+        "change_update_frequency": {
+          "const": false
+        },
+        "extra_reflector_call": {
+          "const": false
+        },
+        "force_selected": {
+          "const": false
+        },
+        "raise_token_cap": {
+          "const": false
+        },
+        "reward_conditioned_repair": {
+          "const": false
+        },
+        "third_repair": {
+          "const": false
+        }
+      },
+      "required": [
+        "raise_token_cap",
+        "force_selected",
+        "third_repair",
+        "extra_reflector_call",
+        "change_update_frequency",
+        "arm_specific_fallback",
+        "change_acceleration_semantics",
+        "change_gdr",
+        "reward_conditioned_repair"
+      ],
+      "type": "object"
+    },
+    "final_panel_access_allowed": {
+      "const": false
+    },
+    "formal_run": {
+      "additionalProperties": false,
+      "properties": {
+        "block_next_round": {
+          "const": true
+        },
+        "evaluate_after_round_complete": {
+          "const": true
+        },
+        "on_health_fail": {
+          "const": "PAUSE_FOR_DIAGNOSTIC"
+        },
+        "preserve_completed_transaction": {
+          "const": true
+        }
+      },
+      "required": [
+        "evaluate_after_round_complete",
+        "preserve_completed_transaction",
+        "on_health_fail",
+        "block_next_round"
+      ],
+      "type": "object"
+    },
+    "policy_id": {
+      "const": "carrier-health-failure-policy-v1"
+    },
+    "pre_round0": {
+      "additionalProperties": false,
+      "properties": {
+        "formal_task_consumption_allowed": {
+          "const": false
+        },
+        "on_fail": {
+          "const": "BLOCKED"
+        },
+        "required_status": {
+          "const": "PASS"
+        }
+      },
+      "required": [
+        "required_status",
+        "on_fail",
+        "formal_task_consumption_allowed"
+      ],
+      "type": "object"
+    },
+    "resume": {
+      "additionalProperties": false,
+      "properties": {
+        "automatic_resume": {
+          "const": false
+        },
+        "new_contract_requires_prospective_authority": {
+          "const": true
+        },
+        "requires_resolution_receipt": {
+          "const": true
+        },
+        "same_contract_allowed": {
+          "const": true
+        },
+        "single_arm_patch_allowed": {
+          "const": false
+        }
+      },
+      "required": [
+        "requires_resolution_receipt",
+        "automatic_resume",
+        "same_contract_allowed",
+        "new_contract_requires_prospective_authority",
+        "single_arm_patch_allowed"
+      ],
+      "type": "object"
+    },
+    "reward_conditioning_allowed": {
+      "const": false
+    },
+    "schema": {
+      "const": "openevo.carrier-health-failure-policy.v1"
+    }
+  },
+  "required": [
+    "schema",
+    "policy_id",
+    "pre_round0",
+    "formal_run",
+    "resume",
+    "automatic_mutations",
+    "reward_conditioning_allowed",
+    "final_panel_access_allowed"
+  ],
+  "title": "OpenEvo Carrier Health Failure Policy v1",
+  "type": "object"
+}

@@ -1,0 +1,56 @@
+{
+  "additional_model_calls_authorized": 0,
+  "base_config": {
+    "path": "configs/experiment/openevo-ceiling1-ray-placement-backend-gpu2457-20260918.json",
+    "sha256": "2d6887c8dc7515d451aa4b931e095132df720b708145498bd49b5a71a82cb5af"
+  },
+  "capacity_contract": {
+    "path": "configs/experiment/bounded-effective-state-ray-capacity-contract-gpu2457-20260918.json",
+    "sha256": "a5ba2e68a70fbe57b0af341760a069e0ae53a39adec847026bf2c35501d72ca6"
+  },
+  "cuda_qualification": {
+    "path": "docs/evidence/bounded-recurrence-gdr-20260915/ray-capacity-successor-20260916/CUDA_CORESIDENCY_QUALIFICATION_20260916.json",
+    "sha256": "faaa645405cae3f6691bc7633ef51c63979cf9b1ecdb368a7cc5c452de272c5c"
+  },
+  "final_panel_access_allowed": false,
+  "formal_rollout_replay_authorized": 0,
+  "global_unallocated_headroom_mib": 4096,
+  "lane_live_qualification": {
+    "final_panel_access": 0,
+    "formal_rows_consumed": 0,
+    "path": "docs/evidence/bounded-recurrence-gdr-20260918/gpu2457-resource-successor/SINGLE_ARM_ROLLOUT_QUALIFICATION_GPU2457.json",
+    "sha256": "e5ff095cf15df1b2c6bf3e6f70f2fd99eb07d57966136853bd2c2f4240998bb9",
+    "status": "PASS_SINGLE_ARM_LIVE_QUALIFICATION"
+  },
+  "logical_qualification": {
+    "path": "docs/evidence/bounded-recurrence-gdr-20260918/gpu2457-resource-successor/LOGICAL_CORESIDENCY_QUALIFICATION_GPU2457.json",
+    "sha256": "b81d95d264f5e818f7900f49e91a148a3129fda647f82d3c3bc2ba84f095565a"
+  },
+  "managed_gpus": [
+    2,
+    4,
+    5,
+    7
+  ],
+  "migration_requires_natural_round_boundary": true,
+  "old_idle_only_gate_replaced": true,
+  "profile_registry": {
+    "path": "configs/experiment/bounded-effective-state-ray-profile-registry-gpu2457-20260918.json",
+    "sha256": "7c62447d3b1de068e4a2d92921a846b2a44b586fa00b85a50aec13c4bdaab2e1"
+  },
+  "project_budget_mib": 28000,
+  "qualification_summary": {
+    "cuda_status": "PASS_ZERO_FORMAL_LIVE_CUDA_CORESIDENCY",
+    "gpu2457_exact_uuid_gate": true,
+    "lane_live_status": "PASS_SINGLE_ARM_LIVE_QUALIFICATION",
+    "logical_status": "PASS_ZERO_FORMAL_LIVE_RAY_LOGICAL_ONLY",
+    "rollout_plus_sd_lora": true,
+    "rollout_plus_text_memory": true
+  },
+  "resource_authority": "RAY_VRAM_PROCESS_SLOT_CAPACITY",
+  "reward_used_for_admission": false,
+  "schema": "openevo.bounded-gdr.ray-capacity-formal-successor.20260916",
+  "scientific_semantics_changed": false,
+  "state_root": "/dev/shm/bounded-gdr-ray-capacity-gpu2457-20260918",
+  "status": "AUTHORIZED_FORMAL_RESOURCE_SUCCESSOR"
+}

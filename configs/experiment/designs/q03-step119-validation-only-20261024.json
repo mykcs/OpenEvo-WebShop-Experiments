@@ -1,0 +1,264 @@
+{
+  "schema": "openevo.q03.step119-validation-only.v1",
+  "status": "FORMAL_RELEASE_REQUIRED",
+  "campaign_id": "202610241730-q03-step119-val128",
+  "experiment_id": "202610241730-q03-step119-val128",
+  "question_id": "Q03_STEP119_ARCHIVE_QUALIFICATION",
+  "purpose": "Measure the exact locally present Q03 native global_step_119 checkpoint on the frozen public WebShop validation split so its archival record has a same-checkpoint measurement. This is descriptive evaluation of one historical checkpoint, not training or a causal comparison.",
+  "user_authorized_scope": {
+    "checkpoint_step": 119,
+    "validation_tasks": 128,
+    "optimizer_updates": 0,
+    "training_rollouts": 0,
+    "final_panel_access": 0,
+    "authorized_gpu_indices": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "checkpoint": {
+    "training_run": "q03-seed-stage2-formal-20261005",
+    "stream": "A",
+    "native_step": 119,
+    "native_actor_path": "/workspace/runs/q03-seed-stage2-formal-20261005/q03-seed-stage2-output/streams/streams/A/native-training/global_step_119/actor",
+    "native_hf_repository": "openevo-recovery/openevo-q03-native-checkpoint-recovery-20261005",
+    "native_hf_revision": "a95d8ffcb6cf136fb0dd4b5896e90a97b7248409",
+    "native_model_members": [
+      {
+        "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_0.pt",
+        "bytes": 1016053947,
+        "sha256": "d0b067688398477ba5f944663cd46a372f6d00aeaae65f01366b4432ac137730"
+      },
+      {
+        "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_1.pt",
+        "bytes": 1016054075,
+        "sha256": "8e4385f13ad4eba26abab77400e2d8598bc0c314066f0b90003780d1abdd4375"
+      },
+      {
+        "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_2.pt",
+        "bytes": 1016053227,
+        "sha256": "69391e7d13747c068cd94005b65dc9f42fb4fecdb4c94b3987aea144347f7839"
+      },
+      {
+        "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_3.pt",
+        "bytes": 1016054075,
+        "sha256": "e35baa30fecfae329b6aaa3e350952cf95aa0cb0563f6e27d11eda53c4ed08ad"
+      },
+      {
+        "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_4.pt",
+        "bytes": 1016053947,
+        "sha256": "1a579d78de9a76bca3d75be6b845a5a1744eb91372f903ebe5650275cb2d9ffd"
+      },
+      {
+        "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_5.pt",
+        "bytes": 1016054075,
+        "sha256": "e6d9d4a355ce1c556b2c2a25181eedd39aa8fefeeb6ae0d6b4e67bcba5af0306"
+      },
+      {
+        "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_6.pt",
+        "bytes": 1016053947,
+        "sha256": "bf8bfbdbfc9cfa90094ae60834df439e5399c79134d2b895ad63067fa0f81bd9"
+      },
+      {
+        "path": "checkpoints/global_step_119/actor/model_world_size_8_rank_7.pt",
+        "bytes": 1016053227,
+        "sha256": "04231930cbd0276ca696bf56fe136c6413886c41291a3588ad9479bc18182ab4"
+      }
+    ],
+    "supporting_files": [
+      {
+        "path": "config.json",
+        "bytes": 1416,
+        "sha256": "b0afa15b34f94dc066cdb0b3d8c54fc45f47cbe39804f875cd64ea6151ebc6dc"
+      },
+      {
+        "path": "generation_config.json",
+        "bytes": 214,
+        "sha256": "86b9e6a06a36bb731cb91b0f5fc184e28016e6cd9c46c4f11b59a0fd53bff629"
+      },
+      {
+        "path": "tokenizer.json",
+        "bytes": 11422650,
+        "sha256": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506"
+      },
+      {
+        "path": "tokenizer_config.json",
+        "bytes": 376,
+        "sha256": "779410a34a98fb2c6c925a1be6f24d632f1723473161b037f6676eb6c04886c6"
+      },
+      {
+        "path": "chat_template.jinja",
+        "bytes": 4168,
+        "sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8"
+      }
+    ]
+  },
+  "exporter": {
+    "kind": "official SEED FSDP merger, isolated CPU-only probe already passed",
+    "path": "/workspace/maintenance/seed-paperstyle-minimax-20261007/seed-source/scripts/model_merger.py",
+    "sha256": "ad50e027112ad9c5d067764e05a5eda6ef644041a099b68dee60670a7a6f2cff",
+    "output_model_bytes": 4063515640,
+    "output_model_sha256": "4b9207ce1d7fdbe9c3acb3e06684ef8d0a1bcdadf34d3fe6c23e8c47ec7f7b1b",
+    "output_config_sha256": "f2a8580ea78fe4d6b08a6bc18c5cd78dd210113ca0517b832b5def2721c7097e",
+    "safetensors_key_count": 311,
+    "persistent_export": false,
+    "preserve_exporter_probe_identity_and_do_not_download_hf_checkpoint": true
+  },
+  "evaluation": {
+    "seed_repository": "jinyangwu/SEED",
+    "seed_commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+    "entrypoint": "verl.trainer.main_ppo",
+    "dataset_path": "/workspace/runs/20261004-1457-q03-seed-stage2/data/verl-agent/text/test.parquet",
+    "dataset_sha256": "271bf898898887e2d68494080888cc63c7e6c92db5f573366ca21b773af7f71f",
+    "task_manifest_path": "configs/experiment/manifests/q03-step119-public-validation-id-manifest-20261025.json",
+    "task_manifest_sha256": "4498a0821301043fa6d7b0677763d4e9f7c8165645f4e7dfb12af86670176d2d",
+    "task_manifest_payload_sha256": "dd3b3dd820615fdc859d44ad2629f30f4494c2b24c3dacf8a54869c6988703ab",
+    "selected_panel_digest": "4e7ace9224e3f7311bdda00e726291545269bd0afcda751e83b4194b9a4d5854",
+    "validation_rows": 128,
+    "task_id_field": "tasks[].task_id",
+    "task_session_field": "tasks[].sampled_session_index",
+    "task_worker_seed_field": "tasks[].worker_seed",
+    "task_carrier_slot_field": "tasks[].slot",
+    "task_split_field": "split",
+    "task_split": "held_out",
+    "parquet_carrier_binding": {
+      "row_count": 128,
+      "producer_split": "test",
+      "producer_index_field": "extra_info.index",
+      "producer_index_values": "0..127; identifies carrier slots, not sampled WebShop session indices",
+      "loader": "data.custom_cls.path/name -> Q03Step119ValidationDataset",
+      "train_dataset": "empty sentinel; must not open train.parquet",
+      "shuffle": false,
+      "session_index_source": "source-faithful manifest sampled_session_index, selected by the pinned WebShop environment RNG",
+      "session_draw": "np.random.RandomState(env.seed + 1000).choice(np.arange(500), size=128, replace=False)",
+      "worker_seed_formula": "env.seed + 1000 + panel_slot"
+    },
+    "val_only": true,
+    "val_before_train": true,
+    "trainer_test_freq": -1,
+    "max_steps": 15,
+    "rollout_engine": "vllm",
+    "runtime": {
+      "execution_mode": "host-orchestrator",
+      "runtime_entrypoint": {
+        "kind": "module",
+        "module": "verl.trainer.main_ppo"
+      },
+      "runtime_import_modules": [
+        "verl.trainer.main_ppo",
+        "agent_system.multi_turn_rollout.rollout_loop",
+        "verl.workers.rollout.vllm_rollout.vllm_rollout_spmd",
+        "agent_system.environments.env_manager",
+        "agent_system.environments.env_package.webshop.envs",
+        "verl.workers.actor.dp_actor"
+      ],
+      "runtime_python": "/workspace/maintenance/q03-runtime-qualification-20261002-01/venv/bin/python",
+    "effective_config_contract": {
+      "env.seed": 0,
+      "data.val_batch_size": 128,
+      "validation_environment.group_n": 1,
+      "env.webshop.use_small": true,
+      "env.webshop.human_goals": false,
+      "trainer.experiment_name": "202610241730-q03-step119-val128",
+      "trainer.val_only": true,
+      "trainer.val_before_train": true,
+      "trainer.test_freq": -1,
+      "validation_worker_seed_formula": "env.seed + 1000 + slot"
+    },
+    "webshop_data_identity": {
+      "dataset_kind": "WebShop small, 1000-product source-faithful dataset",
+      "root": "/workspace/datasets/webshop-1000",
+      "files": [
+        {
+          "name": "items_shuffle_1000.json",
+          "bytes": 4467013,
+          "sha256": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269"
+        },
+        {
+          "name": "items_ins_v2_1000.json",
+          "bytes": 147099,
+          "sha256": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f"
+        },
+        {
+          "name": "items_human_ins.json",
+          "bytes": 5137548,
+          "sha256": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3"
+        }
+      ],
+      "runtime_binding": "stage the exact files as immutable overlays under the frozen SEED source tree's agent_system/environments/env_package/webshop/webshop/data directory"
+    },
+      "python": "Python 3.10.12",
+      "python_abi": "cp310",
+      "runtime_fingerprint_input_path": "/workspace/maintenance/q03-runtime-qualification-20261002-01/runtime-fingerprint-input.json",
+      "runtime_fingerprint_input_sha256": "7715dc2ea14bcea6fd9daad7ea84d90437d99c33a181ac334564857a07c62591",
+      "venv_receipt_path": "/workspace/maintenance/q03-runtime-qualification-20261002-01/venv/venv-receipt.json",
+      "venv_receipt_sha256": "aa9783593f76eaecc904467c9f8ee6bee85320588738adad5e11210ba30b1337",
+      "requirements_sha256": "37e3c8ec5c27b6e9092a286978085f4a571d51472a6f5c50bc850d7f345b88e5",
+      "pip_freeze_sha256": "d79d4b6910ba1f5a4f3ba0ba9f8918a3db2f90f65b932cd7f69f3afc02b9e774",
+      "module_versions": {
+        "datasets": "5.0.1",
+        "flashinfer-cubin": "0.6.16.post4",
+        "flashinfer-jit-cache": "0.6.16.post4+cu130",
+        "flashinfer-python": "0.6.16.post4",
+        "pyarrow": "21.0.0",
+        "ray": "2.49.2",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.15.0",
+        "vllm": "0.27.1"
+      },
+      "seed_source_checkout": "/workspace/maintenance/seed-paperstyle-minimax-20261007/seed-source",
+      "gpu_preflight_smoke_image_digest": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850"
+    },
+    "max_new_tokens": 512,
+    "top_p": 1.0,
+    "top_k": -1,
+    "environment_seed": 0,
+    "sampling_authority": {
+      "repository": "jinyangwu/SEED",
+      "revision": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+      "launcher_path": "examples/grpo_trainer/run_webshop_qwen3.sh",
+      "defaults_path": "docs/examples/config.rst",
+      "vllm_seed_default_path": "verl/workers/rollout/vllm_rollout/vllm_rollout_spmd.py"
+    },
+    "history_length": 2,
+    "enable_thinking": false,
+    "temperature": 0.4,
+    "do_sample": true,
+    "memory": false,
+    "skill": false,
+    "agent_system": false,
+    "optimizer_updates": 0,
+    "training_rollouts": 0,
+    "final_panel_access": 0,
+    "generation_seed_base": 2026082500,
+    "task_generation_seed_field": "tasks[].generation_seed",
+    "task_generation_seed_formula": "generation_seed_base + panel_ordinal",
+    "step_generation_seed_formula": "per_episode_seed + step_index",
+    "generation_seed_schedule_path": "configs/experiment/handoffs/seed-official-heldout-to-source-faithful-successor-v1-spec.json",
+    "generation_seed_transport": "one vLLM SamplingParams.seed per prompt request; seed=per_episode_seed + current step index"
+  },
+  "resource_contract": {
+    "authorized_gpu_indices": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "authorized_gpu_uuids": [
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000",
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ],
+    "preemption_allowed": false,
+    "kill_or_reset_allowed": false,
+    "co_residency_requires_fresh_capacity_gate": true
+  },
+  "retention_after_eval": {
+    "delete_native_step119_only_after_passport_v2_measurement_hf_identity_liveness_and_machine_gates_pass": true,
+    "step39_and_step79": "HOLD_NO_LOCAL_LOADABLE_EXPORT; do not download native checkpoints from Hugging Face",
+    "step120": "out of scope; do not substitute its result or delete it"
+  }
+}

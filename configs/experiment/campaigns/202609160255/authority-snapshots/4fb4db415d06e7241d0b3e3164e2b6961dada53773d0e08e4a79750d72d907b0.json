@@ -1,0 +1,87 @@
+{
+  "arm": {
+    "arm_key": "on",
+    "experiment_arm_id": "BOUNDED_EFFECTIVE_STATE_ON",
+    "treatment_mode": "EFFECTIVE_STATE_GDR_LORA_V1"
+  },
+  "authority_scope": "BOUNDED_EFFECTIVE_STATE_ON_ONLY",
+  "budget": {
+    "checkpoint_or_state_selection_after_release": false,
+    "external_teacher_calls_delta": 0,
+    "final_panel_tasks_exact": 128,
+    "formal_training_delta": 0,
+    "valid_measurements_exact": 1
+  },
+  "campaign_id": "20260916-0255-bounded-effective-state-gdr",
+  "experiment_id": "202609160255-bounded-effective-state-gdr",
+  "final_eval_release_path": "configs/experiment/releases/bounded-effective-state-on-final-eval-release-20260918.json",
+  "final_eval_release_sha256": "7ece81eaa305c3a898744a8b96960aaefc6c58f1cb5bf575249d965c26c64f2c",
+  "final_state": {
+    "agent_system": {
+      "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-readiness/qwen3-1p7b/harness201-final-v2-generic/agent.md",
+      "sha256": "7a87fa050c526907b1999ba4c0ef9c127808e4983a1f36dc646a12c6ab75caf4"
+    },
+    "memory": {
+      "path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/on/round-139/text-memory/memory.md",
+      "sha256": "32615f1d24f27e426a60f000158b278bab7f9b49db662e5996ff7a7bb8c1b493"
+    },
+    "sd_adapter": {
+      "adapter_config_sha256": "cbd30da3262c20cd0df9542d7577d14568db14e7d9cbb69291c0182da96d4ee8",
+      "adapter_model_sha256": "1f789d86ff1a3ba96211eb950f78763f99ed6fb2f0545f11c869ec8e6de3da6c",
+      "bounded_recurrence_receipt_sha256": "af92c3911475bf3500bed3efcd97300597c6d5beef7299b85fb768f2f84268c6",
+      "path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/on/round-159/sd-lora/bounded-state"
+    },
+    "skill": {
+      "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-readiness/qwen3-1p7b/harness201-final-v2-generic/skill.md",
+      "sha256": "cef31b897dbe4796d61710c13ab11630f64f043bd7df651d1faa12980163b21a"
+    }
+  },
+  "historical_q17_authority_reused": false,
+  "inference": {
+    "chat_template_enable_thinking": false,
+    "do_sample": false,
+    "environment_seed": 0,
+    "harness_profile": "201.1",
+    "max_new_tokens": 512,
+    "max_steps": 15,
+    "repetition_penalty": 1.0,
+    "temperature": null,
+    "top_k": null,
+    "top_p": null
+  },
+  "owner_instruction": "After the ON arm completes 160/160 Stage2 rounds, advance that arm independently through its own final closeout without waiting for OFF. Preserve the protected final-panel gate and do not feed final outcomes back into the still-running sibling.",
+  "panel": {
+    "access_allowed_before_experiment_specific_authority": false,
+    "content_sha256": "3529b94f97491434da01f9b2adc2faf1d0571545603a788d367561ae2b529d48",
+    "file_sha256": "aea97afdd5b176126cf67f7ed315189c95fbf37b07263c84b947903cca69aa4d",
+    "path": "configs/experiment/manifests/q17-gdr-twin-post-audit-heldout-202609061643.json",
+    "selected_panel_digest": "cd531caff21d13d72df5c6fb013fadc10457393134d8bc3bcdc63fadf76bc453",
+    "task_count_exact": 128,
+    "valid_measurements_exact": 1
+  },
+  "panel_contents_read_during_authority_build": false,
+  "qualification": {
+    "final_panel_access": 0,
+    "status": "PASS",
+    "verification_path": "docs/evidence/bounded-effective-state-final-closeout-20260918/ON_FINAL_INTERFACE_QUALIFICATION_VERIFICATION.json",
+    "verification_sha256": "c1979d781c9648988a99ce1d3ad7989cb2274be78364b3998ba18162587528b4"
+  },
+  "recovery_rule": "Only exact resume of engineering-invalid final ordinals is allowed with identical state, panel, decoding, runtime and code identity. No score-driven rerun or checkpoint change.",
+  "runtime_code_git_sha": "241109638cafb55c363090dd93b1d7a84e4ce611",
+  "schema": "openevo.bounded-effective-state.on-final-panel-authority.20260918",
+  "sibling_isolation": {
+    "off_arm_may_continue_stage2": true,
+    "on_final_outcome_may_affect_off": false,
+    "pair_long_horizon_analysis_waits_for_both_arms": true,
+    "wait_for_off_stage2_seal": false
+  },
+  "stage2": {
+    "final_panel_access_before": 0,
+    "final_state_id": "8f1b8015ee7a99a70ad6f8bf7a721e8f1b7bbe11f3ef8439721ce530f1e68e1d",
+    "rollouts": 20480,
+    "rounds": 160,
+    "seal_path": "/workspace/runs/bounded-effective-state-gdr-recovery-1e7c4952-20260916/on/FORMAL_ARM_SEALED.json",
+    "seal_sha256": "22a96693d967d8c4760b369ad49911ec42c46a46f0ee2b0648d67721685f61ef"
+  },
+  "status": "AUTHORIZED"
+}

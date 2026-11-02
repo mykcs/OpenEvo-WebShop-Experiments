@@ -1,0 +1,117 @@
+{
+  "arm_specific_fields_allowed": [
+    "model_id",
+    "revision",
+    "dtype",
+    "chat_template_enable_thinking",
+    "run_name"
+  ],
+  "downstream_auto_launch_forbidden": true,
+  "formal_1440_go_gate": [
+    "use exact execution checkout at formal_generation_code_sha",
+    "shared sampling must read back 1.0/1.0/0",
+    "model weight hashes exact",
+    "both arms 1440/1440",
+    "zero engineering invalid",
+    "zero invalid action termination",
+    "100% nonempty pre-action deliberation",
+    "reward/success observational only"
+  ],
+  "formal_execution": {
+    "exact_execution_checkout": "/workspace/control/openevo-experiment-shared-stage1-formal-exec-362271d3",
+    "execution_layer_change_only": [
+      "bind seed_worker.w sampling aliases explicitly",
+      "bind 3B to stable canonical model path"
+    ],
+    "formal_generation_code_sha": "362271d3cdc411581dd7f09d98d5ce69cfb1cb57",
+    "launcher_preflight": "scripts/openevo_webshop/launch_shared_stage1_202609030400_formal_v2.sh",
+    "scientific_semantics_changed": false,
+    "wrapper": "scripts/openevo_webshop/shared_stage1_202609030400_formal_exec_v2.py"
+  },
+  "freeze_id": "202609030400",
+  "models": {
+    "qwen25-3b": {
+      "chat_template_enable_thinking": null,
+      "dtype": "bfloat16",
+      "model_id": "Qwen/Qwen2.5-3B-Instruct",
+      "model_path": "/workspace/models/qwen2.5-3b-instruct",
+      "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+      "weight_sha256": [
+        "67347b23fb4165b652eb6611f5e1f2a06dfcddba8e909df1b2b0b1857bee06c2",
+        "a40d941d0e7e0b966ad8b62bb6d6b7c88cce1299197b599d9d0a4ce59aabfc1d"
+      ]
+    },
+    "qwen3-1p7b": {
+      "chat_template_enable_thinking": false,
+      "dtype": "float16",
+      "model_id": "Qwen/Qwen3-1.7B",
+      "model_path": "/workspace/models/qwen3-1.7b",
+      "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "weight_sha256": [
+        "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5",
+        "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9"
+      ]
+    }
+  },
+  "non_authoritative_smokes": [
+    {
+      "path": "/workspace/runs/20260903-shared-stage1-formal-provenance-smoke-v2",
+      "reason": "3B stale/empty model snapshot path; excluded"
+    },
+    {
+      "path": "/workspace/runs/20260903-shared-stage1-formal-provenance-smoke-v3",
+      "reason": "3B GPU4 external resource OOM before sampling; excluded"
+    }
+  ],
+  "provenance_smoke": {
+    "arms": {
+      "qwen25-3b": {
+        "attempt_sha256": "b8a7ed9e57d4aa9b8d0fc207fd9803ff392008694c109f90afddb0a591e19080",
+        "checks": {
+          "execution_sha": true,
+          "freeze_id": true,
+          "minimum_deliberation": true,
+          "sampling_readback": true,
+          "trace_complete": true,
+          "zero_engineering": true,
+          "zero_invalid": true
+        },
+        "status": "PASS"
+      },
+      "qwen3-1p7b": {
+        "attempt_sha256": "160e5eaa5eb0fc6738e87dc1841d122a84eceb70eae9307f17ffcc24a4992d6e",
+        "checks": {
+          "execution_sha": true,
+          "freeze_id": true,
+          "minimum_deliberation": true,
+          "sampling_readback": true,
+          "trace_complete": true,
+          "zero_engineering": true,
+          "zero_invalid": true
+        },
+        "status": "PASS"
+      }
+    },
+    "formal_generation_code_sha": "362271d3cdc411581dd7f09d98d5ce69cfb1cb57",
+    "path": "/workspace/runs/20260903-shared-stage1-formal-provenance-smoke-v4/PROVENANCE_SMOKE.json",
+    "sha256": "3239113cbdefb3e4fd16c33bfb66a5c05f2b06a1066f1663d14dfc0f51a1cb52",
+    "status": "PASS"
+  },
+  "reward_or_success_is_pass_gate": false,
+  "schema": "openevo.shared-stage1.formal-provenance-lock.v1",
+  "scientific_identity": {
+    "confirmation_decision": "FREEZE_ONE_SHARED_STAGE1_HARNESS",
+    "confirmation_sha256": "e54be6a4d01353a5a04b9d617c2e1e3a2d6378d386769d234e7b5268fe03aa5b",
+    "qualified_generation_git_sha": "23f51ab4b7038d23f16076f047d16e767529a319"
+  },
+  "shared_sampling": {
+    "arm_specific_allowed": false,
+    "do_sample": true,
+    "max_new_tokens": 512,
+    "repetition_penalty": 1.0,
+    "temperature": 1.0,
+    "top_k": 0,
+    "top_p": 1.0
+  },
+  "status": "LOCKED"
+}

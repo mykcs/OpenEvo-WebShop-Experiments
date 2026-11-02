@@ -1,0 +1,22 @@
+{
+  "schema": "openevo.mechanism1-m1c-m1a-successor-gate-amendment.202609062100",
+  "amendment_id": "M1-C-M1-A-SUCCESSOR-GATE-202609062100",
+  "program_id": "openevo-mechanism-1.0-202609052200",
+  "status": "PREREGISTERED_BEFORE_M1A_OR_M1C_EXECUTION",
+  "execution_authority": false,
+  "m1c_predecessor_passport": "configs/experiment/designs/openevo-mechanism1-taskvector-guided-microtrial-202609052200.json",
+  "change_scope": "Replace only the invalid M1-A signal dependency; M1-B fallback, M1-C arms, guidance strength, budgets, task stream, endpoints, and stopping rule remain unchanged.",
+  "priority_1": {
+    "source_passport": "configs/experiment/designs/openevo-mechanism1-taskvector-causal-transplant-202609062100.json",
+    "required_source_status": "SEALED_IDENTIFIABLE_COMPLETE",
+    "direction": "tau_adjacent_late",
+    "go_rule": "+1.0 * tau_adjacent_late beats the median of all three norm-matched random controls by >=1.0 mean task-score point and does not reduce exact-success count versus theta_target baseline"
+  },
+  "priority_2": "Use the unchanged M1-B Theme 1 gate only if priority 1 does not pass.",
+  "otherwise": "DO_NOT_EXECUTE M1-C; record NO_DIRECTION_SPECIFIC_SIGNAL.",
+  "forbidden": [
+    "consuming any result from the predecessor zero-vector M1-A as a GO signal",
+    "executing M1-C from an unsealed or non-identifiable successor",
+    "changing any M1-C outcome threshold after observing M1-A successor outcomes"
+  ]
+}

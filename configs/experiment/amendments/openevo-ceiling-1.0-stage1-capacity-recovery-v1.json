@@ -1,0 +1,92 @@
+{
+  "schema": "openevo.ceiling1-stage1-capacity-recovery-amendment.v1",
+  "status": "FROZEN",
+  "campaign_id": "20260830-openevo-ceiling-1.0-webshop",
+  "authority_recorded_at": "2026-08-31T10:20:00+08:00",
+  "authority_source_thread_id": "01a0558c-55d5-74d3-b866-9c8bebf00fca",
+  "decision": "Adopt symmetric capacity recovery B for both model arms; capacity triggers are mechanical and never performance gates.",
+  "supersedes_authority_revocation": {
+    "path": "configs/experiment/amendments/openevo-ceiling-1.0-3b-stage1-split-authority-revocation-v1.json",
+    "sha256": "8af82ac272a7ed8f8ebc7f36006591e73c6db67a30ebdf8a5416cf7d5be2ada5",
+    "reason": "The user later approved one symmetric, reward-blind bounded capacity amendment after learning that both arms already used the same Agent System split algorithm."
+  },
+  "applies_to_arms": [
+    "3b",
+    "7b"
+  ],
+  "text_memory_capacity_recovery": {
+    "unit_size": 20,
+    "primary_max_output_tokens": 2048,
+    "same_unit_repair_max_output_tokens": 2048,
+    "same_unit_repair_identity": "the exact same 20 inputs in the same frozen order",
+    "split_trigger": "primary_and_same_unit_repair_both_reach_output_token_cap",
+    "split": [
+      10,
+      10
+    ],
+    "split_order": "first 10 then last 10 in frozen order",
+    "max_split_depth": 1,
+    "child_policy": "each child gets one 2048-token primary and at most one exact-same-child 2048-token repair",
+    "parent_policy": "merge exactly the two child representations with one 2048-token primary and at most one exact-same-two-child 2048-token repair",
+    "recursive_split_allowed": false,
+    "input_overflow_or_non_saturation_error": "BLOCK",
+    "silent_truncation_allowed": false
+  },
+  "agent_system_capacity_recovery": {
+    "algorithm": "deterministic_frozen_order_bisection_on_capacity_only",
+    "unit_node_cap": 20,
+    "primary_max_output_tokens": 2048,
+    "single_leaf_repair_max_output_tokens": 1024,
+    "split_triggers": [
+      "input_overflow",
+      "output_token_cap"
+    ],
+    "split_order": "midpoint in frozen input order",
+    "progress_guard": "a split must reduce the node count; a single node never splits",
+    "max_split_depth": 5,
+    "max_split_depth_basis": "ceil(log2(unit_node_cap=20)); this makes the existing progress guard explicit without changing the accepted bisection path",
+    "same_algorithm_both_arms": true,
+    "equal_split_event_count_required": false,
+    "coverage_rows": 1440,
+    "external_teacher_calls_after_pool": 0,
+    "silent_truncation_allowed": false
+  },
+  "skill_bundle_clean_replay": {
+    "algorithm": "existing full-20 hierarchical skill bundle path",
+    "formal_acceptance_requires_split_events": 0,
+    "reason": "No new Skill split authority is needed; the clean replay must demonstrate the already-observed no-split path."
+  },
+  "prohibited_triggers": [
+    "reward",
+    "score",
+    "success count",
+    "identity count",
+    "final panel outcome",
+    "parser outcome",
+    "downstream Stage2 performance"
+  ],
+  "seven_b_dormant_noop": {
+    "historical_text_memory_marker_sha256": "27953925625bed4aad38ec6afd3baa2a569dae5e9e673a670bc2ab9a0285c2c4",
+    "observed_text_memory_split_events": 0,
+    "interpretation": "The later symmetric amendment is dormant/path-equivalent for 7B; history is not rewritten to claim the A2 fallback was used."
+  },
+  "clean_3b_replay_required": true,
+  "clean_replay_order": [
+    "text_memory",
+    "skill_bundle",
+    "agent_system",
+    "runtime_readback",
+    "stage1_seal"
+  ],
+  "formal_credit": {
+    "teacher_evidence_pool_and_analysis": "reusable by exact hash",
+    "opsd": "reusable by exact adapter and receipt hash",
+    "old_3b_text_skill_agent_readback_and_stage1_seal": 0
+  },
+  "stage2_budget_unchanged": {
+    "rounds": 160,
+    "rollouts_per_round": 128,
+    "total_rollouts": 20480,
+    "final_panel_locked": true
+  }
+}

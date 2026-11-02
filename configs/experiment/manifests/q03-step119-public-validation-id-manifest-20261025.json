@@ -1,0 +1,1173 @@
+{
+  "schema": "openevo.q03-step119-public-validation-id-manifest.v1",
+  "campaign_id": "20261025-q03-step119-public-webshop-validation",
+  "source_manifest_path": "configs/experiment/manifests/webshop-seed-source-faithful-reproduction-v1-panel-v1.json",
+  "source_manifest_file_sha256": "60df28877c1168c46aa05f505830bb2923f8ee6100fa10b3b9597099a6efa76e",
+  "source_manifest_content_sha256": "dbc0e39f4ee4d3d3df3e9308aac57729881f4066996e7df3d0f4f7071fd4e355",
+  "seed_source_commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+  "validation_base_seed": 1000,
+  "webshop_data_identity": {
+    "items_shuffle_1000.json": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+    "items_ins_v2_1000.json": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+    "items_human_ins.json": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3"
+  },
+  "selected_panel_digest": "4e7ace9224e3f7311bdda00e726291545269bd0afcda751e83b4194b9a4d5854",
+  "task_count": 128,
+  "split": "held_out",
+  "generation_seed_schedule": "2026082500 + slot",
+  "tasks": [
+    {
+      "slot": 0,
+      "task_id": "webshop_seed_source_faithful_slot000_session00319",
+      "worker_seed": 1000,
+      "sampled_session_index": 319,
+      "split": "held_out",
+      "instruction_sha256": "9b2f20932cbc3a6cddf76950e3326e4cc52fdbe14b4316457a214d5246b649a2",
+      "generation_seed": 2026082500
+    },
+    {
+      "slot": 1,
+      "task_id": "webshop_seed_source_faithful_slot001_session00207",
+      "worker_seed": 1001,
+      "sampled_session_index": 207,
+      "split": "held_out",
+      "instruction_sha256": "c8ade7e8126c547a4d35ed9ec3e90c9d6ba5d68bf240781db678b819bb1d392a",
+      "generation_seed": 2026082501
+    },
+    {
+      "slot": 2,
+      "task_id": "webshop_seed_source_faithful_slot002_session00022",
+      "worker_seed": 1002,
+      "sampled_session_index": 22,
+      "split": "held_out",
+      "instruction_sha256": "2c3d2881554d2608897e9694202bfe7406ea2d145568c046d86e517b8c488756",
+      "generation_seed": 2026082502
+    },
+    {
+      "slot": 3,
+      "task_id": "webshop_seed_source_faithful_slot003_session00420",
+      "worker_seed": 1003,
+      "sampled_session_index": 420,
+      "split": "held_out",
+      "instruction_sha256": "eb74a1e4079f7e7998103ebd5c6d1aea773cb7295bbfedbf7ecc2f52a60c7b3e",
+      "generation_seed": 2026082503
+    },
+    {
+      "slot": 4,
+      "task_id": "webshop_seed_source_faithful_slot004_session00352",
+      "worker_seed": 1004,
+      "sampled_session_index": 352,
+      "split": "held_out",
+      "instruction_sha256": "cd913c6e197274d4c20aa7329ab16d7b9012a6a9156a1b8082e08f56964ed0d2",
+      "generation_seed": 2026082504
+    },
+    {
+      "slot": 5,
+      "task_id": "webshop_seed_source_faithful_slot005_session00491",
+      "worker_seed": 1005,
+      "sampled_session_index": 491,
+      "split": "held_out",
+      "instruction_sha256": "1f31173be286a8b7585f9251c469c27fce61d8d035d3f82f0f8c00bfdfffcbdf",
+      "generation_seed": 2026082505
+    },
+    {
+      "slot": 6,
+      "task_id": "webshop_seed_source_faithful_slot006_session00060",
+      "worker_seed": 1006,
+      "sampled_session_index": 60,
+      "split": "held_out",
+      "instruction_sha256": "5c3bbc20a4d98a0add0eb616f48c3970908d1328e0f4fe14d66e5eb19cf5dca5",
+      "generation_seed": 2026082506
+    },
+    {
+      "slot": 7,
+      "task_id": "webshop_seed_source_faithful_slot007_session00264",
+      "worker_seed": 1007,
+      "sampled_session_index": 264,
+      "split": "held_out",
+      "instruction_sha256": "f766a12ace756f781879a57111fd292299bc1fb2aa2985957e27e607c6549ce1",
+      "generation_seed": 2026082507
+    },
+    {
+      "slot": 8,
+      "task_id": "webshop_seed_source_faithful_slot008_session00454",
+      "worker_seed": 1008,
+      "sampled_session_index": 454,
+      "split": "held_out",
+      "instruction_sha256": "d0fb26446512d9dea36d2ce0e2200a3e2f40958aad589105681b13faec692fd8",
+      "generation_seed": 2026082508
+    },
+    {
+      "slot": 9,
+      "task_id": "webshop_seed_source_faithful_slot009_session00021",
+      "worker_seed": 1009,
+      "sampled_session_index": 21,
+      "split": "held_out",
+      "instruction_sha256": "4ec24c181496b5c52de217a2714f94a8a5fd1f4a28e19afe9242dc0f435b438a",
+      "generation_seed": 2026082509
+    },
+    {
+      "slot": 10,
+      "task_id": "webshop_seed_source_faithful_slot010_session00427",
+      "worker_seed": 1010,
+      "sampled_session_index": 427,
+      "split": "held_out",
+      "instruction_sha256": "d8d4a6af0155edddbd24813d724b538d6409e2ab027b3ad37e9eb714d0724f03",
+      "generation_seed": 2026082510
+    },
+    {
+      "slot": 11,
+      "task_id": "webshop_seed_source_faithful_slot011_session00043",
+      "worker_seed": 1011,
+      "sampled_session_index": 43,
+      "split": "held_out",
+      "instruction_sha256": "7089b32af8cf5eac8f11fb6c9c6c3ce7ddb59126ef059cacf43083e7887b1dc4",
+      "generation_seed": 2026082511
+    },
+    {
+      "slot": 12,
+      "task_id": "webshop_seed_source_faithful_slot012_session00444",
+      "worker_seed": 1012,
+      "sampled_session_index": 444,
+      "split": "held_out",
+      "instruction_sha256": "64d8531e93597925e2a07ae436f623898f88bf04601941b14cb8e1b07a8878b9",
+      "generation_seed": 2026082512
+    },
+    {
+      "slot": 13,
+      "task_id": "webshop_seed_source_faithful_slot013_session00423",
+      "worker_seed": 1013,
+      "sampled_session_index": 423,
+      "split": "held_out",
+      "instruction_sha256": "c56079580e9b365e49107710d3eb6d19357631db03f56ff70ee6f4cb47225586",
+      "generation_seed": 2026082513
+    },
+    {
+      "slot": 14,
+      "task_id": "webshop_seed_source_faithful_slot014_session00295",
+      "worker_seed": 1014,
+      "sampled_session_index": 295,
+      "split": "held_out",
+      "instruction_sha256": "82326f5c7198d408feab87ef3be87528e8a40f1a5677b46b8433411cb4aea0f3",
+      "generation_seed": 2026082514
+    },
+    {
+      "slot": 15,
+      "task_id": "webshop_seed_source_faithful_slot015_session00258",
+      "worker_seed": 1015,
+      "sampled_session_index": 258,
+      "split": "held_out",
+      "instruction_sha256": "54c8fe4c42a2bb3a8f2648775d970720a668fe1367371b56ef7de610f776a5ef",
+      "generation_seed": 2026082515
+    },
+    {
+      "slot": 16,
+      "task_id": "webshop_seed_source_faithful_slot016_session00164",
+      "worker_seed": 1016,
+      "sampled_session_index": 164,
+      "split": "held_out",
+      "instruction_sha256": "a7e86a98abb9d6962027d0025b6dda53eacf88393843eb9adee136c3c44823f7",
+      "generation_seed": 2026082516
+    },
+    {
+      "slot": 17,
+      "task_id": "webshop_seed_source_faithful_slot017_session00089",
+      "worker_seed": 1017,
+      "sampled_session_index": 89,
+      "split": "held_out",
+      "instruction_sha256": "d40f0363a937163840833773f7f97de3bde56191d0ec0b4de77e28fe01b7793b",
+      "generation_seed": 2026082517
+    },
+    {
+      "slot": 18,
+      "task_id": "webshop_seed_source_faithful_slot018_session00178",
+      "worker_seed": 1018,
+      "sampled_session_index": 178,
+      "split": "held_out",
+      "instruction_sha256": "12b94fe6fffa59de19cbe893b8d525e8054336b37a5806d3b3a3808662625a78",
+      "generation_seed": 2026082518
+    },
+    {
+      "slot": 19,
+      "task_id": "webshop_seed_source_faithful_slot019_session00025",
+      "worker_seed": 1019,
+      "sampled_session_index": 25,
+      "split": "held_out",
+      "instruction_sha256": "87080d5e9923caac3b144f648516144a126a634077f1b96d763f6e7a6a6a19e1",
+      "generation_seed": 2026082519
+    },
+    {
+      "slot": 20,
+      "task_id": "webshop_seed_source_faithful_slot020_session00057",
+      "worker_seed": 1020,
+      "sampled_session_index": 57,
+      "split": "held_out",
+      "instruction_sha256": "26c27ffceaeb915dee0bc969dba989c48f2c7bba1f719a5479b75ba17fc2bae3",
+      "generation_seed": 2026082520
+    },
+    {
+      "slot": 21,
+      "task_id": "webshop_seed_source_faithful_slot021_session00347",
+      "worker_seed": 1021,
+      "sampled_session_index": 347,
+      "split": "held_out",
+      "instruction_sha256": "48ef6b8c2296cf6053cdddd57aa75c078b017f48bbc506066cacbf49ebcd4811",
+      "generation_seed": 2026082521
+    },
+    {
+      "slot": 22,
+      "task_id": "webshop_seed_source_faithful_slot022_session00266",
+      "worker_seed": 1022,
+      "sampled_session_index": 266,
+      "split": "held_out",
+      "instruction_sha256": "392d5c9fefec897a728869071673d299f9269bcc21b3493f0f7a70877516776e",
+      "generation_seed": 2026082522
+    },
+    {
+      "slot": 23,
+      "task_id": "webshop_seed_source_faithful_slot023_session00203",
+      "worker_seed": 1023,
+      "sampled_session_index": 203,
+      "split": "held_out",
+      "instruction_sha256": "f918762c2b9f2d406a4c49326d9f90f8d7edc592bdaa01b3bd0d75e7a22dd9e1",
+      "generation_seed": 2026082523
+    },
+    {
+      "slot": 24,
+      "task_id": "webshop_seed_source_faithful_slot024_session00488",
+      "worker_seed": 1024,
+      "sampled_session_index": 488,
+      "split": "held_out",
+      "instruction_sha256": "8e54ae5ab96b42a71221cfe9cd0ecf19c5ead282af28cbbd19832f357a4d1eff",
+      "generation_seed": 2026082524
+    },
+    {
+      "slot": 25,
+      "task_id": "webshop_seed_source_faithful_slot025_session00065",
+      "worker_seed": 1025,
+      "sampled_session_index": 65,
+      "split": "held_out",
+      "instruction_sha256": "ba2eac80996483e0ee7ce19c5f86571ff0ab24e88e0bf214bbc3810c9e9f8698",
+      "generation_seed": 2026082525
+    },
+    {
+      "slot": 26,
+      "task_id": "webshop_seed_source_faithful_slot026_session00042",
+      "worker_seed": 1026,
+      "sampled_session_index": 42,
+      "split": "held_out",
+      "instruction_sha256": "34bdb17b6cc8c7d1a7cbdf3f20b80e595e1d59210ae02c67e81472c06679ed98",
+      "generation_seed": 2026082526
+    },
+    {
+      "slot": 27,
+      "task_id": "webshop_seed_source_faithful_slot027_session00167",
+      "worker_seed": 1027,
+      "sampled_session_index": 167,
+      "split": "held_out",
+      "instruction_sha256": "8a146d73579a22b273633d9ea2dc45dc9bc711b27e8490e1b9bb7e23a86918b7",
+      "generation_seed": 2026082527
+    },
+    {
+      "slot": 28,
+      "task_id": "webshop_seed_source_faithful_slot028_session00338",
+      "worker_seed": 1028,
+      "sampled_session_index": 338,
+      "split": "held_out",
+      "instruction_sha256": "2029af9ab5e2707784b98c2ee115476f9612473671030edc6fe09021be056f75",
+      "generation_seed": 2026082528
+    },
+    {
+      "slot": 29,
+      "task_id": "webshop_seed_source_faithful_slot029_session00061",
+      "worker_seed": 1029,
+      "sampled_session_index": 61,
+      "split": "held_out",
+      "instruction_sha256": "e5745d9e446bede1d742892d48a70805d3bf64386c72efda97daa8366697784e",
+      "generation_seed": 2026082529
+    },
+    {
+      "slot": 30,
+      "task_id": "webshop_seed_source_faithful_slot030_session00189",
+      "worker_seed": 1030,
+      "sampled_session_index": 189,
+      "split": "held_out",
+      "instruction_sha256": "de18541f08d8c98f19d0e0fb54f3d35a7fb19ebb2e144ad7716248dab9b805f2",
+      "generation_seed": 2026082530
+    },
+    {
+      "slot": 31,
+      "task_id": "webshop_seed_source_faithful_slot031_session00477",
+      "worker_seed": 1031,
+      "sampled_session_index": 477,
+      "split": "held_out",
+      "instruction_sha256": "922f112a2085d97511c2a25e9c63d2e65345999b96117bba14be9f92b722b6c0",
+      "generation_seed": 2026082531
+    },
+    {
+      "slot": 32,
+      "task_id": "webshop_seed_source_faithful_slot032_session00180",
+      "worker_seed": 1032,
+      "sampled_session_index": 180,
+      "split": "held_out",
+      "instruction_sha256": "8b58c70f93bd40add80c6c4a6ec6cdc575b0a2c01dd12782eb46028f26b2e425",
+      "generation_seed": 2026082532
+    },
+    {
+      "slot": 33,
+      "task_id": "webshop_seed_source_faithful_slot033_session00328",
+      "worker_seed": 1033,
+      "sampled_session_index": 328,
+      "split": "held_out",
+      "instruction_sha256": "bcb685ed66677dadc57f580124b62f40ed8b196388f6aa3c56eca8fb7e8eb982",
+      "generation_seed": 2026082533
+    },
+    {
+      "slot": 34,
+      "task_id": "webshop_seed_source_faithful_slot034_session00096",
+      "worker_seed": 1034,
+      "sampled_session_index": 96,
+      "split": "held_out",
+      "instruction_sha256": "a8335fdcf97c61997800305aabd1c5d326ace402424228c91e9c6bade803de44",
+      "generation_seed": 2026082534
+    },
+    {
+      "slot": 35,
+      "task_id": "webshop_seed_source_faithful_slot035_session00208",
+      "worker_seed": 1035,
+      "sampled_session_index": 208,
+      "split": "held_out",
+      "instruction_sha256": "2ebb71f6ec7551303a01f04df2eb070518f557036031d338f45773b8b9abe267",
+      "generation_seed": 2026082535
+    },
+    {
+      "slot": 36,
+      "task_id": "webshop_seed_source_faithful_slot036_session00093",
+      "worker_seed": 1036,
+      "sampled_session_index": 93,
+      "split": "held_out",
+      "instruction_sha256": "63b0205fc1da85f9c1b1da16f9846ee69d0a2da7008edea89e160c08cb71b244",
+      "generation_seed": 2026082536
+    },
+    {
+      "slot": 37,
+      "task_id": "webshop_seed_source_faithful_slot037_session00026",
+      "worker_seed": 1037,
+      "sampled_session_index": 26,
+      "split": "held_out",
+      "instruction_sha256": "10f12dda1c14b40e64611d545f61afbb5eca059f84f05bb8215961277b51a0ea",
+      "generation_seed": 2026082537
+    },
+    {
+      "slot": 38,
+      "task_id": "webshop_seed_source_faithful_slot038_session00114",
+      "worker_seed": 1038,
+      "sampled_session_index": 114,
+      "split": "held_out",
+      "instruction_sha256": "0e57e4be2af4a4451ec11f3cdee8b3c6702cc6d116037139dc34e93de149e4b3",
+      "generation_seed": 2026082538
+    },
+    {
+      "slot": 39,
+      "task_id": "webshop_seed_source_faithful_slot039_session00489",
+      "worker_seed": 1039,
+      "sampled_session_index": 489,
+      "split": "held_out",
+      "instruction_sha256": "6ce738f75f0c68329172543acc5ecb54619e4a766493b9cfff7ddc1cc6ea48ab",
+      "generation_seed": 2026082539
+    },
+    {
+      "slot": 40,
+      "task_id": "webshop_seed_source_faithful_slot040_session00367",
+      "worker_seed": 1040,
+      "sampled_session_index": 367,
+      "split": "held_out",
+      "instruction_sha256": "fea2550d546cf7f983c8dd6ce03b136b7772b5f917f2145cc4e8a929cabe8855",
+      "generation_seed": 2026082540
+    },
+    {
+      "slot": 41,
+      "task_id": "webshop_seed_source_faithful_slot041_session00116",
+      "worker_seed": 1041,
+      "sampled_session_index": 116,
+      "split": "held_out",
+      "instruction_sha256": "f659e146a544b09de635cede33fa2f8b9f8fd5a8f3fb10a74910f6bb92b47e52",
+      "generation_seed": 2026082541
+    },
+    {
+      "slot": 42,
+      "task_id": "webshop_seed_source_faithful_slot042_session00006",
+      "worker_seed": 1042,
+      "sampled_session_index": 6,
+      "split": "held_out",
+      "instruction_sha256": "5952594d3aa76e17840440bc736850c41e74bbe180a1037a322470d1fa88d1f6",
+      "generation_seed": 2026082542
+    },
+    {
+      "slot": 43,
+      "task_id": "webshop_seed_source_faithful_slot043_session00229",
+      "worker_seed": 1043,
+      "sampled_session_index": 229,
+      "split": "held_out",
+      "instruction_sha256": "f196429d08f07d2a74e66322966f16c79d189fbc3059c183a90aa5ef30c2cf47",
+      "generation_seed": 2026082543
+    },
+    {
+      "slot": 44,
+      "task_id": "webshop_seed_source_faithful_slot044_session00004",
+      "worker_seed": 1044,
+      "sampled_session_index": 4,
+      "split": "held_out",
+      "instruction_sha256": "942048877d92f868f3a0ac603fa090eb42d1cbe6c5ce6116c1f1ea965df412e9",
+      "generation_seed": 2026082544
+    },
+    {
+      "slot": 45,
+      "task_id": "webshop_seed_source_faithful_slot045_session00364",
+      "worker_seed": 1045,
+      "sampled_session_index": 364,
+      "split": "held_out",
+      "instruction_sha256": "64f2cbe171d2ecd8c88b951ce1e57e824eb573c346732b88dcb76cc5d56505f1",
+      "generation_seed": 2026082545
+    },
+    {
+      "slot": 46,
+      "task_id": "webshop_seed_source_faithful_slot046_session00354",
+      "worker_seed": 1046,
+      "sampled_session_index": 354,
+      "split": "held_out",
+      "instruction_sha256": "09955dc6f4dd2a1566175aee9ed5078c3e8f75f0b9d0a47c7f6b7b6d287eb62b",
+      "generation_seed": 2026082546
+    },
+    {
+      "slot": 47,
+      "task_id": "webshop_seed_source_faithful_slot047_session00396",
+      "worker_seed": 1047,
+      "sampled_session_index": 396,
+      "split": "held_out",
+      "instruction_sha256": "accdc31ac02ec073d2141aefbbd96dc11eb99c80b3978d02cfba423bb7a30199",
+      "generation_seed": 2026082547
+    },
+    {
+      "slot": 48,
+      "task_id": "webshop_seed_source_faithful_slot048_session00263",
+      "worker_seed": 1048,
+      "sampled_session_index": 263,
+      "split": "held_out",
+      "instruction_sha256": "d5c6f4040a20105fe4f7dca22e9d0b576311b651c2606f7d9468a21ef3141b15",
+      "generation_seed": 2026082548
+    },
+    {
+      "slot": 49,
+      "task_id": "webshop_seed_source_faithful_slot049_session00222",
+      "worker_seed": 1049,
+      "sampled_session_index": 222,
+      "split": "held_out",
+      "instruction_sha256": "57fad8c6c970f0f1696aeb165c48a3cba421fd0776c08b204a6f53b2d52b583a",
+      "generation_seed": 2026082549
+    },
+    {
+      "slot": 50,
+      "task_id": "webshop_seed_source_faithful_slot050_session00388",
+      "worker_seed": 1050,
+      "sampled_session_index": 388,
+      "split": "held_out",
+      "instruction_sha256": "a0a5a1130f2885108452150a75bb2942e049120040cb05a116f00cb3936def83",
+      "generation_seed": 2026082550
+    },
+    {
+      "slot": 51,
+      "task_id": "webshop_seed_source_faithful_slot051_session00346",
+      "worker_seed": 1051,
+      "sampled_session_index": 346,
+      "split": "held_out",
+      "instruction_sha256": "c29afc887a6ad83a90142e9d5d695592e40ef006a7fcc5a1ce4d815881767d27",
+      "generation_seed": 2026082551
+    },
+    {
+      "slot": 52,
+      "task_id": "webshop_seed_source_faithful_slot052_session00098",
+      "worker_seed": 1052,
+      "sampled_session_index": 98,
+      "split": "held_out",
+      "instruction_sha256": "aabc14e24809805cd597c863192bf1c8c5027f016844f8f31693073ef488faa3",
+      "generation_seed": 2026082552
+    },
+    {
+      "slot": 53,
+      "task_id": "webshop_seed_source_faithful_slot053_session00037",
+      "worker_seed": 1053,
+      "sampled_session_index": 37,
+      "split": "held_out",
+      "instruction_sha256": "a0bd0ab14212822acee2edf694bfbdca34da377d3c88ceb58d32e1622692e6b0",
+      "generation_seed": 2026082553
+    },
+    {
+      "slot": 54,
+      "task_id": "webshop_seed_source_faithful_slot054_session00363",
+      "worker_seed": 1054,
+      "sampled_session_index": 363,
+      "split": "held_out",
+      "instruction_sha256": "d18f0852afd8a99e653b7d54932a68be07a423dde1f910729965b91c4b82800a",
+      "generation_seed": 2026082554
+    },
+    {
+      "slot": 55,
+      "task_id": "webshop_seed_source_faithful_slot055_session00481",
+      "worker_seed": 1055,
+      "sampled_session_index": 481,
+      "split": "held_out",
+      "instruction_sha256": "a0d0a3f347f483947cfd1b432bde3eff949eeaab43f3b456e29ebff5dff1138c",
+      "generation_seed": 2026082555
+    },
+    {
+      "slot": 56,
+      "task_id": "webshop_seed_source_faithful_slot056_session00235",
+      "worker_seed": 1056,
+      "sampled_session_index": 235,
+      "split": "held_out",
+      "instruction_sha256": "9356876305a3032ac7103be0faadf331c65fd906f468632a0a4a1a361a3a2101",
+      "generation_seed": 2026082556
+    },
+    {
+      "slot": 57,
+      "task_id": "webshop_seed_source_faithful_slot057_session00299",
+      "worker_seed": 1057,
+      "sampled_session_index": 299,
+      "split": "held_out",
+      "instruction_sha256": "63b5ef1036aa15acc2774f4e8a939b04944c0dc6d2ec50e0ba5b832f573f71f7",
+      "generation_seed": 2026082557
+    },
+    {
+      "slot": 58,
+      "task_id": "webshop_seed_source_faithful_slot058_session00320",
+      "worker_seed": 1058,
+      "sampled_session_index": 320,
+      "split": "held_out",
+      "instruction_sha256": "8548668dcdfb0f027761e1ba84900e8a553ab0739ec5a4e55714b117e61a97c1",
+      "generation_seed": 2026082558
+    },
+    {
+      "slot": 59,
+      "task_id": "webshop_seed_source_faithful_slot059_session00494",
+      "worker_seed": 1059,
+      "sampled_session_index": 494,
+      "split": "held_out",
+      "instruction_sha256": "af2cbe139747ccd41377e856f24c3831b5b90b484d6a300705b74ca145c2bbdf",
+      "generation_seed": 2026082559
+    },
+    {
+      "slot": 60,
+      "task_id": "webshop_seed_source_faithful_slot060_session00358",
+      "worker_seed": 1060,
+      "sampled_session_index": 358,
+      "split": "held_out",
+      "instruction_sha256": "0e2741f3cda977fd68da2ee637abf0462fe656a2660c8b0a1b74792aeda035e2",
+      "generation_seed": 2026082560
+    },
+    {
+      "slot": 61,
+      "task_id": "webshop_seed_source_faithful_slot061_session00245",
+      "worker_seed": 1061,
+      "sampled_session_index": 245,
+      "split": "held_out",
+      "instruction_sha256": "f4f03ff0e539f736121af63145cde1421a1f2bceba1ebef30b3b00ce00e3aee0",
+      "generation_seed": 2026082561
+    },
+    {
+      "slot": 62,
+      "task_id": "webshop_seed_source_faithful_slot062_session00480",
+      "worker_seed": 1062,
+      "sampled_session_index": 480,
+      "split": "held_out",
+      "instruction_sha256": "2e2169dfd45b2644c769ac4c742370a7009ba0093672a3816c086ed2766643bb",
+      "generation_seed": 2026082562
+    },
+    {
+      "slot": 63,
+      "task_id": "webshop_seed_source_faithful_slot063_session00426",
+      "worker_seed": 1063,
+      "sampled_session_index": 426,
+      "split": "held_out",
+      "instruction_sha256": "a906312d231616e53cffa449d866fcb1cb013d5ef923fc50482c235a2003e24f",
+      "generation_seed": 2026082563
+    },
+    {
+      "slot": 64,
+      "task_id": "webshop_seed_source_faithful_slot064_session00052",
+      "worker_seed": 1064,
+      "sampled_session_index": 52,
+      "split": "held_out",
+      "instruction_sha256": "2ba3c64f19518a2b8d663d3f80a9d3f51dcdcf62b0c5f30b03b4c2ca3bf99148",
+      "generation_seed": 2026082564
+    },
+    {
+      "slot": 65,
+      "task_id": "webshop_seed_source_faithful_slot065_session00451",
+      "worker_seed": 1065,
+      "sampled_session_index": 451,
+      "split": "held_out",
+      "instruction_sha256": "f7ddd18ee9c6492348d4ccb3e6688c5d8ca213b9bf5a24d4f272afcca8d2ee5a",
+      "generation_seed": 2026082565
+    },
+    {
+      "slot": 66,
+      "task_id": "webshop_seed_source_faithful_slot066_session00280",
+      "worker_seed": 1066,
+      "sampled_session_index": 280,
+      "split": "held_out",
+      "instruction_sha256": "afcd194b60ac3a3b2ae11a9f29f5e59e850173fd6bd24af108606c006ab9131f",
+      "generation_seed": 2026082566
+    },
+    {
+      "slot": 67,
+      "task_id": "webshop_seed_source_faithful_slot067_session00024",
+      "worker_seed": 1067,
+      "sampled_session_index": 24,
+      "split": "held_out",
+      "instruction_sha256": "1ecb846dfa2e441478dcc1ae335acd313c14bfebe40c76a311be6827227c013f",
+      "generation_seed": 2026082567
+    },
+    {
+      "slot": 68,
+      "task_id": "webshop_seed_source_faithful_slot068_session00095",
+      "worker_seed": 1068,
+      "sampled_session_index": 95,
+      "split": "held_out",
+      "instruction_sha256": "83e4276316cfc0f993b4cdff4164e73f06e62d68f5982d1473d6854702897f3d",
+      "generation_seed": 2026082568
+    },
+    {
+      "slot": 69,
+      "task_id": "webshop_seed_source_faithful_slot069_session00431",
+      "worker_seed": 1069,
+      "sampled_session_index": 431,
+      "split": "held_out",
+      "instruction_sha256": "3e92f016eaf7efa1108c49ee62802bd167886173122f8b6a1ad8d8fc752e15f0",
+      "generation_seed": 2026082569
+    },
+    {
+      "slot": 70,
+      "task_id": "webshop_seed_source_faithful_slot070_session00450",
+      "worker_seed": 1070,
+      "sampled_session_index": 450,
+      "split": "held_out",
+      "instruction_sha256": "091bd94485af323a2676ec70370f898f82d4a9b7de06a2f06c8cffa2829f19ed",
+      "generation_seed": 2026082570
+    },
+    {
+      "slot": 71,
+      "task_id": "webshop_seed_source_faithful_slot071_session00300",
+      "worker_seed": 1071,
+      "sampled_session_index": 300,
+      "split": "held_out",
+      "instruction_sha256": "6c89050a7cd7c70e5044eb561ebf0dc27af31ca740399fc7fe7ffd522f3b4ddc",
+      "generation_seed": 2026082571
+    },
+    {
+      "slot": 72,
+      "task_id": "webshop_seed_source_faithful_slot072_session00028",
+      "worker_seed": 1072,
+      "sampled_session_index": 28,
+      "split": "held_out",
+      "instruction_sha256": "77cc2e0a83d810853714437da00d61db8da578f86435162945f889da898a7c86",
+      "generation_seed": 2026082572
+    },
+    {
+      "slot": 73,
+      "task_id": "webshop_seed_source_faithful_slot073_session00165",
+      "worker_seed": 1073,
+      "sampled_session_index": 165,
+      "split": "held_out",
+      "instruction_sha256": "554852a97289be4ffae99141dd278ae792bdb6d11bdf599ad4a40906d420bc75",
+      "generation_seed": 2026082573
+    },
+    {
+      "slot": 74,
+      "task_id": "webshop_seed_source_faithful_slot074_session00118",
+      "worker_seed": 1074,
+      "sampled_session_index": 118,
+      "split": "held_out",
+      "instruction_sha256": "b9c2d580f3ffafffd5666b18658cab61c8dd1ea6266fb257c384a41b83e644cf",
+      "generation_seed": 2026082574
+    },
+    {
+      "slot": 75,
+      "task_id": "webshop_seed_source_faithful_slot075_session00153",
+      "worker_seed": 1075,
+      "sampled_session_index": 153,
+      "split": "held_out",
+      "instruction_sha256": "2f8b37f0fd2af4a53bff62c8c12f887c68e38d45bec6870b24a2cb5bbc46e706",
+      "generation_seed": 2026082575
+    },
+    {
+      "slot": 76,
+      "task_id": "webshop_seed_source_faithful_slot076_session00303",
+      "worker_seed": 1076,
+      "sampled_session_index": 303,
+      "split": "held_out",
+      "instruction_sha256": "2843f52675634b3593b603a49787e0d0bd033d9083a3d9cceb5efb73cccaa023",
+      "generation_seed": 2026082576
+    },
+    {
+      "slot": 77,
+      "task_id": "webshop_seed_source_faithful_slot077_session00399",
+      "worker_seed": 1077,
+      "sampled_session_index": 399,
+      "split": "held_out",
+      "instruction_sha256": "75601e54d96c5f606497da0940be7d334a241b180115d0086285195c15fa9c2c",
+      "generation_seed": 2026082577
+    },
+    {
+      "slot": 78,
+      "task_id": "webshop_seed_source_faithful_slot078_session00466",
+      "worker_seed": 1078,
+      "sampled_session_index": 466,
+      "split": "held_out",
+      "instruction_sha256": "686754b481e6d803b669ec506d042978a0575d2947de0d5736501d22e3a109b0",
+      "generation_seed": 2026082578
+    },
+    {
+      "slot": 79,
+      "task_id": "webshop_seed_source_faithful_slot079_session00055",
+      "worker_seed": 1079,
+      "sampled_session_index": 55,
+      "split": "held_out",
+      "instruction_sha256": "24434b71610ef2a191574602dbbfe3d5693d896b49ff843b82b05c7505017362",
+      "generation_seed": 2026082579
+    },
+    {
+      "slot": 80,
+      "task_id": "webshop_seed_source_faithful_slot080_session00101",
+      "worker_seed": 1080,
+      "sampled_session_index": 101,
+      "split": "held_out",
+      "instruction_sha256": "5952594d3aa76e17840440bc736850c41e74bbe180a1037a322470d1fa88d1f6",
+      "generation_seed": 2026082580
+    },
+    {
+      "slot": 81,
+      "task_id": "webshop_seed_source_faithful_slot081_session00401",
+      "worker_seed": 1081,
+      "sampled_session_index": 401,
+      "split": "held_out",
+      "instruction_sha256": "252e5d42811d9236bcb1b34fa00c9638d3c38e768bf5dd9b8a0b2f13c889025c",
+      "generation_seed": 2026082581
+    },
+    {
+      "slot": 82,
+      "task_id": "webshop_seed_source_faithful_slot082_session00255",
+      "worker_seed": 1082,
+      "sampled_session_index": 255,
+      "split": "held_out",
+      "instruction_sha256": "971806e400588f6c34242d4e87710c4ee78d38cc940eba31b339b3f992f24554",
+      "generation_seed": 2026082582
+    },
+    {
+      "slot": 83,
+      "task_id": "webshop_seed_source_faithful_slot083_session00248",
+      "worker_seed": 1083,
+      "sampled_session_index": 248,
+      "split": "held_out",
+      "instruction_sha256": "138141309b3113cebffebce075054886df9adc86f9385ae9be35e6a8855284a1",
+      "generation_seed": 2026082583
+    },
+    {
+      "slot": 84,
+      "task_id": "webshop_seed_source_faithful_slot084_session00490",
+      "worker_seed": 1084,
+      "sampled_session_index": 490,
+      "split": "held_out",
+      "instruction_sha256": "4ed03ef127586a2e09c22705325db22a5bbc3153585aaf48952dd9e770e5a1b2",
+      "generation_seed": 2026082584
+    },
+    {
+      "slot": 85,
+      "task_id": "webshop_seed_source_faithful_slot085_session00133",
+      "worker_seed": 1085,
+      "sampled_session_index": 133,
+      "split": "held_out",
+      "instruction_sha256": "f139c2a1675c65541976ce9803b0d636c74c0cf07e4b5886c623a61ba960126c",
+      "generation_seed": 2026082585
+    },
+    {
+      "slot": 86,
+      "task_id": "webshop_seed_source_faithful_slot086_session00395",
+      "worker_seed": 1086,
+      "sampled_session_index": 395,
+      "split": "held_out",
+      "instruction_sha256": "da254058eb70b810ba197bd7ccdf60a621606a7cb877b4fb473f4005563029a8",
+      "generation_seed": 2026082586
+    },
+    {
+      "slot": 87,
+      "task_id": "webshop_seed_source_faithful_slot087_session00479",
+      "worker_seed": 1087,
+      "sampled_session_index": 479,
+      "split": "held_out",
+      "instruction_sha256": "30bc52fc24b2899ab1f76fc46afc32a32afd35375d128353284a1c62f99aaf5d",
+      "generation_seed": 2026082587
+    },
+    {
+      "slot": 88,
+      "task_id": "webshop_seed_source_faithful_slot088_session00236",
+      "worker_seed": 1088,
+      "sampled_session_index": 236,
+      "split": "held_out",
+      "instruction_sha256": "c495bf45a6eb95a1859b0f4f018f1468e1f93e223b4f67be8299563e29ca4eac",
+      "generation_seed": 2026082588
+    },
+    {
+      "slot": 89,
+      "task_id": "webshop_seed_source_faithful_slot089_session00318",
+      "worker_seed": 1089,
+      "sampled_session_index": 318,
+      "split": "held_out",
+      "instruction_sha256": "4f06c43700d4b080585ae9b102f74025bb777a24ba0212b22d6e24b3bab0d3b7",
+      "generation_seed": 2026082589
+    },
+    {
+      "slot": 90,
+      "task_id": "webshop_seed_source_faithful_slot090_session00285",
+      "worker_seed": 1090,
+      "sampled_session_index": 285,
+      "split": "held_out",
+      "instruction_sha256": "184683dec5085c8a620cce4cce67c72f53ec3f2cf4a1459473e2e0a73a8b7cce",
+      "generation_seed": 2026082590
+    },
+    {
+      "slot": 91,
+      "task_id": "webshop_seed_source_faithful_slot091_session00246",
+      "worker_seed": 1091,
+      "sampled_session_index": 246,
+      "split": "held_out",
+      "instruction_sha256": "ee5ee326bd72a80cf626e9a055f37f46653a22a31d8b60a5b1905936c66af1da",
+      "generation_seed": 2026082591
+    },
+    {
+      "slot": 92,
+      "task_id": "webshop_seed_source_faithful_slot092_session00310",
+      "worker_seed": 1092,
+      "sampled_session_index": 310,
+      "split": "held_out",
+      "instruction_sha256": "4b24868eeef03ec22a677118cbb1de52ddd84ec6677a8c8f307b20a1a409293d",
+      "generation_seed": 2026082592
+    },
+    {
+      "slot": 93,
+      "task_id": "webshop_seed_source_faithful_slot093_session00428",
+      "worker_seed": 1093,
+      "sampled_session_index": 428,
+      "split": "held_out",
+      "instruction_sha256": "3055a00602e5e5a293c63797758450b9a76c0f2570eaed2b4b78b1295882fed9",
+      "generation_seed": 2026082593
+    },
+    {
+      "slot": 94,
+      "task_id": "webshop_seed_source_faithful_slot094_session00046",
+      "worker_seed": 1094,
+      "sampled_session_index": 46,
+      "split": "held_out",
+      "instruction_sha256": "e0ec26901d482f274972e69df35e76a2792ffd2ed8414516a72513306f05da83",
+      "generation_seed": 2026082594
+    },
+    {
+      "slot": 95,
+      "task_id": "webshop_seed_source_faithful_slot095_session00459",
+      "worker_seed": 1095,
+      "sampled_session_index": 459,
+      "split": "held_out",
+      "instruction_sha256": "953f7c6677a0dc6b568f3c45e3be59287987ea0b1cb5f13354cea2c14e2fc1c4",
+      "generation_seed": 2026082595
+    },
+    {
+      "slot": 96,
+      "task_id": "webshop_seed_source_faithful_slot096_session00438",
+      "worker_seed": 1096,
+      "sampled_session_index": 438,
+      "split": "held_out",
+      "instruction_sha256": "233de37c6d9d3f84a1ed849b124f653dbf208001afc831471f4fcec2b79f5e13",
+      "generation_seed": 2026082596
+    },
+    {
+      "slot": 97,
+      "task_id": "webshop_seed_source_faithful_slot097_session00272",
+      "worker_seed": 1097,
+      "sampled_session_index": 272,
+      "split": "held_out",
+      "instruction_sha256": "a90f0dbc285c5ec7539301aec75663f6cfed5aa56198f003ff2739761349ac21",
+      "generation_seed": 2026082597
+    },
+    {
+      "slot": 98,
+      "task_id": "webshop_seed_source_faithful_slot098_session00136",
+      "worker_seed": 1098,
+      "sampled_session_index": 136,
+      "split": "held_out",
+      "instruction_sha256": "2a4cda727a7c2e05362e14dec40004656c5e23ff347e9acf2fc227f4d7db780a",
+      "generation_seed": 2026082598
+    },
+    {
+      "slot": 99,
+      "task_id": "webshop_seed_source_faithful_slot099_session00032",
+      "worker_seed": 1099,
+      "sampled_session_index": 32,
+      "split": "held_out",
+      "instruction_sha256": "13abdc2694feb277fbad96bf39ef816be547f22cd01fd91ad08f836326a016d1",
+      "generation_seed": 2026082599
+    },
+    {
+      "slot": 100,
+      "task_id": "webshop_seed_source_faithful_slot100_session00177",
+      "worker_seed": 1100,
+      "sampled_session_index": 177,
+      "split": "held_out",
+      "instruction_sha256": "37d3b386fc16962fbf2b9744a7b57eb4f71564e0a125e465f4d547cb9f6000c6",
+      "generation_seed": 2026082600
+    },
+    {
+      "slot": 101,
+      "task_id": "webshop_seed_source_faithful_slot101_session00197",
+      "worker_seed": 1101,
+      "sampled_session_index": 197,
+      "split": "held_out",
+      "instruction_sha256": "b188f175e9c62d60b29a6ec15481a5e3256ba9da33da146903f6d6fa165962b0",
+      "generation_seed": 2026082601
+    },
+    {
+      "slot": 102,
+      "task_id": "webshop_seed_source_faithful_slot102_session00418",
+      "worker_seed": 1102,
+      "sampled_session_index": 418,
+      "split": "held_out",
+      "instruction_sha256": "e0d283d79774137926b7ef40e70a8028141609a7569200496da099ccb832e69c",
+      "generation_seed": 2026082602
+    },
+    {
+      "slot": 103,
+      "task_id": "webshop_seed_source_faithful_slot103_session00132",
+      "worker_seed": 1103,
+      "sampled_session_index": 132,
+      "split": "held_out",
+      "instruction_sha256": "bfb658d97f6e2ba6bcb5f87a0115b5640b526ac30ac513a61e16f65a699215f5",
+      "generation_seed": 2026082603
+    },
+    {
+      "slot": 104,
+      "task_id": "webshop_seed_source_faithful_slot104_session00033",
+      "worker_seed": 1104,
+      "sampled_session_index": 33,
+      "split": "held_out",
+      "instruction_sha256": "a06e5f6214af542a714e471cf9e4290f5c9139e07db90c2ba84b70d070477908",
+      "generation_seed": 2026082604
+    },
+    {
+      "slot": 105,
+      "task_id": "webshop_seed_source_faithful_slot105_session00313",
+      "worker_seed": 1105,
+      "sampled_session_index": 313,
+      "split": "held_out",
+      "instruction_sha256": "4876c592ef2547fdf74a9ddb1d07fe2fc1da852720671619c54d7833960def5d",
+      "generation_seed": 2026082605
+    },
+    {
+      "slot": 106,
+      "task_id": "webshop_seed_source_faithful_slot106_session00150",
+      "worker_seed": 1106,
+      "sampled_session_index": 150,
+      "split": "held_out",
+      "instruction_sha256": "49702bbbf416dcef3ecd6de61a05f09babe1a77b879647567f6d2f6fed21c99a",
+      "generation_seed": 2026082606
+    },
+    {
+      "slot": 107,
+      "task_id": "webshop_seed_source_faithful_slot107_session00142",
+      "worker_seed": 1107,
+      "sampled_session_index": 142,
+      "split": "held_out",
+      "instruction_sha256": "8cd3dbdb65b31e5387d885842018705a4057ac3b1cf721535a42242406ab891e",
+      "generation_seed": 2026082607
+    },
+    {
+      "slot": 108,
+      "task_id": "webshop_seed_source_faithful_slot108_session00380",
+      "worker_seed": 1108,
+      "sampled_session_index": 380,
+      "split": "held_out",
+      "instruction_sha256": "9f23553939a72113e0060b0e47f0873aa76ab4d88a0f4484564bd130ccf2f840",
+      "generation_seed": 2026082608
+    },
+    {
+      "slot": 109,
+      "task_id": "webshop_seed_source_faithful_slot109_session00120",
+      "worker_seed": 1109,
+      "sampled_session_index": 120,
+      "split": "held_out",
+      "instruction_sha256": "13fbb36b5daa728dc2ae4f6f4f42566c6102d36851a85a5a1ecfe5776fff82db",
+      "generation_seed": 2026082609
+    },
+    {
+      "slot": 110,
+      "task_id": "webshop_seed_source_faithful_slot110_session00453",
+      "worker_seed": 1110,
+      "sampled_session_index": 453,
+      "split": "held_out",
+      "instruction_sha256": "5c3bbc20a4d98a0add0eb616f48c3970908d1328e0f4fe14d66e5eb19cf5dca5",
+      "generation_seed": 2026082610
+    },
+    {
+      "slot": 111,
+      "task_id": "webshop_seed_source_faithful_slot111_session00448",
+      "worker_seed": 1111,
+      "sampled_session_index": 448,
+      "split": "held_out",
+      "instruction_sha256": "750d6a036abf253a91785e704b0e8f4b9a2ac746fcde90584522d3df18683c10",
+      "generation_seed": 2026082611
+    },
+    {
+      "slot": 112,
+      "task_id": "webshop_seed_source_faithful_slot112_session00066",
+      "worker_seed": 1112,
+      "sampled_session_index": 66,
+      "split": "held_out",
+      "instruction_sha256": "8c81ca4eb97f35aa4281a734b1e2e782cb194c20cd325d83584fa26860d20b53",
+      "generation_seed": 2026082612
+    },
+    {
+      "slot": 113,
+      "task_id": "webshop_seed_source_faithful_slot113_session00075",
+      "worker_seed": 1113,
+      "sampled_session_index": 75,
+      "split": "held_out",
+      "instruction_sha256": "bc6ceb7b5cd8336d3597e46b2032b553247f2f645480d51ed15414ed71d90d6f",
+      "generation_seed": 2026082613
+    },
+    {
+      "slot": 114,
+      "task_id": "webshop_seed_source_faithful_slot114_session00461",
+      "worker_seed": 1114,
+      "sampled_session_index": 461,
+      "split": "held_out",
+      "instruction_sha256": "ab51c67fa58969e83593527bd0ffc14549d444a62807b4c4d83557de927f6e9f",
+      "generation_seed": 2026082614
+    },
+    {
+      "slot": 115,
+      "task_id": "webshop_seed_source_faithful_slot115_session00070",
+      "worker_seed": 1115,
+      "sampled_session_index": 70,
+      "split": "held_out",
+      "instruction_sha256": "dbedc1b7ef858f73f29591d9828907d8baa27364971bf3083a76cf11713728b2",
+      "generation_seed": 2026082615
+    },
+    {
+      "slot": 116,
+      "task_id": "webshop_seed_source_faithful_slot116_session00467",
+      "worker_seed": 1116,
+      "sampled_session_index": 467,
+      "split": "held_out",
+      "instruction_sha256": "5094cd657134df8877eb1c802d0e707d15a638c1f2e6ceff492d8f6785b12f72",
+      "generation_seed": 2026082616
+    },
+    {
+      "slot": 117,
+      "task_id": "webshop_seed_source_faithful_slot117_session00312",
+      "worker_seed": 1117,
+      "sampled_session_index": 312,
+      "split": "held_out",
+      "instruction_sha256": "6b169f968f4d984e489bbf927a65c88370a8087503c41b8ddfa2ba8c45a35db1",
+      "generation_seed": 2026082617
+    },
+    {
+      "slot": 118,
+      "task_id": "webshop_seed_source_faithful_slot118_session00108",
+      "worker_seed": 1118,
+      "sampled_session_index": 108,
+      "split": "held_out",
+      "instruction_sha256": "ad2733c479825019b9d890a4e73d75e4244beb667e2ca3010a85090751e097ec",
+      "generation_seed": 2026082618
+    },
+    {
+      "slot": 119,
+      "task_id": "webshop_seed_source_faithful_slot119_session00102",
+      "worker_seed": 1119,
+      "sampled_session_index": 102,
+      "split": "held_out",
+      "instruction_sha256": "31a040188dd8b47f58cd7546946f49010231fd2311fe1b0711977ae4f3936b0d",
+      "generation_seed": 2026082619
+    },
+    {
+      "slot": 120,
+      "task_id": "webshop_seed_source_faithful_slot120_session00360",
+      "worker_seed": 1120,
+      "sampled_session_index": 360,
+      "split": "held_out",
+      "instruction_sha256": "7dc0e08926d0e5b8c23e5a8a2727ab2afb3be120aab86d40715385084608983d",
+      "generation_seed": 2026082620
+    },
+    {
+      "slot": 121,
+      "task_id": "webshop_seed_source_faithful_slot121_session00092",
+      "worker_seed": 1121,
+      "sampled_session_index": 92,
+      "split": "held_out",
+      "instruction_sha256": "cb31dc72b64a42b199f80bac90c880fe4a0ae76712b079518de7f1fd6417d410",
+      "generation_seed": 2026082621
+    },
+    {
+      "slot": 122,
+      "task_id": "webshop_seed_source_faithful_slot122_session00322",
+      "worker_seed": 1122,
+      "sampled_session_index": 322,
+      "split": "held_out",
+      "instruction_sha256": "b55541da27232470586c0436ba47e54c769fc2d1afbb205c7455182948d57665",
+      "generation_seed": 2026082622
+    },
+    {
+      "slot": 123,
+      "task_id": "webshop_seed_source_faithful_slot123_session00122",
+      "worker_seed": 1123,
+      "sampled_session_index": 122,
+      "split": "held_out",
+      "instruction_sha256": "7a5d9a89ff753b7b6587e4da9a4a0408693097872431249eac966b6256961a3f",
+      "generation_seed": 2026082623
+    },
+    {
+      "slot": 124,
+      "task_id": "webshop_seed_source_faithful_slot124_session00265",
+      "worker_seed": 1124,
+      "sampled_session_index": 265,
+      "split": "held_out",
+      "instruction_sha256": "c28bcb95a5ebbc0eb51c57765f85c54456df8e0d2e05a8a37ebfa0a38a6f6d19",
+      "generation_seed": 2026082624
+    },
+    {
+      "slot": 125,
+      "task_id": "webshop_seed_source_faithful_slot125_session00226",
+      "worker_seed": 1125,
+      "sampled_session_index": 226,
+      "split": "held_out",
+      "instruction_sha256": "bb4bb63b978a8d30db3b9398e2b8860b9d4508ab272367d1dd3dc29a5f753ac3",
+      "generation_seed": 2026082625
+    },
+    {
+      "slot": 126,
+      "task_id": "webshop_seed_source_faithful_slot126_session00064",
+      "worker_seed": 1126,
+      "sampled_session_index": 64,
+      "split": "held_out",
+      "instruction_sha256": "af670d27e36ed65ef0c0db407a29db7d888d62801487cfbd0bcef1e92800586e",
+      "generation_seed": 2026082626
+    },
+    {
+      "slot": 127,
+      "task_id": "webshop_seed_source_faithful_slot127_session00117",
+      "worker_seed": 1127,
+      "sampled_session_index": 117,
+      "split": "held_out",
+      "instruction_sha256": "0e51d8cf2f0d431608df981346b99fa7d2e8ff8f8e30b203e419d2a544a7117c",
+      "generation_seed": 2026082627
+    }
+  ],
+  "payload_sha256": "dd3b3dd820615fdc859d44ad2629f30f4494c2b24c3dacf8a54869c6988703ab"
+}

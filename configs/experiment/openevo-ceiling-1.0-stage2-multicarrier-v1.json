@@ -1,0 +1,58 @@
+{
+  "schema": "openevo.ceiling1-stage2-multicarrier.v1",
+  "status": "design-frozen-launcher-pending",
+  "entry_gate": "STAGE1_COMPLETE_<arm>.json from openevo.ceiling1-stage1-state.v1",
+  "runtime_state_required": [
+    "opsd_bootstrap_adapter",
+    "fixed_stage1_text_memory",
+    "fixed_stage1_skill_bundle",
+    "fixed_stage1_agent_system"
+  ],
+  "runtime_readback_required": true,
+  "skill_bundle": {
+    "status": "enabled-fixed-stage1-artifact",
+    "bridge": "webshop_qwen_skill_bridge_v1",
+    "online_stage2_evolution": false
+  },
+  "agent_system": {
+    "status": "enabled-fixed-stage1-artifact",
+    "online_stage2_evolution": false
+  },
+  "text_memory": {
+    "initial_state": "Stage1 Text Memory",
+    "update_cadence_rollouts": 128,
+    "update_rule": "grounded evidence only; otherwise explicit no-op",
+    "failure_trajectories_allowed": true
+  },
+  "parametric_memory": {
+    "method": "parametric_memory_sd_lora",
+    "update_cadence_rollouts": 256,
+    "rounds_per_parametric_block": 2,
+    "minimum_usable_current_success_trajectories": 1,
+    "zero_success_behavior": "no-op",
+    "old_7_vs_8_gate": false,
+    "no_cross_block_success_accumulation": true,
+    "capacity_limit": 64,
+    "capacity_policy": "freeze parametric carrier at native hard limit; continue remaining rollouts and Text Memory",
+    "rationale": "keep parametric memory slower than 128-rollout Text Memory and delay exhaustion of the native 64-component cap; 256 is not a success gate"
+  },
+  "schedule": {
+    "rounds": 160,
+    "tasks_per_round": 16,
+    "rollouts_per_task": 8,
+    "rollouts_per_round": 128,
+    "total_rollouts": 20480,
+    "parametric_blocks": 80
+  },
+  "external_teacher_calls": 0,
+  "stage1_teacher_evidence_reanalysis": 0,
+  "task_vector": "diagnostic-only; never changes training policy",
+  "forbidden": [
+    "skill_bundle disabled",
+    "Stage2 start without four-carrier Stage1 seal",
+    "MiniMax/GPT/GLM calls",
+    "old 8-identity success gate",
+    "silent max_records truncation",
+    "cross-arm readiness barrier"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "analysis_endpoints": [
+    "search-loop frequency",
+    "target-product identification",
+    "option-selection errors",
+    "buy-timing errors",
+    "trajectory diversity",
+    "MiniMax error taxonomy"
+  ],
+  "benchmark": "WebShop",
+  "budget": {
+    "final_panel_tasks": 0,
+    "formal_trajectories": 1440,
+    "minimax_parse_ok_target": 1440,
+    "seed_stage2_rollouts": 0
+  },
+  "claim_boundary": "This is a matched initialization probe analyzed by MiniMax. It is not a reproduction of the SEED paper score, GLM analyzer, or full SEED Stage2 training.",
+  "engineering_platform_authority": "docs/experiment-tracking/OPEN_EVO_CEILING_1.0_END_TO_END_MASTER_PLAN.md §2.3",
+  "experiment_id": "M1-D-SEED-STAGE1-INIT-PROBE-3B",
+  "external_teacher_calls": 0,
+  "final_panel_access": 0,
+  "forbidden": [
+    "SEED Stage2",
+    "claiming paper-score reproduction",
+    "replacing MiniMax with another analyzer after outcomes",
+    "increasing trajectory count because the SEED corpus looks weak"
+  ],
+  "hard_stop": "STOP after 1,440 trajectory seal plus MiniMax parse_ok seal; SEED Stage2 is forbidden in this program",
+  "matched_design": {
+    "analyzer": "MiniMax post-hoc, applied identically to the new SEED corpus and existing OpenEvo corpus for this comparison",
+    "max_steps": 15,
+    "rollouts_per_task": 8,
+    "task_identity_and_rollout_seed_schedule": "reuse the frozen Ceiling-1.0 Qwen2.5-3B Stage1 schedule where method semantics permit; any irreducible mismatch must be sealed before execution",
+    "tasks": 180,
+    "trajectory_budget": 1440
+  },
+  "method_source": {
+    "role": "extract Stage1 generation semantics; do not claim paper-final reproduction",
+    "seed_commit": "2cf2fadca3c5aba28da68e8e1405182ba8d90e6c"
+  },
+  "model": {
+    "id": "Qwen/Qwen2.5-3B-Instruct",
+    "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1"
+  },
+  "primary_endpoints": [
+    "exact-success trajectory count",
+    "positive-score trajectory count",
+    "mean task_score*100"
+  ],
+  "program_id": "openevo-mechanism-1.0-202609052200",
+  "question": "Under the same 1,440-trajectory WebShop experience envelope, what kind of initial trajectory corpus does the SEED Stage1 procedure produce relative to the existing OpenEvo 3B Stage1 corpus?",
+  "ray_workload": "mechanism1_seed_stage1_3b",
+  "result_dependent_stopping": false,
+  "schema": "openevo.mechanism1-seed-stage1-init-probe-3b.202609052200",
+  "scientific_role": "bounded initialization reference; supporting experiment only",
+  "status": "PREREGISTERED_WAITING_MATCHED_MANIFEST_AND_RUNTIME_QUALIFICATION"
+}

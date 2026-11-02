@@ -1,0 +1,66 @@
+{
+  "activation_authority": false,
+  "arm": "qwen3-1p7b",
+  "asset_contract": {
+    "consumes": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen3-1p7b--stage1c_opsd",
+        "role": "upstream-phase"
+      }
+    ],
+    "produces": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen3-1p7b--stage1d_text_memory",
+        "provider": "server",
+        "provider_id": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/TEXT_MEMORY_COMPLETE_qwen3-1p7b.json",
+        "role": "phase-receipt"
+      }
+    ],
+    "publication": [],
+    "recovery": [],
+    "registry_policy": "observation-first-canonical-if-proven",
+    "telemetry": []
+  },
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 0,
+    "local_reflector_requests_max": 59,
+    "optimizer_steps_max": 0
+  },
+  "completion": {
+    "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/TEXT_MEMORY_COMPLETE_qwen3-1p7b.json",
+    "required_equal": {
+      "arm": "qwen3-1p7b",
+      "consumed_rows_total": 1440,
+      "schema": "openevo.ceiling1-text-memory-stage1.a2",
+      "status": "pass"
+    },
+    "sha256": "a3a59776048b7e8066869ed36bb0f74ac27e9a5bcab84719a6d513feb27793ba"
+  },
+  "historical_execution_provenance": {
+    "original_checkout": "/workspace/control/openevo-experiment-shared-prestage2-1bfef3f6",
+    "original_execution_sha": "1bfef3f63d369b250e868aa70b3fdc8bb8953941",
+    "rule": "do not infer missing producer identity from names or timestamps",
+    "status": "PROVEN"
+  },
+  "historical_execution_source": {
+    "checkout": "/workspace/control/openevo-experiment-shared-prestage2-1bfef3f6",
+    "execution_sha": "1bfef3f63d369b250e868aa70b3fdc8bb8953941"
+  },
+  "phase": "stage1d_text_memory",
+  "release_mode": "adoption",
+  "retry": {
+    "exact_resume": false,
+    "reason": "immutable completion adopted into current control plane; no execution is authorized by this release"
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "configs/experiment/openevo-ceiling-1.0-text-memory-a2.json",
+    "required_equal": {
+      "schema": "openevo.ceiling1-text-memory-a2.v1"
+    },
+    "sha256": "8c21ecfb3319af9b105bad89c873e1809d387d949eb40bf2719794b40dff2187"
+  },
+  "status": "ADOPTED_IMMUTABLE_COMPLETION"
+}

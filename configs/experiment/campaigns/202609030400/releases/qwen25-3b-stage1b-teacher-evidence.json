@@ -1,0 +1,67 @@
+{
+  "activation_authority": false,
+  "arm": "qwen25-3b",
+  "asset_contract": {
+    "consumes": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen25-3b--stage1b_minimax",
+        "role": "upstream-phase"
+      }
+    ],
+    "produces": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--qwen25-3b--stage1b_teacher_evidence",
+        "provider": "server",
+        "provider_id": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/MINIMAX_COMPLETE_qwen25-3b.json",
+        "role": "phase-receipt"
+      }
+    ],
+    "publication": [],
+    "recovery": [],
+    "registry_policy": "observation-first-canonical-if-proven",
+    "telemetry": []
+  },
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 0,
+    "local_reflector_requests_max": 0,
+    "optimizer_steps_max": 0
+  },
+  "completion": {
+    "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/MINIMAX_COMPLETE_qwen25-3b.json",
+    "required_equal": {
+      "arm": "qwen25-3b",
+      "downstream_auto_launch_forbidden": true,
+      "external_teacher_budget_closed": true,
+      "status": "PASS"
+    },
+    "sha256": "fb957167485299fb0e4d44f85e4d0027c6a813f4dd38fc01a71b36597c4409d0"
+  },
+  "historical_execution_provenance": {
+    "original_checkout": "/workspace/control/openevo-experiment-shared-prestage2-23e0a7a2",
+    "original_execution_sha": "23e0a7a27f21a4b2681ade1305d3684bc85ee27c",
+    "rule": "do not infer missing producer identity from names or timestamps",
+    "status": "PROVEN"
+  },
+  "historical_execution_source": {
+    "checkout": "/workspace/control/openevo-experiment-shared-prestage2-23e0a7a2",
+    "execution_sha": "23e0a7a27f21a4b2681ade1305d3684bc85ee27c"
+  },
+  "phase": "stage1b_teacher_evidence",
+  "release_mode": "adoption",
+  "retry": {
+    "exact_resume": false,
+    "reason": "immutable completion adopted into current control plane; no execution is authorized by this release"
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "configs/experiment/stage1/202609030400/minimax_handoff.json",
+    "required_equal": {
+      "freeze_id": "202609030400",
+      "status": "FROZEN"
+    },
+    "sha256": "fb8959b6a068a39e58fa33e1919d98b44b50565eff105a19372092cc9628ddbe"
+  },
+  "status": "ADOPTED_IMMUTABLE_COMPLETION"
+}

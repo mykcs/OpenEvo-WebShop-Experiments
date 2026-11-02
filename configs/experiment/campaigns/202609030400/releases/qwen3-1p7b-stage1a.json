@@ -1,0 +1,137 @@
+{
+  "activation_authority": false,
+  "arm": "qwen3-1p7b",
+  "asset_contract": {
+    "consumes": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--shared-stage1-harness",
+        "role": "scientific-design"
+      },
+      {
+        "canonical_id": "openevo--asset--model--qwen3-1p7b",
+        "role": "base-model"
+      },
+      {
+        "canonical_id": "openevo--asset--dataset--seed-webshop-v1",
+        "role": "benchmark-dataset"
+      },
+      {
+        "canonical_id": "openevo--asset--runtime--h144-scientific",
+        "role": "runtime-image"
+      },
+      {
+        "canonical_id": "openevo--asset--environment--seed-webshop-v1",
+        "role": "environment-source"
+      }
+    ],
+    "produces": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--shared-stage1-harness--qwen3-1p7b--formal",
+        "provider": "server",
+        "provider_id": "/workspace/runs/qwen3-1p7b-stage1-202609030400",
+        "role": "formal-run"
+      },
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--shared-stage1-harness--qwen3-1p7b--formal--trajectory-corpus--stage1",
+        "provider": "server",
+        "provider_id": "/workspace/runs/qwen3-1p7b-stage1-202609030400",
+        "role": "trajectory-corpus"
+      }
+    ],
+    "publication": [],
+    "recovery": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--shared-stage1-harness--qwen3-1p7b--formal--shard-recovery-state",
+        "provider": "server",
+        "provider_id": "/workspace/runs/qwen3-1p7b-stage1-202609030400/shard-*",
+        "role": "shard-recovery"
+      }
+    ],
+    "registry_policy": "observation-first-canonical-if-proven",
+    "telemetry": [
+      {
+        "canonical_id": "202609030400-ceiling1-autonomous-v1--shared-stage1-harness--qwen3-1p7b--formal--runtime-telemetry",
+        "provider": "server",
+        "provider_id": "/workspace/runs/qwen3-1p7b-stage1-202609030400/shard-*/gpu-before.json",
+        "role": "runtime-telemetry"
+      }
+    ]
+  },
+  "budget_contract": {
+    "external_teacher_requests_max": 0,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 1440,
+    "local_reflector_requests_max": 0,
+    "optimizer_steps_max": 0
+  },
+  "completion": {
+    "path": "/workspace/runs/qwen3-1p7b-stage1-202609030400/STAGE1_COMPLETE_202609030400.json",
+    "required_equal": {
+      "arm": "qwen3-1p7b",
+      "downstream_not_started": true,
+      "execution_git_sha": "362271d3cdc411581dd7f09d98d5ce69cfb1cb57",
+      "freeze_id": "202609030400",
+      "reward_or_success_used_as_pass_gate": false,
+      "status": "PASS"
+    },
+    "sha256": "39fd11b795167d97509269f18b1b601a61a852538131f428eec9193c557c1a8c"
+  },
+  "historical_execution_provenance": {
+    "original_checkout": "/workspace/control/openevo-experiment-shared-stage1-formal-exec-362271d3",
+    "original_execution_sha": "362271d3cdc411581dd7f09d98d5ce69cfb1cb57",
+    "rule": "completed adoption does not require historical checkout liveness",
+    "status": "PROVEN"
+  },
+  "historical_execution_source": {
+    "checkout": "/workspace/control/openevo-experiment-shared-stage1-formal-exec-362271d3",
+    "execution_sha": "362271d3cdc411581dd7f09d98d5ce69cfb1cb57"
+  },
+  "inputs": [
+    {
+      "path": "/workspace/runs/qwen3-1p7b-stage1-202609030400/LAUNCH_RECEIPT.json",
+      "required_equal": {
+        "formal_generation_code_sha": "362271d3cdc411581dd7f09d98d5ce69cfb1cb57",
+        "freeze_id": "202609030400",
+        "sampling.temperature": 1.0,
+        "sampling.top_k": 0,
+        "sampling.top_p": 1.0,
+        "total_workers": 8,
+        "workers_per_arm": 4
+      }
+    }
+  ],
+  "phase": "stage1a_collection",
+  "progress": {
+    "expected_files": 1440,
+    "identity_regex": "^(\\d{6})-",
+    "kind": "glob_files",
+    "path_glob": "/workspace/runs/qwen3-1p7b-stage1-202609030400/shard-*/episodes/*.json"
+  },
+  "release_mode": "adoption",
+  "retry": {
+    "exact_resume": false,
+    "reason": "canonical Stage1A is already sealed; this current release is read-only adoption"
+  },
+  "runtime": {
+    "container_names": [
+      "shared-s1-030400-qwen3-1p7b-g4-0001-0360",
+      "shared-s1-030400-qwen3-1p7b-g5-0361-0720",
+      "shared-s1-030400-qwen3-1p7b-g6-0721-1080",
+      "shared-s1-030400-qwen3-1p7b-g7-1081-1440"
+    ]
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "configs/experiment/stage1/202609030400/design.json",
+    "required_equal": {
+      "freeze_id": "202609030400",
+      "sampling.temperature": 1.0,
+      "sampling.top_k": 0,
+      "sampling.top_p": 1.0,
+      "shared_harness.profile": "harness201.1-stage1-shared-seed-native-min-deliberation-v1",
+      "status": "FROZEN"
+    },
+    "sha256": "1c8734f00d7c15d29829693b139f1284f87e52b75eec6b6dbdd6c33ff4addc47"
+  },
+  "status": "ADOPTED_COMPLETED_CURRENT_202609030400"
+}

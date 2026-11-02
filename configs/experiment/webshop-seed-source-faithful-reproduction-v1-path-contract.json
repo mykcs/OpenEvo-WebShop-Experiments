@@ -1,0 +1,79 @@
+{
+  "schema": "openevo.webshop-seed-source-faithful-reproduction-path-contract.v1",
+  "campaign_id": "20260826-0638-webshop-seed-source-faithful-reproduction",
+  "status": "pending-host-path-resolution",
+  "host_root": "/workspace",
+  "container_root": "/workspace",
+  "paths": {
+    "experiment": {
+      "host_path": "TBD",
+      "container_path": "/workspace/src/openevo-experiment",
+      "expected_type": "dir",
+      "access": "ro",
+      "commit_required": "TBD_AFTER_MANIFEST_FIX_PR"
+    },
+    "openevo_core": {
+      "host_path": "TBD",
+      "container_path": "/workspace/src/openevo-core",
+      "expected_type": "dir",
+      "access": "ro",
+      "commit_required": "TBD"
+    },
+    "model": {
+      "host_path": "TBD",
+      "container_path": "/workspace/models/Qwen2.5-7B-Instruct",
+      "expected_type": "dir",
+      "access": "ro",
+      "content_pin_required": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e"
+    },
+    "dataset": {
+      "host_path": "TBD",
+      "container_path": "/workspace/data/webshop-1000",
+      "expected_type": "dir",
+      "access": "ro",
+      "data_files_required": {
+        "items_shuffle_1000.json": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+        "items_ins_v2_1000.json": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+        "items_human_ins.json": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3"
+      }
+    },
+    "adapter": {
+      "host_path": "TBD",
+      "container_path": "/workspace/adapter/open-evo-sd-lora",
+      "expected_type": "dir",
+      "access": "ro",
+      "adapter_file_sha256_required": "47e63d417f85cb2defed5ff1ee934128b96e6a4f78a8f410fa052957d919190c"
+    },
+    "cache": {
+      "host_path": "TBD",
+      "container_path": "/workspace/cache",
+      "expected_type": "dir",
+      "access": "rw",
+      "writable": true
+    },
+    "run_root": {
+      "host_path": "TBD",
+      "container_path": "/workspace/runs/phase-webshop-seed-source-faithful-reproduction-20260826",
+      "expected_type": "dir",
+      "access": "rw",
+      "writable": true
+    },
+    "resource_receipt": {
+      "host_path": "TBD",
+      "container_path": "/workspace/runs/phase-webshop-seed-source-faithful-reproduction-20260826/receipts/preflight.json",
+      "expected_type": "file",
+      "access": "rw",
+      "writable": true,
+      "must_exist": false
+    }
+  },
+  "requirements": {
+    "exact_host_container_mapping": true,
+    "container_visible_read_write_probe_required": true,
+    "cpu_no_gpu_probe_before_allocation": true,
+    "docker_wrapper_outside_container": true,
+    "clean_core_must_remain_immutable": true,
+    "seed_source_root_required": "jinyangwu/SEED@2cf2fadca3c5aba28da68e8e1405182ba8d90e6c",
+    "experiment_commit_resolution": "PREPARE phase uses TBD_AFTER_MERGE; the activation/release PR resolves this to the exact merged-main SHA after this PR merges and re-hash-binds the path contract before any formal task consumption."
+  }
+}

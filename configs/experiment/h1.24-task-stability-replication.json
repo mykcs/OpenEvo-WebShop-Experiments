@@ -1,0 +1,141 @@
+{
+  "standard_core": "v1",
+  "campaign_id": "20260815-1145-h124-task-stability-replication",
+  "status": "preregistered",
+  "title": "H1.24 task-level stability replication",
+  "objective": "Replicate the frozen H1.23 BASE-30 eight-task panel with new rollout seeds to test whether its task-level positive clustering persists.",
+  "scientific_question": "Under the frozen base agent and interface, does the H1.23 task-level reward clustering persist across independent rollout seeds?",
+  "hypothesis": "The H1.23 nonzero cluster may be task-specific and should either persist on the same task identities or disappear under new rollout seeds; this cannot establish family causality or learning efficacy.",
+  "claim_boundary": "This group is BASE-30 only, has no training, memory, adapter, teacher, retrieval, or outcome-conditioned selection, and cannot open Q3, H2, D0, retention, transfer, or SEED.",
+  "benchmark": "webshop",
+  "phase": "H1.24",
+  "split": "held-out-h1.23-task-stability-replication",
+  "pairing_key": [
+    "task_id",
+    "rollout_seed"
+  ],
+  "independent_variable": "rollout_seed_replication",
+  "arms": [
+    "BASE-30"
+  ],
+  "planned_matrix": {
+    "families": {
+      "mens_fashion": [
+        2858,
+        4863,
+        6459,
+        6469
+      ],
+      "womens_fashion": [
+        519,
+        1888,
+        5013,
+        6262
+      ]
+    },
+    "partitions": {
+      "P1": [
+        2858,
+        519
+      ],
+      "P2": [
+        4863,
+        1888
+      ],
+      "P3": [
+        6459,
+        5013
+      ],
+      "P4": [
+        6469,
+        6262
+      ]
+    },
+    "rollout_seeds": [
+      2026083700,
+      2026083701,
+      2026083702,
+      2026083703
+    ],
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "temperature": 0,
+    "attempts": 32
+  },
+  "metrics": {
+    "primary": [
+      "qualified_positive_rate_by_family",
+      "mean_task_score_by_family"
+    ],
+    "diagnostic": [
+      "buy_action_rate",
+      "valid_action_rate",
+      "parser_or_fallback_invalid",
+      "episode_steps",
+      "first_buy_step",
+      "search_next_backtrack_repetition_counts"
+    ]
+  },
+  "contamination_check": {
+    "training": false,
+    "teacher_assistance": false,
+    "evaluation_outcomes_used_for_labels": false,
+    "held_out_tasks_disjoint_from_completed_panels": false,
+    "excluded_goal_count": 68,
+    "note": "This is an explicit new-seed replication of the frozen H1.23 panel, not a new-task efficacy test."
+  },
+  "provenance": {
+    "task_manifest": "docs/evidence/remote-runs/2026-08-15/h1.24/H1.24_TASK_MANIFEST.json",
+    "task_manifest_sha256": "5677f053e9a5924dfa37b3ba700b4001cd1bc6279f43d3ebf6c18764991101ce",
+    "official_open_evo_stable": "796e6248a61112a61c880885844dd3b0420c0b6ae",
+    "experiment_git_sha": "4e820c8501ccbd7494e410a0f3f8e17b49d517f8",
+    "runtime_fingerprint": "154c64d5c73e39ccd8b87fc90ac6967d237d233cd6a62a66d25753e9d2075f8f",
+    "image_digest": "sha256:7a4cdaa8678181a55303acbee899dd2be2c0d94cd04266523bce31a2f4e6d5a4"
+  },
+  "budget": {
+    "gpu_cells": 8,
+    "gpu_hours_cap": 2,
+    "no_retry_after_valid_completion": true
+  },
+  "protocol_status": "h1.24-preregistered",
+  "formal_task_consumption_allowed": false,
+  "next_gate": "Run exactly one 32-attempt new-seed BASE-30 replication after the 8-UUID gate; then reconcile and close the descriptive branch.",
+  "tracking": {
+    "entity": "example-entity",
+    "project": "openevo-webshop-experiments",
+    "group": "20260815-1145-h124-task-stability-replication",
+    "default_mode": "online",
+    "offline_fallback": "only after online initialization/upload failure with exact error and spool hash"
+  },
+  "hard_boundaries": [
+    "Do not change the frozen eight task identities, prompt, parser, horizon, family definitions, denominator, or validity rule after launch.",
+    "Change only rollout seeds relative to H1.23; do not use training, teacher assistance, adapters, memory, retrieval, or evaluation outcomes.",
+    "Do not disturb external workloads; an occupied UUID blocks that cell.",
+    "Keep W&B online by default and preserve any explicit offline error and spool hash."
+  ],
+  "references": {
+    "preregistration": "docs/evidence/remote-runs/2026-08-15/h1.24/H1.24_PREREGISTRATION.md",
+    "machine_preregistration": "configs/experiment/h1.24-task-stability-replication.json",
+    "manifest": "docs/evidence/remote-runs/2026-08-15/h1.24/H1.24_TASK_MANIFEST.json",
+    "previous_checkpoint": "docs/reports/OPEN_EVO_WEBSHOP_CHECKPOINT_2026-08-15-H1.23.md",
+    "status": "docs/evidence/remote-runs/2026-08-15/h1.24/H1.24_STATUS.md",
+    "reconciliation": "docs/evidence/remote-runs/2026-08-15/h1.24/evidence/h1.24-reconciliation-v1.json",
+    "run_index": "docs/evidence/remote-runs/2026-08-15/h1.24/evidence/h1.24-run-index-v1.json",
+    "gpu_resource_gate": "docs/evidence/remote-runs/2026-08-15/h1.24/evidence/h1.24-gpu-resource-gate.json",
+    "checkpoint": "docs/reports/OPEN_EVO_WEBSHOP_CHECKPOINT_2026-08-15-H1.24.md"
+  },
+  "stop_rule": "Stop after one 32-attempt BASE-30 replication; no training or follow-up sweep.",
+  "positive_branch": "If task 6262 or the womens_fashion cluster persists, report task-level stability only; Q3 remains closed.",
+  "negative_branch": "If the positive cluster disappears, classify H1.23 as task-specific/stochastic; do not generalize.",
+  "scientific_role": "exploratory task-level stability replication; descriptive only",
+  "preregistration": "configs/experiment/h1.24-task-stability-replication.json",
+  "task_manifest": "docs/evidence/remote-runs/2026-08-15/h1.24/H1.24_TASK_MANIFEST.json",
+  "branch": "codex/h1.24-task-stability-20260815",
+  "open_pr": null,
+  "updated_at_utc": "2026-08-15T11:45:00Z",
+  "next_branch_rule": {
+    "qualified_positive_cluster_persists": "remain descriptive; no Q3 opening; require independent task identities before any efficacy test",
+    "qualified_positive_cluster_disappears": "classify H1.23 as task-specific/stochastic and do not generalize",
+    "invalid_or_runtime_failure": "exclude from denominator and repair only the operational contract"
+  }
+}

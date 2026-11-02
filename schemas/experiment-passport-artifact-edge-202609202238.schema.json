@@ -1,0 +1,15 @@
+{
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/experiment-passport-artifact-edge-202609202238.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "edge_type": {"enum": ["consumed_by", "produced_by", "derived_from", "supersedes"]},
+    "operation_digest": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "schema": {"const": "openevo.experiment-passport-artifact-edge.202609202238"},
+    "source_id": {"minLength": 1, "type": "string"},
+    "target_id": {"minLength": 1, "type": "string"}
+  },
+  "required": ["schema", "edge_type", "source_id", "target_id", "operation_digest"],
+  "title": "OpenEVO Experiment Passport Artifact DAG artifact edge",
+  "type": "object"
+}

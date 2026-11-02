@@ -1,0 +1,152 @@
+{
+  "completed_at": "2026-09-14T21:31:22+08:00",
+  "created_at": "2026-09-14T21:25:55+08:00",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "scripts/analysis/sd_lora_stable_packed_transfer_202609142124.py",
+      "reason": "C workline packed-transfer qualification producer source.",
+      "repository": "mykcs/openevo-experiment",
+      "revision": "806b99a90723c60ccf29f78d157cac74bf9fc7a3",
+      "sha256": "f0a6c53be7001db3543528f83900668ec131406a771d2eaf78003881002d1978"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "git_file",
+      "path": "docs/science/webshop/ACCELERATED_GDR_FOUR_GPU_PLAN_202609142053.md",
+      "reason": "C workline plan observed at producer source head.",
+      "repository": "mykcs/openevo-experiment",
+      "revision": "806b99a90723c60ccf29f78d157cac74bf9fc7a3",
+      "sha256": "1764d04fc971ea3aedf5fa9d45dd1e2894ed16e6cf2af434924db2b84fbf3437"
+    },
+    "contract_identities": [
+      {
+        "identity": {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/passport-accelerated-gdr-shadow-20260914/SEALED_STABLE_FREEZE_202609142055.json",
+          "reason": "Exact-byte snapshot of sealed Stable freeze; original Git evidence remains scientific authority.",
+          "repository": null,
+          "revision": null,
+          "sha256": "f326e5c20d9903efb2b40ea9589e8258d23822de91504390a1c21a9831fd81fd"
+        },
+        "name": "sealed-stable-freeze"
+      }
+    ],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "sealed-stable-freeze",
+        "derived_from_digests": [],
+        "digest": "f326e5c20d9903efb2b40ea9589e8258d23822de91504390a1c21a9831fd81fd",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/passport-accelerated-gdr-shadow-20260914/SEALED_STABLE_FREEZE_202609142055.json",
+            "reason": "Exact-byte snapshot of sealed Stable freeze; original Git evidence remains scientific authority.",
+            "repository": null,
+            "revision": null,
+            "sha256": "f326e5c20d9903efb2b40ea9589e8258d23822de91504390a1c21a9831fd81fd"
+          }
+        ],
+        "logical_role": "sealed-stable-reference",
+        "size_bytes": 1643
+      }
+    ],
+    "runtime_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/passport-accelerated-gdr-shadow-20260914/RUNTIME_IDENTITY_202609142055.json",
+      "reason": "Timestamp-native shadow identity snapshot; source runtime asset remains authority.",
+      "repository": null,
+      "revision": null,
+      "sha256": "c654a2c7147a24a9c1739b630f772d0918d2bb35f2069d9bf7e38c6aa5e00351"
+    },
+    "runtime_identity_policy": "BOUND",
+    "stochastic_identity": {
+      "candidate": "stable-explicit-history-packed-transfer",
+      "mode": "deterministic-fixed-seeds",
+      "out_features": [
+        1024,
+        2048
+      ],
+      "repeats": 9,
+      "seed_formula": "202609142124 + out_features"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "05db0f20a54eb15b6bb51d2493692f044dc75bc96bc31901355696583ba705e0",
+  "operation_schema_version": "202609142055",
+  "operation_type": "accelerated-gdr.shadow.acceleration_successor_qualification",
+  "outputs": [
+    {
+      "artifact_type": "qualification-result",
+      "derived_from_digests": [
+        "f326e5c20d9903efb2b40ea9589e8258d23822de91504390a1c21a9831fd81fd"
+      ],
+      "digest": "991065e2162d261c7aecf6cfed47ee8456d08e6412d6dbeaa8a27d76d2cdc830",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "git_file",
+          "path": "docs/evidence/accelerated-gdr-four-gpu-20260914/stable-packed-transfer-result.json",
+          "reason": null,
+          "repository": "mykcs/openevo-experiment",
+          "revision": "e21b4f13edc3e47f588d08f40e5b4b567913691f",
+          "sha256": "991065e2162d261c7aecf6cfed47ee8456d08e6412d6dbeaa8a27d76d2cdc830"
+        }
+      ],
+      "logical_role": "packed-transfer-qualification-result",
+      "size_bytes": 2346
+    },
+    {
+      "artifact_type": "execution-receipt",
+      "derived_from_digests": [
+        "f326e5c20d9903efb2b40ea9589e8258d23822de91504390a1c21a9831fd81fd"
+      ],
+      "digest": "2273bf08177ac2e6302f988ad2fc1e947f502bdd482fb24e51d7adc44d7eafc9",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "git_file",
+          "path": "docs/evidence/accelerated-gdr-four-gpu-20260914/stable-packed-transfer-execution-receipt.json",
+          "reason": null,
+          "repository": "mykcs/openevo-experiment",
+          "revision": "e21b4f13edc3e47f588d08f40e5b4b567913691f",
+          "sha256": "2273bf08177ac2e6302f988ad2fc1e947f502bdd482fb24e51d7adc44d7eafc9"
+        }
+      ],
+      "logical_role": "packed-transfer-execution-receipt",
+      "size_bytes": 1195
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "c-packed-transfer-qualification-202609142124",
+    "created_at": "2026-09-14T21:31:22+08:00",
+    "execution_sha": "806b99a90723c60ccf29f78d157cac74bf9fc7a3",
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [],
+    "experiment_id": null,
+    "external_views": [],
+    "passport_sha256": null,
+    "producer_scope": "ENGINEERING_GLOBAL"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "REVIEW_REQUIRED_DETERMINISM",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Historical deterministic GPU materialization-layout qualification; exact hit is advisory only and does not grant full Stable successor or GDR admission."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609142055",
+  "side_effect_class": "DETERMINISTIC_COMPUTATION",
+  "status": "PASS",
+  "supersedes": []
+}

@@ -1,0 +1,115 @@
+{
+  "command": [
+    "python3",
+    "${EXPERIMENT_DIR}/scripts/openevo_webshop/advisor_fresh_checkpoint_host_20261020.py",
+    "--manifest",
+    "/workspace/control/advisor-fresh-followups-20261020-source/configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json",
+    "--manifest-sha256",
+    "7bdf7b8d43a924e538d57d3ecf667a25dd496e41496aea2aad1e3e646b5fe964",
+    "--run-id",
+    "advisor-fresh-202610201758-reverse-gpu3",
+    "--gpu-uuid",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "--image",
+    "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+    "--output",
+    "${RUN_DIR}/evaluation",
+    "--checkpoint-id",
+    "reverse156"
+  ],
+  "container": {
+    "network": "none"
+  },
+  "execution": {
+    "mode": "host-orchestrator"
+  },
+  "gpu_gate": {
+    "authorized_uuids": [
+      "GPU-00000000-0000-0000-0000-000000000000"
+    ],
+    "co_residency_authorized": true,
+    "interval_seconds": 1,
+    "max_idle_memory_mib": 16,
+    "max_idle_utilization_percent": 0,
+    "min_transient_headroom_mib": 4096,
+    "minimum_free_memory_mib": 16384,
+    "mode": "capacity",
+    "qualified_peak_memory_mib": 24576,
+    "resource_contract": {
+      "path": "docs/evidence/advisor-fresh-canonical-20261020/capacity-coresidency-successor-20261020.json",
+      "sha256": "daa69cfc6e007631a5e4681fd006d561efca58d3468bcc3df6ec95828d606d43"
+    },
+    "timeout_seconds": 0
+  },
+  "identity": {
+    "gid": 1001,
+    "uid": 1001
+  },
+  "image": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "image_id": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "lock_root": ".gpu-locks",
+  "paths": {
+    "cache": "cache",
+    "data": "datasets/webshop-1000",
+    "models": "models",
+    "runs": "/workspace/runs"
+  },
+  "prelaunch": {
+    "runtime_python": "python3"
+  },
+  "required_paths": [
+    {
+      "expected_type": "dir",
+      "path": "/workspace/runs/20260903-shared-stage1-minimax-m3-202609030400/stage2-base/qwen3-1p7b"
+    },
+    {
+      "expected_type": "dir",
+      "path": "/workspace/runs/phase-h1.20-action-admissibility-diagnostic-v1-20260815/seed-roots/base-P1"
+    },
+    {
+      "expected_type": "dir",
+      "path": "/workspace/maintenance/Q17-VALIDATION-CURVE-202609231600/runtime-ac130148"
+    },
+    {
+      "expected_type": "file",
+      "path": "/workspace/control/advisor-fresh-followups-20261020-source/configs/experiment/manifests/advisor-fresh-checkpoints-20261020.json"
+    },
+    {
+      "expected_type": "dir",
+      "path": "/workspace/runs/post-advisor-unanswered-20260928/prepare/e4-reverse-v2-parent/reverse-adapters/reverse-direction-r156"
+    },
+    {
+      "expected_type": "file",
+      "path": "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct/round-095/text-memory/memory.md"
+    },
+    {
+      "expected_type": "file",
+      "path": "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct/round-000/skill-bundle/SKILL.md"
+    },
+    {
+      "expected_type": "file",
+      "path": "/workspace/runs/q17-direct-apply-only-w2-202609082022/q17-direct-apply-only-w2-202609082022-direct/round-115/agent-system/agent_system.md"
+    }
+  ],
+  "run_id": "advisor-fresh-202610201758-reverse-gpu3",
+  "schema": "openevo.webshop.run-profile.v1",
+  "source": {
+    "experiment": {
+      "path": "/workspace/control/advisor-fresh-followups-20261020-source",
+      "revision": "01a77d9cb8897db4428325a64ca50d1cd5bcb583"
+    },
+    "openevo": {
+      "path": "/workspace/control/advisor-fresh-core-594789-20261020-source",
+      "revision": "59478929d884ca794cce2cb49cc6cc16103d6abe"
+    }
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "group": "20261020-1758-advisor-fresh-reverse-gpu3",
+    "mode": "disabled",
+    "on_error": "fail",
+    "probe_epoch": "202610201758",
+    "project": "openevo-webshop-experiments"
+  },
+  "workspace": "/workspace"
+}

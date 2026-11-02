@@ -1,0 +1,1 @@
+"""Run Manifest contract tests."""

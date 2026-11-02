@@ -1,0 +1,31 @@
+{
+  "entries": [
+    {
+      "node_sha256": "e5630a9eb1120cc994e877f36b9be278d3a040f8e98776f57aba47cfe5e12d27",
+      "operation_digest": "05db0f20a54eb15b6bb51d2493692f044dc75bc96bc31901355696583ba705e0",
+      "operation_type": "accelerated-gdr.shadow.acceleration_successor_qualification",
+      "path": "configs/experiment/passport-artifacts/operation-nodes/05db0f20a54eb15b6bb51d2493692f044dc75bc96bc31901355696583ba705e0/e5630a9eb1120cc994e877f36b9be278d3a040f8e98776f57aba47cfe5e12d27.json",
+      "side_effect_class": "DETERMINISTIC_COMPUTATION",
+      "status": "PASS"
+    },
+    {
+      "node_sha256": "000a91ab9590bbea7671b2ad6a5fe597773b83701822019b76aca8be1ae3ff5f",
+      "operation_digest": "0d4d393fe0a9385949cdc1b62f223e718851d7aebe96a63605e8d95fff1bce16",
+      "operation_type": "passport.pilot.deterministic-file-summary.202609142055",
+      "path": "configs/experiment/passport-artifacts/operation-nodes/0d4d393fe0a9385949cdc1b62f223e718851d7aebe96a63605e8d95fff1bce16/000a91ab9590bbea7671b2ad6a5fe597773b83701822019b76aca8be1ae3ff5f.json",
+      "side_effect_class": "DETERMINISTIC_COMPUTATION",
+      "status": "PASS"
+    },
+    {
+      "node_sha256": "25b219d2365a18ecc54db6c5b97fe88148d76f9378b929604c860b2ab3612f52",
+      "operation_digest": "525e4e66865811c03d091dc01e978998fadffd195bf5046b741c1aa3f4160d0a",
+      "operation_type": "accelerated-gdr.shadow.acceleration_successor_qualification",
+      "path": "configs/experiment/passport-artifacts/operation-nodes/525e4e66865811c03d091dc01e978998fadffd195bf5046b741c1aa3f4160d0a/25b219d2365a18ecc54db6c5b97fe88148d76f9378b929604c860b2ab3612f52.json",
+      "side_effect_class": "DETERMINISTIC_COMPUTATION",
+      "status": "PASS"
+    }
+  ],
+  "generated_at": "2026-09-14T13:44:46Z",
+  "role": "lookup-acceleration-only; Passport/receipts remain execution and provenance authority",
+  "schema": "openevo.experiment-passport-artifact-index.202609142055"
+}

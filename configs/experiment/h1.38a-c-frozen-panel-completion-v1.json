@@ -1,0 +1,111 @@
+{
+  "schema": "openevo.experiment-h1.38a-c-frozen-panel-completion.v1",
+  "campaign_id": "20260819-0215-h138a-c-frozen-panel-completion",
+  "phase": "H1.38A-C",
+  "status": "preregistered",
+  "protocol_class": "post_closeout_fixed_panel_completion",
+  "scientific_question": "Complete the already-frozen H1.38A fresh-task panel without changing any task, arm, seed, adapter, parser, prompt, evaluator, or decoding contract.",
+  "claim_boundary": "This continuation does not rewrite the closed H1.38A campaign; it only fills its pre-frozen missing diversity-8 and diversity-16 cells for a separate combined analysis.",
+  "original_campaign": {
+    "campaign_id": "20260819-0015-h138a-pooled-diversity",
+    "status_at_close": "closed-incomplete-at-cap",
+    "classification": "invalid-incomplete-underpowered-cap-limited",
+    "scientific_execution_sha": "11a46fefe2765087a97cdd321c459372991f7939",
+    "closeout_commit": "a8dacfea4a5821351811c2085f475a164213a78e",
+    "report": "docs/evidence/remote-runs/2026-08-19/h1.38a/REPORT.md",
+    "run_root": "/workspace/runs/phase-h1.38a-pooled-diversity-v1-20260819",
+    "evaluation_manifest_sha256": "39a3849d9032084a9682f2df76fe7a2ebf3831e3092b0a558ab44f82ef4272f1",
+    "evaluation_manifest_content_sha256": "826a80939d3cb1e4ee82ec3d5876f8f4101df2d391ed3c4fd61160b353518b31",
+    "reconciliation_evidence_path": "docs/evidence/remote-runs/2026-08-19/h1.38a/evidence/h1.38a-reconciliation.json",
+    "reconciliation_sha256": "d38f90c84724813e2e432701264c5b6c06f5cfc21f904ab80c1fb55392da932f",
+    "closeout_summary_evidence_path": "docs/evidence/remote-runs/2026-08-19/h1.38a/evidence/h1.38a-closeout-summary.json",
+    "closeout_summary_sha256": "13b80242caf9c5fd8c21e23299873eaca2faed0638e6e8ef121bcdecd74e8ad6",
+    "wandb_online_probe_evidence_path": "docs/evidence/remote-runs/2026-08-19/h1.38a/evidence/wandb-online-probe.json",
+    "wandb_online_probe_sha256": "fd999933b02d2ef09fbbbeedd2a32729f17b1b5a6d5705b414ab194d1f7ed9e3",
+    "legacy_completed_cells": [
+      {"arm": "base", "task": 536, "execution_sha": "ea8b3d4c5b18345ade9f7d9307498b29d00b4939", "manifest_sha256": "e60c100701cc35a237fb298ea8c2372569e26eeade581aa5030f68e7ac87807f", "protocol_fingerprint": "1268bb47b58872dd32865ca7b9ce1fbacf253236fcbba4bd4ab42567fab17f7e"},
+      {"arm": "diversity-4", "task": 536, "execution_sha": "ea8b3d4c5b18345ade9f7d9307498b29d00b4939", "manifest_sha256": "e60c100701cc35a237fb298ea8c2372569e26eeade581aa5030f68e7ac87807f", "protocol_fingerprint": "97e579611c5da2dcb2368388a111136a39a95713804cce898492f2a60129ddbd"}
+    ],
+    "completed_cells": {"base": 48, "diversity-4": 48, "diversity-8": 10, "diversity-16": 0},
+    "completed_diversity_8_task_ids": [536, 600, 855, 861, 1126, 1304, 1414, 1748, 1872, 2130],
+    "attempts": 424
+  },
+  "continuation_reason": "Complete the 86 cells that were already frozen in the original 48-task panel but were not executed before the original 3 GPU-hour cap; no interim reward, task score, or arm result is used for selection.",
+  "allowed_cells": {
+    "diversity-8": {"source_manifest": "original evaluation manifest", "missing_cells": 38, "attempts": 152},
+    "diversity-16": {"source_manifest": "original evaluation manifest", "missing_cells": 48, "attempts": 192}
+  },
+  "forbidden_cells": [
+    "all base cells",
+    "all diversity-4 cells",
+    "the 10 original diversity-8 cells",
+    "any task or seed outside the original manifest",
+    "any training run or adapter replacement"
+  ],
+  "frozen_source_split": {
+    "original": {"base": 48, "diversity-4": 48, "diversity-8": 10, "diversity-16": 0},
+    "continuation": {"base": 0, "diversity-4": 0, "diversity-8": 38, "diversity-16": 48}
+  },
+  "continuation_budget": {
+    "maximum_cells": 86,
+    "maximum_attempts": 344,
+    "gpu_hours_cap": 3.0,
+    "extension_allowed": false,
+    "selection_policy": "fixed missing-cell set; no interim-adaptive selection"
+  },
+  "frozen_provenance": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "evaluation_model_path": "/workspace/models/qwen2.5-7b-instruct",
+    "model_content_pin": "0c32faf81d8f2f83cf79860d2a48111f166348d6dd38cd348576d8b3a0141c1e",
+    "upstream_open_evo_sha": "796e6248a61112a61c880885844d3b0420c0b6ae",
+    "image_digest": "sha256:ce92e587e7c934827025c001fd9b70ec4cb6de2deacfdf9f0cc0777d3ab928f1",
+    "python_runtime_fingerprint": "e3cb53bced07b519157ceca2698935bf0be45a58d08465c87c618ef62c31ee18",
+    "evaluation_script_sha256": "32250965c7ebfcc76f611a145e42b54800baefa8ea214196a0144522b2fcf969",
+    "original_config_sha256": "88a462749ad6294027f519ebb60265fc25ae5574f56efa1b502e632bb9088b1e",
+    "evaluation_manifest_sha256": "39a3849d9032084a9682f2df76fe7a2ebf3831e3092b0a558ab44f82ef4272f1",
+    "prompt_contract": "seed3090.webshop-compact-action-prompt.v2",
+    "action_contract": "seed3090.webshop-action-parser.v3-action-command",
+    "evaluator": "WebShop task_score/won",
+    "parser_retry_seed_offset": 900000,
+    "gpu_binding_contract": "single UUID via CUDA_VISIBLE_DEVICES; logical cuda:0",
+    "latency_contract": "attempt_wall_time_seconds measured around one closed-loop episode; invalid attempts remain outside speed denominators",
+    "evaluation_environment_seed": 2026,
+    "rollout_seeds": [2026090500, 2026090501, 2026090502, 2026090503],
+    "temperature": 0,
+    "max_steps": 30,
+    "max_new_tokens": 512,
+    "adapters": {
+      "diversity-4": {"adapter_uri": "/workspace/runs/phase-h1.38a-pooled-diversity-v1-20260819/artifacts/diversity-4/workers/sd-lora-4de154803418eeb7295c5427511287c8/adapter", "training_evidence_sha256": "85fda6aabd16db1f32f5f04e6243f0ac13068427392b2dbadb720b2b3e554150", "adapter_id": "sd-lora-d3aad866e74d24d75918397d", "adapter_digest": "d477248afc726e4015281e5d316fdbf106054bfb7c6f9d48ef1a04d24cf85d67"},
+      "diversity-8": {"adapter_uri": "/workspace/runs/phase-h1.38a-pooled-diversity-v1-20260819/artifacts/diversity-8/workers/sd-lora-1f2063aea224b4da60b8a45634683fa7/adapter", "training_evidence_sha256": "68f9a2292ccd9c83ae72afc5e80dfde83dfcbcd0ca7308031a2bac36966d4324", "adapter_id": "sd-lora-bc4c75da2cc78265d0c50b52", "adapter_digest": "549994b2b4fd2450ba7e1867d2f46287ac81fbaac1c59ae6187766c6aeab1fd1"},
+      "diversity-16": {"adapter_uri": "/workspace/runs/phase-h1.38a-pooled-diversity-v1-20260819/artifacts/diversity-16/workers/sd-lora-67b298b9ff0bc9b9ac1f86e06f2d80b5/adapter", "training_evidence_sha256": "adf8e60a1020907861503e18811a006747342c2394cbac4b83aacc1e50426877", "adapter_id": "sd-lora-28b7508472638246a50c5355", "adapter_digest": "1f7b7cf722a11ab5151078c462349fc917c628ecbd6a438e88c357c36e64d118"}
+    }
+  },
+  "authorized_gpu_uuids": [
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000",
+    "GPU-00000000-0000-0000-0000-000000000000"
+  ],
+  "continuation_run_root": "/workspace/runs/phase-h1.38a-c-frozen-panel-completion-v1-20260819",
+  "continuation_orchestration_sha": "4f10c426082a22a66d8cdee73622a75122fa77c2",
+  "tracking": {
+    "default_mode": "online",
+    "online_probe_required": true,
+    "explicit_offline_allowed": false,
+    "sealed_fallback_receipt_manifest": {
+      "path": "docs/evidence/remote-runs/2026-08-19/h1.38a-c/evidence/continuation-fallback-receipts.sha256",
+      "sha256": "b1613166971ffa1cd111248cfc4b48459bed0c843d0155ed02ab7b51c40d236c",
+      "count": 86
+    }
+  },
+  "analysis": {
+    "combined_output": "evidence/h1.38a-c-combined-reconciliation.json",
+    "primary": "Complete-valid task-weighted paired effects for D4, D8, and D16 versus BASE with fixed-seed task-cluster bootstrap CIs and task-level sign-flip tests.",
+    "secondary": "Attempt-weighted ITT robustness, positive/tie/negative task counts, parser/fallback/runtime taxonomy, and ordered 4-to-8-to-16 trend.",
+    "no_claim_if_incomplete": true
+  }
+}

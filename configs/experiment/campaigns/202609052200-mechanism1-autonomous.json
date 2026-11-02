@@ -1,0 +1,54 @@
+{
+  "activation_authority": false,
+  "campaign_id": "202609052200-openevo-mechanism1-autonomous",
+  "current_ceiling_lineage_must_remain_untouched": true,
+  "execution_activation_authority": false,
+  "master_plan": "docs/science/webshop/program/OPEN_EVO_MECHANISM_1.0_MASTER_PLAN.md",
+  "next_gate": "Commit and validate program contracts, bind exact source artifacts, qualify each runtime, then issue per-phase activation receipts. Resource registration alone is not science execution authority.",
+  "phases": [
+    {
+      "activation_authority": false,
+      "dependency": "qwen3-1p7b Ceiling terminal seal and exact source binding",
+      "passport": "configs/experiment/designs/openevo-mechanism1-taskvector-causal-transplant-202609052200.json",
+      "phase": "M1-A",
+      "resource_intent": "mechanism1_taskvector_eval_q17"
+    },
+    {
+      "activation_authority": false,
+      "dependency": "qwen3-1p7b terminal PASS measurement pack",
+      "passport": "configs/experiment/designs/openevo-mechanism1-parameter-theme-knockout-202609052200.json",
+      "phase": "M1-B",
+      "resource_intent": "mechanism1_theme_knockout_q17"
+    },
+    {
+      "activation_authority": false,
+      "dependency": "preregistered M1-A/M1-B GO gate",
+      "passport": "configs/experiment/designs/openevo-mechanism1-taskvector-guided-microtrial-202609052200.json",
+      "phase": "M1-C",
+      "resource_intents": [
+        "mechanism1_guided_rollout_q17",
+        "mechanism1_guided_update_q17"
+      ]
+    },
+    {
+      "activation_authority": false,
+      "dependency": "matched 1,440 manifest plus SEED Stage1 runtime qualification",
+      "passport": "configs/experiment/designs/openevo-mechanism1-seed-stage1-init-probe-3b-202609052200.json",
+      "phase": "M1-D",
+      "resource_intent": "mechanism1_seed_stage1_3b"
+    }
+  ],
+  "program_contract": "configs/experiment/programs/openevo-mechanism-1.0.json",
+  "program_id": "openevo-mechanism-1.0-202609052200",
+  "ray_profile_registry": "configs/experiment/openevo-mechanism1-ray-profile-registry-202609052200.json",
+  "repository_base_sha": "707e5be2de0472483089b638a3d10d69683686c8",
+  "resource_rule": "When q17 primary leases exist, secondary_spare is unavailable. When they drain, Mechanism-1.0 may use that logical lane while OpenEvo-3B continues, subject to live VRAM/UUID gates.",
+  "scheduler_priority": [
+    "M1-A quick causal read",
+    "M1-B quick localization",
+    "M1-D bounded Stage1 probe",
+    "M1-C only after GO gate"
+  ],
+  "schema": "openevo.mechanism1-autonomous.202609052200",
+  "status": "PREREGISTERED_EXECUTION_LOCKED"
+}

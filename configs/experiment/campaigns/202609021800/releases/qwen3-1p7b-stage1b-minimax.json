@@ -1,0 +1,142 @@
+{
+  "activation_authority": true,
+  "arm": "qwen3-1p7b",
+  "budget_class": "external_teacher_posthoc",
+  "budget_contract": {
+    "external_teacher_requests_max": 1440,
+    "final_panel_tasks_max": 0,
+    "formal_task_rollouts_max": 0,
+    "local_reflector_requests_max": 0,
+    "optimizer_steps_max": 0
+  },
+  "closeout_action": {
+    "argv": [
+      "python3",
+      "/workspace/control/openevo-experiment-stage1-minimax-202609022200/scripts/openevo_webshop/stage1_202609021800/verify_minimax.py",
+      "--arm",
+      "qwen3-1p7b",
+      "--analysis-root",
+      "/workspace/runs/20260902-stage1-minimax-qwen3-1p7b-v1",
+      "--successor-authority",
+      "/workspace/control/openevo-experiment-stage1-minimax-202609022200/configs/experiment/stage1/202609021800/successors/202609022200.json"
+    ],
+    "kind": "command"
+  },
+  "completion": {
+    "path": "/workspace/runs/20260902-stage1-minimax-qwen3-1p7b-v1/MINIMAX_COMPLETE_qwen3-1p7b.json",
+    "required_equal": {
+      "arm.analysis_count": 1440,
+      "arm.parse_failures": 0,
+      "arm.parse_ok": 1440,
+      "arm_name": "qwen3-1p7b",
+      "status": "PASS"
+    }
+  },
+  "execution_source": {
+    "checkout": "/workspace/control/openevo-experiment-stage1-minimax-202609022200",
+    "execution_sha": "f6ef3ae515fa8806e2710313c7d0f0d1e7928c03"
+  },
+  "input_reconciliation": {
+    "action": {
+      "argv": [
+        "python3",
+        "/workspace/control/openevo-experiment-autonomous-campaign-20260903/scripts/openevo_webshop/reconcile_minimax_continuation.py",
+        "--arm",
+        "qwen3-1p7b",
+        "--analysis-root",
+        "/workspace/runs/20260902-stage1-minimax-qwen3-1p7b-v1",
+        "--execution-source",
+        "/workspace/control/openevo-experiment-stage1-minimax-202609022200",
+        "--execution-sha",
+        "f6ef3ae515fa8806e2710313c7d0f0d1e7928c03",
+        "--authority",
+        "/workspace/control/openevo-experiment-stage1-minimax-202609022200/configs/experiment/stage1/202609021800/successors/202609022200.json",
+        "--authority-sha",
+        "e4dd96ae0f18663af336f500de386c1e478c53d8249f36bd40215e8713cac17b",
+        "--container",
+        "stage1-202609021800-minimax-qwen3-1p7b-v1",
+        "--output",
+        "/workspace/runs/20260903-ceiling1-autonomous-control/continuations/qwen3-1p7b-minimax-f6ef3ae5.json"
+      ],
+      "kind": "command"
+    },
+    "receipt": {
+      "path": "/workspace/runs/20260903-ceiling1-autonomous-control/continuations/qwen3-1p7b-minimax-f6ef3ae5.json",
+      "required_equal": {
+        "arm": "qwen3-1p7b",
+        "exact_resume_authorized": true,
+        "execution_sha": "f6ef3ae515fa8806e2710313c7d0f0d1e7928c03",
+        "scientific_semantics_changed": false,
+        "status": "PASS"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "path": "/workspace/runs/20260902-stage1-minimax-qwen3-1p7b-v1/READY_FOR_MINIMAX_qwen3-1p7b.json",
+      "required_equal": {
+        "arm": "qwen3-1p7b",
+        "status": "PASS",
+        "successor_authority_sha256": "e4dd96ae0f18663af336f500de386c1e478c53d8249f36bd40215e8713cac17b",
+        "trajectory_count": 1440
+      }
+    }
+  ],
+  "phase": "stage1b_minimax",
+  "progress": {
+    "expected_rows": 1440,
+    "identity_key": "trajectory_id",
+    "kind": "jsonl",
+    "path": "/workspace/runs/20260902-stage1-minimax-qwen3-1p7b-v1/qwen3-1p7b-minimax.jsonl",
+    "required_true_key": "parse_ok"
+  },
+  "resource_gate": {
+    "min_free_bytes": 8589934592,
+    "path": "/workspace"
+  },
+  "resume_action": {
+    "argv": [
+      "/workspace/control/openevo-experiment-autonomous-campaign-20260903/scripts/openevo_webshop/resume_minimax_continuation.sh",
+      "qwen3-1p7b"
+    ],
+    "env": {
+      "MINIMAX_CONTINUATION_BINDING": "/workspace/runs/20260903-ceiling1-autonomous-control/continuations/qwen3-1p7b-minimax-f6ef3ae5.json",
+      "STAGE1_ANALYSIS_ROOT": "/workspace/runs/20260902-stage1-minimax-qwen3-1p7b-v1",
+      "STAGE1_SUCCESSOR_AUTHORITY": "/workspace/control/openevo-experiment-stage1-minimax-202609022200/configs/experiment/stage1/202609021800/successors/202609022200.json",
+      "STAGE1_SUCCESSOR_EXECUTION_SHA": "f6ef3ae515fa8806e2710313c7d0f0d1e7928c03",
+      "STAGE1_SUCCESSOR_REPO": "/workspace/control/openevo-experiment-stage1-minimax-202609022200"
+    },
+    "kind": "command"
+  },
+  "retry": {
+    "exact_resume": true,
+    "success_definition": "parse_ok=true only"
+  },
+  "run_action": {
+    "argv": [
+      "/workspace/control/openevo-experiment-stage1-minimax-202609022200/scripts/openevo_webshop/stage1_202609021800/launch_minimax.sh",
+      "qwen3-1p7b"
+    ],
+    "env": {
+      "STAGE1_ANALYSIS_ROOT": "/workspace/runs/20260902-stage1-minimax-qwen3-1p7b-v1",
+      "STAGE1_SUCCESSOR_EXECUTION_SHA": "f6ef3ae515fa8806e2710313c7d0f0d1e7928c03",
+      "STAGE1_SUCCESSOR_REPO": "/workspace/control/openevo-experiment-stage1-minimax-202609022200"
+    },
+    "kind": "command"
+  },
+  "runtime": {
+    "container_name": "stage1-202609021800-minimax-qwen3-1p7b-v1"
+  },
+  "schema": "openevo.autonomous-phase-release.v1",
+  "scientific_authority": {
+    "path": "/workspace/control/openevo-experiment-stage1-minimax-202609022200/configs/experiment/stage1/202609021800/successors/202609022200.json",
+    "required_equal": {
+      "minimax.model": "MiniMax-M3",
+      "minimax.reasoning_split": true,
+      "minimax.thinking_type": "adaptive",
+      "status": "FROZEN"
+    },
+    "sha256": "e4dd96ae0f18663af336f500de386c1e478c53d8249f36bd40215e8713cac17b"
+  },
+  "status": "FROZEN_ROUTING_RELEASE_REQUIRES_RECONCILIATION_IF_INPUT_DRIFTED"
+}

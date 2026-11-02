@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/run-profile.schema.json",
+  "title": "OpenEvo WebShop launch profile",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema", "run_id", "image", "image_id", "workspace", "identity", "source", "paths", "command", "tracking"],
+  "properties": {
+    "schema": {"const": "openevo.webshop.run-profile.v1"},
+    "run_id": {"type": "string", "pattern": "^[A-Za-z0-9._-]+$"},
+    "image": {"type": "string", "minLength": 1},
+    "image_id": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$", "description": "Docker immutable local image ID; not a registry digest."},
+    "workspace": {"type": "string", "minLength": 1},
+    "identity": {"type": "object", "required": ["uid", "gid"], "properties": {"uid": {"type": "integer", "minimum": 1}, "gid": {"type": "integer", "minimum": 1}}},
+    "source": {"type": "object", "required": ["experiment", "openevo"]},
+    "paths": {"type": "object", "required": ["models", "data", "runs", "cache"]},
+    "command": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "gpu_gate": {
+      "type": "object",
+      "properties": {
+        "mode": {"enum": ["legacy_idle", "capacity"]},
+        "qualified_peak_memory_mib": {"type": "integer", "minimum": 1},
+        "min_transient_headroom_mib": {"type": "integer", "minimum": 0},
+        "co_residency_authorized": {"type": "boolean"},
+        "max_idle_memory_mib": {"type": "integer", "minimum": 0},
+        "max_idle_utilization_percent": {"type": "integer", "minimum": 0, "maximum": 100},
+        "interval_seconds": {"type": "integer", "minimum": 1},
+        "timeout_seconds": {"type": "integer", "minimum": 0}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"mode": {"const": "capacity"}}, "required": ["mode"]},
+          "then": {"required": ["qualified_peak_memory_mib", "min_transient_headroom_mib", "co_residency_authorized"]}
+        }
+      ]
+    },
+    "prelaunch": {
+      "type": "object",
+      "properties": {
+        "runtime_python": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Python executable inside the frozen image used by selected-GPU zero-formal CUDA/kernel smoke; required when command[0] is not Python."
+        },
+        "lease_ttl_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600,
+          "description": "Bounded lifetime for the prelaunch coordination lease. This is a project-launcher flock, not an external GPU reservation."
+        },
+        "rank_contract": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["expected_rank", "required_roles"],
+          "properties": {
+            "expected_rank": {"type": "integer", "minimum": 1},
+            "required_roles": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {"enum": ["config", "controller", "state", "checkpoint"]}
+            },
+            "json_bindings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["role", "path", "pointers"],
+                "properties": {
+                  "role": {"enum": ["config", "controller", "state", "checkpoint"]},
+                  "path": {"type": "string", "minLength": 1},
+                  "pointers": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {"type": "string", "pattern": "^/"}
+                  }
+                }
+              }
+            },
+            "python_bindings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["role", "path", "symbols"],
+                "properties": {
+                  "role": {"enum": ["config", "controller", "state", "checkpoint"]},
+                  "path": {"type": "string", "minLength": 1},
+                  "symbols": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {"type": "string", "minLength": 1}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "tracking": {
+      "type": "object",
+      "required": ["mode"],
+      "properties": {
+        "mode": {"enum": ["online", "offline", "disabled"]},
+        "on_error": {"enum": ["fallback_offline", "fail"]},
+        "probe_epoch": {"type": "string", "minLength": 1},
+        "group": {"type": "string", "minLength": 1},
+        "entity": {"type": "string", "minLength": 1},
+        "project": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

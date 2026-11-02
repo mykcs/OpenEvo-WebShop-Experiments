@@ -1,0 +1,211 @@
+{
+  "completed_at": "2026-09-21T00:58:00+08:00",
+  "created_at": "2026-09-21T00:58:00+08:00",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/completed_1p7b_artifact_dag_backfill.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "e54045347c6db875826ce7d3b15d9aefea595d447595ee83410def8cc0ae63db"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/BACKFILL_CONFIG_202609210057.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "812e0070c08db449b1c8d7af24f9c7a57e901e2336f75df1528c9cb360d2d784"
+    },
+    "contract_identities": [],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "ab2977826b41bfd280fbcb3df815a8978d948786d8521e8eac8d5c7be7fd8ba9",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/completed-1p7b-publication-20260918/COMPLETED_1P7B_ASSET_LEDGER.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "ab2977826b41bfd280fbcb3df815a8978d948786d8521e8eac8d5c7be7fd8ba9"
+          }
+        ],
+        "logical_role": "ledger-source-0",
+        "size_bytes": 2853
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "0ea3ae14ca3565720673ae47596bfb0268ef2bd924839624b639fb37d0c68f02",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/Q17_PUBLICATION_DAG_BINDING.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "0ea3ae14ca3565720673ae47596bfb0268ef2bd924839624b639fb37d0c68f02"
+          }
+        ],
+        "logical_role": "ledger-source-1",
+        "size_bytes": 1352
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "b17be3195d1e9e05db96ae59a0adde92025bc362314c20f3e2675715ca735aac",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/Q17_RESTORE_DAG_BINDING.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "b17be3195d1e9e05db96ae59a0adde92025bc362314c20f3e2675715ca735aac"
+          }
+        ],
+        "logical_role": "ledger-source-2",
+        "size_bytes": 1193
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "08c37f6662e22932cff9f535767211d53aa34fb1e3b77f86e919b3f462d39b28",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/BOUNDED_PUBLICATION_DAG_BINDING.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "08c37f6662e22932cff9f535767211d53aa34fb1e3b77f86e919b3f462d39b28"
+          }
+        ],
+        "logical_role": "ledger-source-3",
+        "size_bytes": 2063
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "204c6a0e6c1c0295554644488971b39bea1c5a0b436edffffeff2567d986ef54",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/BOUNDED_RESTORE_DAG_BINDING.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "204c6a0e6c1c0295554644488971b39bea1c5a0b436edffffeff2567d986ef54"
+          }
+        ],
+        "logical_role": "ledger-source-4",
+        "size_bytes": 2099
+      },
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "1811e37f2b5c4e93a2f01aadbb64d147d26548b26554fb285f56234b62459e1f",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/RUN_PASSPORT_135_DAG_BINDING.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "1811e37f2b5c4e93a2f01aadbb64d147d26548b26554fb285f56234b62459e1f"
+          }
+        ],
+        "logical_role": "ledger-source-5",
+        "size_bytes": 1516
+      }
+    ],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "deterministic-backfill",
+      "randomness": "none"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "bc39dcdd4536c93ca089671bd1d11b09bb876c53063ed45a6535c555607564d7",
+  "operation_schema_version": "202609210057",
+  "operation_type": "completed-1p7b.backfill.asset-ledger",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [
+        "08c37f6662e22932cff9f535767211d53aa34fb1e3b77f86e919b3f462d39b28",
+        "0ea3ae14ca3565720673ae47596bfb0268ef2bd924839624b639fb37d0c68f02",
+        "1811e37f2b5c4e93a2f01aadbb64d147d26548b26554fb285f56234b62459e1f",
+        "204c6a0e6c1c0295554644488971b39bea1c5a0b436edffffeff2567d986ef54",
+        "ab2977826b41bfd280fbcb3df815a8978d948786d8521e8eac8d5c7be7fd8ba9",
+        "b17be3195d1e9e05db96ae59a0adde92025bc362314c20f3e2675715ca735aac"
+      ],
+      "digest": "57e5d58a20d749bb86fac751cb3f0a00a52c3251cbf3d03e53ec9d4ee1caf201",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/COMPLETED_1P7B_PRODUCTION_DAG_LEDGER.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "57e5d58a20d749bb86fac751cb3f0a00a52c3251cbf3d03e53ec9d4ee1caf201"
+        }
+      ],
+      "logical_role": "backfill-binding",
+      "size_bytes": 2939
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "completed-1p7b.backfill.asset-ledger-202609210057",
+    "created_at": "2026-09-21T00:58:00+08:00",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/completed-1p7b-publication-20260918/COMPLETED_1P7B_ASSET_LEDGER.json",
+      "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/BOUNDED_PUBLICATION_DAG_BINDING.json",
+      "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/BOUNDED_RESTORE_DAG_BINDING.json",
+      "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/Q17_PUBLICATION_DAG_BINDING.json",
+      "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/Q17_RESTORE_DAG_BINDING.json",
+      "docs/evidence/experiment-passports/202609210057-completed-1p7b-production-dag/RUN_PASSPORT_135_DAG_BINDING.json"
+    ],
+    "experiment_id": null,
+    "external_views": [],
+    "passport_sha256": null,
+    "producer_scope": "ENGINEERING_GLOBAL"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "REVIEW_REQUIRED_DETERMINISM",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Verified historical engineering evidence may be surfaced as REUSE_CANDIDATE only; consumer/scientific authority remains external to the DAG."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "DETERMINISTIC_COMPUTATION",
+  "status": "PASS",
+  "supersedes": []
+}

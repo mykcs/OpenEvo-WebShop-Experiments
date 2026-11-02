@@ -1,0 +1,77 @@
+{
+  "campaign_id": "20260928-2338-post-advisor-unanswered",
+  "command": [
+    "/usr/bin/env",
+    "OPENEVO_POST_ADVISOR_AUTHORITY_REPO=/workspace/control/openevo-experiment",
+    "python3",
+    "/workspace/control/post-advisor-carrier-repair-2bd20bf4/scripts/openevo_webshop/post_advisor_short_fork_runner_202609282338.py",
+    "--repo",
+    "/workspace/control/post-advisor-carrier-repair-2bd20bf4",
+    "--authority",
+    "/workspace/control/openevo-experiment/configs/experiment/activations/post-advisor-e1-a8-recovery-authority-202609301200.json",
+    "--ready",
+    "/workspace/maintenance/bounded-gpu2457-successor-a6f67b66-20260918/FORMAL_READY_PACKAGE_GPU2457-5f9297eaa21c0dd0.json",
+    "--release",
+    "/workspace/maintenance/bounded-gpu2457-successor-a6f67b66-20260918/AUTHORIZED_FORMAL_LAUNCH_GPU2457-2ea603e403641cec.json",
+    "--all"
+  ],
+  "container": {
+    "network": "none"
+  },
+  "execution": {
+    "mode": "host-orchestrator"
+  },
+  "gpu_gate": {
+    "interval_seconds": 1,
+    "max_idle_memory_mib": 16,
+    "max_idle_utilization_percent": 0,
+    "timeout_seconds": 0
+  },
+  "identity": {
+    "gid": 1001,
+    "uid": 1001
+  },
+  "image": "experiment-host/openevo-scientific:h144-runtime-v1",
+  "image_id": "sha256:d0f8796010899ae41a7af8ae3f44f47b96dea73b297b5af124049b3ae88e2850",
+  "lock_root": ".gpu-locks",
+  "paths": {
+    "cache": "cache",
+    "data": "datasets/webshop-1000",
+    "models": "models",
+    "runs": "runs/post-advisor-unanswered-20260928"
+  },
+  "prelaunch": {
+    "runtime_python": "python3"
+  },
+  "required_paths": [
+    {
+      "expected_type": "file",
+      "path": "models/qwen3-1.7b-seed-runtime-70d244/config.json"
+    },
+    {
+      "expected_type": "file",
+      "path": "models/qwen3-1.7b-seed-runtime-70d244/model.safetensors.index.json"
+    }
+  ],
+  "run_id": "post-advisor-e1-beta-direction-a8-20260930",
+  "schema": "openevo.webshop.run-profile.v1",
+  "source": {
+    "experiment": {
+      "path": "control/post-advisor-carrier-repair-2bd20bf4",
+      "revision": "31a669ab9af34fdf5733849ea8ccfb7af37e7427"
+    },
+    "openevo": {
+      "path": "control/openevo-core",
+      "revision": "a85f9a8dc5cc9870695a4301d8fc128a7ec38fb0"
+    }
+  },
+  "tracking": {
+    "entity": "example-entity",
+    "group": "20260928-2338-post-advisor-unanswered",
+    "mode": "disabled",
+    "on_error": "fail",
+    "probe_epoch": "post-advisor-e1-20260929",
+    "project": "openevo-webshop-experiments"
+  },
+  "workspace": "/workspace"
+}

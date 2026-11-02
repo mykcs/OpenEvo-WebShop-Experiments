@@ -1,0 +1,157 @@
+{
+  "completed_at": "2026-09-26T06:25:35Z",
+  "created_at": "2026-09-26T06:25:35Z",
+  "identity_payload": {
+    "code_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "scripts/openevo_webshop/experiment_artifact_dag.py",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "312ebfb54ba136ed0ccb94c0f2b25debe0eff71a0d4afd9fa6f50f431f5d7964"
+    },
+    "config_identity": {
+      "evidence_path": null,
+      "kind": "repository_file",
+      "path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_R149_PRIVATE_RECOVERY_BINDING.json",
+      "reason": null,
+      "repository": null,
+      "revision": null,
+      "sha256": "1ac644ffbb854fe104bc47aeb5ec2dead0392964f7e82fef482dd4c300762650"
+    },
+    "contract_identities": [
+      {
+        "identity": {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "configs/experiment/passports/202609082022-q17-directapply-no-gdr/passport.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "caaf7bf63fbc58574f6eb4c8353c45f3ba80ddf103b0b8ef1b55bae2ecf36ddb"
+        },
+        "name": "q17-frozen-experiment-passport"
+      }
+    ],
+    "dataset_schedule_identity": null,
+    "input_artifacts": [
+      {
+        "artifact_type": "json-evidence",
+        "derived_from_digests": [],
+        "digest": "577c69e5c45e2e6bf0bfdc5e01b17ed807dd79c4f83948dab8fe139e9db61bc5",
+        "digest_algorithm": "sha256",
+        "locations": [
+          {
+            "evidence_path": null,
+            "kind": "repository_file",
+            "path": "docs/evidence/completed-1p7b-publication-20260918/Q17_PUBLIC_PRIVATE_RECOVERY_LEDGER.json",
+            "reason": null,
+            "repository": null,
+            "revision": null,
+            "sha256": "577c69e5c45e2e6bf0bfdc5e01b17ed807dd79c4f83948dab8fe139e9db61bc5"
+          }
+        ],
+        "logical_role": "q17-public-private-source-ledger",
+        "size_bytes": 3076
+      }
+    ],
+    "runtime_identity": null,
+    "runtime_identity_policy": "NOT_IDENTITY_BEARING",
+    "stochastic_identity": {
+      "mode": "historical-provider-recovery-registration",
+      "original_materialization_randomness": "not reasserted"
+    }
+  },
+  "node_kind": "operation",
+  "operation_digest": "cc0f1b9a360e053c420b2f98119b6819957d833ca21485f5ff80a6a9c9b9bf7b",
+  "operation_schema_version": "20260926",
+  "operation_type": "q17-r149.backfill.private-materialization-recovery",
+  "outputs": [
+    {
+      "artifact_type": "json-evidence",
+      "derived_from_digests": [
+        "577c69e5c45e2e6bf0bfdc5e01b17ed807dd79c4f83948dab8fe139e9db61bc5"
+      ],
+      "digest": "1ac644ffbb854fe104bc47aeb5ec2dead0392964f7e82fef482dd4c300762650",
+      "digest_algorithm": "sha256",
+      "locations": [
+        {
+          "evidence_path": null,
+          "kind": "repository_file",
+          "path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_R149_PRIVATE_RECOVERY_BINDING.json",
+          "reason": null,
+          "repository": null,
+          "revision": null,
+          "sha256": "1ac644ffbb854fe104bc47aeb5ec2dead0392964f7e82fef482dd4c300762650"
+        }
+      ],
+      "logical_role": "q17-r149-private-recovery-binding",
+      "size_bytes": 4503
+    }
+  ],
+  "producer_attempt": {
+    "attempt_id": "q17-r149.private-materialization-recovery-backfill-20260926",
+    "created_at": "2026-09-26T06:25:35Z",
+    "execution_sha": null,
+    "source": "BACKFILL"
+  },
+  "provenance": {
+    "evidence_paths": [
+      "docs/evidence/recovery-disclosure-audit-20260926/Q17_R149_PRIVATE_RECOVERY_BINDING.json",
+      "docs/evidence/completed-1p7b-publication-20260918/Q17_PUBLIC_PRIVATE_RECOVERY_LEDGER.json"
+    ],
+    "experiment_id": "202609082022-q17-directapply-no-gdr",
+    "external_views": [
+      {
+        "evidence_path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_R149_PRIVATE_RECOVERY_BINDING.json",
+        "kind": "hf",
+        "path": "MANIFEST.json",
+        "reason": "private recovery observation only; no automatic scientific reuse",
+        "repository": "kyo-myk/openevo-q17-r149-svd-rank32-rank128-private-recovery",
+        "revision": "14b9616777c149df544f664e5c7eb59975a8f356",
+        "sha256": "3e0f62919bfb3fafe255c77675c326b4f5837a5c6c416f064ca7df9cf91b192a"
+      },
+      {
+        "evidence_path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_R149_PRIVATE_RECOVERY_BINDING.json",
+        "kind": "hf",
+        "path": "rank128/adapter_model.safetensors",
+        "reason": "exact private rank128 payload",
+        "repository": "kyo-myk/openevo-q17-r149-svd-rank32-rank128-private-recovery",
+        "revision": "14b9616777c149df544f664e5c7eb59975a8f356",
+        "sha256": "2cda33442ad97b8b682de6ed7d66c9fa60b38528efd7dcbbc7d6d76cbf0a56cd"
+      },
+      {
+        "evidence_path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_R149_PRIVATE_RECOVERY_BINDING.json",
+        "kind": "hf",
+        "path": "rank32/adapter_model.safetensors",
+        "reason": "exact private rank32 payload",
+        "repository": "kyo-myk/openevo-q17-r149-svd-rank32-rank128-private-recovery",
+        "revision": "14b9616777c149df544f664e5c7eb59975a8f356",
+        "sha256": "70042aad080827985f5290c29d65250396837a37d00853d4ef4236ab48594101"
+      },
+      {
+        "evidence_path": "docs/evidence/recovery-disclosure-audit-20260926/Q17_R149_PRIVATE_RECOVERY_BINDING.json",
+        "kind": "hf",
+        "path": "checkpoints/round-149/adapter_model.safetensors",
+        "reason": "pinned public source adapter",
+        "repository": "openevo-recovery/openevo-q17-directapply-1p7b-checkpoints",
+        "revision": "b809626944e17e23f1e4c0d12cda0a474c36e08b",
+        "sha256": "2d357594d847a79eb43982447944da1d3ac949a6a64113aed2fb32444aca1d7c"
+      }
+    ],
+    "passport_sha256": "155e8885d2af2d4ee8b281f75cfec5c8b3af18b2c42b63f440da2af3e00805b6",
+    "producer_scope": "EXPERIMENT"
+  },
+  "reuse": {
+    "automatic_reuse_permitted": false,
+    "default_policy": "ALLOWLISTED_ENGINEERING_ONLY",
+    "mechanical_eligibility": "ELIGIBLE",
+    "operation_allowlisted": false,
+    "reason": "Provider recovery registration is engineering evidence only; materialized adapters are diagnostic and never automatically admitted to formal science."
+  },
+  "schema": "openevo.experiment-passport-operation-node.202609202238",
+  "side_effect_class": "PURE_ENGINEERING",
+  "status": "PASS",
+  "supersedes": []
+}

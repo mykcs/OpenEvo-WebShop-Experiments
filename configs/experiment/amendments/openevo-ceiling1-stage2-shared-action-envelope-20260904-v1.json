@@ -1,0 +1,58 @@
+{
+  "activation_authority": false,
+  "applies_to_arms": [
+    "qwen25-3b",
+    "qwen3-1p7b"
+  ],
+  "engineering_change": {
+    "action_body": "hard constrained to current dynamic Allowed-actions",
+    "fuzzy_repair": false,
+    "interface_owned_action_opener": true,
+    "minimum_pre_action_model_tokens": 4,
+    "model_action_choice_preserved": true,
+    "pre_action_reasoning": "model-authored",
+    "pre_action_token_budget": 64,
+    "search_query_token_budget": 256,
+    "unconstrained_fallback": false
+  },
+  "formal_stage2_requires_separate_activation": true,
+  "qualification": {
+    "mechanical_gates": [
+      "engineering_invalid_count==0",
+      "parser_or_fallback_failure_count==0",
+      "terminated_on_invalid_action_count==0",
+      "constraint_escape_count==0",
+      "environment_action_schema_violation_count==0",
+      "all action_channel_entered",
+      "all action admissible",
+      "runtime_harness==201.1",
+      "sampling exact",
+      "Qwen3 chat_template_enable_thinking==false"
+    ],
+    "qualification_only": true,
+    "reward_success_not_an_activation_gate": true,
+    "same_positions_and_generation_seeds_per_arm": true
+  },
+  "reason": "Stage2 Harness201.1 previously constrained the action body only after the model independently emitted literal <action>. Qwen3 qualification exposed frequent malformed <action=...> outputs, so the hard Allowed-actions constraint never engaged. Stage1 202609030400 already qualified an interface-owned action opener with model-controlled action choice.",
+  "schema": "openevo.ceiling1-stage2-shared-action-envelope-amendment.v1",
+  "scientific_non_changes": {
+    "carriers": "unchanged",
+    "external_teacher_calls": 0,
+    "final_panel_access": 0,
+    "reward_or_success_used_for_gate": false,
+    "round_rollouts": 128,
+    "rounds": 160,
+    "sampling": {
+      "max_new_tokens": 512,
+      "max_steps": 15,
+      "repetition_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 0,
+      "top_p": 1.0
+    },
+    "sd_lora": "unchanged",
+    "task_schedule": "unchanged",
+    "total_rollouts": 20480
+  },
+  "status": "PREREGISTERED_NO_ACTIVATION_AUTHORITY"
+}

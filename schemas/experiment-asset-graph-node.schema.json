@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mykcs/openevo-experiment/schemas/experiment-asset-graph-node.schema.json",
+  "title": "OpenEvo Canonical Experiment Asset Graph Node",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "node_level", "canonical_id", "display_title_en", "program", "benchmark", "scientific_lifecycle", "scientific_validity", "asset_lifecycle", "visibility", "aliases", "source_authorities", "provider_bindings", "relations"],
+  "properties": {
+    "schema": {"const": "openevo.experiment-asset-graph-node.v1"},
+    "node_level": {"enum": ["campaign", "design", "run", "asset"]},
+    "canonical_id": {"type": "string", "minLength": 1},
+    "display_title_en": {"type": "string", "minLength": 1},
+    "summary_zh": {"type": ["string", "null"]},
+    "program": {"const": "openevo"},
+    "benchmark": {"type": "string", "minLength": 1},
+    "campaign_id": {"type": ["string", "null"]},
+    "design_id": {"type": ["string", "null"]},
+    "canonical_run_id": {"type": ["string", "null"]},
+    "asset_id": {"type": ["string", "null"]},
+    "scientific_stage": {"type": ["string", "null"]},
+    "asset_role": {"type": ["string", "null"]},
+    "scientific_lifecycle": {"enum": ["draft", "preregistered", "frozen", "authorized", "running", "sealed", "analyzed", "closed", "superseded", "cancelled"]},
+    "scientific_validity": {"enum": ["not-assessed", "valid-positive", "valid-negative", "protocol-invalid", "measurement-invalid", "runtime-failure", "tracking-degraded", "cancelled", "not-run"]},
+    "asset_lifecycle": {"enum": ["live-writing", "local-closed", "remote-published", "remote-verified-exact", "retained-hot", "retained-cold", "reconstructible-pinned", "retired"]},
+    "visibility": {"enum": ["public", "private", "server-only"]},
+    "aliases": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "source_authorities": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["authority_type", "provider_id"],
+        "properties": {
+          "authority_type": {"enum": ["git", "receipt", "content-hash", "provider-readback"]},
+          "provider_id": {"type": "string", "minLength": 1},
+          "immutable_revision": {"type": ["string", "null"]},
+          "content_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+          "notes_zh": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "provider_bindings": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["provider", "provider_id", "binding_role"],
+        "properties": {
+          "provider": {"enum": ["server", "github", "wandb", "huggingface", "kaggle", "basemodel"]},
+          "provider_id": {"type": "string", "minLength": 1},
+          "binding_role": {"type": "string", "minLength": 1},
+          "immutable_revision": {"type": ["string", "null"]},
+          "metadata_revision": {"type": ["string", "null"]},
+          "content_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+          "legacy": {"type": "boolean"},
+          "notes_zh": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["relation", "target_canonical_id"],
+        "properties": {
+          "relation": {"enum": ["child-of", "consumes", "produces", "derived-from", "analyzes", "recovers-from", "published-as", "supersedes", "superseded-by"]},
+          "target_canonical_id": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "execution_binding": {"type": ["object", "null"]},
+    "generated_from": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+  }
+}
